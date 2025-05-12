@@ -1,0 +1,58 @@
+<?php
+
+use App\Actions\Menu\CreateMenu;
+use App\Actions\Permission\AssignPermissionToRole;
+use App\Enums\RoleEnum;
+use App\Models\Role;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Str;
+
+return new class extends Migration
+{
+    use App\Concerns\PermissionFunctions;
+
+    public function up(): void
+    {
+        $moduleName = '{moduleName}';
+        $menuLabel = '{menuLabel}';
+        $menuIcon = '{menuIcon}';
+        $parentId = '{parentId}';
+        $haveNewParent = '{haveNewParent}';
+
+        if ($haveNewParent === 'yes') {
+            $parentId = ((new CreateMenu)->handle(
+                label: '{parentMenuLabel}',
+                route: '#',
+                icon: '{parentMenuIcon}',
+                permission: null,
+            ))->getKey();
+        }
+
+        $case = App\Utils\Caseify::handle($moduleName);
+
+        $underscoreCase = $case['underscoreCase'];
+
+        $businessRole = Role::business();
+
+        foreach ($this->permissionList() as $permission) {
+            (new AssignPermissionToRole)->handle(
+                role: $businessRole,
+                permission: $permission,
+                module: $underscoreCase,
+            );
+        }
+
+        (new CreateMenu)->handle(
+            label: $menuLabel,
+            route: $underscoreCase . '.index',
+            icon: $menuIcon,
+            permission: $underscoreCase . '.list',
+            parent: $parentId === '' ? null : $parentId,
+        );
+    }
+
+    public function down(): void
+    {
+        //
+    }
+};

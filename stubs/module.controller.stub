@@ -1,0 +1,79 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Actions\Notification\NotifyUser;
+use App\Actions\{classCase}\Create{classCase};
+use App\Actions\{classCase}\Update{classCase};
+use App\Http\Requests\Delete{classCase}Request;
+use App\Http\Requests\Store{classCase}Request;
+use App\Http\Requests\Update{classCase}Request;
+use App\Models\{classCase};
+use App\Notifications\{classCase}Created;
+use App\Notifications\{classCase}Deleted;
+use App\Notifications\{classCase}Updated;
+use Exception;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
+use Inertia\Response;
+use Msamgan\Lact\Attributes\Action;
+use Throwable;
+
+class {classCase}Controller extends Controller
+{
+    public function index(): Response
+    {
+        return Inertia::render('{classCase}/Index');
+    }
+
+    /**
+     * @throws Exception|Throwable
+     */
+     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:{underscoreCase}.create'])]
+    public function store(Store{classCase}Request $request, Create{classCase} $create{classCase}, NotifyUser $notifyUser): void
+    {
+        DB::beginTransaction();
+
+        try {
+            ${camelCase} = $create{classCase}->handle($request->validated());
+
+            $notifyUser->handle(new {classCase}Created(auth()->user()));
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    #[Action(params: ['{camelCase}'], middleware: ['auth', 'check_has_business', 'can:{underscoreCase}.view'])]
+    public function show({classCase} ${camelCase}): {classCase}
+    {
+        // Access::businessCheck(businessId: ${camelCase}->business_id);
+
+        return ${camelCase};
+    }
+
+    #[Action(method: 'post', params: ['{camelCase}'], middleware: ['auth', 'check_has_business', 'can:{underscoreCase}.update'])]
+    public function update(Update{classCase}Request $request, {classCase} ${camelCase}, Update{classCase} $update{classCase}, NotifyUser $notifyUser): void
+    {
+        $update{classCase}->handle(${camelCase}, $request->validated());
+
+        $notifyUser->handle(new {classCase}Updated(auth()->user()));
+    }
+
+    #[Action(method: 'delete', params: ['{camelCase}'], middleware: ['auth', 'check_has_business', 'can:{underscoreCase}.delete'])]
+    public function destroy(Delete{classCase}Request $request, {classCase} ${camelCase}, NotifyUser $notifyUser): void
+    {
+        $notifyUser->handle(new {classCase}Deleted(auth()->user()));
+
+        ${camelCase}->delete();
+    }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:{underscoreCase}.list'])]
+    public function {camelCasePlural}(): Collection
+    {
+        return {classCase}::query()->get();
+    }
+}

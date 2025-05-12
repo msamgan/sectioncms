@@ -1,0 +1,11 @@
+export const dataObject = ({camelCase}) => {
+    return {
+        name: {camelCase} ? {camelCase}.name : '',
+    }
+}
+
+export const pageObject = ({camelCase}) => {
+    return {
+        title: {camelCase} ? 'Edit {titleCase}' : 'Create {titleCase}',
+    }
+}

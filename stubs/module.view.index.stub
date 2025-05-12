@@ -1,0 +1,96 @@
+import Master from '@/Layouts/Master.jsx'
+import { Head } from '@inertiajs/react'
+import { permissions } from '@/Utils/permissions/index.js'
+import { useEffect, useState } from 'react'
+import Actions from '@/Components/helpers/Actions.jsx'
+import Name from '@/Components/helpers/Name.jsx'
+import ActiveBadge from '@/Components/helpers/ActiveBadge.jsx'
+import Table from '@/Components/layout/Table.jsx'
+import { pageObject } from '@/Pages/{classCase}/helper.js'
+import PageHeader from '@/Components/PageHeader.jsx'
+import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
+import Form from '@/Pages/{classCase}/Partials/Form.jsx'
+import { destroy, {camelCasePlural} as _{camelCasePlural}, show } from '@actions/{classCase}Controller.js'
+import usePermissions from '@/Hooks/usePermissions'
+import EditActionButton from '@/Components/EditActionButton.jsx'
+import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
+import CreateActionButton from '@/Components/CreateActionButton.jsx'
+
+export default function Index() {
+    const { can } = usePermissions()
+
+    const [{camelCasePlural}, set{classCasePlural}] = useState([])
+    const [data, setData] = useState([])
+    const [{camelCase}, set{classCase}] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [pageData, setPageData] = useState(pageObject(null))
+
+    const get{classCasePlural} = async () => set{classCasePlural}(await _{camelCasePlural}.data({}))
+
+    const get{classCase} = async (id) => set{classCase}(await show.data({ params: { {camelCase}: id } }))
+
+    const edit{classCase} = ({camelCase}) => {
+        get{classCase}({camelCase}.id).then()
+        setPageData(pageObject({camelCase}))
+    }
+
+    const process{classCase} = ({camelCase}) => {
+        return {
+            Name: <Name value={{camelCase}.name} />,
+            Actions: (
+                <Actions
+                    edit={<EditActionButton module={'{underscoreCase}'} onClick={() => edit{classCase}({camelCase})} />}
+                    deleteAction={
+                         <DeleteActionButton
+                             module={'{underscoreCase}'}
+                             route={destroy.route({ {camelCase}: {camelCase}.id })}
+                             refresh={get{classCasePlural}}
+                         />
+                    }
+                />
+            ),
+        }
+    }
+
+    useEffect(() => {
+        if (can(permissions.{underscoreCase}.list)) {
+            get{classCasePlural}()
+                .then()
+                .finally(() => setLoading(false))
+        }
+    }, [])
+
+    useEffect(() => {
+        setData({camelCasePlural}.map(({camelCase}) => process{classCase}({camelCase})))
+    }, [{camelCasePlural}])
+
+    return (
+        <Master>
+            <Head title="{titleCase}" />
+
+            <PageHeader
+                title={'{titleCase}'}
+                subtitle={'Find all of your business’s {titleCase} and there associated details.'}
+                action={
+                   <CreateActionButton
+                       module={'{underscoreCase}'}
+                       onClick={() => {
+                           set{classCase}(null)
+                           setPageData(pageObject(null))
+                       }}
+                   />
+               }
+            ></PageHeader>
+
+            {can([permissions.{underscoreCase}.view, permissions.{underscoreCase}.update, permissions.{underscoreCase}.create]) && (
+                <OffCanvas id="{camelCase}FormCanvas" title={pageData.title}>
+                    <Form get{classCasePlural}={get{classCasePlural}} {camelCase}={{camelCase}} />
+                </OffCanvas>
+            )}
+
+            <div className="col-12">
+                <Table data={data} loading={loading} permission={can(permissions.{underscoreCase}.list)} />
+            </div>
+        </Master>
+    )
+}
