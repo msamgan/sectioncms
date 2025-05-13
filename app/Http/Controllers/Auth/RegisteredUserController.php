@@ -11,7 +11,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -19,24 +18,25 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class RegisteredUserController extends Controller
 {
     /**
      * Handle an incoming registration request.
      *
-     * @throws Exception
+     * @throws Exception|Throwable
      */
     public function store(
         Request $request,
         AssignRole $assignRoleAction,
         CreateBusiness $createBusinessAction,
-    ): RedirectResponse {
+    ) {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
             'password' => ['required', 'confirmed', $this->getPasswordDefaults()],
-            'business_name' => ['required', 'string', 'max:255'],
+            'website' => ['required', 'string', 'url', 'max:255'],
         ]);
 
         DB::beginTransaction();
@@ -52,7 +52,9 @@ final class RegisteredUserController extends Controller
 
             $assignRoleAction->handle(user: $user, role: RoleEnum::Business->role(), makeRoleActive: true);
 
-            $createBusinessAction->handle(user: $user, businessName: $request->get('business_name'), makeBusinessActive: true);
+            $businessName = parse_url($request->get('website'), PHP_URL_HOST);
+
+            $createBusinessAction->handle(user: $user, businessName: $businessName, makeBusinessActive: true);
 
             event(new Registered($user));
 

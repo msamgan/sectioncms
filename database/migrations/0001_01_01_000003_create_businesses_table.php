@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('zip')->nullable();
             $table->string('timezone')->nullable()->default('GMT-05:00');
-            $table->string('unit_system')->nullable()->default('in');
-            $table->string('weight_unit')->nullable()->default('lb');
-            $table->string('currency')->nullable()->default('USD');
             $table->timestamps();
         });
     }

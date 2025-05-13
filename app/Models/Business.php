@@ -35,9 +35,6 @@ final class Business extends Model
         'state',
         'zip',
         'timezone',
-        'unit_system',
-        'weight_unit',
-        'currency',
     ];
 
     public function getActivitylogOptions(): LogOptions

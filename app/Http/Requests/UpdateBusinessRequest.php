@@ -37,9 +37,6 @@ final class UpdateBusinessRequest extends FormRequest
             'state' => ['string', 'max:255', 'nullable'],
             'zip' => ['numeric', 'nullable'],
             'timezone' => ['required', 'string', 'max:255'],
-            'unit_system' => ['required', 'string', 'max:255'],
-            'weight_unit' => ['required', 'string', 'max:255'],
-            'currency' => ['required', 'string', 'max:255'],
         ];
     }
 }

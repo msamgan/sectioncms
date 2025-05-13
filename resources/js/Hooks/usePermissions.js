@@ -9,5 +9,6 @@ export default function usePermissions() {
 
         return auth.user.access.some((p) => p.name === permission)
     }
+
     return { can }
 }

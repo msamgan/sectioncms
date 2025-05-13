@@ -1,4 +1,3 @@
-import TopHeaderDropdown from '@/Components/layout/TopHeaderDropdown.jsx'
 import ApplicationLogo from '@/Components/ApplicationLogo.jsx'
 import TopHeaderRight from '@/Components/layout/TopHeaderRight.jsx'
 

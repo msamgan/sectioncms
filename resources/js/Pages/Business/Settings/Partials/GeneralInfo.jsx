@@ -1,7 +1,7 @@
 import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import { useForm } from '@inertiajs/react'
-import { currencies, timeZones, unitSystems, weightUnits } from '@/Utils/constants.js'
+import { timeZones } from '@/Utils/constants.js'
 import InputError from '@/Components/InputError.jsx'
 import { Transition } from '@headlessui/react'
 import { update } from '@actions/BusinessController.js'
@@ -15,9 +15,6 @@ export default function GeneralInfo({ business }) {
         state: business.state,
         zip: business.zip,
         timezone: business.timezone,
-        unit_system: business.unit_system,
-        weight_unit: business.weight_unit,
-        currency: business.currency,
     })
 
     const submit = (e) => {
@@ -156,80 +153,6 @@ export default function GeneralInfo({ business }) {
                                 </InputLabel>
                                 <InputError className="mt-2" message={errors.timezone} />
                             </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <div className="form-floating form-floating-outline">
-                                <select
-                                    id="unitSystemDropdown"
-                                    className="select2 form-select"
-                                    data-placeholder="Metric"
-                                    defaultValue={data.unit_system}
-                                    onChange={(e) => setData('unit_system', e.target.value)}
-                                >
-                                    {unitSystems.map((unit, index) => (
-                                        <option key={index} value={unit.value}>
-                                            {unit.label}
-                                        </option>
-                                    ))}
-                                </select>
-                                <InputLabel htmlFor="unitSystemDropdown" required={true}>
-                                    Metric
-                                </InputLabel>
-                                <InputError className="mt-2" message={errors.unit_system} />
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <div className="form-floating form-floating-outline">
-                                <select
-                                    id="weightUnits"
-                                    onChange={(e) => setData('weight_unit', e.target.value)}
-                                    className="select2 form-select"
-                                    data-placeholder="Kilograms"
-                                    defaultValue={data.weight_unit}
-                                >
-                                    {weightUnits.map((unit, index) => (
-                                        <option key={index} value={unit.value}>
-                                            {unit.label}
-                                        </option>
-                                    ))}
-                                </select>
-                                <InputLabel htmlFor="weightUnits" required={true}>
-                                    Weight
-                                </InputLabel>
-                                <InputError className="mt-2" message={errors.weight_unit} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="card mb-6">
-                <div className="card-header">
-                    <div className="card-title mb-0">
-                        <h5 className="mb-0">Store currency</h5>
-                        <p className="text-body mb-0">The currency your products are sold in.</p>
-                    </div>
-                </div>
-                <div className="card-body">
-                    <div>
-                        <div className="form-floating form-floating-outline">
-                            <select
-                                id="currency-store"
-                                className="select2 form-select"
-                                data-placeholder="Store currency"
-                                defaultValue={data.currency}
-                                onChange={(e) => setData('currency', e.target.value)}
-                            >
-                                {currencies.map((currency, index) => (
-                                    <option key={index} value={currency.value}>
-                                        {currency.label}
-                                    </option>
-                                ))}
-                            </select>
-                            <InputLabel htmlFor="currency-store" required={true}>
-                                Store currency
-                            </InputLabel>
-                            <InputError className="mt-2" message={errors.currency} />
                         </div>
                     </div>
                 </div>
