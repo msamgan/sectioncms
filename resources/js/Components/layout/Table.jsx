@@ -24,6 +24,7 @@ const TableContainer = ({ columns, data, tdClassName }) => {
                                 aria-describedby="search-help"
                                 name={'q'}
                                 onChange={(e) => setQuery(e.target.value)}
+                                autoFocus={true}
                             />
                             <label htmlFor="search">Search</label>
                         </div>
