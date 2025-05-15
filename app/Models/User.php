@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -26,11 +30,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int business_id
  * @property $unreadNotifications
  */
-final class User extends Authenticatable
+final class User extends Authenticatable implements HasMedia
 {
     use CausesActivity, LogsActivity;
     use HasFactory, Notifiable;
     use HasRoles;
+    use InteractsWithMedia;
     use ModelFunctions;
     use Notifiable;
 
@@ -65,6 +70,14 @@ final class User extends Authenticatable
         return LogOptions::defaults()
             ->logOnlyDirty()
             ->logFillable();
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('preview')
+            ->fit(Fit::Contain, 300, 300)
+            ->nonQueued();
     }
 
     public function getAccessAttribute(): Collection

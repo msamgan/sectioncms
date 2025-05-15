@@ -6,6 +6,12 @@ namespace App\Enums;
 
 enum PermissionEnum: string
 {
+    case MediumList = 'medium.list';
+    case MediumCreate = 'medium.create';
+    case MediumView = 'medium.view';
+    case MediumUpdate = 'medium.update';
+    case MediumDelete = 'medium.delete';
+
     case BusinessList = 'business.list';
     case BusinessCreate = 'business.create';
     case BusinessView = 'business.view';
@@ -44,6 +50,12 @@ enum PermissionEnum: string
             self::UserView => 'can:user.view',
             self::UserUpdate => 'can:user.update',
             self::UserDelete => 'can:user.delete',
+
+            self::MediumList => 'can:medium.list',
+            self::MediumCreate => 'can:medium.create',
+            self::MediumView => 'can:medium.view',
+            self::MediumUpdate => 'can:medium.update',
+            self::MediumDelete => 'can:medium.delete',
         };
     }
 }
