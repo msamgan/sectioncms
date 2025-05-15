@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import ActiveBadge from '@/Components/helpers/ActiveBadge.jsx'
-import OffCanvasButton from '@/Components/off_canvas/OffCanvasButton.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/User/helper.js'
 import PageHeader from '@/Components/PageHeader.jsx'
@@ -45,16 +44,10 @@ export default function Index() {
             Roles: user.roles.map((role) => role.display_name).join(', '),
             Status: <ActiveBadge value={'Active'} />,
             Actions: (
-                <Actions
-                    edit={<EditActionButton module={'user'} onClick={() => editUser(user)} />}
-                    deleteAction={
-                        <DeleteActionButton
-                            module={'user'}
-                            route={destroy.route({ user: user.id })}
-                            refresh={getUsers}
-                        />
-                    }
-                />
+                <Actions>
+                    <EditActionButton module={'user'} onClick={() => editUser(user)} />
+                    <DeleteActionButton module={'user'} route={destroy.route({ user: user.id })} refresh={getUsers} />
+                </Actions>
             ),
         }
     }
