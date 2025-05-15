@@ -34,6 +34,7 @@
         <!-- Vendors CSS -->
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/spinkit/spinkit.css') }}" />
+        <link rel="stylesheet" href="{{ assert('assets/vendor/libs/animate-css/animate.css') }}" />
         <!-- Page CSS -->
 
         <!-- Helpers -->

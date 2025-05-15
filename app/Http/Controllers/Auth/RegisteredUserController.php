@@ -52,7 +52,7 @@ final class RegisteredUserController extends Controller
 
             $assignRoleAction->handle(user: $user, role: RoleEnum::Business->role(), makeRoleActive: true);
 
-            $businessName = parse_url($request->get('website'), PHP_URL_HOST);
+            $businessName = parse_url((string) $request->get('website'), PHP_URL_HOST);
 
             $createBusinessAction->handle(user: $user, businessName: $businessName, makeBusinessActive: true);
 

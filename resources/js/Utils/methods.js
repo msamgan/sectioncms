@@ -33,3 +33,27 @@ export const toTitleCase = (str) => {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ')
 }
+
+export const formatFileSize = (bytes) => {
+    if (bytes < 1024) {
+        return `${Math.round(bytes)} B`
+    } else if (bytes < 1024 * 1024) {
+        return `${(bytes / 1024).toFixed(2)} KB`
+    } else if (bytes < 1024 * 1024 * 1024) {
+        return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
+    } else if (bytes < 1024 * 1024 * 1024 * 1024) {
+        return `${(bytes / (1024 * 1024 * 1024)).toFixed(2)} GB`
+    } else {
+        return `${(bytes / (1024 * 1024 * 1024 * 1024)).toFixed(2)} TB`
+    }
+}
+
+export const parseQueryString = () => {
+    const params = new URLSearchParams(window.location.search)
+    const result = {}
+    for (const [key, value] of params.entries()) {
+        result[key] = value
+    }
+
+    return result
+}
