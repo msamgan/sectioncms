@@ -1,7 +1,6 @@
 import Master from '@/Layouts/Master.jsx'
 import { Head } from '@inertiajs/react'
 import PageHeader from '@/Components/PageHeader.jsx'
-import OffCanvasButton from '@/Components/off_canvas/OffCanvasButton.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/Role/helper.js'
@@ -45,16 +44,10 @@ export default function Index() {
             UserCount: role.users_count,
             Status: <ActiveBadge value={'Active'} />,
             Actions: (
-                <Actions
-                    edit={<EditActionButton module={'role'} onClick={() => editRole(role)} />}
-                    deleteAction={
-                        <DeleteActionButton
-                            module={'role'}
-                            route={destroy.route({ role: role.id })}
-                            refresh={getRoles}
-                        />
-                    }
-                />
+                <Actions>
+                    <EditActionButton module={'role'} onClick={() => editRole(role)} />
+                    <DeleteActionButton module={'role'} route={destroy.route({ role: role.id })} refresh={getRoles} />
+                </Actions>
             ),
         }
     }
