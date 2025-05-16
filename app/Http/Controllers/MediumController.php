@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 use Msamgan\Lact\Attributes\Action;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Throwable;
 
 final class MediumController extends Controller
@@ -53,13 +54,14 @@ final class MediumController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:medium.list'])]
     public function media(): Collection
     {
-        return Auth::user()->getMedia('*')->map(fn ($medium): array => [
-            'id' => $medium->id,
-            'url' => $medium->getUrl(),
-            'name' => $medium->name,
-            'type' => $medium->mime_type,
-            'size' => $medium->size,
-            'preview' => $medium->getUrl('preview'),
-        ]);
+        return Media::query()->where('custom_properties->business_id', Auth::user()->key('business_id'))->get()
+            ->map(fn ($medium): array => [
+                'id' => $medium->id,
+                'url' => $medium->getUrl(),
+                'name' => $medium->name,
+                'type' => $medium->mime_type,
+                'size' => $medium->size,
+                'preview' => $medium->getUrl('preview'),
+            ]);
     }
 }
