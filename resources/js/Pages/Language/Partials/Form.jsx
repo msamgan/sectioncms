@@ -29,6 +29,7 @@ export default function Form({ getLanguages, language = null }) {
             onSuccess: (r) => {
                 if (!language) {
                     reset('name')
+                    reset('code')
                 }
 
                 getLanguages()
@@ -71,8 +72,8 @@ export default function Form({ getLanguages, language = null }) {
                                     id="user-code"
                                     placeholder="Code (e.g. en)"
                                     required={true}
-                                    maxlength={2}
-                                    minlength={2}
+                                    maxLength={2}
+                                    minLength={2}
                                 />
                                 <InputLabel htmlFor="user-code" required={true}>
                                     Code (2 characters)

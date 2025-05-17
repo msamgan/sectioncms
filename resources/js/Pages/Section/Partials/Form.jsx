@@ -10,16 +10,16 @@ import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import DynamicFields from '@/Pages/Section/Partials/DynamicFields.jsx'
 
-export default function Form({ getSections, section = null }) {
+export default function Form({ getSections, section = null, languages }) {
     const { can } = usePermissions()
 
     const [action, setAction] = useState(store.route())
-    const { data, setData, post, errors, processing, recentlySuccessful, reset } = useForm(dataObject(null))
+    const { data, setData, post, errors, processing, recentlySuccessful, reset } = useForm(dataObject(null, languages))
     const [showSaveButton, setShowSaveButton] = useState(false)
 
     useEffect(() => {
         setAction(section ? update.route({ section: section.id }) : store.route())
-        setData(dataObject(section))
+        setData(dataObject(section, languages))
         setShowSaveButton(section ? can(permissions.section.update) : can(permissions.section.create))
     }, [section])
 
@@ -63,7 +63,7 @@ export default function Form({ getSections, section = null }) {
                             </div>
                         </div>
                         <div className="col-12 col-md-12">
-                            <DynamicFields dataFields={data.fields} setData={setData} />
+                            <DynamicFields dataFields={data.fields} setData={setData} languages={languages} />
                         </div>
                     </div>
                 </div>

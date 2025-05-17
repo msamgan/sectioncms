@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use App\Actions\Language\CreateLanguage;
 use App\Actions\Language\UpdateLanguage;
 use App\Actions\Notification\NotifyUser;
+use App\Actions\Section\CreateLanguageValues;
+use App\Actions\Section\UpdateLanguageValues;
 use App\Http\Requests\DeleteLanguageRequest;
 use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\UpdateLanguageRequest;
@@ -35,12 +37,14 @@ final class LanguageController extends Controller
      * @throws Exception|Throwable
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:language.create'])]
-    public function store(StoreLanguageRequest $request, CreateLanguage $createLanguage, NotifyUser $notifyUser): void
+    public function store(StoreLanguageRequest $request, CreateLanguage $createLanguage, CreateLanguageValues $createLanguageValues, NotifyUser $notifyUser): void
     {
         DB::beginTransaction();
 
         try {
-            $createLanguage->handle($request->validated());
+            $language = $createLanguage->handle($request->validated());
+
+            $createLanguageValues->handle(languageCode: $language->key('code'));
 
             $notifyUser->handle(new LanguageCreated(auth()->user()));
 
@@ -59,12 +63,27 @@ final class LanguageController extends Controller
         return $language;
     }
 
+    /**
+     * @throws Throwable
+     */
     #[Action(method: 'post', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.update'])]
-    public function update(UpdateLanguageRequest $request, Language $language, UpdateLanguage $updateLanguage, NotifyUser $notifyUser): void
+    public function update(UpdateLanguageRequest $request, Language $language, UpdateLanguage $updateLanguage, UpdateLanguageValues $updateLanguageValues, NotifyUser $notifyUser): void
     {
-        $updateLanguage->handle($language, $request->validated());
+        DB::beginTransaction();
 
-        $notifyUser->handle(new LanguageUpdated(auth()->user()));
+        try {
+            if ($language->key('code') !== $request->validated('code')) {
+                $updateLanguageValues->handle(languageCode: $language->key('code'), newLanguageCode: $request->validated('code'));
+            }
+
+            $updateLanguage->handle($language, $request->validated());
+
+            $notifyUser->handle(new LanguageUpdated(auth()->user()));
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     #[Action(method: 'delete', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.delete'])]
@@ -78,6 +97,8 @@ final class LanguageController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
     public function languages(): Collection
     {
-        return Language::query()->where('business_id', Auth::user()->key('business_id'))->get();
+        return Language::query()->where('business_id', Auth::user()->key('business_id'))
+            ->orderBy('created_at', 'Asc')
+            ->get();
     }
 }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Stores;
 
 use App\Models\Section;
+use App\Models\SectionValue;
+use Illuminate\Database\Eloquent\Collection;
 
 final class SectionStore
 {
@@ -36,5 +38,13 @@ final class SectionStore
             $key->values()->delete();
             $key->delete();
         });
+    }
+
+    public static function businessLangValues(int $businessId, string $langCode = 'en'): Collection
+    {
+        return SectionValue::query()
+            ->where('business_id', $businessId)
+            ->where('lang', $langCode)
+            ->get();
     }
 }
