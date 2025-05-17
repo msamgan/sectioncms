@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { store, update } from '@actions/SectionController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
+import DynamicFields from '@/Pages/Section/Partials/DynamicFields.jsx'
 
 export default function Form({ getSections, section = null }) {
     const { can } = usePermissions()
@@ -25,7 +26,9 @@ export default function Form({ getSections, section = null }) {
     const submit = (e) => {
         e.preventDefault()
 
-        post(action, {
+        console.log(data)
+
+        /*post(action, {
             onSuccess: (r) => {
                 if (!section) {
                     reset('name')
@@ -34,7 +37,7 @@ export default function Form({ getSections, section = null }) {
                 getSections()
             },
             onError: () => {},
-        })
+        })*/
     }
 
     return (
@@ -52,7 +55,7 @@ export default function Form({ getSections, section = null }) {
                                     value={data.name}
                                     onChange={(e) => setData('name', e.target.value)}
                                     id="user-name"
-                                    placeholder="Name"
+                                    placeholder="Home Page - Hero"
                                     required={true}
                                     isFocused={true}
                                 />
@@ -61,6 +64,9 @@ export default function Form({ getSections, section = null }) {
                                 </InputLabel>
                                 <InputError className="mt-2" message={errors.name} />
                             </div>
+                        </div>
+                        <div className="col-12 col-md-12">
+                            <DynamicFields setData={setData} />
                         </div>
                     </div>
                 </div>

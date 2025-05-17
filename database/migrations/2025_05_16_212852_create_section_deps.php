@@ -12,6 +12,7 @@ return new class extends Migration
     {
         Schema::create('section_keys', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('business_id')->constrained('businesses')->onDelete('cascade');
             $table->foreignId('section_id')->constrained('sections')->onDelete('cascade');
             $table->string('key');
             $table->timestamps();
@@ -20,6 +21,7 @@ return new class extends Migration
 
         Schema::create('section_values', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('business_id')->constrained('businesses')->onDelete('cascade');
             $table->foreignId('section_key_id')->constrained('section_keys')->onDelete('cascade');
             $table->string('value');
             $table->string('lang')->default('en');

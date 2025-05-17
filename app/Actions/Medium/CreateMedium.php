@@ -17,7 +17,7 @@ final class CreateMedium
     public function handle(): void
     {
         Auth::user()->addMediaFromRequest('file')
-            ->withCustomProperties(['business_id' => Auth::user()->key('business_id')])
+            ->withCustomProperties(['businessId' => Auth::user()->key('business_id')])
             ->toMediaCollection(COLLECTION_NAME);
     }
 }

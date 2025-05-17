@@ -16,6 +16,7 @@ use App\Notifications\SectionDeleted;
 use App\Notifications\SectionUpdated;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -38,8 +39,7 @@ final class SectionController extends Controller
         DB::beginTransaction();
 
         try {
-            $section = $createSection->handle($request->validated());
-
+            $createSection->handle($request->validated());
             $notifyUser->handle(new SectionCreated(auth()->user()));
 
             DB::commit();
@@ -76,6 +76,6 @@ final class SectionController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:section.list'])]
     public function sections(): Collection
     {
-        return Section::query()->get();
+        return Section::query()->where('business_id', Auth::user()->key('business_id'))->get();
     }
 }

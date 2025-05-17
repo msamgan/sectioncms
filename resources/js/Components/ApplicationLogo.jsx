@@ -1,3 +1,3 @@
 export default function ApplicationLogo(props) {
-    return <img src="/logo.png" alt="Logo" {...props} />
+    return <img src="/img/section-cms-logo.png" alt="Logo" {...props} />
 }

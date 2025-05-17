@@ -54,7 +54,7 @@ final class MediumController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:medium.list'])]
     public function media(): Collection
     {
-        return Media::query()->where('custom_properties->business_id', Auth::user()->key('business_id'))->get()
+        return Media::query()->where('custom_properties->businessId', Auth::user()->key('business_id'))->get()
             ->map(fn ($medium): array => [
                 'id' => $medium->id,
                 'url' => $medium->getUrl(),

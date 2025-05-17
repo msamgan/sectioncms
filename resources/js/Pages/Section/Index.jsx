@@ -14,6 +14,7 @@ import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
+import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -36,10 +37,15 @@ export default function Index() {
     const processSection = (section) => {
         return {
             Name: <Name value={section.name} />,
+            Identifier: <ClickToCopy text={section.slug} />,
             Actions: (
                 <Actions>
                     <EditActionButton module={'section'} onClick={() => editSection(section)} />
-                    <DeleteActionButton module={'section'} route={destroy.route({ section: section.id })} refresh={getSections} />
+                    <DeleteActionButton
+                        module={'section'}
+                        route={destroy.route({ section: section.id })}
+                        refresh={getSections}
+                    />
                 </Actions>
             ),
         }
