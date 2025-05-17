@@ -3,35 +3,36 @@ import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import InputError from '@/Components/InputError.jsx'
 import { Transition } from '@headlessui/react'
-import { dataObject } from '@/Pages/Section/helper.js'
+import { dataObject } from '@/Pages/Language/helper.js'
 import { useEffect, useState } from 'react'
-import { store, update } from '@actions/SectionController.js'
+import { store, update } from '@actions/LanguageController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
-import DynamicFields from '@/Pages/Section/Partials/DynamicFields.jsx'
 
-export default function Form({ getSections, section = null, languages }) {
+export default function Form({ getLanguages, language = null }) {
     const { can } = usePermissions()
 
     const [action, setAction] = useState(store.route())
-    const { data, setData, post, errors, processing, recentlySuccessful, reset } = useForm(dataObject(null, languages))
+    const { data, setData, post, errors, processing, recentlySuccessful, reset } = useForm(dataObject(null))
     const [showSaveButton, setShowSaveButton] = useState(false)
 
     useEffect(() => {
-        setAction(section ? update.route({ section: section.id }) : store.route())
-        setData(dataObject(section, languages))
-        setShowSaveButton(section ? can(permissions.section.update) : can(permissions.section.create))
-    }, [section])
+        setAction(language ? update.route({ language: language.id }) : store.route())
+        setData(dataObject(language))
+        setShowSaveButton(language ? can(permissions.language.update) : can(permissions.language.create))
+    }, [language])
 
     const submit = (e) => {
         e.preventDefault()
+
         post(action, {
             onSuccess: (r) => {
-                if (!section) {
+                if (!language) {
                     reset('name')
+                    reset('code')
                 }
 
-                getSections()
+                getLanguages()
             },
             onError: () => {},
         })
@@ -41,7 +42,7 @@ export default function Form({ getSections, section = null, languages }) {
         <form onSubmit={submit}>
             <div className="card mb-6 w-2/3">
                 <div className="card-header">
-                    <h5 className="card-title m-0 text-lg">Section Details</h5>
+                    <h5 className="card-title m-0 text-lg">Language Details</h5>
                 </div>
                 <div className="card-body">
                     <div className="row g-5">
@@ -52,7 +53,7 @@ export default function Form({ getSections, section = null, languages }) {
                                     value={data.name}
                                     onChange={(e) => setData('name', e.target.value)}
                                     id="user-name"
-                                    placeholder="Home Page - Hero"
+                                    placeholder="Name"
                                     required={true}
                                     isFocused={true}
                                 />
@@ -63,7 +64,22 @@ export default function Form({ getSections, section = null, languages }) {
                             </div>
                         </div>
                         <div className="col-12 col-md-12">
-                            <DynamicFields dataFields={data.fields} setData={setData} languages={languages} />
+                            <div className="form-floating form-floating-outline">
+                                <TextInput
+                                    type="text"
+                                    value={data.code}
+                                    onChange={(e) => setData('code', e.target.value)}
+                                    id="user-code"
+                                    placeholder="Code (e.g. en)"
+                                    required={true}
+                                    maxLength={2}
+                                    minLength={2}
+                                />
+                                <InputLabel htmlFor="user-code" required={true}>
+                                    Code (2 characters)
+                                </InputLabel>
+                                <InputError className="mt-2" message={errors.code} />
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,14 +2,15 @@ import { useEffect, useState } from 'react'
 import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import { slugify } from '@/Utils/methods.js'
+import { makeLanguageObject } from '@/Pages/Section/helper.js'
 
-function DynamicFields({ dataFields, setData }) {
-    const [fields, setFields] = useState([{ id: 1, key: '', value: { en: '' } }])
+function DynamicFields({ dataFields, setData, languages }) {
+    const [fields, setFields] = useState([{ id: 1, key: '', value: makeLanguageObject(languages) }])
     const [nextId, setNextId] = useState(1)
     const [locked, setLocked] = useState(false)
 
     const handleAddField = () => {
-        setFields([...fields, { id: nextId, key: '', value: { en: '' } }])
+        setFields([...fields, { id: nextId, key: '', value: makeLanguageObject(languages) }])
         setNextId(nextId + 1)
     }
 
@@ -18,19 +19,10 @@ function DynamicFields({ dataFields, setData }) {
         setFields(fields.map((field) => (field.id === id ? { ...field, key: value } : field)))
     }
 
-    const onValueChange = (id, value) => {
+    const onValueChange = (id, value, lang) => {
         setLocked(false)
         setFields(
-            fields.map((field) =>
-                field.id === id
-                    ? {
-                          ...field,
-                          value: {
-                              en: value,
-                          },
-                      }
-                    : field,
-            ),
+            fields.map((field) => (field.id === id ? { ...field, value: { ...field.value, [lang]: value } } : field)),
         )
     }
 
@@ -74,24 +66,28 @@ function DynamicFields({ dataFields, setData }) {
                             Key
                         </InputLabel>
                     </div>
-                    <div className="input-group input-group-merge mt-4">
-                        <span className="input-group-text">en</span>
-                        <div className="form-floating form-floating-outline">
-                            <TextInput
-                                type="text"
-                                value={field.value.en}
-                                id={'value-' + field.id}
-                                placeholder="Key Value - en"
-                                aria-label="Value"
-                                aria-describedby={'value-' + field.id}
-                                required={true}
-                                onChange={(e) => {
-                                    onValueChange(field.id, e.target.value)
-                                }}
-                            />
-                            <label htmlFor={'value-' + field.id}>Value</label>
+
+                    {Object.keys(field.value).map((lang) => (
+                        <div className="input-group input-group-merge mt-4" key={lang}>
+                            <span className="input-group-text">{lang}</span>
+                            <div className="form-floating form-floating-outline">
+                                <TextInput
+                                    type="text"
+                                    value={field.value[lang]}
+                                    id={'value-' + field.id}
+                                    placeholder={'Key Value - ' + lang}
+                                    aria-label="Value"
+                                    aria-describedby={'value-' + field.id}
+                                    required={true}
+                                    onChange={(e) => {
+                                        onValueChange(field.id, e.target.value, lang)
+                                    }}
+                                />
+                                <label htmlFor={'value-' + field.id}>Value - {lang}</label>
+                            </div>
                         </div>
-                    </div>
+                    ))}
+
                     <button type="button" onClick={() => handleRemoveField(field.id)} className={'float-end mt-1'}>
                         Remove
                     </button>

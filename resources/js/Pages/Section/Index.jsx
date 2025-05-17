@@ -9,6 +9,7 @@ import PageHeader from '@/Components/PageHeader.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
 import Form from '@/Pages/Section/Partials/Form.jsx'
 import { destroy, sections as _sections, show } from '@actions/SectionController.js'
+import { languages as _languages } from '@actions/LanguageController.js'
 import usePermissions from '@/Hooks/usePermissions'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
@@ -24,10 +25,12 @@ export default function Index() {
     const [section, setSection] = useState(null)
     const [loading, setLoading] = useState(true)
     const [pageData, setPageData] = useState(pageObject(null))
-
+    const [languages, setLanguages] = useState([])
     const getSections = async () => setSections(await _sections.data({}))
 
     const getSection = async (id) => setSection(await show.data({ params: { section: id } }))
+
+    const getLanguages = async () => setLanguages(await _languages.data({}))
 
     const editSection = (section) => {
         getSection(section.id).then()
@@ -57,6 +60,8 @@ export default function Index() {
                 .then()
                 .finally(() => setLoading(false))
         }
+
+        getLanguages().then()
     }, [])
 
     useEffect(() => {
@@ -83,7 +88,7 @@ export default function Index() {
 
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (
                 <OffCanvas id="sectionFormCanvas" title={pageData.title}>
-                    <Form getSections={getSections} section={section} />
+                    {languages.length > 0 && <Form getSections={getSections} section={section} languages={languages} />}
                 </OffCanvas>
             )}
 

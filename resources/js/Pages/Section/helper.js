@@ -1,4 +1,13 @@
-export const dataObject = (section) => {
+export const makeLanguageObject = (languages) => {
+    const languageObject = {}
+    languages.forEach((language) => {
+        languageObject[language.code] = ''
+    })
+
+    return languageObject
+}
+
+export const dataObject = (section, languages) => {
     return {
         name: section ? section.name : '',
         fields: section
@@ -7,9 +16,7 @@ export const dataObject = (section) => {
                   {
                       id: 1,
                       key: '',
-                      value: {
-                          en: '',
-                      },
+                      value: makeLanguageObject(languages),
                   },
               ],
     }

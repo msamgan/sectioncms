@@ -6,6 +6,12 @@ namespace App\Enums;
 
 enum PermissionEnum: string
 {
+    case LanguageList = 'language.list';
+    case LanguageCreate = 'language.create';
+    case LanguageView = 'language.view';
+    case LanguageUpdate = 'language.update';
+    case LanguageDelete = 'language.delete';
+
     case SectionList = 'section.list';
     case SectionCreate = 'section.create';
     case SectionView = 'section.view';
@@ -68,6 +74,12 @@ enum PermissionEnum: string
             self::SectionView => 'can:section.view',
             self::SectionUpdate => 'can:section.update',
             self::SectionDelete => 'can:section.delete',
+
+            self::LanguageList => 'can:language.list',
+            self::LanguageCreate => 'can:language.create',
+            self::LanguageView => 'can:language.view',
+            self::LanguageUpdate => 'can:language.update',
+            self::LanguageDelete => 'can:language.delete',
         };
     }
 }
