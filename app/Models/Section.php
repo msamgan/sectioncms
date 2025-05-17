@@ -12,12 +12,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Override;
 
+/**
+ * @property int $id
+ * @property $keys
+ */
 final class Section extends Model
 {
     /** @use HasFactory<SectionFactory> */
     use HasFactory;
 
     use ModelFunctions;
+
+    protected $hidden = [
+        'created_by',
+        'updated_by',
+        'business_id',
+        'created_at',
+        'updated_at',
+    ];
 
     protected $fillable = [
         'name',

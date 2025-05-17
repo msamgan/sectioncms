@@ -15,6 +15,8 @@ use App\Models\Section;
 use App\Notifications\SectionCreated;
 use App\Notifications\SectionDeleted;
 use App\Notifications\SectionUpdated;
+use App\Stores\SectionStore;
+use App\Utils\Access;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -55,11 +57,11 @@ final class SectionController extends Controller
     }
 
     #[Action(params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.view'])]
-    public function show(Section $section): Section
+    public function show(Section $section): array
     {
-        // Access::businessCheck(businessId: $section->business_id);
+        Access::businessCheck(businessId: $section->key('business_id'));
 
-        return $section;
+        return SectionStore::mapSection(section: $section->load('keys', 'keys.values'));
     }
 
     #[Action(method: 'post', params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.update'])]

@@ -1,7 +1,15 @@
 export const dataObject = (section) => {
     return {
         name: section ? section.name : '',
-        fields: section ? section.fields : [],
+        fields: section ? section.fields : [
+            {
+                id: 1,
+                key: '',
+                value: {
+                    en: '',
+                },
+            },
+        ],
     }
 }
 

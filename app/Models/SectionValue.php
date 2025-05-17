@@ -18,6 +18,12 @@ final class SectionValue extends Model
         'section_key_id',
     ];
 
+    protected $hidden = [
+        'business_id',
+        'created_at',
+        'updated_at',
+    ];
+
     #[Override]
     protected static function boot(): void
     {

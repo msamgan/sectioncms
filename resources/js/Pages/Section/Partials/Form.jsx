@@ -63,7 +63,7 @@ export default function Form({ getSections, section = null }) {
                             </div>
                         </div>
                         <div className="col-12 col-md-12">
-                            <DynamicFields setData={setData} />
+                            <DynamicFields dataFields={data.fields} setData={setData}  />
                         </div>
                     </div>
                 </div>

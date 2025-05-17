@@ -17,6 +17,12 @@ final class SectionKey extends Model
         'section_id',
     ];
 
+    protected $hidden = [
+        'business_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function values()
     {
         return $this->hasMany(SectionValue::class, 'section_key_id', 'id');

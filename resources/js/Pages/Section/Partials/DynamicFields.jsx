@@ -3,17 +3,11 @@ import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import { slugify } from '@/Utils/methods.js'
 
-function DynamicFields({ setData }) {
-    const [fields, setFields] = useState([
-        {
-            id: 1,
-            key: '',
-            value: {
-                en: '',
-            },
-        },
-    ])
-    const [nextId, setNextId] = useState(2)
+function DynamicFields({ dataFields, setData }) {
+
+    const [fields, setFields] = useState([{ id: 1, key: '', value: { en: '' } }])
+    const [nextId, setNextId] = useState(1)
+    const [locked, setLocked] = useState(false)
 
     const handleAddField = () => {
         setFields([...fields, { id: nextId, key: '', value: { en: '' } }])
@@ -21,13 +15,14 @@ function DynamicFields({ setData }) {
     }
 
     const onKeyChange = (id, value) => {
+        setLocked(false)
         setFields(fields.map((field) => (field.id === id ? { ...field, key: value } : field)))
     }
 
     const onValueChange = (id, value) => {
+        setLocked(false)
         setFields(
-            fields.map((field) =>
-                field.id === id
+            fields.map((field) => field.id === id
                     ? {
                           ...field,
                           value: {
@@ -44,8 +39,18 @@ function DynamicFields({ setData }) {
     }
 
     useEffect(() => {
+        if (locked) {
+            return
+        }
+
         setData('fields', fields)
     }, [fields])
+
+    useEffect(() => {
+        setLocked(true)
+        setFields(dataFields)
+        setNextId(dataFields.length + 1)
+    }, [dataFields])
 
     return (
         <div>
