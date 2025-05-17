@@ -8,6 +8,7 @@ use App\Concerns\ModelFunctions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Random\RandomException;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -35,7 +36,16 @@ final class Business extends Model
         'state',
         'zip',
         'timezone',
+        'token',
     ];
+
+    /**
+     * @throws RandomException
+     */
+    public static function generateToken(): string
+    {
+        return bin2hex(random_bytes(128));
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
