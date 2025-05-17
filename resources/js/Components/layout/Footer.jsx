@@ -14,12 +14,8 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="d-none d-lg-inline-block">
-                        <a
-                            href="https://demos.pixinvent.com/materialize-html-admin-template/documentation/"
-                            target="_blank"
-                            className="footer-link me-4"
-                        >
-                            Documentation
+                        <a href="/docs/api" target="_blank" className="footer-link me-4">
+                            API Documentation
                         </a>
                     </div>
                 </div>

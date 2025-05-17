@@ -15,6 +15,9 @@ final class SectionController extends Controller
 {
     use ApiResponses;
 
+    /**
+     * Section data
+     */
     public function index(SectionApiRequest $request)
     {
         try {

@@ -13,6 +13,9 @@ final class LanguageController extends Controller
 {
     use ApiResponses;
 
+    /**
+     * Languages
+     */
     public function index(Request $request)
     {
         return $this->ok(
