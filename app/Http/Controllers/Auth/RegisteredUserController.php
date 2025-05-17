@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Auth;
 
 use App\Actions\Business\CreateBusiness;
+use App\Actions\Language\CreateLanguage;
 use App\Actions\Role\AssignRole;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,7 @@ final class RegisteredUserController extends Controller
         Request $request,
         AssignRole $assignRoleAction,
         CreateBusiness $createBusinessAction,
+        CreateLanguage $createLanguageAction,
     ) {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -55,6 +57,8 @@ final class RegisteredUserController extends Controller
             $businessName = parse_url((string) $request->get('website'), PHP_URL_HOST);
 
             $createBusinessAction->handle(user: $user, businessName: $businessName, makeBusinessActive: true);
+
+            $createLanguageAction->handle(['name' => 'English', 'code' => 'en']);
 
             event(new Registered($user));
 

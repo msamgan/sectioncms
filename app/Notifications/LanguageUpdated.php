@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class SectionUpdated extends Notification // implements ShouldQueue
+final class LanguageUpdated extends Notification // implements ShouldQueue
 {
     /**
      * Create a new notification instance.
@@ -47,8 +47,8 @@ final class SectionUpdated extends Notification // implements ShouldQueue
         now()->format('F j, Y, g:i a');
 
         return [
-            'title' => 'Section Updated',
-            'message' => 'A section has been updated by ' . $this->user->name . ' on ' . now()->format('F j, Y, g:i a'),
+            'title' => 'Language Updated',
+            'message' => 'Language has been updated successfully by ' . $this->user->name . ' on ' . now()->format('F j, Y, g:i a'),
         ];
     }
 }

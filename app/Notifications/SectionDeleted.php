@@ -14,7 +14,7 @@ final class SectionDeleted extends Notification // implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private User $user) {}
+    public function __construct(private readonly User $user) {}
 
     /**
      * Get the notification's delivery channels.

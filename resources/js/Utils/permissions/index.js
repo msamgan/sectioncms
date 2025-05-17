@@ -3,6 +3,7 @@ import { role } from '@/Utils/permissions/role.js'
 import { user } from '@/Utils/permissions/user.js'
 import { medium } from '@/Utils/permissions/medium.js'
 import { section } from '@/Utils/permissions/section.js'
+import { language } from '@/Utils/permissions/language.js'
 
 export const permissions = {
     business,
@@ -10,4 +11,5 @@ export const permissions = {
     user,
     medium,
     section,
+    language,
 }
