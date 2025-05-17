@@ -136,7 +136,8 @@ export default function Public({ auth }) {
                                         </h2>
 
                                         <p className="mt-4 text-sm/relaxed">
-                                            Comprehensive permission system with default roles of Business. Control access to different features based on user roles.
+                                            Comprehensive permission system with default roles of Business. Control
+                                            access to different features based on user roles.
                                         </p>
                                     </div>
                                 </div>

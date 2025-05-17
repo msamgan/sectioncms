@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Section\CreateSection;
+use App\Actions\Section\CreateSectionChildren;
 use App\Actions\Section\UpdateSection;
 use App\Http\Requests\DeleteSectionRequest;
 use App\Http\Requests\StoreSectionRequest;
@@ -34,12 +35,16 @@ final class SectionController extends Controller
      * @throws Exception|Throwable
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:section.create'])]
-    public function store(StoreSectionRequest $request, CreateSection $createSection, NotifyUser $notifyUser): void
+    public function store(StoreSectionRequest $request, CreateSection $createSection, CreateSectionChildren $createSectionChildren, NotifyUser $notifyUser): void
     {
         DB::beginTransaction();
 
         try {
-            $createSection->handle($request->validated());
+            $createSectionChildren->handle(
+                section: $createSection->handle(['name' => $request->validated('name')]),
+                fields: $request->validated('fields')
+            );
+
             $notifyUser->handle(new SectionCreated(auth()->user()));
 
             DB::commit();

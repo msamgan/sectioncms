@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\ModelFunctions;
 use Database\Factories\SectionFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,12 +17,19 @@ final class Section extends Model
     /** @use HasFactory<SectionFactory> */
     use HasFactory;
 
+    use ModelFunctions;
+
     protected $fillable = [
         'name',
         'business_id',
         'created_by',
         'updated_by',
     ];
+
+    public function keys()
+    {
+        return $this->hasMany(SectionKey::class, 'section_id', 'id');
+    }
 
     #[Override]
     protected static function boot(): void

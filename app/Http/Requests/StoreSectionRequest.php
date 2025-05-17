@@ -31,6 +31,9 @@ final class StoreSectionRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'fields' => ['required', 'array'],
+            'fields.*.key' => ['required', 'string', 'max:255'],
+            'fields.*.value' => ['required', 'array'],
         ];
     }
 }

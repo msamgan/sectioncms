@@ -25,10 +25,7 @@ export default function Form({ getSections, section = null }) {
 
     const submit = (e) => {
         e.preventDefault()
-
-        console.log(data)
-
-        /*post(action, {
+        post(action, {
             onSuccess: (r) => {
                 if (!section) {
                     reset('name')
@@ -37,7 +34,7 @@ export default function Form({ getSections, section = null }) {
                 getSections()
             },
             onError: () => {},
-        })*/
+        })
     }
 
     return (
