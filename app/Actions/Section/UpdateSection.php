@@ -12,6 +12,6 @@ final class UpdateSection
     {
         $section->update($data);
 
-        return $section;
+        return $section->refresh();
     }
 }

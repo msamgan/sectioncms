@@ -4,7 +4,6 @@ import InputLabel from '@/Components/InputLabel.jsx'
 import { slugify } from '@/Utils/methods.js'
 
 function DynamicFields({ dataFields, setData }) {
-
     const [fields, setFields] = useState([{ id: 1, key: '', value: { en: '' } }])
     const [nextId, setNextId] = useState(1)
     const [locked, setLocked] = useState(false)
@@ -22,7 +21,8 @@ function DynamicFields({ dataFields, setData }) {
     const onValueChange = (id, value) => {
         setLocked(false)
         setFields(
-            fields.map((field) => field.id === id
+            fields.map((field) =>
+                field.id === id
                     ? {
                           ...field,
                           value: {

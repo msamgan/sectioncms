@@ -65,9 +65,13 @@ final class SectionController extends Controller
     }
 
     #[Action(method: 'post', params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.update'])]
-    public function update(UpdateSectionRequest $request, Section $section, UpdateSection $updateSection, NotifyUser $notifyUser): void
+    public function update(UpdateSectionRequest $request, Section $section, UpdateSection $updateSection, CreateSectionChildren $createSectionChildren, NotifyUser $notifyUser): void
     {
-        $updateSection->handle($section, $request->validated());
+        SectionStore::deleteKeysAndValues(section: $section);
+        $createSectionChildren->handle(
+            section: $updateSection->handle($section, ['name' => $request->validated('name')]),
+            fields: $request->validated('fields')
+        );
 
         $notifyUser->handle(new SectionUpdated(auth()->user()));
     }

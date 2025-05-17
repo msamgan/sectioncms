@@ -8,18 +8,18 @@ use App\Enums\PermissionEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-final class UpdateSectionRequest extends FormRequest
+final class DeleteSectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        if (! $this->user()->can(PermissionEnum::SectionUpdate->value)) {
+        if (! $this->user()->can(PermissionEnum::SectionDelete->value)) {
             return false;
         }
 
-        return (bool) $this->user()->hasBusiness();
+        return $this->user()->key('business_id') === $this->section->business_id;
     }
 
     /**
@@ -30,10 +30,7 @@ final class UpdateSectionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'fields' => ['required', 'array'],
-            'fields.*.key' => ['required', 'string', 'max:255'],
-            'fields.*.value' => ['required', 'array'],
+            'password' => ['required', 'string', 'max:255', 'current_password'],
         ];
     }
 }

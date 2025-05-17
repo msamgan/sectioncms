@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -13,7 +14,7 @@ final class SectionUpdated extends Notification // implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct() {}
+    public function __construct(private User $user) {}
 
     /**
      * Get the notification's delivery channels.
@@ -46,8 +47,8 @@ final class SectionUpdated extends Notification // implements ShouldQueue
         now()->format('F j, Y, g:i a');
 
         return [
-            'title' => '',
-            'message' => '',
+            'title' => 'Section Updated',
+            'message' => 'A section has been updated by ' . $this->user->name . ' on ' . now()->format('F j, Y, g:i a'),
         ];
     }
 }

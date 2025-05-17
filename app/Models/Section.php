@@ -50,13 +50,13 @@ final class Section extends Model
 
         self::creating(function ($model): void {
             $model->business_id = Auth::user()->key('business_id');
-            $model->created_by = Auth::user()->id;
-            $model->updated_by = Auth::user()->id;
+            $model->created_by = Auth::user()->getKey();
+            $model->updated_by = Auth::user()->getKey();
             $model->slug = $model->slugify($model->name);
         });
 
         self::updating(function ($model): void {
-            $model->updated_by = Auth::user()->id;
+            $model->updated_by = Auth::user()->getKey();
             $model->slug = $model->slugify($model->name);
         });
     }

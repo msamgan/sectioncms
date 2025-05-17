@@ -13,10 +13,11 @@ final class SectionStore
         $count = 1;
 
         return [
+            'id' => $section->id,
             'name' => $section->key('name'),
-            'fields' => $section->keys->map(function ($key) use (&$count) {
+            'fields' => $section->keys->map(function ($key) use (&$count): array {
                 $valueArray = [];
-                $key->values->map(function ($value) use (&$valueArray) {
+                $key->values->map(function ($value) use (&$valueArray): void {
                     $valueArray[$value->lang] = $value->value;
                 });
 
@@ -27,5 +28,13 @@ final class SectionStore
                 ];
             }),
         ];
+    }
+
+    public static function deleteKeysAndValues(Section $section): void
+    {
+        $section->keys->each(function ($key): void {
+            $key->values()->delete();
+            $key->delete();
+        });
     }
 }
