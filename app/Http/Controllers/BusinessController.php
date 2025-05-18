@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Actions\Business\UpdateBusiness;
 use App\Actions\Notification\NotifyUser;
-use App\Concerns\ApiResponses;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
 use App\Models\Business;
@@ -18,8 +17,6 @@ use Random\RandomException;
 
 final class BusinessController extends Controller
 {
-    use ApiResponses;
-
     /**
      * Display a listing of the resource.
      */

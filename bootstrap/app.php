@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\ApiDailyUsage;
 use App\Http\Middleware\BusinessTokenValidation;
 use App\Http\Middleware\CheckHasBusiness;
 use App\Http\Middleware\HandleInertiaRequests;
@@ -28,6 +29,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->api(append: [
             BusinessTokenValidation::class,
+            ApiDailyUsage::class,
         ]);
 
         $middleware->alias([
