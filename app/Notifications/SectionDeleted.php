@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
-use App\Models\User;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Concerns\NotificationFunctions;
+use App\Models\Section;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class SectionDeleted extends Notification // implements ShouldQueue
+final class SectionDeleted extends Notification
 {
+    use NotificationFunctions;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $user) {}
+    public function __construct(private readonly Section $section) {}
 
     /**
      * Get the notification's delivery channels.
@@ -23,7 +25,7 @@ final class SectionDeleted extends Notification // implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -31,9 +33,17 @@ final class SectionDeleted extends Notification // implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $notification = $this->notificationGenerator(
+            notifiable: $notifiable,
+            entity: 'Section',
+            entityName: $this->section->key('name'),
+        );
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->subject($notification['deleteSubject'])
+            ->line($notification['deleteTitle'])
+            ->action('Notifications', url('notifications'))
+            ->line($notification['deleteMessage'])
             ->line('Thank you for using our application!');
     }
 
@@ -44,9 +54,15 @@ final class SectionDeleted extends Notification // implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
+        $notification = $this->notificationGenerator(
+            notifiable: $notifiable,
+            entity: 'Section',
+            entityName: $this->section->key('name'),
+        );
+
         return [
-            'title' => 'Section Deleted',
-            'message' => 'A section has been deleted by ' . $this->user->name . ' on ' . now()->format('F j, Y, g:i a'),
+            'title' => $notification['deleteTitle'],
+            'message' => $notification['deleteMessage'],
         ];
     }
 }

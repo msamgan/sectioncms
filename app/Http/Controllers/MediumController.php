@@ -35,8 +35,8 @@ final class MediumController extends Controller
     public function store(StoreMediumRequest $request, CreateMedium $createMedium, NotifyUser $notifyUser): void
     {
         try {
-            $createMedium->handle();
-            $notifyUser->handle(new MediumCreated(auth()->user()));
+            $media = $createMedium->handle();
+            $notifyUser->handle(new MediumCreated($media));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -46,7 +46,7 @@ final class MediumController extends Controller
     #[Action(method: 'delete', params: ['medium'], middleware: ['auth', 'check_has_business', 'can:medium.delete'])]
     public function destroy(DeleteMediumRequest $request, Medium $medium, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new MediumDeleted(auth()->user()));
+        $notifyUser->handle(new MediumDeleted($medium));
 
         $medium->delete();
     }

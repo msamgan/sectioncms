@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use Browser;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class LoggedIn extends Notification
+final class LoggedIn extends Notification implements ShouldQueue
 {
-    // use Queueable;
+    use Queueable;
 
     /**
      * Create a new notification instance.
@@ -27,7 +29,7 @@ final class LoggedIn extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -35,9 +37,16 @@ final class LoggedIn extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $dataTime = now()->format('F j, Y, g:i a');
+        $browser = Browser::browserName();
+        $device = Browser::deviceType();
+        $message = 'You have been logged in on ' . $dataTime . '. With a ' . $device . '. Using ' . $browser . '.';
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->subject(config('app.name') . ' - Logged In')
+            ->line('You have been logged in.')
+            ->action('Notifications', url('notifications'))
+            ->line($message)
             ->line('Thank you for using our application!');
     }
 
