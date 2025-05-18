@@ -26,8 +26,14 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
+            <div className="mb-6 text-center">
+                <h1 className="text-2xl font-bold text-gray-800">Create Account</h1>
+                <p className="mt-2 text-sm text-gray-600">Sign up to get started with Section CMS</p>
+            </div>
+
             <form onSubmit={submit}>
-                <div className={'form-floating form-floating-outline'}>
+                <div className="form-floating form-floating-outline relative">
+
                     <TextInput
                         id="website"
                         name="website"
@@ -38,12 +44,13 @@ export default function Register() {
                         required
                         type={'url'}
                         placeholder={'Website'}
+                        className="pl-10 rounded-md"
                     />
                     <InputLabel htmlFor="website" value="Website" required={true} />
                     <InputError message={errors.website} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline mt-6'}>
+                <div className="form-floating form-floating-outline mt-6 relative">
                     <TextInput
                         id="name"
                         name="name"
@@ -52,12 +59,13 @@ export default function Register() {
                         onChange={(e) => setData('name', e.target.value)}
                         required
                         placeholder={'Name'}
+                        className="pl-10 rounded-md"
                     />
                     <InputLabel htmlFor="name" value="Name" required={true} />
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline mt-6'}>
+                <div className="form-floating form-floating-outline mt-6 relative">
                     <TextInput
                         id="email"
                         type="email"
@@ -67,12 +75,13 @@ export default function Register() {
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         placeholder={'Email'}
+                        className="pl-10 rounded-md"
                     />
                     <InputLabel htmlFor="email" value="Email" required={true} />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline mt-6'}>
+                <div className="form-floating form-floating-outline mt-6 relative">
                     <TextInput
                         id="password"
                         type="password"
@@ -82,12 +91,13 @@ export default function Register() {
                         onChange={(e) => setData('password', e.target.value)}
                         required
                         placeholder={'Password'}
+                        className="pl-10 rounded-md"
                     />
                     <InputLabel htmlFor="password" value="Password" required={true} />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline mt-6'}>
+                <div className="form-floating form-floating-outline mt-6 relative">
                     <TextInput
                         id="password_confirmation"
                         type="password"
@@ -97,22 +107,38 @@ export default function Register() {
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                         placeholder={'Confirm Password'}
+                        className="pl-10 rounded-md"
                     />
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" required={true} />
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                <div className="mt-6">
+                    <PrimaryButton className="w-full justify-center py-3" disabled={processing}>
+                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path>
+                        </svg>
                         Register
                     </PrimaryButton>
+                </div>
+
+                <div className="mt-6 text-center">
+                    <div className="relative">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div className="relative flex justify-center text-sm">
+                            <span className="px-2 bg-white text-gray-500">Already have an account?</span>
+                        </div>
+                    </div>
+                    <div className="mt-3">
+                        <Link
+                            href={route('login')}
+                            className="text-sm text-primary hover:text-secondary focus:outline-none transition duration-150 ease-in-out"
+                        >
+                            Sign in to your account
+                        </Link>
+                    </div>
                 </div>
             </form>
         </GuestLayout>
