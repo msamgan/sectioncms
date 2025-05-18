@@ -8,9 +8,9 @@ export default function StatsCard({ label, count, icon }) {
                             <i className={`icon-base ri ${icon} icon-24px`}></i>
                         </span>
                     </div>
-                    <h4 className="mb-0 text-lg">{count}</h4>
+                    <h4 className="mb-0 text-md">{count}</h4>
                 </div>
-                <h6 className="fw-normal mb-0 mt-1 text-lg">{label}</h6>
+                <h6 className="fw-normal mb-0 mt-1 text-md">{label}</h6>
             </div>
         </div>
     )
