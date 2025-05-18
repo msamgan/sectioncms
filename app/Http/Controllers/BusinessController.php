@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Business\UpdateBusiness;
+use App\Actions\Notification\NotifyUser;
 use App\Concerns\ApiResponses;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
 use App\Models\Business;
+use App\Notifications\AccessTokenRegenerated;
 use Inertia\Inertia;
 use Inertia\Response;
 use Msamgan\Lact\Attributes\Action;
@@ -84,11 +86,13 @@ final class BusinessController extends Controller
      * @throws RandomException
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:business.update'])]
-    public function regenerateToken()
+    public function regenerateToken(NotifyUser $notifyUser)
     {
-        $business = auth()->user()->business;
+        $business = auth()->user()->key('business');
 
         $business->saveKey('token', Business::generateToken());
+
+        $notifyUser->handle(new AccessTokenRegenerated());
 
         return $business->refresh();
     }

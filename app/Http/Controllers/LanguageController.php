@@ -46,7 +46,7 @@ final class LanguageController extends Controller
 
             $createLanguageValues->handle(languageCode: $language->key('code'));
 
-            $notifyUser->handle(new LanguageCreated(auth()->user()));
+            $notifyUser->handle(new LanguageCreated($language));
 
             DB::commit();
         } catch (Exception $e) {
@@ -78,7 +78,7 @@ final class LanguageController extends Controller
 
             $updateLanguage->handle($language, $request->validated());
 
-            $notifyUser->handle(new LanguageUpdated(auth()->user()));
+            $notifyUser->handle(new LanguageUpdated($language->refresh()));
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -89,7 +89,7 @@ final class LanguageController extends Controller
     #[Action(method: 'delete', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.delete'])]
     public function destroy(DeleteLanguageRequest $request, Language $language, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new LanguageDeleted(auth()->user()));
+        $notifyUser->handle(new LanguageDeleted($language));
 
         $language->delete();
     }

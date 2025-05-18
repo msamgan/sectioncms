@@ -5,7 +5,7 @@ import { formatDuration } from '@/Utils/methods.js'
 
 export default function Notifications({ auth }) {
     return (
-        <Master user={auth.user} header={'Notifications'}>
+        <Master>
             <Head title="Notifications" />
             <PageHeader title={'Notifications'} subtitle={'Notifications for the user'}></PageHeader>
 
@@ -15,7 +15,7 @@ export default function Notifications({ auth }) {
                         {auth.user.notifications.map((notification, index) => (
                             <li
                                 key={index}
-                                className="list-group-item list-group-item-action dropdown-notifications-item rounded-2 m-3 p-4 shadow-sm"
+                                className="list-group-item list-group-item-action dropdown-notifications-item rounded-2 m-3 p-3 shadow-sm"
                             >
                                 <div className="d-flex">
                                     <div className="flex-grow-1">

@@ -4,17 +4,22 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\Concerns\NotificationFunctions;
+use App\Models\Language;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class LanguageUpdated extends Notification // implements ShouldQueue
+final class LanguageUpdated extends Notification implements ShouldQueue
 {
+    use NotificationFunctions;
+    use Queueable;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $user) {}
+    public function __construct(private readonly Language $language) {}
 
     /**
      * Get the notification's delivery channels.
@@ -23,7 +28,7 @@ final class LanguageUpdated extends Notification // implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -31,9 +36,17 @@ final class LanguageUpdated extends Notification // implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $notification = $this->notificationGenerator(
+            notifiable: $notifiable,
+            entity: 'Language',
+            entityName: $this->language->key('name'),
+        );
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->subject($notification['updateSubject'])
+            ->line($notification['updateTitle'])
+            ->action('Notifications', url('notifications'))
+            ->line($notification['updateMessage'])
             ->line('Thank you for using our application!');
     }
 
@@ -44,11 +57,15 @@ final class LanguageUpdated extends Notification // implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        now()->format('F j, Y, g:i a');
+        $notification = $this->notificationGenerator(
+            notifiable: $notifiable,
+            entity: 'Language',
+            entityName: $this->language->key('name'),
+        );
 
         return [
-            'title' => 'Language Updated',
-            'message' => 'Language has been updated successfully by ' . $this->user->name . ' on ' . now()->format('F j, Y, g:i a'),
+            'title' => $notification['updateTitle'],
+            'message' => $notification['updateMessage'],
         ];
     }
 }

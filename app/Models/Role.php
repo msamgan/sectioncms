@@ -7,8 +7,6 @@ namespace App\Models;
 use App\Concerns\ModelFunctions;
 use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * @method static find(mixed $get)
@@ -16,7 +14,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
 final class Role extends \Spatie\Permission\Models\Role
 {
     use HasFactory;
-    use LogsActivity;
     use ModelFunctions;
 
     protected $fillable = ['name', 'display_name', 'guard_name', 'business_id', 'created_by'];
@@ -36,12 +33,5 @@ final class Role extends \Spatie\Permission\Models\Role
     public static function superAdmin(): self
     {
         return self::query()->find(RoleEnum::SuperAdmin->id());
-    }
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnlyDirty()
-            ->logFillable();
     }
 }

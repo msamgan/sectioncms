@@ -42,12 +42,10 @@ final class SectionController extends Controller
         DB::beginTransaction();
 
         try {
-            $createSectionChildren->handle(
-                section: $createSection->handle(['name' => $request->validated('name')]),
-                fields: $request->validated('fields')
-            );
+            $section = $createSection->handle(['name' => $request->validated('name')]);
+            $createSectionChildren->handle(section: $section, fields: $request->validated('fields'));
 
-            $notifyUser->handle(new SectionCreated(auth()->user()));
+            $notifyUser->handle(new SectionCreated($section));
 
             DB::commit();
         } catch (Exception $e) {
@@ -64,22 +62,32 @@ final class SectionController extends Controller
         return SectionStore::mapSection(section: $section->load('keys', 'keys.values'));
     }
 
+    /**
+     * @throws Throwable
+     */
     #[Action(method: 'post', params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.update'])]
     public function update(UpdateSectionRequest $request, Section $section, UpdateSection $updateSection, CreateSectionChildren $createSectionChildren, NotifyUser $notifyUser): void
     {
-        SectionStore::deleteKeysAndValues(section: $section);
-        $createSectionChildren->handle(
-            section: $updateSection->handle($section, ['name' => $request->validated('name')]),
-            fields: $request->validated('fields')
-        );
+        DB::beginTransaction();
+        try {
+            SectionStore::deleteKeysAndValues(section: $section);
+            $createSectionChildren->handle(
+                section: $updateSection->handle($section, ['name' => $request->validated('name')]),
+                fields: $request->validated('fields')
+            );
 
-        $notifyUser->handle(new SectionUpdated(auth()->user()));
+            DB::commit();
+            $notifyUser->handle(new SectionUpdated($section->refresh()));
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     #[Action(method: 'delete', params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.delete'])]
     public function destroy(DeleteSectionRequest $request, Section $section, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new SectionDeleted(auth()->user()));
+        $notifyUser->handle(new SectionDeleted($section));
 
         $section->delete();
     }

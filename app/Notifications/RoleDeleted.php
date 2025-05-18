@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\Concerns\NotificationFunctions;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Spatie\Permission\Models\Role;
 
 final class RoleDeleted extends Notification
 {
+    use NotificationFunctions;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $user, private readonly \Spatie\Permission\Contracts\Role|Role $role) {}
+    public function __construct(private readonly \Spatie\Permission\Contracts\Role|Role $role) {}
 
     /**
      * Get the notification's delivery channels.
@@ -23,7 +25,7 @@ final class RoleDeleted extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -31,9 +33,13 @@ final class RoleDeleted extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
+            ->subject($notification['deleteSubject'])
+            ->line($notification['deleteTitle'])
+            ->action('Notifications', url('notifications'))
+            ->line($notification['deleteMessage'])
             ->line('Thank you for using our application!');
     }
 
@@ -44,9 +50,11 @@ final class RoleDeleted extends Notification
      */
     public function toArray(object $notifiable): array
     {
+        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+
         return [
-            'title' => 'Role Deleted',
-            'message' => $this->user->name . ' deleted the role "' . $this->role->display_name . '" on ' . now()->format('F j, Y, g:i a'),
+            'title' => $notification['deleteTitle'],
+            'message' => $notification['deleteMessage'],
         ];
     }
 }

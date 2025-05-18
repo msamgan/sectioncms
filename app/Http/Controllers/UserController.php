@@ -52,7 +52,7 @@ final class UserController extends Controller
 
             $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
-            $notifyUser->handle(new UserCreated(auth()->user(), $user, $role));
+            $notifyUser->handle(new UserCreated($user, $role));
 
             DB::commit();
         } catch (Exception $e) {
@@ -64,7 +64,7 @@ final class UserController extends Controller
     #[Action(params: ['user'], middleware: ['auth', 'check_has_business', 'can:user.view'])]
     public function show(User $user): User
     {
-        Access::businessCheck(businessId: $user->business_id);
+        Access::businessCheck(businessId: $user->key('business_id'));
 
         return $user->load('role');
     }
@@ -87,13 +87,13 @@ final class UserController extends Controller
 
         $user->update($filteredData);
 
-        $notifyUser->handle(new UserUpdated(auth()->user(), $user));
+        $notifyUser->handle(new UserUpdated($user));
     }
 
     #[Action(method: 'delete', params: ['user'], middleware: ['auth', 'check_has_business', 'can:user.delete'])]
     public function destroy(DeleteUserRequest $request, User $user, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new UserDeleted(auth()->user(), $user));
+        $notifyUser->handle(new UserDeleted($user));
 
         $user->delete();
     }

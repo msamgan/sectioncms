@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\ModelFunctions;
+use Database\Factories\MediumFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 final class Medium extends Model
 {
-    /** @use HasFactory<\Database\Factories\MediumFactory> */
+    /** @use HasFactory<MediumFactory> */
     use HasFactory;
+
+    use ModelFunctions;
 }

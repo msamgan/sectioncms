@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Concerns\ModelFunctions;
 use App\Enums\RoleEnum;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,9 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\CausesActivity;
-use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -30,9 +28,9 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int business_id
  * @property $unreadNotifications
  */
-final class User extends Authenticatable implements HasMedia
+final class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use CausesActivity, LogsActivity;
+    use CausesActivity;
     use HasFactory, Notifiable;
     use HasRoles;
     use InteractsWithMedia;
@@ -64,13 +62,6 @@ final class User extends Authenticatable implements HasMedia
     ];
 
     protected $appends = ['access'];
-
-    public function getActivitylogOptions(): LogOptions
-    {
-        return LogOptions::defaults()
-            ->logOnlyDirty()
-            ->logFillable();
-    }
 
     public function registerMediaConversions(?Media $media = null): void
     {
