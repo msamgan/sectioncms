@@ -101,4 +101,10 @@ final class LanguageController extends Controller
             ->orderBy('created_at', 'Asc')
             ->get();
     }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
+    public function languageCount()
+    {
+        return Language::query()->where('business_id', Auth::user()->key('business_id'))->count();
+    }
 }

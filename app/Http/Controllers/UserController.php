@@ -113,4 +113,12 @@ final class UserController extends Controller
 
         return $query->get();
     }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:user.list'])]
+    public function userCount(): int
+    {
+        return User::query()
+            ->where('business_id', auth()->user()->key('business_id'))
+            ->count();
+    }
 }

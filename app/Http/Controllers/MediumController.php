@@ -64,4 +64,12 @@ final class MediumController extends Controller
                 'preview' => $medium->getUrl('preview'),
             ]);
     }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:medium.list'])]
+    public function mediaSize(): float
+    {
+        return Media::query()
+            ->where('custom_properties->businessId', Auth::user()->key('business_id'))
+            ->sum('size');
+    }
 }
