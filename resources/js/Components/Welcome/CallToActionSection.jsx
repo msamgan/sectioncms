@@ -23,12 +23,12 @@ export default function CallToActionSection({ auth }) {
                     <div className="flex-shrink-0">
                         <Link
                             href={auth.user ? route('dashboard') : route('register')}
-                            className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-700 shadow-md transition duration-300 ease-out hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-blue-600"
+                            className="group relative flex items-center overflow-hidden rounded-lg bg-white px-8 py-4 text-lg font-semibold text-blue-700 shadow-md transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-blue-600 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-blue-600 dark:hover:text-white dark:focus:ring-offset-gray-900"
                         >
-                            <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-white opacity-0 transition duration-300 ease-out group-hover:opacity-100"></span>
+                            <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                             <span className="relative flex items-center">
                                 {auth.user ? 'Go to Dashboard' : 'Get Started for Free'}
-                                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
                             </span>
