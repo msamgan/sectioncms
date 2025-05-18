@@ -15,5 +15,9 @@ export default function LanguageCountStats() {
             .finally(() => setLoading(false))
     }, [])
 
-    return loading ? <Loading /> : <StatsCard count={languageCount} label={'Enabled Languages'} icon={'ri-global-line'} />
+    return loading ? (
+        <Loading />
+    ) : (
+        <StatsCard count={languageCount} label={'Enabled Languages'} icon={'ri-global-line'} />
+    )
 }
