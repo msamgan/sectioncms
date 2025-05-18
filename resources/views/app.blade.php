@@ -34,7 +34,6 @@
         <!-- Vendors CSS -->
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/vendor/libs/spinkit/spinkit.css') }}" />
-        <link rel="stylesheet" href="{{ assert('assets/vendor/libs/animate-css/animate.css') }}" />
         <!-- Page CSS -->
 
         <!-- Helpers -->
@@ -70,8 +69,6 @@
         <script src="{{ asset('assets/vendor/libs/hammer/hammer.js') }}"></script>
 
         <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-
-        <!-- endbuild -->
 
         <!-- Vendors JS -->
 

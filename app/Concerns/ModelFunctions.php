@@ -6,7 +6,7 @@ namespace App\Concerns;
 
 trait ModelFunctions
 {
-    public function saveKey(string $key, $value): void
+    public function saveKey(string $key, mixed $value): void
     {
         $this->$key = $value;
         $this->save();

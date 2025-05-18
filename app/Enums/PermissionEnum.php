@@ -42,9 +42,13 @@ enum PermissionEnum: string
     case UserUpdate = 'user.update';
     case UserDelete = 'user.delete';
 
+    case ApiDocView = 'api_doc.view';
+
     public function can(): string
     {
         return match ($this) {
+            self::ApiDocView => 'can:api_doc.view',
+
             self::BusinessList => 'can:business.list',
             self::BusinessCreate => 'can:business.create',
             self::BusinessView => 'can:business.view',

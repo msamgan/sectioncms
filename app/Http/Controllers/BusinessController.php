@@ -5,15 +5,19 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Actions\Business\UpdateBusiness;
+use App\Concerns\ApiResponses;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
 use App\Models\Business;
 use Inertia\Inertia;
 use Inertia\Response;
 use Msamgan\Lact\Attributes\Action;
+use Random\RandomException;
 
 final class BusinessController extends Controller
 {
+    use ApiResponses;
+
     /**
      * Display a listing of the resource.
      */
@@ -74,5 +78,18 @@ final class BusinessController extends Controller
     public function settings(): Response
     {
         return Inertia::render('Business/Settings/Index');
+    }
+
+    /**
+     * @throws RandomException
+     */
+    #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:business.update'])]
+    public function regenerateToken()
+    {
+        $business = auth()->user()->business;
+
+        $business->saveKey('token', Business::generateToken());
+
+        return $business->refresh();
     }
 }

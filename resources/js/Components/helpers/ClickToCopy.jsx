@@ -11,8 +11,8 @@ export default function ClickToCopy({ text }) {
     }
 
     return (
-        <button type="button" className={''} onClick={handleCopy} title={text}>
-            {text}
+        <button type="button" className={'text-pretty'} onClick={handleCopy} title={text}>
+            {text.length > 50 ? text.substring(0, 50) + '...' : text}
             {copied ? <i className="ri-checkbox-circle-line ml-1"></i> : <i className="ri-file-copy-line ml-1"></i>}
         </button>
     )

@@ -32,6 +32,18 @@ final class SectionStore
         ];
     }
 
+    public static function mapSectionApi(Section $section, string $langCode): array
+    {
+        return [
+            'name' => $section->key('name'),
+            'lang' => $langCode,
+            'fields' => $section->keys->map(fn ($key): array => [
+                'key' => $key->key,
+                'value' => $key->values->where('lang', $langCode)->first()->value,
+            ]),
+        ];
+    }
+
     public static function deleteKeysAndValues(Section $section): void
     {
         $section->keys->each(function ($key): void {
@@ -46,5 +58,17 @@ final class SectionStore
             ->where('business_id', $businessId)
             ->where('lang', $langCode)
             ->get();
+    }
+
+    public static function sectionByLang(string $sectionSlug, string $langCode, int $businessId): ?Section
+    {
+        return Section::query()->where('slug', $sectionSlug)
+            ->where('business_id', $businessId)
+            ->with(['keys' => function ($query) use ($langCode): void {
+                $query->with(['values' => function ($query) use ($langCode): void {
+                    $query->where('lang', $langCode);
+                }]);
+            }, 'keys.values'])
+            ->first();
     }
 }

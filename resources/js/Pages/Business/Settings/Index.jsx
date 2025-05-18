@@ -1,6 +1,7 @@
 import Master from '@/Layouts/Master.jsx'
 import { Head } from '@inertiajs/react'
 import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
+import AccessToken from '@/Pages/Business/Settings/Partials/AccessToken.jsx'
 
 export default function Index({ auth }) {
     return (
@@ -49,10 +50,26 @@ export default function Index({ auth }) {
                                         General
                                     </button>
                                 </li>
+                                <li className="nav-item">
+                                    <button
+                                        type="button"
+                                        className="nav-link"
+                                        role="tab"
+                                        data-bs-toggle="tab"
+                                        data-bs-target="#navs-pills-top-token"
+                                        aria-controls="navs-pills-top-token"
+                                        aria-selected="true"
+                                    >
+                                        Access Token
+                                    </button>
+                                </li>
                             </ul>
                             <div className="tab-content bg-transparent p-0 shadow-none">
                                 <div className="tab-pane fade show active" id="navs-pills-top-general" role="tabpanel">
                                     <GeneralInfo business={auth.user.business} />
+                                </div>
+                                <div className="tab-pane fade show" id="navs-pills-top-token" role="tabpanel">
+                                    <AccessToken business={auth.user.business} />
                                 </div>
                             </div>
                         </div>
