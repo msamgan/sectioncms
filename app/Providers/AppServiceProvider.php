@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Enums\PermissionEnum;
 use App\Models\User;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
@@ -33,15 +34,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('viewApiDocs', fn (User $user): true => true);
-
-        Scramble::configure()
-            ->withDocumentTransformers(function (OpenApi $openApi): void {
-                $openApi->secure(
-                    SecurityScheme::http('bearer')
-                );
-            });
-
+        $this->loadScrambleConfig();
     }
 
     private function autoloadRoutes(): void
@@ -56,5 +49,13 @@ final class AppServiceProvider extends ServiceProvider
     private function loadMacros(): void
     {
         // Auth::macro('businessId', fn (): int => Auth::user()->key('business_id'));
+    }
+
+    private function loadScrambleConfig(): void
+    {
+        Gate::define('viewApiDocs', fn (User $user): bool => $user->can(PermissionEnum::ApiDocView->value));
+        Scramble::configure()->withDocumentTransformers(function (OpenApi $openApi): void {
+            $openApi->secure(SecurityScheme::http('bearer'));
+        });
     }
 }

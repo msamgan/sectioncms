@@ -65,7 +65,10 @@ export default function AccessToken({ business }) {
                                 e.preventDefault()
                                 regenerateToken()
                             }}
-                            className="ms-3">Regenerate Token</PrimaryButton>
+                            className="ms-3"
+                        >
+                            Regenerate Token
+                        </PrimaryButton>
                     </div>
                 </div>
             </Modal>

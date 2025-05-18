@@ -1,4 +1,9 @@
+import usePermissions from '@/Hooks/usePermissions'
+import { permissions } from '@/Utils/permissions/index.js'
+
 export default function Footer() {
+    const { can } = usePermissions()
+
     return (
         <footer className="content-footer footer bg-footer-theme">
             <div className="container-xxl">
@@ -14,9 +19,11 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="d-none d-lg-inline-block">
-                        <a href="/docs/api" target="_blank" className="footer-link me-4">
-                            API Documentation
-                        </a>
+                        {can(permissions.api_doc.view) && (
+                            <a href="/docs/api" target="_blank" className="footer-link me-4">
+                                API Documentation
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
