@@ -97,4 +97,10 @@ final class SectionController extends Controller
     {
         return Section::query()->where('business_id', Auth::user()->key('business_id'))->get();
     }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:section.list'])]
+    public function sectionCount(): int
+    {
+        return Section::query()->where('business_id', Auth::user()->key('business_id'))->count();
+    }
 }

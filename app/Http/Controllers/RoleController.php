@@ -88,9 +88,17 @@ final class RoleController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
     public function roles(): Collection
     {
-        return Role::query()->where('business_id', auth()->user()->business_id)
+        return Role::query()->where('business_id', auth()->user()->key('business_id'))
             ->select('name', 'display_name', 'id')
             ->withCount('users')
             ->get();
+    }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
+    public function roleCount(): int
+    {
+        return Role::query()
+            ->where('business_id', auth()->user()->key('business_id'))
+            ->select('id')->count();
     }
 }
