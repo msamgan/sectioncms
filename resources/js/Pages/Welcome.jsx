@@ -1,5 +1,6 @@
 import Public from '@/Layouts/Public.jsx'
 import HeroSection from '@/Components/Welcome/HeroSection'
+import TrustBadges from '@/Components/Welcome/TrustBadges'
 import FeaturesSection from '@/Components/Welcome/FeaturesSection'
 import HowItWorksSection from '@/Components/Welcome/HowItWorksSection'
 import TestimonialsSection from '@/Components/Welcome/TestimonialsSection'
@@ -13,6 +14,9 @@ export default function Welcome({ auth }) {
         <Public auth={auth}>
             <div id="hero">
                 <HeroSection />
+            </div>
+            <div id="trust">
+                <TrustBadges />
             </div>
             <div id="features">
                 <FeaturesSection />

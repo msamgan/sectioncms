@@ -43,13 +43,13 @@ export default function Login({ status, canResetPassword }) {
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                         placeholder={'Email'}
-                        className=" pl-10"
+                        className="pl-10"
                     />
                     <InputLabel htmlFor="email" value="Email" required={true} />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="form-floating form-floating-outline mt-6 relative">
+                <div className="form-floating form-floating-outline relative mt-6">
                     <TextInput
                         id="password"
                         type="password"
@@ -58,7 +58,7 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                         placeholder={'Password'}
-                        className=" pl-10"
+                        className="pl-10"
                     />
                     <InputLabel htmlFor="password" value="Password" required={true} />
                     <InputError message={errors.password} className="mt-2" />
@@ -77,7 +77,7 @@ export default function Login({ status, canResetPassword }) {
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="text-sm text-primary hover:text-secondary focus:outline-none transition duration-150 ease-in-out"
+                            className="text-sm text-primary transition duration-150 ease-in-out hover:text-secondary focus:outline-none"
                         >
                             Forgot your password?
                         </Link>
@@ -86,8 +86,19 @@ export default function Login({ status, canResetPassword }) {
 
                 <div className="mt-6">
                     <PrimaryButton className="w-full justify-center py-3" disabled={processing}>
-                        <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        <svg
+                            className="mr-2 h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                            ></path>
                         </svg>
                         Log in
                     </PrimaryButton>
@@ -99,13 +110,13 @@ export default function Login({ status, canResetPassword }) {
                             <div className="w-full border-t border-gray-300"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-gray-500">Don't have an account?</span>
+                            <span className="bg-white px-2 text-gray-500">Don't have an account?</span>
                         </div>
                     </div>
                     <div className="mt-3">
                         <Link
                             href={route('register')}
-                            className="text-sm text-primary hover:text-secondary focus:outline-none transition duration-150 ease-in-out"
+                            className="text-sm text-primary transition duration-150 ease-in-out hover:text-secondary focus:outline-none"
                         >
                             Create an account
                         </Link>

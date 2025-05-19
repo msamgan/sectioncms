@@ -4,17 +4,13 @@ export default function PricingSection() {
     return (
         <div className="mt-16">
             <div className="mb-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold text-black dark:text-white">
-                    Simple, Transparent Pricing
-                </h2>
-                <p className="text-lg text-black/70 dark:text-white/70">
-                    Start for free and scale as you grow
-                </p>
+                <h2 className="mb-4 text-3xl font-bold text-black dark:text-white">Simple, Transparent Pricing</h2>
+                <p className="text-lg text-black/70 dark:text-white/70">Start for free and scale as you grow</p>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-4 lg:gap-8">
                 {/* Websites Pricing */}
-                <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:bg-zinc-900 dark:shadow-gray-800/30">
+                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
 
@@ -47,14 +43,34 @@ export default function PricingSection() {
                         </div>
                         <ul className="mb-8 flex-grow space-y-3 text-sm text-gray-600 dark:text-gray-300">
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                <svg
+                                    className="mr-3 size-5 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
                                 </svg>
                                 First website included
                             </li>
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <svg
+                                    className="mr-3 size-5 text-blue-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    ></path>
                                 </svg>
                                 <span className="font-medium">$5/month</span> per additional website
                             </li>
@@ -69,8 +85,17 @@ export default function PricingSection() {
                                 <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-blue-700 to-indigo-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
                                     </svg>
                                 </span>
                             </Link>
@@ -79,7 +104,7 @@ export default function PricingSection() {
                 </div>
 
                 {/* Storage Pricing */}
-                <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:bg-zinc-900 dark:shadow-gray-800/30">
+                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-purple-400 to-purple-600"></div>
 
@@ -112,14 +137,34 @@ export default function PricingSection() {
                         </div>
                         <ul className="mb-8 flex-grow space-y-3 text-sm text-gray-600 dark:text-gray-300">
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                <svg
+                                    className="mr-3 size-5 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
                                 </svg>
                                 1 GB included
                             </li>
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <svg
+                                    className="mr-3 size-5 text-purple-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    ></path>
                                 </svg>
                                 <span className="font-medium">$0.50/month</span> per additional GB
                             </li>
@@ -134,8 +179,17 @@ export default function PricingSection() {
                                 <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-purple-700 to-indigo-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
                                     </svg>
                                 </span>
                             </Link>
@@ -144,7 +198,7 @@ export default function PricingSection() {
                 </div>
 
                 {/* API Calls Pricing */}
-                <div className="group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:bg-zinc-900 dark:shadow-gray-800/30">
+                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-green-400 to-green-600"></div>
 
@@ -177,14 +231,34 @@ export default function PricingSection() {
                         </div>
                         <ul className="mb-8 flex-grow space-y-3 text-sm text-gray-600 dark:text-gray-300">
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                <svg
+                                    className="mr-3 size-5 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
                                 </svg>
                                 100 API calls/day included
                             </li>
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <svg
+                                    className="mr-3 size-5 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    ></path>
                                 </svg>
                                 <span className="font-medium">$0.01</span> per additional call
                             </li>
@@ -196,11 +270,20 @@ export default function PricingSection() {
                                 href={route('register')}
                                 className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-green-600 px-4 py-3 font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-offset-gray-900"
                             >
-                                <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-green-700 to-teal-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
+                                <span className="to-teal-600 absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-green-700 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
                                     </svg>
                                 </span>
                             </Link>
@@ -209,7 +292,7 @@ export default function PricingSection() {
                 </div>
 
                 {/* Sections Pricing */}
-                <div className="group relative flex flex-col overflow-hidden rounded-xl bg-red-50 shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:bg-zinc-900 dark:shadow-gray-800/30">
+                <div className="bg-red-50 dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-400 to-red-600"></div>
 
@@ -242,14 +325,34 @@ export default function PricingSection() {
                         </div>
                         <ul className="mb-8 flex-grow space-y-3 text-sm text-gray-600 dark:text-gray-300">
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                <svg
+                                    className="mr-3 size-5 text-green-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M5 13l4 4L19 7"
+                                    ></path>
                                 </svg>
                                 20 sections included
                             </li>
                             <li className="flex items-center">
-                                <svg className="mr-3 size-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                <svg
+                                    className="mr-3 size-5 text-red-500"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                                    ></path>
                                 </svg>
                                 <span className="font-medium">$1</span> per 5 additional sections
                             </li>
@@ -264,8 +367,17 @@ export default function PricingSection() {
                                 <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-red-700 to-red-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
                                     </svg>
                                 </span>
                             </Link>

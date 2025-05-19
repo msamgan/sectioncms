@@ -4,37 +4,61 @@ export default function PublicFooter() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="mt-16 border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900">
+        <footer className="bg-gray-50 mt-16 border-t border-gray-200 dark:border-gray-800 dark:bg-gray-900">
             <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between lg:px-8">
                 {/* Logo and tagline */}
                 <div className="mb-8 md:mb-0 md:w-1/2">
                     <div className="flex items-center justify-center md:justify-start">
-                        <svg className="h-8 w-8 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                        <svg
+                            className="h-8 w-8 text-blue-600"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M4 6h16M4 12h16m-7 6h7"
+                            />
                         </svg>
                         <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">SectionCMS</span>
                     </div>
-                    <p className="mt-3 text-sm text-gray-600 dark:text-gray-400 md:text-left">
-                        A powerful and flexible content management system designed to create, manage, and deliver dynamic, structured content across various platforms. It offers robust localization support, enabling seamless multilingual experiences tailored to global audiences.
+                    <p className="mt-3 text-sm text-gray-600 md:text-left dark:text-gray-400">
+                        A powerful and flexible content management system designed to create, manage, and deliver
+                        dynamic, structured content across various platforms. It offers robust localization support,
+                        enabling seamless multilingual experiences tailored to global audiences.
                     </p>
                 </div>
 
                 {/* Quick links */}
                 <div className="md:w-1/2">
-                    <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white text-right">Quick Links</h3>
+                    <h3 className="mb-4 text-right text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
+                        Quick Links
+                    </h3>
                     <ul className="flex flex-col items-center space-y-2 md:items-end">
                         <li>
-                            <Link href="/" className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                            <Link
+                                href="/"
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('login')} className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                            <Link
+                                href={route('login')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
                                 Login
                             </Link>
                         </li>
                         <li>
-                            <Link href={route('register')} className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400">
+                            <Link
+                                href={route('register')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
                                 Register
                             </Link>
                         </li>
@@ -43,7 +67,7 @@ export default function PublicFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="border-t border-gray-200 bg-gray-100 py-6 dark:border-gray-800 dark:bg-gray-950">
+            <div className="dark:bg-gray-950 border-t border-gray-200 bg-gray-100 py-6 dark:border-gray-800">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                         &copy; {currentYear} SectionCMS. All rights reserved.

@@ -1,7 +1,7 @@
 export default function FeaturesSection() {
     return (
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-            <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
+            <div className="dark:bg-zinc-900 dark:ring-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] lg:pb-10">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:size-16">
                     <svg
                         className="size-6 text-blue-600"
@@ -10,29 +10,21 @@ export default function FeaturesSection() {
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 6h16M4 12h16m-7 6h7"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
                 </div>
 
                 <div className="pt-3 sm:pt-5">
-                    <h2 className="text-xl font-semibold text-black dark:text-white">
-                        Dynamic Sections
-                    </h2>
+                    <h2 className="text-xl font-semibold text-black dark:text-white">Dynamic Sections</h2>
 
                     <p className="mt-4 text-sm/relaxed">
-                        Create and manage content sections with dynamic fields. Each section has a
-                        name, slug, and customizable key-value pairs that can be used to build web
-                        pages or other content structures.
+                        Create and manage content sections with dynamic fields. Each section has a name, slug, and
+                        customizable key-value pairs that can be used to build web pages or other content structures.
                     </p>
                 </div>
             </div>
 
-            <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
+            <div className="dark:bg-zinc-900 dark:ring-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] lg:pb-10">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:size-16">
                     <svg
                         className="size-6 text-blue-600"
@@ -51,18 +43,16 @@ export default function FeaturesSection() {
                 </div>
 
                 <div className="pt-3 sm:pt-5">
-                    <h2 className="text-xl font-semibold text-black dark:text-white">
-                        Internationalization
-                    </h2>
+                    <h2 className="text-xl font-semibold text-black dark:text-white">Internationalization</h2>
 
                     <p className="mt-4 text-sm/relaxed">
-                        Support for multiple languages in your content. Create content once and
-                        display it in different languages based on user preferences.
+                        Support for multiple languages in your content. Create content once and display it in different
+                        languages based on user preferences.
                     </p>
                 </div>
             </div>
 
-            <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
+            <div className="dark:bg-zinc-900 dark:ring-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] lg:pb-10">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:size-16">
                     <svg
                         className="size-6 text-blue-600"
@@ -81,18 +71,16 @@ export default function FeaturesSection() {
                 </div>
 
                 <div className="pt-3 sm:pt-5">
-                    <h2 className="text-xl font-semibold text-black dark:text-white">
-                        Role-Based Permissions
-                    </h2>
+                    <h2 className="text-xl font-semibold text-black dark:text-white">Role-Based Permissions</h2>
 
                     <p className="mt-4 text-sm/relaxed">
-                        Comprehensive permission system with default roles of Business. Control
-                        access to different features based on user roles.
+                        Comprehensive permission system with default roles of Business. Control access to different
+                        features based on user roles.
                     </p>
                 </div>
             </div>
 
-            <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] lg:pb-10 transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
+            <div className="dark:bg-zinc-900 dark:ring-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] lg:pb-10">
                 <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 sm:size-16">
                     <svg
                         className="size-6 text-blue-600"
@@ -111,13 +99,11 @@ export default function FeaturesSection() {
                 </div>
 
                 <div className="pt-3 sm:pt-5">
-                    <h2 className="text-xl font-semibold text-black dark:text-white">
-                        Multi-Tenant Architecture
-                    </h2>
+                    <h2 className="text-xl font-semibold text-black dark:text-white">Multi-Tenant Architecture</h2>
 
                     <p className="mt-4 text-sm/relaxed">
-                        Sections are associated with businesses, allowing for multi-tenant
-                        functionality. Each business can have its own set of sections and content.
+                        Sections are associated with businesses, allowing for multi-tenant functionality. Each business
+                        can have its own set of sections and content.
                     </p>
                 </div>
             </div>

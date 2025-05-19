@@ -14,7 +14,7 @@ final class ApiStatsController extends Controller
     {
         $labels = [];
         $data = [];
-        ApiDailyUsage::query()->where('business_id', auth()->user()->key('business_id'))->get()->map(function ($item) use (&$labels, &$data) {
+        ApiDailyUsage::query()->where('business_id', auth()->user()->key('business_id'))->get()->map(function ($item) use (&$labels, &$data): void {
             $labels[] = $item->key('created_at')->format('Y-m-d');
             $data[] = $item->key('count');
         });
