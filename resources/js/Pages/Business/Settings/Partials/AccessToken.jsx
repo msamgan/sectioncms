@@ -4,10 +4,13 @@ import SecondaryButton from '@/Components/SecondaryButton.jsx'
 import Modal from '@/Components/Modal.jsx'
 import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import { regenerateToken as _regenerateToken } from '@actions/BusinessController.js'
+import Avatar from '@/Components/helpers/Avatar.jsx'
+import { Transition } from '@headlessui/react'
 
 export default function AccessToken({ business }) {
     const [confirming, setConfirming] = useState(false)
     const [token, setToken] = useState(business.token)
+    const [regenerated, setRegenerated] = useState(false)
 
     const closeModal = () => {
         setConfirming(false)
@@ -19,6 +22,8 @@ export default function AccessToken({ business }) {
                 response.json().then((data) => {
                     setToken(data.token)
                     closeModal()
+                    setRegenerated(true)
+                    setTimeout(() => setRegenerated(false), 3000)
                 })
             }
         })
@@ -26,14 +31,25 @@ export default function AccessToken({ business }) {
 
     return (
         <div>
-            <div className="card mb-6">
-                <div className="card-header">
-                    <h5 className="card-title m-0">Access Token</h5>
+            <div className="card mb-6 shadow-sm transition-all duration-200 hover:shadow-lg">
+                <div className="card-header border-bottom bg-light-subtle">
+                    <div className="d-flex align-items-center">
+                        <Avatar size="sm" bgColor="bg-info" icon="ri-key-line" />
+                        <h5 className="card-title m-0 text-lg font-semibold">Access Token</h5>
+                    </div>
                 </div>
-                <div className="card-body">
+                <div className="card-body mt-4">
                     <div className="row g-5">
                         <div className="col-12 col-md-12">
-                            <ClickToCopy text={token} />
+                            <div className="form-floating form-floating-outline">
+                                <p className="text-muted mb-2">Your API access token:</p>
+                                <div className="shadow-sm rounded p-3 bg-light-subtle border transition-all duration-200 hover:shadow-md">
+                                    <ClickToCopy text={token} />
+                                </div>
+                                <small className="text-muted mt-2 d-block">
+                                    This token is used to authenticate API requests. Keep it secure.
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,32 +57,53 @@ export default function AccessToken({ business }) {
 
             <div className="d-flex justify-content-end gap-4">
                 <button
-                    className="btn btn-primary"
+                    className="btn btn-primary d-inline-flex align-items-center shadow-sm transition-all duration-200 hover:shadow-md"
                     onClick={() => {
                         setConfirming(true)
                     }}
                 >
+                    <i className="ri-refresh-line me-2"></i>
                     Regenerate Token
                 </button>
+                <Transition
+                    show={regenerated}
+                    enter="transition ease-in-out"
+                    enterFrom="opacity-0"
+                    leave="transition ease-in-out"
+                    leaveTo="opacity-0"
+                >
+                    <div className="d-flex align-items-center mt-2">
+                        <Avatar size="xs" bgColor="bg-success" icon="ri-check-line" />
+                        <p className="text-success mb-0">Token regenerated successfully!</p>
+                    </div>
+                </Transition>
             </div>
 
             <Modal show={confirming} onClose={closeModal}>
-                <div className={'p-6'}>
-                    <h2 className="text-lg font-medium text-gray-900">Are you sure you want to Regenerate?</h2>
+                <div className="p-6">
+                    <div className="d-flex align-items-center mb-4">
+                        <Avatar size="sm" bgColor="bg-warning" icon="ri-alert-line" />
+                        <h2 className="text-lg font-medium text-gray-900 ms-2 mt-4">Are you sure you want to regenerate?</h2>
+                    </div>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Once this is regenerated, The old token will no longer be valid and API calls will fail.
+                        Once this token is regenerated, the old token will no longer be valid and any API calls using it will fail.
+                        Make sure to update all your applications with the new token.
                     </p>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+                        <SecondaryButton onClick={closeModal} className="shadow-sm transition-all duration-200 hover:shadow-md">
+                            <i className="ri-close-line me-2"></i>
+                            Cancel
+                        </SecondaryButton>
                         <PrimaryButton
                             onClick={(e) => {
                                 e.preventDefault()
                                 regenerateToken()
                             }}
-                            className="ms-3"
+                            className="ms-3 shadow-sm transition-all duration-200 hover:shadow-md"
                         >
+                            <i className="ri-refresh-line me-2"></i>
                             Regenerate Token
                         </PrimaryButton>
                     </div>
