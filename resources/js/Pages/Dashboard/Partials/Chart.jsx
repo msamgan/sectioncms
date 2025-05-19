@@ -22,7 +22,7 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
             },
             title: {
                 display: true,
-                text: title
+                text: title,
             },
         },
     }
