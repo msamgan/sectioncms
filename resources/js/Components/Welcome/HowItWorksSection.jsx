@@ -1,58 +1,135 @@
 export default function HowItWorksSection() {
     return (
-        <div className="py-12 bg-gray-50 dark:bg-zinc-800">
+        <div className="py-16 bg-gradient-to-b from-gray-50 to-white dark:from-zinc-800 dark:to-zinc-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+                <div className="text-center mb-16">
+                    <span className="inline-block px-3 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full mb-4 dark:bg-blue-900 dark:text-blue-300">
+                        Simple Process
+                    </span>
+                    <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
                         How It Works
                     </h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300">
-                        Simple steps to get started with SectionCMS
+                    <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-600 dark:text-gray-300">
+                        Get started with SectionCMS in three easy steps
                     </p>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-3">
-                    <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex flex-col items-center rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
-                        <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-blue-100 mb-4">
-                            <span className="text-2xl font-bold text-blue-600">1</span>
+                <div className="relative">
+                    {/* Process connector line */}
+                    <div className="absolute hidden md:block top-24 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 transform translate-y-1/2 z-0" style={{ width: '70%', margin: '0 auto' }}></div>
+
+                    <div className="grid gap-10 md:grid-cols-3 relative z-10">
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 flex flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:bg-zinc-800 transform hover:-translate-y-2 backdrop-blur-sm">
+                            <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 mb-6 shadow-lg shadow-blue-200 dark:shadow-blue-900/30">
+                                <svg
+                                    className="size-10 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+                                    />
+                                </svg>
+                            </div>
+
+                            <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300 mb-2">Step 1</span>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Create Sections
+                            </h3>
+
+                            <p className="text-base text-center text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Define your content structure by creating sections with custom fields. Each section can have multiple fields to store different types of content.
+                            </p>
+
+                            <div className="mt-6 w-full">
+                                <div className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div className="bg-blue-600 h-1 w-full animate-pulse"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <h3 className="text-xl font-semibold text-black dark:text-white mb-4">
-                            Create Sections
-                        </h3>
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 flex flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:bg-zinc-800 transform hover:-translate-y-2 backdrop-blur-sm">
+                            <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 mb-6 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30">
+                                <svg
+                                    className="size-10 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                                    />
+                                </svg>
+                            </div>
 
-                        <p className="text-sm/relaxed text-center">
-                            Define your content structure by creating sections with custom fields. Each section can have multiple fields to store different types of content.
-                        </p>
-                    </div>
+                            <span className="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-indigo-900 dark:text-indigo-300 mb-2">Step 2</span>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Add Content
+                            </h3>
 
-                    <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex flex-col items-center rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
-                        <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-blue-100 mb-4">
-                            <span className="text-2xl font-bold text-blue-600">2</span>
+                            <p className="text-base text-center text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Fill your sections with content using the intuitive interface. Add text, images, links, and other data types to your sections.
+                            </p>
+
+                            <div className="mt-6 w-full">
+                                <div className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div className="bg-indigo-600 h-1 w-full animate-pulse"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <h3 className="text-xl font-semibold text-black dark:text-white mb-4">
-                            Add Content
-                        </h3>
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 flex flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:bg-zinc-800 transform hover:-translate-y-2 backdrop-blur-sm">
+                            <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-600 mb-6 shadow-lg shadow-purple-200 dark:shadow-purple-900/30">
+                                <svg
+                                    className="size-10 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                                    />
+                                </svg>
+                            </div>
 
-                        <p className="text-sm/relaxed text-center">
-                            Fill your sections with content using the intuitive interface. Add text, images, links, and other data types to your sections.
-                        </p>
-                    </div>
+                            <span className="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300 mb-2">Step 3</span>
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                                Integrate & Display
+                            </h3>
 
-                    <div className="dark:bg-zinc-900 dark:ring-zinc-800 flex flex-col items-center rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:bg-gray-50 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] dark:hover:bg-zinc-800">
-                        <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-blue-100 mb-4">
-                            <span className="text-2xl font-bold text-blue-600">3</span>
+                            <p className="text-base text-center text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Use our API to fetch your content and display it in your application. The flexible structure allows you to use your content anywhere.
+                            </p>
+
+                            <div className="mt-6 w-full">
+                                <div className="w-full h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                                    <div className="bg-purple-600 h-1 w-full animate-pulse"></div>
+                                </div>
+                            </div>
                         </div>
-
-                        <h3 className="text-xl font-semibold text-black dark:text-white mb-4">
-                            Integrate & Display
-                        </h3>
-
-                        <p className="text-sm/relaxed text-center">
-                            Use our API to fetch your content and display it in your application. The flexible structure allows you to use your content anywhere.
-                        </p>
                     </div>
+                </div>
+
+                <div className="mt-16 text-center">
+                    <a href="#" className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 transform hover:scale-105">
+                        Get Started Now
+                        <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
