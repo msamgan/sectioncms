@@ -19,9 +19,7 @@ test('can create a role using factory', function () {
         ->and($role->display_name)->toBe('Test Role');
 });
 
-test(/**
- * @throws ReflectionException
- */ 'business method returns the business role', function () {
+test('business method returns the business role', function () {
     // Call the business method
     $result = Role::business();
 
@@ -76,4 +74,77 @@ test('role enum can retrieve corresponding role model', function () {
         ->and($resultBusiness->display_name)->toBe(RoleEnum::Business->value)
         ->and($resultCustomer)->toBeInstanceOf(Role::class)
         ->and($resultCustomer->display_name)->toBe(RoleEnum::Customer->value);
+});
+
+test('fillable attributes are correctly defined', function () {
+    $role = new Role();
+    $fillable = $role->getFillable();
+
+    expect($fillable)->toBeArray()
+        ->toContain('name')
+        ->toContain('display_name')
+        ->toContain('guard_name')
+        ->toContain('business_id')
+        ->toContain('created_by')
+        ->toHaveCount(5);
+});
+
+test('hidden attributes are correctly defined', function () {
+    $role = new Role();
+    $hidden = $role->getHidden();
+
+    expect($hidden)->toBeArray()
+        ->toContain('guard_name')
+        ->toContain('created_at')
+        ->toContain('updated_at')
+        ->toContain('created_by')
+        ->toHaveCount(4);
+});
+
+test('role inherits from spatie permission role', function () {
+    $role = new Role();
+
+    expect($role)->toBeInstanceOf(Spatie\Permission\Models\Role::class);
+});
+
+test('getActivitylogOptions returns correct configuration', function () {
+    $role = new Role();
+    $options = $role->getActivitylogOptions();
+
+    expect($options)->toBeInstanceOf(Spatie\Activitylog\LogOptions::class);
+
+    // Test that the options are configured correctly
+    $reflection = new ReflectionClass($options);
+    $logOnlyDirty = $reflection->getProperty('logOnlyDirty');
+    $logOnlyDirty->setAccessible(true);
+
+    expect($logOnlyDirty->getValue($options))->toBeTrue();
+});
+
+test('roleEnum label method returns correct values', function () {
+    expect(RoleEnum::SuperAdmin->label())->toBe('super_admin')
+        ->and(RoleEnum::Business->label())->toBe('business')
+        ->and(RoleEnum::Customer->label())->toBe('customer');
+});
+
+test('roleEnum id method returns correct values', function () {
+    expect(RoleEnum::SuperAdmin->id())->toBe(1)
+        ->and(RoleEnum::Business->id())->toBe(2)
+        ->and(RoleEnum::Customer->id())->toBe(3);
+});
+
+test('business method throws exception when role does not exist', function () {
+    // Delete the business role if it exists
+    DB::table('roles')->where('id', RoleEnum::Business->id())->delete();
+
+    // Expect an exception when calling the business method
+    expect(fn () => Role::business())->toThrow(TypeError::class);
+});
+
+test('superAdmin method throws exception when role does not exist', function () {
+    // Delete the super admin role if it exists
+    DB::table('roles')->where('id', RoleEnum::SuperAdmin->id())->delete();
+
+    // Expect an exception when calling the superAdmin method
+    expect(fn () => Role::superAdmin())->toThrow(TypeError::class);
 });
