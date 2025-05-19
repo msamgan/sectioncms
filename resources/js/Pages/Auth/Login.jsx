@@ -39,7 +39,7 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div className="form-floating form-floating-outline relative">
-                    <InputLabel htmlFor="email" value="Email" required={true} className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
+                    <InputLabel htmlFor="email" value="Email" required={true} className="absolute text-sm text-gray-600 dark:text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
                     <TextInput
                         id="email"
                         type="email"
@@ -49,13 +49,13 @@ export default function Login({ status, canResetPassword }) {
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                         placeholder={'awesome@awesomeness.com'}
-                        className="pl-10 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-600 dark:text-white peer w-full"
+                        className="pl-10 rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-500 dark:text-white peer w-full"
                     />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="form-floating form-floating-outline relative mt-6">
-                    <InputLabel htmlFor="password" value="Password" required={true} className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
+                    <InputLabel htmlFor="password" value="Password" required={true} className="absolute text-sm text-gray-600 dark:text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
                     <TextInput
                         id="password"
                         type="password"
@@ -64,7 +64,7 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                         placeholder={'my super secret password'}
-                        className="pl-10 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-600 dark:text-white peer w-full"
+                        className="pl-10 rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-500 dark:text-white peer w-full"
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
