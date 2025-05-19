@@ -9,6 +9,7 @@ import { store, update } from '@actions/SectionController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import DynamicFields from '@/Pages/Section/Partials/DynamicFields.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 
 export default function Form({ getSections, section = null, languages }) {
     const { can } = usePermissions()
@@ -42,11 +43,11 @@ export default function Form({ getSections, section = null, languages }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <div className="avatar avatar-sm me-3">
-                            <span className="avatar-initial rounded-circle bg-info">
-                                <i className="ri-layout-grid-line text-white"></i>
-                            </span>
-                        </div>
+                        <Avatar
+                            size="sm"
+                            bgColor="bg-info"
+                            icon="ri-layout-grid-line"
+                        />
                         <h5 className="card-title m-0 text-lg font-semibold">Section Details</h5>
                     </div>
                 </div>
@@ -94,11 +95,11 @@ export default function Form({ getSections, section = null, languages }) {
                         leaveTo="opacity-0"
                     >
                         <div className="d-flex align-items-center mt-2">
-                            <div className="avatar avatar-xs me-2">
-                                <span className="avatar-initial rounded-circle bg-success">
-                                    <i className="ri-check-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="xs"
+                                bgColor="bg-success"
+                                icon="ri-check-line"
+                            />
                             <p className="mb-0 text-success">Saved successfully!</p>
                         </div>
                     </Transition>

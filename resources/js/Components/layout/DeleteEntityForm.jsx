@@ -6,6 +6,7 @@ import Modal from '@/Components/Modal'
 import SecondaryButton from '@/Components/SecondaryButton'
 import TextInput from '@/Components/TextInput'
 import { useForm } from '@inertiajs/react'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 
 export default function DeleteEntityForm({ action, refresh, className = '' }) {
     const [confirmingEntityDeletion, setConfirmingEntityDeletion] = useState(false)
@@ -58,10 +59,13 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
             <Modal show={confirmingEntityDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <div className="mb-4 text-center">
-                        <div className="avatar avatar-lg mb-3">
-                            <span className="avatar-initial rounded-circle bg-danger">
-                                <i className="ri-delete-bin-7-line ri-lg text-white"></i>
-                            </span>
+                        <div className="mb-3">
+                            <Avatar
+                                size="lg"
+                                bgColor="bg-danger"
+                                icon="ri-delete-bin-7-line ri-lg"
+                                className="mx-auto"
+                            />
                         </div>
                         <h2 className="text-xl font-semibold text-gray-900">Confirm Deletion</h2>
                     </div>

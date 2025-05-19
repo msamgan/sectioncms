@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { store, update } from '@actions/RoleController.js'
 import usePermissions from '@/Hooks/usePermissions'
 import { permissions } from '@/Utils/permissions/index.js'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 
 export default function Form({ getRoles, role = null, permissionsList }) {
     const { can } = usePermissions()
@@ -42,11 +43,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <div className="avatar avatar-sm me-3">
-                            <span className="avatar-initial rounded-circle bg-primary">
-                                <i className="ri-shield-user-line text-white"></i>
-                            </span>
-                        </div>
+                        <Avatar
+                            size="sm"
+                            bgColor="bg-primary"
+                            icon="ri-shield-user-line"
+                        />
                         <h5 className="card-title m-0 text-lg font-semibold">Role Details</h5>
                     </div>
                 </div>
@@ -77,11 +78,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <div className="avatar avatar-sm me-3">
-                            <span className="avatar-initial rounded-circle bg-success">
-                                <i className="ri-lock-line text-white"></i>
-                            </span>
-                        </div>
+                        <Avatar
+                            size="sm"
+                            bgColor="bg-success"
+                            icon="ri-lock-line"
+                        />
                         <h5 className="card-title m-0 text-lg font-semibold">Permissions</h5>
                     </div>
                 </div>
@@ -98,13 +99,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             }
                                         >
                                             <div className="d-flex align-items-center mb-3">
-                                                <div className="avatar avatar-xs me-2">
-                                                    <span className="avatar-initial rounded-circle bg-primary">
-                                                        <i
-                                                            className={`ri-${key === 'user' ? 'user' : key === 'role' ? 'shield-user' : key === 'section' ? 'layout-grid' : key === 'language' ? 'global' : key === 'medium' ? 'file-list' : 'settings'}-line text-white`}
-                                                        ></i>
-                                                    </span>
-                                                </div>
+                                                <Avatar
+                                                    size="xs"
+                                                    bgColor="bg-primary"
+                                                    icon={`ri-${key === 'user' ? 'user' : key === 'role' ? 'shield-user' : key === 'section' ? 'layout-grid' : key === 'language' ? 'global' : key === 'medium' ? 'file-list' : 'settings'}-line`}
+                                                />
                                                 <h6 className="fw-semibold text-dark mb-0 text-lg">
                                                     {key.toUpperCase() + ' MODULE'}
                                                 </h6>
@@ -171,11 +170,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                         leaveTo="opacity-0"
                     >
                         <div className="d-flex align-items-center mt-2">
-                            <div className="avatar avatar-xs me-2">
-                                <span className="avatar-initial rounded-circle bg-success">
-                                    <i className="ri-check-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="xs"
+                                bgColor="bg-success"
+                                icon="ri-check-line"
+                            />
                             <p className="text-success mb-0">Saved successfully!</p>
                         </div>
                     </Transition>

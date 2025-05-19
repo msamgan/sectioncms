@@ -1,3 +1,5 @@
+import Avatar from '@/Components/helpers/Avatar.jsx'
+
 export default function StatsCard({ label, count, icon }) {
     // Function to determine the appropriate color based on the icon
     const getIconColor = () => {
@@ -23,11 +25,12 @@ export default function StatsCard({ label, count, icon }) {
         <div className="card h-100 shadow-sm hover-shadow-lg transition-all duration-200">
             <div className="card-body">
                 <div className="d-flex align-items-center mb-3">
-                    <div className="avatar me-4">
-                        <span className={`avatar-initial rounded-3 ${getIconColor()}`}>
-                            <i className={`ri ${icon} text-white`}></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="sm"
+                        bgColor={getIconColor()}
+                        icon={icon}
+                        className="me-4"
+                    />
                     <h3 className="mb-0 fw-semibold">{count}</h3>
                 </div>
                 <div className="d-flex align-items-center">

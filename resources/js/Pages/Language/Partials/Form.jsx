@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { store, update } from '@actions/LanguageController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 
 export default function Form({ getLanguages, language = null }) {
     const { can } = usePermissions()
@@ -43,11 +44,11 @@ export default function Form({ getLanguages, language = null }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <div className="avatar avatar-sm me-3">
-                            <span className="avatar-initial rounded-circle bg-warning">
-                                <i className="ri-translate-2 text-white"></i>
-                            </span>
-                        </div>
+                        <Avatar
+                            size="sm"
+                            bgColor="bg-warning"
+                            icon="ri-translate-2"
+                        />
                         <h5 className="card-title m-0 text-lg font-semibold">Language Details</h5>
                     </div>
                 </div>
@@ -111,11 +112,11 @@ export default function Form({ getLanguages, language = null }) {
                         leaveTo="opacity-0"
                     >
                         <div className="d-flex align-items-center mt-2">
-                            <div className="avatar avatar-xs me-2">
-                                <span className="avatar-initial rounded-circle bg-success">
-                                    <i className="ri-check-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="xs"
+                                bgColor="bg-success"
+                                icon="ri-check-line"
+                            />
                             <p className="mb-0 text-success">Saved successfully!</p>
                         </div>
                     </Transition>
