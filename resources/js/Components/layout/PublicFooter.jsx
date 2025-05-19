@@ -70,6 +70,14 @@ export default function PublicFooter() {
                                 Terms & Conditions
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href={route('privacy')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
+                                Privacy Policy
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -6,4 +6,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'Welcome')->name('welcome');
 Route::inertia('terms-and-conditions', 'TermsAndConditions')->name('terms');
+Route::inertia('privacy-policy', 'PrivacyPolicy')->name('privacy');
 Route::inertia('dashboard', 'Dashboard/Index')->middleware(['auth', 'verified'])->name('dashboard');

@@ -164,6 +164,13 @@ export default function Register() {
                         >
                             Terms and Conditions
                         </Link>
+                        {' '}and{' '}
+                        <Link
+                            href={route('privacy')}
+                            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                        >
+                            Privacy Policy
+                        </Link>
                     </label>
                     <InputError message={errors.terms} className="mt-2" />
                 </div>
