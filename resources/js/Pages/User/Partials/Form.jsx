@@ -2,6 +2,7 @@ import { useForm } from '@inertiajs/react'
 import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import InputError from '@/Components/InputError.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import { Transition } from '@headlessui/react'
 import { dataObject } from '@/Pages/User/helper.js'
 import { useEffect, useState } from 'react'
@@ -42,11 +43,11 @@ export default function Form({ getUsers, user = null, roles }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <div className="avatar avatar-sm me-3">
-                            <span className="avatar-initial rounded-circle bg-primary">
-                                <i className="ri-user-line text-white"></i>
-                            </span>
-                        </div>
+                        <Avatar
+                            size="sm"
+                            bgColor="bg-primary"
+                            icon="ri-user-line"
+                        />
                         <h5 className="card-title m-0 text-lg font-semibold">User Details</h5>
                     </div>
                 </div>
@@ -151,11 +152,11 @@ export default function Form({ getUsers, user = null, roles }) {
                         leaveTo="opacity-0"
                     >
                         <div className="d-flex align-items-center mt-2">
-                            <div className="avatar avatar-xs me-2">
-                                <span className="avatar-initial rounded-circle bg-success">
-                                    <i className="ri-check-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="xs"
+                                bgColor="bg-success"
+                                icon="ri-check-line"
+                            />
                             <p className="mb-0 text-success">Saved successfully!</p>
                         </div>
                     </Transition>

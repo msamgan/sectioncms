@@ -4,6 +4,7 @@ import { permissions } from '@/Utils/permissions/index.js'
 import { useEffect, useState } from 'react'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Name from '@/Components/helpers/Name.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/Language/helper.js'
 import PageHeader from '@/Components/PageHeader.jsx'
@@ -37,11 +38,11 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-sm me-3">
-                        <span className="avatar-initial rounded-circle bg-warning">
-                            <i className="ri-translate-2 text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="sm"
+                        bgColor="bg-warning"
+                        icon="ri-translate-2"
+                    />
                     <div>
                         <Name value={language.name} />
                         <small className="text-muted d-block">Language</small>
@@ -50,11 +51,11 @@ export default function Index() {
             ),
             Code: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-xs me-2">
-                        <span className="avatar-initial rounded-circle bg-secondary">
-                            <i className="ri-code-line text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="xs"
+                        bgColor="bg-secondary"
+                        icon="ri-code-line"
+                    />
                     <span className="fw-semibold">{language.code}</span>
                 </div>
             ),
@@ -97,11 +98,11 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-warning">
-                                    <i className="ri-translate-2 text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-warning"
+                                icon="ri-translate-2"
+                            />
                             <span>Language</span>
                         </div>
                     }
@@ -128,11 +129,11 @@ export default function Index() {
                 <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-warning">
-                                    <i className="ri-list-check text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-warning"
+                                icon="ri-list-check"
+                            />
                             <h5 className="card-title m-0 text-lg font-semibold">Language List</h5>
                         </div>
                     </div>

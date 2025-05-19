@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react'
 import { permissions } from '@/Utils/permissions/index.js'
 import { useEffect, useState } from 'react'
 import Name from '@/Components/helpers/Name.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/Section/helper.js'
 import PageHeader from '@/Components/PageHeader.jsx'
@@ -41,11 +42,11 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-sm me-3">
-                        <span className="avatar-initial rounded-circle bg-info">
-                            <i className="ri-layout-grid-line text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="sm"
+                        bgColor="bg-info"
+                        icon="ri-layout-grid-line"
+                    />
                     <div>
                         <Name value={section.name} />
                         <small className="text-muted d-block">Section</small>
@@ -54,11 +55,11 @@ export default function Index() {
             ),
             Identifier: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-xs me-2">
-                        <span className="avatar-initial rounded-circle bg-secondary">
-                            <i className="ri-hashtag text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="xs"
+                        bgColor="bg-secondary"
+                        icon="ri-hashtag"
+                    />
                     <ClickToCopy text={section.slug} />
                 </div>
             ),
@@ -97,11 +98,11 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-info">
-                                    <i className="ri-layout-grid-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-info"
+                                icon="ri-layout-grid-line"
+                            />
                             <span>Section</span>
                         </div>
                     }
@@ -128,11 +129,11 @@ export default function Index() {
                 <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-info">
-                                    <i className="ri-list-check text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-info"
+                                icon="ri-list-check"
+                            />
                             <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import Name from '@/Components/helpers/Name.jsx'
 import ActiveBadge from '@/Components/helpers/ActiveBadge.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
 import { destroy, roles as _roles, show } from '@actions/RoleController.js'
 import { permissions as _permissions } from '@actions/PermissionController.js'
@@ -43,11 +44,11 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-sm me-3">
-                        <span className="avatar-initial rounded-circle bg-success">
-                            <i className="ri-shield-user-line text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="sm"
+                        bgColor="bg-success"
+                        icon="ri-shield-user-line"
+                    />
                     <div>
                         <Name value={role.display_name} />
                         <small className="text-muted d-block">{role.name}</small>
@@ -56,11 +57,11 @@ export default function Index() {
             ),
             UserCount: (
                 <div className="d-flex align-items-center">
-                    <div className="avatar avatar-xs me-2">
-                        <span className="avatar-initial rounded-circle bg-primary">
-                            <i className="ri-user-line text-white"></i>
-                        </span>
-                    </div>
+                    <Avatar
+                        size="xs"
+                        bgColor="bg-primary"
+                        icon="ri-user-line"
+                    />
                     <span className="fw-semibold">{role.users_count}</span>
                 </div>
             ),
@@ -94,11 +95,11 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-success">
-                                    <i className="ri-shield-user-line text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-success"
+                                icon="ri-shield-user-line"
+                            />
                             <span>Roles</span>
                         </div>
                     }
@@ -142,11 +143,11 @@ export default function Index() {
                 <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <div className="avatar avatar-sm me-3">
-                                <span className="avatar-initial rounded-circle bg-primary">
-                                    <i className="ri-list-check text-white"></i>
-                                </span>
-                            </div>
+                            <Avatar
+                                size="sm"
+                                bgColor="bg-primary"
+                                icon="ri-list-check"
+                            />
                             <h5 className="card-title m-0 text-lg font-semibold">Role List</h5>
                         </div>
                     </div>
