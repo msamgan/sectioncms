@@ -35,8 +35,29 @@ export default function Index() {
 
     const processLanguage = (language) => {
         return {
-            Name: <Name value={language.name} />,
-            Code: <Name value={language.code} />,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-sm me-3">
+                        <span className="avatar-initial rounded-circle bg-warning">
+                            <i className="ri-translate-2 text-white"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <Name value={language.name} />
+                        <small className="text-muted d-block">Language</small>
+                    </div>
+                </div>
+            ),
+            Code: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-xs me-2">
+                        <span className="avatar-initial rounded-circle bg-secondary">
+                            <i className="ri-code-line text-white"></i>
+                        </span>
+                    </div>
+                    <span className="fw-semibold">{language.code}</span>
+                </div>
+            ),
             Actions: (
                 <>
                     {language.code !== 'en' ? (
@@ -72,19 +93,30 @@ export default function Index() {
         <Master>
             <Head title="Language" />
 
-            <PageHeader
-                title={'Language'}
-                subtitle={'Find all of your business’s Language and there associated details.'}
-                action={
-                    <CreateActionButton
-                        module={'language'}
-                        onClick={() => {
-                            setLanguage(null)
-                            setPageData(pageObject(null))
-                        }}
-                    />
-                }
-            ></PageHeader>
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-warning">
+                                    <i className="ri-translate-2 text-white"></i>
+                                </span>
+                            </div>
+                            <span>Language</span>
+                        </div>
+                    }
+                    subtitle={'Find all of your business\'s Language and there associated details.'}
+                    action={
+                        <CreateActionButton
+                            module={'language'}
+                            onClick={() => {
+                                setLanguage(null)
+                                setPageData(pageObject(null))
+                            }}
+                        />
+                    }
+                ></PageHeader>
+            </div>
 
             {can([permissions.language.view, permissions.language.update, permissions.language.create]) && (
                 <OffCanvas id="languageFormCanvas" title={pageData.title}>
@@ -93,7 +125,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.language.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-warning">
+                                    <i className="ri-list-check text-white"></i>
+                                </span>
+                            </div>
+                            <h5 className="card-title m-0 text-lg font-semibold">Language List</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.language.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )

@@ -39,8 +39,29 @@ export default function Index() {
 
     const processSection = (section) => {
         return {
-            Name: <Name value={section.name} />,
-            Identifier: <ClickToCopy text={section.slug} />,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-sm me-3">
+                        <span className="avatar-initial rounded-circle bg-info">
+                            <i className="ri-layout-grid-line text-white"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <Name value={section.name} />
+                        <small className="text-muted d-block">Section</small>
+                    </div>
+                </div>
+            ),
+            Identifier: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-xs me-2">
+                        <span className="avatar-initial rounded-circle bg-secondary">
+                            <i className="ri-hashtag text-white"></i>
+                        </span>
+                    </div>
+                    <ClickToCopy text={section.slug} />
+                </div>
+            ),
             Actions: (
                 <Actions>
                     <EditActionButton module={'section'} onClick={() => editSection(section)} />
@@ -72,19 +93,30 @@ export default function Index() {
         <Master>
             <Head title="Section" />
 
-            <PageHeader
-                title={'Section'}
-                subtitle={'Find all of your business’s Section and there associated details.'}
-                action={
-                    <CreateActionButton
-                        module={'section'}
-                        onClick={() => {
-                            setSection(null)
-                            setPageData(pageObject(null))
-                        }}
-                    />
-                }
-            ></PageHeader>
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-info">
+                                    <i className="ri-layout-grid-line text-white"></i>
+                                </span>
+                            </div>
+                            <span>Section</span>
+                        </div>
+                    }
+                    subtitle={'Find all of your business\'s Section and there associated details.'}
+                    action={
+                        <CreateActionButton
+                            module={'section'}
+                            onClick={() => {
+                                setSection(null)
+                                setPageData(pageObject(null))
+                            }}
+                        />
+                    }
+                ></PageHeader>
+            </div>
 
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (
                 <OffCanvas id="sectionFormCanvas" title={pageData.title}>
@@ -93,7 +125,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.section.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-info">
+                                    <i className="ri-list-check text-white"></i>
+                                </span>
+                            </div>
+                            <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.section.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )
