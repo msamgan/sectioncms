@@ -45,11 +45,7 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="sm"
-                        bgColor={moduleConstants.role.bgColor}
-                        icon={moduleConstants.role.icon}
-                    />
+                    <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                     <div>
                         <Name value={role.display_name} />
                         <small className="text-muted d-block">{role.name}</small>
@@ -58,11 +54,7 @@ export default function Index() {
             ),
             UserCount: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="xs"
-                        bgColor={moduleConstants.user.bgColor}
-                        icon={moduleConstants.user.icon}
-                    />
+                    <Avatar size="xs" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
                     <span className="fw-semibold">{role.users_count}</span>
                 </div>
             ),
@@ -96,11 +88,7 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.role.bgColor}
-                                icon={moduleConstants.role.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                             <span>Roles</span>
                         </div>
                     }
@@ -119,11 +107,7 @@ export default function Index() {
 
             <div className="row g-4 mb-4">
                 <div className="col-sm-6 col-xl-3">
-                    <StatsCard
-                        count={roles.length}
-                        label="Total Roles"
-                        icon={moduleConstants.role.icon}
-                    />
+                    <StatsCard count={roles.length} label="Total Roles" icon={moduleConstants.role.icon} />
                 </div>
                 <div className="col-sm-6 col-xl-3">
                     <StatsCard
@@ -141,14 +125,10 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.list.bgColor}
-                                icon={moduleConstants.list.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                             <h5 className="card-title m-0 text-lg font-semibold">Role List</h5>
                         </div>
                     </div>

@@ -9,17 +9,24 @@ export default function Notifications({ auth }) {
 
     // Function to determine notification icon based on notification type
     const getNotificationIcon = (notification) => {
-        const type = notification.type.split('\\').pop().replace('Created', '').replace('Updated', '').replace('Deleted', '').toLowerCase() || 'default'
+        const type =
+            notification.type
+                .split('\\')
+                .pop()
+                .replace('Created', '')
+                .replace('Updated', '')
+                .replace('Deleted', '')
+                .toLowerCase() || 'default'
 
         const iconMap = {
-            'user': 'ri-user-line',
-            'role': 'ri-shield-user-line',
-            'section': 'ri-layout-grid-line',
-            'language': 'ri-translate-2',
-            'medium': 'ri-file-list-line',
-            'login': 'ri-login-circle-line',
-            'logout': 'ri-logout-circle-line',
-            'default': 'ri-notification-2-line'
+            user: 'ri-user-line',
+            role: 'ri-shield-user-line',
+            section: 'ri-layout-grid-line',
+            language: 'ri-translate-2',
+            medium: 'ri-file-list-line',
+            login: 'ri-login-circle-line',
+            logout: 'ri-logout-circle-line',
+            default: 'ri-notification-2-line',
         }
 
         return iconMap[type] || iconMap.default
@@ -27,17 +34,24 @@ export default function Notifications({ auth }) {
 
     // Function to determine notification color based on the notification type
     const getNotificationColor = (notification) => {
-        const type = notification.type.split('\\').pop().replace('Created', '').replace('Updated', '').replace('Deleted', '').toLowerCase() || 'default'
+        const type =
+            notification.type
+                .split('\\')
+                .pop()
+                .replace('Created', '')
+                .replace('Updated', '')
+                .replace('Deleted', '')
+                .toLowerCase() || 'default'
 
         const colorMap = {
-            'user': 'bg-primary',
-            'role': 'bg-success',
-            'section': 'bg-info',
-            'language': 'bg-warning',
-            'medium': 'bg-secondary',
-            'login': 'bg-success',
-            'logout': 'bg-danger',
-            'default': 'bg-primary'
+            user: 'bg-primary',
+            role: 'bg-success',
+            section: 'bg-info',
+            language: 'bg-warning',
+            medium: 'bg-secondary',
+            login: 'bg-success',
+            logout: 'bg-danger',
+            default: 'bg-primary',
         }
 
         return colorMap[type] || colorMap.default
@@ -47,11 +61,11 @@ export default function Notifications({ auth }) {
     const markAsRead = (notificationId) => {
         // In a real implementation, this would make an API call to mark the notification as read
         setNotifications(
-            notifications.map(notification =>
+            notifications.map((notification) =>
                 notification.id === notificationId
                     ? { ...notification, read_at: new Date().toISOString() }
-                    : notification
-            )
+                    : notification,
+            ),
         )
     }
 
@@ -59,13 +73,13 @@ export default function Notifications({ auth }) {
     const markAllAsRead = () => {
         // In a real implementation, this would make an API call to mark all notifications as read
         setNotifications(
-            notifications.map(notification =>
-                notification.read_at ? notification : { ...notification, read_at: new Date().toISOString() }
-            )
+            notifications.map((notification) =>
+                notification.read_at ? notification : { ...notification, read_at: new Date().toISOString() },
+            ),
         )
     }
 
-    const unreadCount = notifications.filter(notification => !notification.read_at).length
+    const unreadCount = notifications.filter((notification) => !notification.read_at).length
 
     return (
         <Master>
@@ -75,10 +89,7 @@ export default function Notifications({ auth }) {
                 subtitle={'Stay updated with system activities and important events'}
                 action={
                     unreadCount > 0 ? (
-                        <button
-                            onClick={markAllAsRead}
-                            className="btn btn-primary btn-sm"
-                        >
+                        <button onClick={markAllAsRead} className="btn btn-primary btn-sm">
                             <i className="ri-check-double-line me-1"></i>
                             Mark all as read
                         </button>
@@ -89,7 +100,7 @@ export default function Notifications({ auth }) {
             <div className="card">
                 <div className="card-body">
                     {notifications.length === 0 ? (
-                        <div className="text-center py-5">
+                        <div className="py-5 text-center">
                             <i className="ri-notification-off-line ri-3x text-muted mb-3"></i>
                             <h6 className="text-muted">No notifications yet</h6>
                             <p className="text-muted">When you get notifications, they'll appear here</p>
@@ -102,7 +113,9 @@ export default function Notifications({ auth }) {
                                     className={`list-group-item list-group-item-action dropdown-notifications-item p-4 ${!notification.read_at ? 'bg-light-subtle' : ''}`}
                                 >
                                     <div className="d-flex align-items-center">
-                                        <div className={`avatar avatar-sm me-3 rounded-full pl-2 pt-1 ${getNotificationColor(notification)}`}>
+                                        <div
+                                            className={`avatar avatar-sm me-3 rounded-full pl-2 pt-1 ${getNotificationColor(notification)}`}
+                                        >
                                             <span className="text-white">
                                                 <i className={getNotificationIcon(notification)}></i>
                                             </span>
@@ -112,14 +125,14 @@ export default function Notifications({ auth }) {
                                                 <h6 className={`mb-0 ${!notification.read_at ? 'fw-semibold' : ''}`}>
                                                     {notification.data.title}
                                                 </h6>
-                                                <small className="text-muted">{formatDuration(notification.created_at)}</small>
+                                                <small className="text-muted">
+                                                    {formatDuration(notification.created_at)}
+                                                </small>
                                             </div>
-                                            <p className="mb-0 text-gray-600">
-                                                {notification.data.message}
-                                            </p>
+                                            <p className="mb-0 text-gray-600">{notification.data.message}</p>
                                         </div>
                                         {!notification.read_at && (
-                                            <div className="flex-shrink-0 ms-3">
+                                            <div className="ms-3 flex-shrink-0">
                                                 <button
                                                     onClick={() => markAsRead(notification.id)}
                                                     className="btn btn-sm btn-icon btn-text-secondary rounded-pill"

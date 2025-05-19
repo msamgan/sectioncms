@@ -31,22 +31,22 @@ export default function Master({ children }) {
 
                 <script src="/assets/js/main.js"></script>
             </Head>
-        <div className="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
-            <div className="layout-container">
-                <TopHeader user={auth.user} />
+            <div className="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+                <div className="layout-container">
+                    <TopHeader user={auth.user} />
 
-                <div className="layout-page">
-                    <div className="content-wrapper">
-                        <TopMenu />
+                    <div className="layout-page">
+                        <div className="content-wrapper">
+                            <TopMenu />
 
-                        <div className="container-xxl flex-grow-1 container-p-y">{children}</div>
+                            <div className="container-xxl flex-grow-1 container-p-y">{children}</div>
 
-                        <Footer />
-                        <div className="content-backdrop fade"></div>
+                            <Footer />
+                            <div className="content-backdrop fade"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-            </>
+        </>
     )
 }

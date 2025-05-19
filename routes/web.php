@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::inertia('/', 'Welcome')->name('welcome');
-Route::get('dashboard', fn () => Inertia::render('Dashboard/Index'))->middleware(['auth', 'verified'])->name('dashboard');
+Route::inertia('terms-and-conditions', 'TermsAndConditions')->name('terms');
+Route::inertia('privacy-policy', 'PrivacyPolicy')->name('privacy');
+Route::inertia('dashboard', 'Dashboard/Index')->middleware(['auth', 'verified'])->name('dashboard');

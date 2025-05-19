@@ -43,11 +43,7 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="sm"
-                        bgColor={moduleConstants.section.bgColor}
-                        icon={moduleConstants.section.icon}
-                    />
+                    <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon={moduleConstants.section.icon} />
                     <div>
                         <Name value={section.name} />
                         <small className="text-muted d-block">Section</small>
@@ -56,11 +52,7 @@ export default function Index() {
             ),
             Identifier: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="xs"
-                        bgColor={moduleConstants.hashtag.bgColor}
-                        icon={moduleConstants.hashtag.icon}
-                    />
+                    <Avatar size="xs" bgColor={moduleConstants.hashtag.bgColor} icon={moduleConstants.hashtag.icon} />
                     <ClickToCopy text={section.slug} />
                 </div>
             ),
@@ -107,7 +99,7 @@ export default function Index() {
                             <span>Section</span>
                         </div>
                     }
-                    subtitle={'Find all of your business\'s Section and there associated details.'}
+                    subtitle={"Find all of your business's Section and there associated details."}
                     action={
                         <CreateActionButton
                             module={'section'}
@@ -127,14 +119,10 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.list.bgColor}
-                                icon={moduleConstants.list.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                             <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
                         </div>
                     </div>

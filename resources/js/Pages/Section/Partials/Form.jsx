@@ -101,7 +101,7 @@ export default function Form({ getSections, section = null, languages }) {
                                 bgColor={moduleConstants.submit.bgColor}
                                 icon={moduleConstants.submit.icon}
                             />
-                            <p className="mb-0 text-success">Saved successfully!</p>
+                            <p className="text-success mb-0">Saved successfully!</p>
                         </div>
                     </Transition>
                 </div>

@@ -39,7 +39,12 @@ export default function Login({ status, canResetPassword }) {
 
             <form onSubmit={submit}>
                 <div className="form-floating form-floating-outline relative">
-                    <InputLabel htmlFor="email" value="Email" required={true} className="absolute text-sm text-gray-600 dark:text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
+                    <InputLabel
+                        htmlFor="email"
+                        value="Email"
+                        required={true}
+                        className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-600 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-300 peer-focus:dark:text-blue-500"
+                    />
                     <TextInput
                         id="email"
                         type="email"
@@ -49,13 +54,18 @@ export default function Login({ status, canResetPassword }) {
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                         placeholder={'awesome@awesomeness.com'}
-                        className="pl-10 rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-500 dark:text-white peer w-full"
+                        className="peer w-full rounded-lg border-gray-400 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="form-floating form-floating-outline relative mt-6">
-                    <InputLabel htmlFor="password" value="Password" required={true} className="absolute text-sm text-gray-600 dark:text-gray-300 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1" />
+                    <InputLabel
+                        htmlFor="password"
+                        value="Password"
+                        required={true}
+                        className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-600 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-300 peer-focus:dark:text-blue-500"
+                    />
                     <TextInput
                         id="password"
                         type="password"
@@ -64,7 +74,7 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                         placeholder={'my super secret password'}
-                        className="pl-10 rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:bg-gray-700 dark:border-gray-500 dark:text-white peer w-full"
+                        className="peer w-full rounded-lg border-gray-400 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
@@ -94,7 +104,7 @@ export default function Login({ status, canResetPassword }) {
                     <button
                         type="submit"
                         disabled={processing}
-                        className="group relative w-full flex justify-center items-center py-3 px-4 text-sm font-medium rounded-lg text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-md hover:shadow-lg transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-70"
+                        className="group relative flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70"
                     >
                         <svg
                             className="mr-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
@@ -120,7 +130,9 @@ export default function Login({ status, canResetPassword }) {
                             <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="bg-white px-3 text-gray-500 dark:bg-gray-800 dark:text-gray-400">Don't have an account?</span>
+                            <span className="bg-white px-3 text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+                                Don't have an account?
+                            </span>
                         </div>
                     </div>
                     <div className="mt-4">
@@ -136,7 +148,12 @@ export default function Login({ status, canResetPassword }) {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                />
                             </svg>
                         </Link>
                     </div>

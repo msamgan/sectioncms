@@ -39,11 +39,7 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="sm"
-                        bgColor={moduleConstants.language.bgColor}
-                        icon={moduleConstants.language.icon}
-                    />
+                    <Avatar size="sm" bgColor={moduleConstants.language.bgColor} icon={moduleConstants.language.icon} />
                     <div>
                         <Name value={language.name} />
                         <small className="text-muted d-block">Language</small>
@@ -52,11 +48,7 @@ export default function Index() {
             ),
             Code: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="xs"
-                        bgColor={moduleConstants.code.bgColor}
-                        icon={moduleConstants.code.icon}
-                    />
+                    <Avatar size="xs" bgColor={moduleConstants.code.bgColor} icon={moduleConstants.code.icon} />
                     <span className="fw-semibold">{language.code}</span>
                 </div>
             ),
@@ -107,7 +99,7 @@ export default function Index() {
                             <span>Language</span>
                         </div>
                     }
-                    subtitle={'Find all of your business\'s Language and there associated details.'}
+                    subtitle={"Find all of your business's Language and there associated details."}
                     action={
                         <CreateActionButton
                             module={'language'}
@@ -127,14 +119,10 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.list.bgColor}
-                                icon={moduleConstants.list.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                             <h5 className="card-title m-0 text-lg font-semibold">Language List</h5>
                         </div>
                     </div>

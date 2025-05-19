@@ -24,6 +24,12 @@ export default function Footer() {
                                 API Documentation
                             </a>
                         )}
+                        <a href={route('terms')} className="footer-link me-4">
+                            Terms & Conditions
+                        </a>
+                        <a href={route('privacy')} className="footer-link me-4">
+                            Privacy Policy
+                        </a>
                     </div>
                 </div>
             </div>
