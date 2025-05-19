@@ -39,11 +39,18 @@ export default function Form({ getRoles, role = null, permissionsList }) {
 
     return (
         <form onSubmit={submit}>
-            <div className="card mb-6 w-2/3">
-                <div className="card-header">
-                    <h5 className="card-title m-0 text-lg">Role Details</h5>
+            <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
+                <div className="card-header border-bottom bg-light-subtle">
+                    <div className="d-flex align-items-center">
+                        <div className="avatar avatar-sm me-3">
+                            <span className="avatar-initial rounded-circle bg-primary">
+                                <i className="ri-shield-user-line text-white"></i>
+                            </span>
+                        </div>
+                        <h5 className="card-title m-0 text-lg font-semibold">Role Details</h5>
+                    </div>
                 </div>
-                <div className="card-body">
+                <div className="card-body mt-4">
                     <div className="row g-5">
                         <div className="col-12 col-md-12">
                             <div className="form-floating form-floating-outline">
@@ -55,6 +62,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                     placeholder="Role name"
                                     required={true}
                                     isFocused={true}
+                                    className="shadow-sm transition-all duration-200 focus:shadow-md"
                                 />
                                 <InputLabel htmlFor="role-name" required={true}>
                                     Role name
@@ -66,9 +74,16 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                 </div>
             </div>
 
-            <div className="card mb-6 w-2/3">
-                <div className="card-header">
-                    <h5 className="card-title m-0 text-lg">Permissions</h5>
+            <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
+                <div className="card-header border-bottom bg-light-subtle">
+                    <div className="d-flex align-items-center">
+                        <div className="avatar avatar-sm me-3">
+                            <span className="avatar-initial rounded-circle bg-success">
+                                <i className="ri-lock-line text-white"></i>
+                            </span>
+                        </div>
+                        <h5 className="card-title m-0 text-lg font-semibold">Permissions</h5>
+                    </div>
                 </div>
                 <div className="card-body">
                     <div className="row g-5">
@@ -76,14 +91,28 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                             <div className="form-floating form-floating-outline">
                                 <div className="col-md">
                                     {Object.keys(permissionsList).map((key, index) => (
-                                        <div key={index} className={'mt-6'}>
-                                            <h6 className="fw-medium text-dark mb-3 text-lg">
-                                                {key.toUpperCase() + ' MODULE'}
-                                            </h6>
-                                            <div className={'flex flex-row justify-start space-x-3'}>
+                                        <div
+                                            key={index}
+                                            className={
+                                                'rounded-3 bg-light-subtle hover:bg-light mt-6 border p-3 transition-all duration-200'
+                                            }
+                                        >
+                                            <div className="d-flex align-items-center mb-3">
+                                                <div className="avatar avatar-xs me-2">
+                                                    <span className="avatar-initial rounded-circle bg-primary">
+                                                        <i
+                                                            className={`ri-${key === 'user' ? 'user' : key === 'role' ? 'shield-user' : key === 'section' ? 'layout-grid' : key === 'language' ? 'global' : key === 'medium' ? 'file-list' : 'settings'}-line text-white`}
+                                                        ></i>
+                                                    </span>
+                                                </div>
+                                                <h6 className="fw-semibold text-dark mb-0 text-lg">
+                                                    {key.toUpperCase() + ' MODULE'}
+                                                </h6>
+                                            </div>
+                                            <div className={'flex flex-row flex-wrap justify-start gap-3'}>
                                                 {permissionsList[key].map((permission, index) => (
                                                     <div className="pb-2" key={index}>
-                                                        <label className="switch switch-square">
+                                                        <label className="switch switch-square transition-all duration-200 hover:opacity-80">
                                                             <input
                                                                 id={`permission-${permission.id}`}
                                                                 type="checkbox"
@@ -105,11 +134,13 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                                                     }
                                                                 }}
                                                             />
-                                                            <span className="switch-toggle-slider">
+                                                            <span className="switch-toggle-slider shadow-sm">
                                                                 <span className="switch-on"></span>
                                                                 <span className="switch-off"></span>
                                                             </span>
-                                                            <span className="switch-label">{permission.name}</span>
+                                                            <span className="switch-label font-medium">
+                                                                {permission.name}
+                                                            </span>
                                                         </label>
                                                     </div>
                                                 ))}
@@ -125,7 +156,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
 
             {showSaveButton && (
                 <div className="d-flex justify-content-end w-2/3 gap-4">
-                    <button disabled={processing} className="btn btn-primary">
+                    <button
+                        disabled={processing}
+                        className="btn btn-primary d-inline-flex align-items-center shadow-sm transition-all duration-200 hover:shadow-md"
+                    >
+                        <i className="ri-save-line me-2"></i>
                         Save Changes
                     </button>
                     <Transition
@@ -135,7 +170,14 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="mt-3 text-sm text-gray-600">Saved.</p>
+                        <div className="d-flex align-items-center mt-2">
+                            <div className="avatar avatar-xs me-2">
+                                <span className="avatar-initial rounded-circle bg-success">
+                                    <i className="ri-check-line text-white"></i>
+                                </span>
+                            </div>
+                            <p className="text-success mb-0">Saved successfully!</p>
+                        </div>
                     </Transition>
                 </div>
             )}
