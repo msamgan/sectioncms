@@ -17,8 +17,9 @@ final class RoleFactory extends Factory
         return [
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'guard_name' => $this->faker->name(),
-            'name' => $this->faker->name(),
+            'guard_name' => 'web',
+            'name' => 'test-role-' . uniqid(),
+            'display_name' => 'Test Role ' . uniqid(),
         ];
     }
 }
