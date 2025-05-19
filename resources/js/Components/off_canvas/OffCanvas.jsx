@@ -1,18 +1,23 @@
 export default function OffCanvas({ id, title, w = 'w-75', children }) {
     return (
-        <div className={w + ' offcanvas offcanvas-end'} tabIndex="-1" id={id} aria-labelledby={id + 'Label'}>
-            <div className="offcanvas-header">
-                <h5 id={id + 'Label'} className="offcanvas-title text-2xl">
+        <div
+            className={`${w} offcanvas offcanvas-end shadow-lg border-start border-primary`}
+            tabIndex="-1"
+            id={id}
+            aria-labelledby={id + 'Label'}
+        >
+            <div className="offcanvas-header border-bottom">
+                <h5 id={id + 'Label'} className="offcanvas-title text-2xl font-semibold text-primary">
                     {title}
                 </h5>
                 <button
                     type="button"
-                    className="btn-close text-reset"
+                    className="btn-close text-reset bg-hover-danger rounded-circle transition-all duration-200"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
                 ></button>
             </div>
-            <div className="offcanvas-body mx-0 flex-grow-0">{children}</div>
+            <div className="offcanvas-body p-4">{children}</div>
         </div>
     )
 }

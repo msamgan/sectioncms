@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { formatDuration } from '@/Utils/methods.js'
 import { routes } from '@/Utils/routes/index.js'
+import { Link } from '@inertiajs/react'
 
 export default function HeaderNotification({ user }) {
     const [unreadNotifications, setUnreadNotifications] = useState(0)
@@ -68,9 +69,9 @@ export default function HeaderNotification({ user }) {
 
                 <li className="border-top">
                     <div className="d-grid p-4">
-                        <a className="btn btn-primary btn-sm d-flex" href={routes.notifications.index}>
+                        <Link className="btn btn-primary btn-sm d-flex" href={routes.notifications.index}>
                             <small className="align-middle">View all notifications</small>
-                        </a>
+                        </Link>
                     </div>
                 </li>
             </ul>

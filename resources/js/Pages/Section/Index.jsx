@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react'
 import { permissions } from '@/Utils/permissions/index.js'
 import { useEffect, useState } from 'react'
 import Name from '@/Components/helpers/Name.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/Section/helper.js'
 import PageHeader from '@/Components/PageHeader.jsx'
@@ -16,6 +17,7 @@ import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -39,8 +41,29 @@ export default function Index() {
 
     const processSection = (section) => {
         return {
-            Name: <Name value={section.name} />,
-            Identifier: <ClickToCopy text={section.slug} />,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="sm"
+                        bgColor={moduleConstants.section.bgColor}
+                        icon={moduleConstants.section.icon}
+                    />
+                    <div>
+                        <Name value={section.name} />
+                        <small className="text-muted d-block">Section</small>
+                    </div>
+                </div>
+            ),
+            Identifier: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="xs"
+                        bgColor={moduleConstants.hashtag.bgColor}
+                        icon={moduleConstants.hashtag.icon}
+                    />
+                    <ClickToCopy text={section.slug} />
+                </div>
+            ),
             Actions: (
                 <Actions>
                     <EditActionButton module={'section'} onClick={() => editSection(section)} />
@@ -72,19 +95,30 @@ export default function Index() {
         <Master>
             <Head title="Section" />
 
-            <PageHeader
-                title={'Section'}
-                subtitle={'Find all of your business’s Section and there associated details.'}
-                action={
-                    <CreateActionButton
-                        module={'section'}
-                        onClick={() => {
-                            setSection(null)
-                            setPageData(pageObject(null))
-                        }}
-                    />
-                }
-            ></PageHeader>
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.section.bgColor}
+                                icon={moduleConstants.section.icon}
+                            />
+                            <span>Section</span>
+                        </div>
+                    }
+                    subtitle={'Find all of your business\'s Section and there associated details.'}
+                    action={
+                        <CreateActionButton
+                            module={'section'}
+                            onClick={() => {
+                                setSection(null)
+                                setPageData(pageObject(null))
+                            }}
+                        />
+                    }
+                ></PageHeader>
+            </div>
 
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (
                 <OffCanvas id="sectionFormCanvas" title={pageData.title}>
@@ -93,7 +127,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.section.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
+                            />
+                            <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.section.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )

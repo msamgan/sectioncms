@@ -11,11 +11,11 @@ export default function EditActionButton({ module, onClick }) {
         <OffCanvasButton onClick={onClick} className={'dropdown-item'} id={cases.camelCase + 'FormCanvas'}>
             {can(permissions[module].update) ? (
                 <>
-                    <i className="ri-pencil-line me-1 text-primary"></i> Edit
+                    <i className="ri-pencil-line me-1 text-white"></i> Edit
                 </>
             ) : can(permissions[module].view) ? (
                 <>
-                    <i className="ri-eye-line me-1 text-primary"></i> view
+                    <i className="ri-eye-line me-1 text-white"></i> view
                 </>
             ) : null}
         </OffCanvasButton>

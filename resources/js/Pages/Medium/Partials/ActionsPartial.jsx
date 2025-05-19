@@ -5,7 +5,7 @@ import { destroy } from '@actions/MediumController.js'
 export default function ActionsPartial({ setNotification, medium, getMedia }) {
     return (
         <Actions>
-            <div className={'dropdown-item'}>
+            <div className={'dropdown-item bg-info text-black'}>
                 <button
                     onClick={() => {
                         navigator.clipboard.writeText(medium.url)
@@ -15,7 +15,7 @@ export default function ActionsPartial({ setNotification, medium, getMedia }) {
                         }, 2000)
                     }}
                 >
-                    <i className="ri-clipboard-line me-1 text-primary"></i> Copy Url
+                    <i className="ri-clipboard-line me-1 ml-5"></i> Copy Url
                 </button>
             </div>
             <DeleteActionButton module={'medium'} route={destroy.route({ medium: medium.id })} refresh={getMedia} />

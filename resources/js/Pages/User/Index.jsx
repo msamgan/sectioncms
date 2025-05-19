@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import ActiveBadge from '@/Components/helpers/ActiveBadge.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import { pageObject } from '@/Pages/User/helper.js'
 import PageHeader from '@/Components/PageHeader.jsx'
@@ -16,6 +17,8 @@ import usePermissions from '@/Hooks/usePermissions'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -40,9 +43,30 @@ export default function Index() {
 
     const processUser = (user) => {
         return {
-            Name: <Name value={user.name} />,
-            Roles: user.roles.map((role) => role.display_name).join(', '),
-            Status: <ActiveBadge value={'Active'} />,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="sm"
+                        bgColor={moduleConstants.user.bgColor}
+                        icon={moduleConstants.user.icon}
+                    />
+                    <div>
+                        <Name value={user.name} />
+                        <small className="text-muted d-block">{user.email}</small>
+                    </div>
+                </div>
+            ),
+            Roles: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="xs"
+                        bgColor={moduleConstants.role.bgColor}
+                        icon={moduleConstants.role.icon}
+                    />
+                    <span className="fw-semibold">{user.roles.map((role) => role.display_name).join(', ')}</span>
+                </div>
+            ),
+            Status: <span className="badge rounded-pill bg-success">Active</span>,
             Actions: (
                 <Actions>
                     <EditActionButton module={'user'} onClick={() => editUser(user)} />
@@ -70,19 +94,30 @@ export default function Index() {
         <Master>
             <Head title="Users" />
 
-            <PageHeader
-                title={'Users'}
-                subtitle={'Find all of your business’s users and there associated details.'}
-                action={
-                    <CreateActionButton
-                        module={'user'}
-                        onClick={() => {
-                            setUser(null)
-                            setPageData(pageObject(null))
-                        }}
-                    />
-                }
-            ></PageHeader>
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.user.bgColor}
+                                icon={moduleConstants.user.icon}
+                            />
+                            <span>Users</span>
+                        </div>
+                    }
+                    subtitle={"Find all of your business's users and there associated details."}
+                    action={
+                        <CreateActionButton
+                            module={'user'}
+                            onClick={() => {
+                                setUser(null)
+                                setPageData(pageObject(null))
+                            }}
+                        />
+                    }
+                ></PageHeader>
+            </div>
 
             {can([permissions.user.view, permissions.user.update, permissions.user.create]) && (
                 <OffCanvas id="userFormCanvas" title={pageData.title}>
@@ -91,7 +126,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.user.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
+                            />
+                            <h5 className="card-title m-0 text-lg font-semibold">User List</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.user.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )
