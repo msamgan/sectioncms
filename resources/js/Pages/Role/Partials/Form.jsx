@@ -9,6 +9,7 @@ import { store, update } from '@actions/RoleController.js'
 import usePermissions from '@/Hooks/usePermissions'
 import { permissions } from '@/Utils/permissions/index.js'
 import Avatar from '@/Components/helpers/Avatar.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Form({ getRoles, role = null, permissionsList }) {
     const { can } = usePermissions()
@@ -45,8 +46,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                     <div className="d-flex align-items-center">
                         <Avatar
                             size="sm"
-                            bgColor="bg-primary"
-                            icon="ri-shield-user-line"
+                            bgColor={moduleConstants.role.bgColor}
+                            icon={moduleConstants.role.icon}
                         />
                         <h5 className="card-title m-0 text-lg font-semibold">Role Details</h5>
                     </div>
@@ -80,8 +81,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                     <div className="d-flex align-items-center">
                         <Avatar
                             size="sm"
-                            bgColor="bg-success"
-                            icon="ri-lock-line"
+                            bgColor={moduleConstants.permission.bgColor}
+                            icon={moduleConstants.permission.icon}
                         />
                         <h5 className="card-title m-0 text-lg font-semibold">Permissions</h5>
                     </div>
@@ -101,8 +102,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             <div className="d-flex align-items-center mb-3">
                                                 <Avatar
                                                     size="xs"
-                                                    bgColor="bg-primary"
-                                                    icon={`ri-${key === 'user' ? 'user' : key === 'role' ? 'shield-user' : key === 'section' ? 'layout-grid' : key === 'language' ? 'global' : key === 'medium' ? 'file-list' : 'settings'}-line`}
+                                                    bgColor={moduleConstants[key] ? moduleConstants[key].bgColor : 'bg-primary'}
+                                                    icon={moduleConstants[key] ? moduleConstants[key].icon : 'ri-settings-line'}
                                                 />
                                                 <h6 className="fw-semibold text-dark mb-0 text-lg">
                                                     {key.toUpperCase() + ' MODULE'}
@@ -172,8 +173,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                         <div className="d-flex align-items-center mt-2">
                             <Avatar
                                 size="xs"
-                                bgColor="bg-success"
-                                icon="ri-check-line"
+                                bgColor={moduleConstants.submit.bgColor}
+                                icon={moduleConstants.submit.icon}
                             />
                             <p className="text-success mb-0">Saved successfully!</p>
                         </div>

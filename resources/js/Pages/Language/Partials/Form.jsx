@@ -9,6 +9,7 @@ import { store, update } from '@actions/LanguageController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import Avatar from '@/Components/helpers/Avatar.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Form({ getLanguages, language = null }) {
     const { can } = usePermissions()
@@ -46,8 +47,8 @@ export default function Form({ getLanguages, language = null }) {
                     <div className="d-flex align-items-center">
                         <Avatar
                             size="sm"
-                            bgColor="bg-warning"
-                            icon="ri-translate-2"
+                            bgColor={moduleConstants.language.bgColor}
+                            icon={moduleConstants.language.icon}
                         />
                         <h5 className="card-title m-0 text-lg font-semibold">Language Details</h5>
                     </div>
@@ -114,8 +115,8 @@ export default function Form({ getLanguages, language = null }) {
                         <div className="d-flex align-items-center mt-2">
                             <Avatar
                                 size="xs"
-                                bgColor="bg-success"
-                                icon="ri-check-line"
+                                bgColor={moduleConstants.submit.bgColor}
+                                icon={moduleConstants.submit.icon}
                             />
                             <p className="mb-0 text-success">Saved successfully!</p>
                         </div>
