@@ -39,11 +39,18 @@ export default function Form({ getUsers, user = null, roles }) {
 
     return (
         <form onSubmit={submit}>
-            <div className="card mb-6 w-2/3">
-                <div className="card-header">
-                    <h5 className="card-title m-0 text-lg">User Details</h5>
+            <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
+                <div className="card-header border-bottom bg-light-subtle">
+                    <div className="d-flex align-items-center">
+                        <div className="avatar avatar-sm me-3">
+                            <span className="avatar-initial rounded-circle bg-primary">
+                                <i className="ri-user-line text-white"></i>
+                            </span>
+                        </div>
+                        <h5 className="card-title m-0 text-lg font-semibold">User Details</h5>
+                    </div>
                 </div>
-                <div className="card-body">
+                <div className="card-body mt-4">
                     <div className="row g-5">
                         <div className="col-12 col-md-12">
                             <div className="form-floating form-floating-outline">
@@ -55,6 +62,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                     placeholder="Name"
                                     required={true}
                                     isFocused={true}
+                                    className="shadow-sm transition-all duration-200 focus:shadow-md"
                                 />
                                 <InputLabel htmlFor="user-name" required={true}>
                                     Name
@@ -71,6 +79,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                     id="user-email"
                                     placeholder="Email"
                                     required={true}
+                                    className="shadow-sm transition-all duration-200 focus:shadow-md"
                                 />
                                 <InputLabel htmlFor="user-email" required={true}>
                                     Email
@@ -87,6 +96,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                     id="user-password"
                                     placeholder="Password"
                                     required={!user}
+                                    className="shadow-sm transition-all duration-200 focus:shadow-md"
                                 />
                                 <InputLabel htmlFor="user-password" required={true}>
                                     Password
@@ -103,7 +113,7 @@ export default function Form({ getUsers, user = null, roles }) {
                             <div className="form-floating form-floating-outline">
                                 <select
                                     id="role"
-                                    className="select2 form-select"
+                                    className="select2 form-select shadow-sm transition-all duration-200 focus:shadow-md"
                                     data-placeholder="Role"
                                     value={data.role}
                                     onChange={(e) => setData('role', e.target.value)}
@@ -126,7 +136,11 @@ export default function Form({ getUsers, user = null, roles }) {
             </div>
             {showSaveButton && (
                 <div className="d-flex justify-content-end w-2/3 gap-4">
-                    <button disabled={processing} className="btn btn-primary">
+                    <button
+                        disabled={processing}
+                        className="btn btn-primary d-inline-flex align-items-center shadow-sm transition-all duration-200 hover:shadow-md"
+                    >
+                        <i className="ri-save-line me-2"></i>
                         Save Changes
                     </button>
                     <Transition
@@ -136,7 +150,14 @@ export default function Form({ getUsers, user = null, roles }) {
                         leave="transition ease-in-out"
                         leaveTo="opacity-0"
                     >
-                        <p className="mt-3 text-sm text-gray-600">Saved.</p>
+                        <div className="d-flex align-items-center mt-2">
+                            <div className="avatar avatar-xs me-2">
+                                <span className="avatar-initial rounded-circle bg-success">
+                                    <i className="ri-check-line text-white"></i>
+                                </span>
+                            </div>
+                            <p className="mb-0 text-success">Saved successfully!</p>
+                        </div>
                     </Transition>
                 </div>
             )}
