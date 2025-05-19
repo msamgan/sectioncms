@@ -2,6 +2,8 @@ import Public from '@/Layouts/Public.jsx'
 import HeroSection from '@/Components/Welcome/HeroSection'
 import FeaturesSection from '@/Components/Welcome/FeaturesSection'
 import HowItWorksSection from '@/Components/Welcome/HowItWorksSection'
+import TestimonialsSection from '@/Components/Welcome/TestimonialsSection'
+import FAQSection from '@/Components/Welcome/FAQSection'
 import PricingSection from '@/Components/Welcome/PricingSection'
 import CallToActionSection from '@/Components/Welcome/CallToActionSection'
 import SectionNavigation from '@/Components/layout/SectionNavigation'
@@ -17,6 +19,12 @@ export default function Welcome({ auth }) {
             </div>
             <div id="how-it-works">
                 <HowItWorksSection />
+            </div>
+            <div id="testimonials">
+                <TestimonialsSection />
+            </div>
+            <div id="faq">
+                <FAQSection />
             </div>
             <div id="pricing">
                 <PricingSection />
