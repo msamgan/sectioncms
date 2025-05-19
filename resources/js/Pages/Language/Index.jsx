@@ -15,6 +15,7 @@ import usePermissions from '@/Hooks/usePermissions'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -40,8 +41,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="sm"
-                        bgColor="bg-warning"
-                        icon="ri-translate-2"
+                        bgColor={moduleConstants.language.bgColor}
+                        icon={moduleConstants.language.icon}
                     />
                     <div>
                         <Name value={language.name} />
@@ -53,8 +54,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="xs"
-                        bgColor="bg-secondary"
-                        icon="ri-code-line"
+                        bgColor={moduleConstants.code.bgColor}
+                        icon={moduleConstants.code.icon}
                     />
                     <span className="fw-semibold">{language.code}</span>
                 </div>
@@ -100,8 +101,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-warning"
-                                icon="ri-translate-2"
+                                bgColor={moduleConstants.language.bgColor}
+                                icon={moduleConstants.language.icon}
                             />
                             <span>Language</span>
                         </div>
@@ -131,8 +132,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-warning"
-                                icon="ri-list-check"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
                             />
                             <h5 className="card-title m-0 text-lg font-semibold">Language List</h5>
                         </div>

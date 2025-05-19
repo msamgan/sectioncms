@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { store, update } from '@actions/UserController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Form({ getUsers, user = null, roles }) {
     const { can } = usePermissions()
@@ -45,8 +46,8 @@ export default function Form({ getUsers, user = null, roles }) {
                     <div className="d-flex align-items-center">
                         <Avatar
                             size="sm"
-                            bgColor="bg-primary"
-                            icon="ri-user-line"
+                            bgColor={moduleConstants.user.bgColor}
+                            icon={moduleConstants.user.icon}
                         />
                         <h5 className="card-title m-0 text-lg font-semibold">User Details</h5>
                     </div>

@@ -7,6 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton'
 import TextInput from '@/Components/TextInput'
 import { useForm } from '@inertiajs/react'
 import Avatar from '@/Components/helpers/Avatar.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function DeleteEntityForm({ action, refresh, className = '' }) {
     const [confirmingEntityDeletion, setConfirmingEntityDeletion] = useState(false)
@@ -62,8 +63,8 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
                         <div className="mb-3">
                             <Avatar
                                 size="lg"
-                                bgColor="bg-danger"
-                                icon="ri-delete-bin-7-line ri-lg"
+                                bgColor={moduleConstants.delete.bgColor}
+                                icon={moduleConstants.delete.icon}
                                 className="mx-auto"
                             />
                         </div>

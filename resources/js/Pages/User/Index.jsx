@@ -18,6 +18,7 @@ import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import StatsCard from '@/Components/StatsCard.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -46,8 +47,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="sm"
-                        bgColor="bg-primary"
-                        icon="ri-user-line"
+                        bgColor={moduleConstants.user.bgColor}
+                        icon={moduleConstants.user.icon}
                     />
                     <div>
                         <Name value={user.name} />
@@ -59,8 +60,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="xs"
-                        bgColor="bg-success"
-                        icon="ri-shield-user-line"
+                        bgColor={moduleConstants.role.bgColor}
+                        icon={moduleConstants.role.icon}
                     />
                     <span className="fw-semibold">{user.roles.map((role) => role.display_name).join(', ')}</span>
                 </div>
@@ -99,8 +100,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-primary"
-                                icon="ri-user-line"
+                                bgColor={moduleConstants.user.bgColor}
+                                icon={moduleConstants.user.icon}
                             />
                             <span>Users</span>
                         </div>
@@ -130,8 +131,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-primary"
-                                icon="ri-list-check"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
                             />
                             <h5 className="card-title m-0 text-lg font-semibold">User List</h5>
                         </div>

@@ -44,3 +44,47 @@ export const currencies = [
     { value: 'EUR', label: 'Euro' },
     { value: 'GBP', label: 'British Pound' },
 ]
+
+// Module constants with their background colors and icons
+export const moduleConstants = {
+    user: {
+        icon: 'ri-user-line',
+        bgColor: 'bg-primary'
+    },
+    role: {
+        icon: 'ri-shield-user-line',
+        bgColor: 'bg-success'
+    },
+    section: {
+        icon: 'ri-layout-grid-line',
+        bgColor: 'bg-info'
+    },
+    language: {
+        icon: 'ri-translate-2',
+        bgColor: 'bg-warning'
+    },
+    list: {
+        icon: 'ri-list-check',
+        bgColor: 'bg-primary'
+    },
+    delete: {
+        icon: 'ri-delete-bin-7-line ri-lg',
+        bgColor: 'bg-danger'
+    },
+    permission: {
+        icon: 'ri-lock-line',
+        bgColor: 'bg-primary'
+    },
+    submit: {
+        icon: 'ri-check-line',
+        bgColor: 'bg-success'
+    },
+    code: {
+        icon: 'ri-code-line',
+        bgColor: 'bg-secondary'
+    },
+    hashtag: {
+        icon: 'ri-hashtag',
+        bgColor: 'bg-secondary'
+    }
+}

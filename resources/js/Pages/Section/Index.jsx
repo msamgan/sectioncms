@@ -17,6 +17,7 @@ import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -44,8 +45,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="sm"
-                        bgColor="bg-info"
-                        icon="ri-layout-grid-line"
+                        bgColor={moduleConstants.section.bgColor}
+                        icon={moduleConstants.section.icon}
                     />
                     <div>
                         <Name value={section.name} />
@@ -57,8 +58,8 @@ export default function Index() {
                 <div className="d-flex align-items-center">
                     <Avatar
                         size="xs"
-                        bgColor="bg-secondary"
-                        icon="ri-hashtag"
+                        bgColor={moduleConstants.hashtag.bgColor}
+                        icon={moduleConstants.hashtag.icon}
                     />
                     <ClickToCopy text={section.slug} />
                 </div>
@@ -100,8 +101,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-info"
-                                icon="ri-layout-grid-line"
+                                bgColor={moduleConstants.section.bgColor}
+                                icon={moduleConstants.section.icon}
                             />
                             <span>Section</span>
                         </div>
@@ -131,8 +132,8 @@ export default function Index() {
                         <div className="d-flex align-items-center">
                             <Avatar
                                 size="sm"
-                                bgColor="bg-info"
-                                icon="ri-list-check"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
                             />
                             <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
                         </div>
