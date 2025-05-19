@@ -44,11 +44,7 @@ export default function Form({ getUsers, user = null, roles }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <Avatar
-                            size="sm"
-                            bgColor={moduleConstants.user.bgColor}
-                            icon={moduleConstants.user.icon}
-                        />
+                        <Avatar size="sm" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
                         <h5 className="card-title m-0 text-lg font-semibold">User Details</h5>
                     </div>
                 </div>
@@ -153,12 +149,8 @@ export default function Form({ getUsers, user = null, roles }) {
                         leaveTo="opacity-0"
                     >
                         <div className="d-flex align-items-center mt-2">
-                            <Avatar
-                                size="xs"
-                                bgColor="bg-success"
-                                icon="ri-check-line"
-                            />
-                            <p className="mb-0 text-success">Saved successfully!</p>
+                            <Avatar size="xs" bgColor="bg-success" icon="ri-check-line" />
+                            <p className="text-success mb-0">Saved successfully!</p>
                         </div>
                     </Transition>
                 </div>

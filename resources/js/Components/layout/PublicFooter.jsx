@@ -62,6 +62,14 @@ export default function PublicFooter() {
                                 Register
                             </Link>
                         </li>
+                        <li>
+                            <Link
+                                href={route('terms')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
+                                Terms & Conditions
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

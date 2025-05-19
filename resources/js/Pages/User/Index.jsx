@@ -45,11 +45,7 @@ export default function Index() {
         return {
             Name: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="sm"
-                        bgColor={moduleConstants.user.bgColor}
-                        icon={moduleConstants.user.icon}
-                    />
+                    <Avatar size="sm" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
                     <div>
                         <Name value={user.name} />
                         <small className="text-muted d-block">{user.email}</small>
@@ -58,11 +54,7 @@ export default function Index() {
             ),
             Roles: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="xs"
-                        bgColor={moduleConstants.role.bgColor}
-                        icon={moduleConstants.role.icon}
-                    />
+                    <Avatar size="xs" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                     <span className="fw-semibold">{user.roles.map((role) => role.display_name).join(', ')}</span>
                 </div>
             ),
@@ -98,11 +90,7 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.user.bgColor}
-                                icon={moduleConstants.user.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
                             <span>Users</span>
                         </div>
                     }
@@ -126,14 +114,10 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.list.bgColor}
-                                icon={moduleConstants.list.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                             <h5 className="card-title m-0 text-lg font-semibold">User List</h5>
                         </div>
                     </div>

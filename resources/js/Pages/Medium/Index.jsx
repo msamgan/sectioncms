@@ -30,11 +30,7 @@ export default function Index() {
             Preview: <Preview medium={medium} />,
             Name: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="sm"
-                        bgColor={moduleConstants.medium.bgColor}
-                        icon={moduleConstants.medium.icon}
-                    />
+                    <Avatar size="sm" bgColor={moduleConstants.medium.bgColor} icon={moduleConstants.medium.icon} />
                     <div>
                         <Name value={medium.name} />
                         <small className="text-muted d-block">{medium.type}</small>
@@ -43,11 +39,7 @@ export default function Index() {
             ),
             Size: (
                 <div className="d-flex align-items-center">
-                    <Avatar
-                        size="xs"
-                        bgColor="bg-info"
-                        icon="ri-file-text-line"
-                    />
+                    <Avatar size="xs" bgColor="bg-info" icon="ri-file-text-line" />
                     <span className="fw-semibold">{formatFileSize(medium.size)}</span>
                 </div>
             ),
@@ -83,17 +75,13 @@ export default function Index() {
                             <span>Media Library</span>
                         </div>
                     }
-                    subtitle={'Find all of your business\'s media files and their associated details.'}
+                    subtitle={"Find all of your business's media files and their associated details."}
                 ></PageHeader>
             </div>
 
             <div className="row g-4 mb-4">
                 <div className="col-sm-6 col-xl-3">
-                    <StatsCard
-                        count={media.length}
-                        label="Total Files"
-                        icon={moduleConstants.medium.icon}
-                    />
+                    <StatsCard count={media.length} label="Total Files" icon={moduleConstants.medium.icon} />
                 </div>
                 <div className="col-sm-6 col-xl-3">
                     <StatsCard
@@ -123,14 +111,10 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="card-header border-bottom bg-light-subtle">
                         <div className="d-flex align-items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.list.bgColor}
-                                icon={moduleConstants.list.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                             <h5 className="card-title m-0 text-lg font-semibold">Media Files</h5>
                         </div>
                     </div>

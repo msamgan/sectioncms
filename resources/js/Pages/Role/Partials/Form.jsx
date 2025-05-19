@@ -44,11 +44,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
             <div className="card mb-6 w-2/3 shadow-sm transition-all duration-200 hover:shadow-lg">
                 <div className="card-header border-bottom bg-light-subtle">
                     <div className="d-flex align-items-center">
-                        <Avatar
-                            size="sm"
-                            bgColor={moduleConstants.role.bgColor}
-                            icon={moduleConstants.role.icon}
-                        />
+                        <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                         <h5 className="card-title m-0 text-lg font-semibold">Role Details</h5>
                     </div>
                 </div>
@@ -102,8 +98,16 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             <div className="d-flex align-items-center mb-3">
                                                 <Avatar
                                                     size="xs"
-                                                    bgColor={moduleConstants[key] ? moduleConstants[key].bgColor : 'bg-primary'}
-                                                    icon={moduleConstants[key] ? moduleConstants[key].icon : 'ri-settings-line'}
+                                                    bgColor={
+                                                        moduleConstants[key]
+                                                            ? moduleConstants[key].bgColor
+                                                            : 'bg-primary'
+                                                    }
+                                                    icon={
+                                                        moduleConstants[key]
+                                                            ? moduleConstants[key].icon
+                                                            : 'ri-settings-line'
+                                                    }
                                                 />
                                                 <h6 className="fw-semibold text-dark mb-0 text-lg">
                                                     {key.toUpperCase() + ' MODULE'}

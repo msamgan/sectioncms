@@ -1,7 +1,7 @@
 export default function OffCanvas({ id, title, w = 'w-75', children }) {
     return (
         <div
-            className={`${w} offcanvas offcanvas-end shadow-lg border-start border-primary`}
+            className={`${w} offcanvas offcanvas-end border-start border-primary shadow-lg`}
             tabIndex="-1"
             id={id}
             aria-labelledby={id + 'Label'}

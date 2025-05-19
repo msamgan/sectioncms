@@ -49,46 +49,46 @@ export const currencies = [
 export const moduleConstants = {
     user: {
         icon: 'ri-user-line',
-        bgColor: 'bg-primary'
+        bgColor: 'bg-primary',
     },
     role: {
         icon: 'ri-shield-user-line',
-        bgColor: 'bg-success'
+        bgColor: 'bg-success',
     },
     section: {
         icon: 'ri-layout-grid-line',
-        bgColor: 'bg-info'
+        bgColor: 'bg-info',
     },
     language: {
         icon: 'ri-translate-2',
-        bgColor: 'bg-warning'
+        bgColor: 'bg-warning',
     },
     list: {
         icon: 'ri-list-check',
-        bgColor: 'bg-primary'
+        bgColor: 'bg-primary',
     },
     delete: {
         icon: 'ri-delete-bin-7-line ri-lg',
-        bgColor: 'bg-danger'
+        bgColor: 'bg-danger',
     },
     permission: {
         icon: 'ri-lock-line',
-        bgColor: 'bg-primary'
+        bgColor: 'bg-primary',
     },
     submit: {
         icon: 'ri-check-line',
-        bgColor: 'bg-success'
+        bgColor: 'bg-success',
     },
     code: {
         icon: 'ri-code-line',
-        bgColor: 'bg-secondary'
+        bgColor: 'bg-secondary',
     },
     hashtag: {
         icon: 'ri-hashtag',
-        bgColor: 'bg-secondary'
+        bgColor: 'bg-secondary',
     },
     medium: {
         icon: 'ri-file-list-line',
-        bgColor: 'bg-secondary'
-    }
+        bgColor: 'bg-secondary',
+    },
 }
