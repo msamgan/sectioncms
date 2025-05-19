@@ -73,9 +73,9 @@ export default function Table({ data, tdClassName = [], loading, permission }) {
         ) : data.length > 0 ? (
             <TableContainer columns={columns} data={data} tdClassName={tdClassName} />
         ) : (
-            <DisplayMessage text={'No data available.'} />
+            <DisplayMessage text={'No data available.'} type="info" />
         )
     ) : (
-        <DisplayMessage text={'You do not have permission to view this content...'} />
+        <DisplayMessage text={'You do not have permission to view this content...'} type="error" />
     )
 }
