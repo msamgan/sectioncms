@@ -11,6 +11,9 @@ import Uploader from '@/Pages/Medium/Uploader.jsx'
 import { formatFileSize, parseQueryString } from '@/Utils/methods.js'
 import Preview from '@/Pages/Medium/Partials/Preview.jsx'
 import ActionsPartial from '@/Pages/Medium/Partials/ActionsPartial.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { moduleConstants } from '@/Utils/constants.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -25,9 +28,29 @@ export default function Index() {
     const processMedium = (medium) => {
         return {
             Preview: <Preview medium={medium} />,
-            Name: <Name value={medium.name} />,
-            Size: formatFileSize(medium.size),
-            Type: medium.type,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="sm"
+                        bgColor={moduleConstants.medium.bgColor}
+                        icon={moduleConstants.medium.icon}
+                    />
+                    <div>
+                        <Name value={medium.name} />
+                        <small className="text-muted d-block">{medium.type}</small>
+                    </div>
+                </div>
+            ),
+            Size: (
+                <div className="d-flex align-items-center">
+                    <Avatar
+                        size="xs"
+                        bgColor="bg-info"
+                        icon="ri-file-text-line"
+                    />
+                    <span className="fw-semibold">{formatFileSize(medium.size)}</span>
+                </div>
+            ),
             Actions: <ActionsPartial setNotification={setNotification} medium={medium} getMedia={getMedia} />,
         }
     }
@@ -48,10 +71,38 @@ export default function Index() {
         <Master>
             <Head title="Medium" />
 
-            <PageHeader
-                title={'Medium'}
-                subtitle={'Find all of your business’s Medium and there associated details.'}
-            ></PageHeader>
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.medium.bgColor}
+                                icon={moduleConstants.medium.icon}
+                            />
+                            <span>Media Library</span>
+                        </div>
+                    }
+                    subtitle={'Find all of your business\'s media files and their associated details.'}
+                ></PageHeader>
+            </div>
+
+            <div className="row g-4 mb-4">
+                <div className="col-sm-6 col-xl-3">
+                    <StatsCard
+                        count={media.length}
+                        label="Total Files"
+                        icon={moduleConstants.medium.icon}
+                    />
+                </div>
+                <div className="col-sm-6 col-xl-3">
+                    <StatsCard
+                        count={formatFileSize(media.reduce((acc, medium) => acc + medium.size, 0))}
+                        label="Total Size"
+                        icon="ri-file-text-line"
+                    />
+                </div>
+            </div>
 
             {can(permissions.medium.create) && <Uploader getMedia={getMedia} />}
 
@@ -72,7 +123,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.medium.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.list.bgColor}
+                                icon={moduleConstants.list.icon}
+                            />
+                            <h5 className="card-title m-0 text-lg font-semibold">Media Files</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.medium.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )

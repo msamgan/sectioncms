@@ -86,5 +86,9 @@ export const moduleConstants = {
     hashtag: {
         icon: 'ri-hashtag',
         bgColor: 'bg-secondary'
+    },
+    medium: {
+        icon: 'ri-file-list-line',
+        bgColor: 'bg-secondary'
     }
 }
