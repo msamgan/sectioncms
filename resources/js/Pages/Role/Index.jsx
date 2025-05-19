@@ -16,6 +16,7 @@ import usePermissions from '@/Hooks/usePermissions'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -40,9 +41,30 @@ export default function Index() {
 
     const processRole = (role) => {
         return {
-            Name: <Name value={role.display_name} />,
-            UserCount: role.users_count,
-            Status: <ActiveBadge value={'Active'} />,
+            Name: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-sm me-3">
+                        <span className="avatar-initial rounded-circle bg-success">
+                            <i className="ri-shield-user-line text-white"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <Name value={role.display_name} />
+                        <small className="text-muted d-block">{role.name}</small>
+                    </div>
+                </div>
+            ),
+            UserCount: (
+                <div className="d-flex align-items-center">
+                    <div className="avatar avatar-xs me-2">
+                        <span className="avatar-initial rounded-circle bg-primary">
+                            <i className="ri-user-line text-white"></i>
+                        </span>
+                    </div>
+                    <span className="fw-semibold">{role.users_count}</span>
+                </div>
+            ),
+            Status: <span className="badge rounded-pill bg-success">Active</span>,
             Actions: (
                 <Actions>
                     <EditActionButton module={'role'} onClick={() => editRole(role)} />
@@ -68,19 +90,47 @@ export default function Index() {
         <Master>
             <Head title="Roles" />
 
-            <PageHeader
-                title={'Roles'}
-                subtitle={'Find all of your business’s roles and there associated permissions.'}
-                action={
-                    <CreateActionButton
-                        module={'role'}
-                        onClick={() => {
-                            setRole(null)
-                            setPageData(pageObject(null))
-                        }}
+            <div className="mb-6">
+                <PageHeader
+                    title={
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-success">
+                                    <i className="ri-shield-user-line text-white"></i>
+                                </span>
+                            </div>
+                            <span>Roles</span>
+                        </div>
+                    }
+                    subtitle={"Find all of your business's roles and there associated permissions."}
+                    action={
+                        <CreateActionButton
+                            module={'role'}
+                            onClick={() => {
+                                setRole(null)
+                                setPageData(pageObject(null))
+                            }}
+                        />
+                    }
+                ></PageHeader>
+            </div>
+
+            <div className="row g-4 mb-4">
+                <div className="col-sm-6 col-xl-3">
+                    <StatsCard
+                        count={roles.length}
+                        label="Total Roles"
+                        icon="ri-shield-user-line"
                     />
-                }
-            ></PageHeader>
+                </div>
+                <div className="col-sm-6 col-xl-3">
+                    <StatsCard
+                        count={roles.reduce((acc, role) => acc + role.users_count, 0)}
+                        label="Total Users Assigned"
+                        icon="ri-user-line"
+                    />
+                </div>
+            </div>
 
             {can([permissions.role.view, permissions.role.update, permissions.role.create]) && (
                 <OffCanvas id="roleFormCanvas" title={pageData.title}>
@@ -89,7 +139,21 @@ export default function Index() {
             )}
 
             <div className="col-12">
-                <Table data={data} loading={loading} permission={can(permissions.role.list)} />
+                <div className="card shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div className="card-header border-bottom bg-light-subtle">
+                        <div className="d-flex align-items-center">
+                            <div className="avatar avatar-sm me-3">
+                                <span className="avatar-initial rounded-circle bg-primary">
+                                    <i className="ri-list-check text-white"></i>
+                                </span>
+                            </div>
+                            <h5 className="card-title m-0 text-lg font-semibold">Role List</h5>
+                        </div>
+                    </div>
+                    <div className="card-body p-0">
+                        <Table data={data} loading={loading} permission={can(permissions.role.list)} />
+                    </div>
+                </div>
             </div>
         </Master>
     )
