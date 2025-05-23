@@ -18,7 +18,10 @@ use App\Notifications\LanguageDeleted;
 use App\Notifications\LanguageUpdated;
 use App\Utils\Access;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -94,12 +97,19 @@ final class LanguageController extends Controller
         $language->delete();
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws ConnectionException
+     */
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
-    public function languages(): Collection
+    public function languages(Request $request): Collection
     {
         return Language::query()->where('business_id', Auth::user()->key('business_id'))
             ->orderBy('created_at', 'Asc')
-            ->get();
+            ->when($request->get('q'), function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->get('q') . '%')
+                    ->orWhere('code', 'like', '%' . $request->get('q') . '%');
+            })->get();
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]

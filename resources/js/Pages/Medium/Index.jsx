@@ -7,8 +7,9 @@ import Table from '@/Components/layout/Table.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
 import { media as _media } from '@actions/MediumController.js'
 import usePermissions from '@/Hooks/usePermissions'
+import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
 import Uploader from '@/Pages/Medium/Uploader.jsx'
-import { formatFileSize, parseQueryString } from '@/Utils/methods.js'
+import { formatFileSize } from '@/Utils/methods.js'
 import Preview from '@/Pages/Medium/Partials/Preview.jsx'
 import ActionsPartial from '@/Pages/Medium/Partials/ActionsPartial.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
@@ -48,16 +49,12 @@ export default function Index() {
     }
 
     useEffect(() => {
-        if (can(permissions.medium.list)) {
-            getMedia(parseQueryString())
-                .then()
-                .finally(() => setLoading(false))
-        }
-    }, [])
-
-    useEffect(() => {
         setData(media.map((medium) => processMedium(medium)))
     }, [media])
+
+    if (can(permissions.medium.list)) {
+        useUrlChangeAlert(getMedia, setLoading)
+    }
 
     return (
         <Master>

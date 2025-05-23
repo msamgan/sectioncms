@@ -9,11 +9,16 @@ const TableContainer = ({ columns, data, tdClassName }) => {
 
     useEffect(() => setQuery(parseQueryString()), [])
 
+    const searchSubmission = (e) => {
+        e.preventDefault()
+        window.history.pushState({}, '', `?${new URLSearchParams({ q: query })}`)
+    }
+
     return (
         <div className="card mt">
             <div className="table-responsive text-nowrap">
                 <div className={'flex justify-between'}>
-                    <form className={'w-1/3'}>
+                    <form className={'w-1/3'} onSubmit={searchSubmission}>
                         <div className="form-floating form-floating-outline ml-2 mt-3">
                             <input
                                 type="search"

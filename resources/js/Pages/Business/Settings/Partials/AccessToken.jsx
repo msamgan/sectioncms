@@ -43,10 +43,10 @@ export default function AccessToken({ business }) {
                         <div className="col-12 col-md-12">
                             <div className="form-floating form-floating-outline">
                                 <p className="text-muted mb-2">Your API access token:</p>
-                                <div className="shadow-sm rounded p-3 bg-light-subtle border transition-all duration-200 hover:shadow-md">
+                                <div className="bg-light-subtle rounded border p-3 shadow-sm transition-all duration-200 hover:shadow-md">
                                     <ClickToCopy text={token} />
                                 </div>
-                                <small className="text-muted mt-2 d-block">
+                                <small className="text-muted d-block mt-2">
                                     This token is used to authenticate API requests. Keep it secure.
                                 </small>
                             </div>
@@ -83,16 +83,21 @@ export default function AccessToken({ business }) {
                 <div className="p-6">
                     <div className="d-flex align-items-center mb-4">
                         <Avatar size="sm" bgColor="bg-warning" icon="ri-alert-line" />
-                        <h2 className="text-lg font-medium text-gray-900 ms-2 mt-4">Are you sure you want to regenerate?</h2>
+                        <h2 className="ms-2 mt-4 text-lg font-medium text-gray-900">
+                            Are you sure you want to regenerate?
+                        </h2>
                     </div>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Once this token is regenerated, the old token will no longer be valid and any API calls using it will fail.
-                        Make sure to update all your applications with the new token.
+                        Once this token is regenerated, the old token will no longer be valid and any API calls using it
+                        will fail. Make sure to update all your applications with the new token.
                     </p>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal} className="shadow-sm transition-all duration-200 hover:shadow-md">
+                        <SecondaryButton
+                            onClick={closeModal}
+                            className="shadow-sm transition-all duration-200 hover:shadow-md"
+                        >
                             <i className="ri-close-line me-2"></i>
                             Cancel
                         </SecondaryButton>

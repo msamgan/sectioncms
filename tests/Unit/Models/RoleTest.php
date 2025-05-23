@@ -5,10 +5,13 @@ declare(strict_types=1);
 use App\Enums\RoleEnum;
 use App\Models\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
+use Tests\TestCase;
 
-uses(Tests\TestCase::class, RefreshDatabase::class);
+uses(TestCase::class, RefreshDatabase::class);
 
-test('can create a role using factory', function () {
+test('can create a role using factory', function (): void {
     $role = Role::factory()->create([
         'display_name' => 'Test Role',
         'business_id' => null,
@@ -19,7 +22,7 @@ test('can create a role using factory', function () {
         ->and($role->display_name)->toBe('Test Role');
 });
 
-test('business method returns the business role', function () {
+test('business method returns the business role', function (): void {
     // Call the business method
     $result = Role::business();
 
@@ -29,7 +32,7 @@ test('business method returns the business role', function () {
         ->and($result->display_name)->toBe(RoleEnum::Business->value);
 });
 
-test('superAdmin method returns the super admin role', function () {
+test('superAdmin method returns the super admin role', function (): void {
     // Call the superAdmin method
     $result = Role::superAdmin();
 
@@ -39,7 +42,7 @@ test('superAdmin method returns the super admin role', function () {
         ->and($result->display_name)->toBe(RoleEnum::SuperAdmin->value);
 });
 
-test('saveKey method saves a specific attribute', function () {
+test('saveKey method saves a specific attribute', function (): void {
     $role = Role::factory()->create([
         'display_name' => 'Original Name',
     ]);
@@ -49,7 +52,7 @@ test('saveKey method saves a specific attribute', function () {
     expect($role->fresh()->display_name)->toBe('Updated Name');
 });
 
-test('key method retrieves a specific attribute', function () {
+test('key method retrieves a specific attribute', function (): void {
     $role = Role::factory()->create([
         'display_name' => 'Test Role',
     ]);
@@ -59,7 +62,7 @@ test('key method retrieves a specific attribute', function () {
     expect($displayName)->toBe('Test Role');
 });
 
-test('role enum can retrieve corresponding role model', function () {
+test('role enum can retrieve corresponding role model', function (): void {
     // Create roles for each enum case
 
     // Test each enum case
@@ -76,7 +79,7 @@ test('role enum can retrieve corresponding role model', function () {
         ->and($resultCustomer->display_name)->toBe(RoleEnum::Customer->value);
 });
 
-test('fillable attributes are correctly defined', function () {
+test('fillable attributes are correctly defined', function (): void {
     $role = new Role();
     $fillable = $role->getFillable();
 
@@ -89,7 +92,7 @@ test('fillable attributes are correctly defined', function () {
         ->toHaveCount(5);
 });
 
-test('hidden attributes are correctly defined', function () {
+test('hidden attributes are correctly defined', function (): void {
     $role = new Role();
     $hidden = $role->getHidden();
 
@@ -101,17 +104,17 @@ test('hidden attributes are correctly defined', function () {
         ->toHaveCount(4);
 });
 
-test('role inherits from spatie permission role', function () {
+test('role inherits from spatie permission role', function (): void {
     $role = new Role();
 
     expect($role)->toBeInstanceOf(Spatie\Permission\Models\Role::class);
 });
 
-test('getActivitylogOptions returns correct configuration', function () {
+test('getActivitylogOptions returns correct configuration', function (): void {
     $role = new Role();
     $options = $role->getActivitylogOptions();
 
-    expect($options)->toBeInstanceOf(Spatie\Activitylog\LogOptions::class);
+    expect($options)->toBeInstanceOf(LogOptions::class);
 
     // Test that the options are configured correctly
     $reflection = new ReflectionClass($options);
@@ -121,30 +124,30 @@ test('getActivitylogOptions returns correct configuration', function () {
     expect($logOnlyDirty->getValue($options))->toBeTrue();
 });
 
-test('roleEnum label method returns correct values', function () {
+test('roleEnum label method returns correct values', function (): void {
     expect(RoleEnum::SuperAdmin->label())->toBe('super_admin')
         ->and(RoleEnum::Business->label())->toBe('business')
         ->and(RoleEnum::Customer->label())->toBe('customer');
 });
 
-test('roleEnum id method returns correct values', function () {
+test('roleEnum id method returns correct values', function (): void {
     expect(RoleEnum::SuperAdmin->id())->toBe(1)
         ->and(RoleEnum::Business->id())->toBe(2)
         ->and(RoleEnum::Customer->id())->toBe(3);
 });
 
-test('business method throws exception when role does not exist', function () {
+test('business method throws exception when role does not exist', function (): void {
     // Delete the business role if it exists
     DB::table('roles')->where('id', RoleEnum::Business->id())->delete();
 
     // Expect an exception when calling the business method
-    expect(fn () => Role::business())->toThrow(TypeError::class);
+    expect(fn (): Role => Role::business())->toThrow(TypeError::class);
 });
 
-test('superAdmin method throws exception when role does not exist', function () {
+test('superAdmin method throws exception when role does not exist', function (): void {
     // Delete the super admin role if it exists
     DB::table('roles')->where('id', RoleEnum::SuperAdmin->id())->delete();
 
     // Expect an exception when calling the superAdmin method
-    expect(fn () => Role::superAdmin())->toThrow(TypeError::class);
+    expect(fn (): Role => Role::superAdmin())->toThrow(TypeError::class);
 });

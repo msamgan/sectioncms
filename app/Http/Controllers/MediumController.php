@@ -12,6 +12,9 @@ use App\Models\Medium;
 use App\Notifications\MediumCreated;
 use App\Notifications\MediumDeleted;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +24,9 @@ use Msamgan\Lact\Attributes\Action;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Throwable;
 
+/**
+ * @property string $name
+ */
 final class MediumController extends Controller
 {
     public function index(): Response
@@ -51,11 +57,17 @@ final class MediumController extends Controller
         $medium->delete();
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws ConnectionException
+     */
     #[Action(middleware: ['auth', 'check_has_business', 'can:medium.list'])]
-    public function media(): Collection
+    public function media(Request $request): Collection
     {
-        return Media::query()->where('custom_properties->businessId', Auth::user()->key('business_id'))->get()
-            ->map(fn ($medium): array => [
+        return Media::query()->where('custom_properties->businessId', Auth::user()->key('business_id'))
+            ->when($request->has('q'), function ($query) use ($request): void {
+                $query->where('name', 'like', '%' . $request->input('q') . '%');
+            })->get()->map(fn ($medium): array => [
                 'id' => $medium->id,
                 'url' => $medium->getUrl(),
                 'name' => $medium->name,
