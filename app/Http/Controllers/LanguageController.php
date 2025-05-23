@@ -106,7 +106,7 @@ final class LanguageController extends Controller
     {
         return Language::query()->where('business_id', Auth::user()->key('business_id'))
             ->orderBy('created_at', 'Asc')
-            ->when($request->get('q'), function ($query) use ($request) {
+            ->when($request->get('q'), function ($query) use ($request): void {
                 $query->where('name', 'like', '%' . $request->get('q') . '%')
                     ->orWhere('code', 'like', '%' . $request->get('q') . '%');
             })->get();

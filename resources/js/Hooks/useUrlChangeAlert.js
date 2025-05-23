@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import { parseQueryString } from '@/Utils/methods.js'
 
 const useUrlChangeAlert = (refresher, setLoading) => {
@@ -7,33 +7,35 @@ const useUrlChangeAlert = (refresher, setLoading) => {
             setLoading(true)
             refresher(parseQueryString())
                 .then()
-                .finally(() => {setLoading(false)})
-        };
+                .finally(() => {
+                    setLoading(false)
+                })
+        }
 
         // Override pushState and replaceState
-        const originalPushState = history.pushState;
-        const originalReplaceState = history.replaceState;
+        const originalPushState = history.pushState
+        const originalReplaceState = history.replaceState
 
         history.pushState = function (...args) {
-            originalPushState.apply(this, args);
-            handleUrlChange();
-        };
+            originalPushState.apply(this, args)
+            handleUrlChange()
+        }
 
         history.replaceState = function (...args) {
-            originalReplaceState.apply(this, args);
-            handleUrlChange();
-        };
+            originalReplaceState.apply(this, args)
+            handleUrlChange()
+        }
 
         // Listen for popstate
-        window.addEventListener('popstate', handleUrlChange);
+        window.addEventListener('popstate', handleUrlChange)
 
         return () => {
             // Restore original methods and remove event listener
-            history.pushState = originalPushState;
-            history.replaceState = originalReplaceState;
-            window.removeEventListener('popstate', handleUrlChange);
-        };
-    }, []);
-};
+            history.pushState = originalPushState
+            history.replaceState = originalReplaceState
+            window.removeEventListener('popstate', handleUrlChange)
+        }
+    }, [])
+}
 
-export default useUrlChangeAlert;
+export default useUrlChangeAlert

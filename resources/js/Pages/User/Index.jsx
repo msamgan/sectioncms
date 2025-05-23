@@ -77,7 +77,6 @@ export default function Index() {
         setData(users.map((user) => processUser(user)))
     }, [users])
 
-
     if (can(permissions.user.list)) {
         useUrlChangeAlert(getUsers, setLoading)
     }

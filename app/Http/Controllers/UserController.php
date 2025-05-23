@@ -112,7 +112,7 @@ final class UserController extends Controller
             });
         }
 
-        $query->when($request->has('q'), function ($query) use ($request) {
+        $query->when($request->has('q'), function ($query) use ($request): void {
             $query->where('name', 'like', "%{$request->get('q')}%")
                 ->orWhere('email', 'like', "%{$request->get('q')}%");
         });

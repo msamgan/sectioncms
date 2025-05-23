@@ -103,7 +103,7 @@ final class SectionController extends Controller
     public function sections(Request $request): Collection
     {
         return Section::query()->where('business_id', Auth::user()->key('business_id'))
-            ->when($request->get('q'), function ($query) use ($request) {
+            ->when($request->get('q'), function ($query) use ($request): void {
                 $query->where('name', 'like', '%' . $request->get('q') . '%');
             })
             ->get();

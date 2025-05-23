@@ -98,7 +98,7 @@ final class RoleController extends Controller
         return Role::query()->where('business_id', auth()->user()->key('business_id'))
             ->select('name', 'display_name', 'id')
             ->withCount('users')
-            ->when($request->has('q'), function ($query) use ($request) {
+            ->when($request->has('q'), function ($query) use ($request): void {
                 $query->where('display_name', 'like', "%{$request->get('q')}%");
             })
             ->get();
