@@ -18,6 +18,7 @@ import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
+import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -28,7 +29,7 @@ export default function Index() {
     const [loading, setLoading] = useState(true)
     const [pageData, setPageData] = useState(pageObject(null))
     const [languages, setLanguages] = useState([])
-    const getSections = async () => setSections(await _sections.data({}))
+    const getSections = async (query) => setSections(await _sections.data({ params: query }))
 
     const getSection = async (id) => setSection(await show.data({ params: { section: id } }))
 
@@ -70,18 +71,16 @@ export default function Index() {
     }
 
     useEffect(() => {
-        if (can(permissions.section.list)) {
-            getSections()
-                .then()
-                .finally(() => setLoading(false))
-        }
-
         getLanguages().then()
     }, [])
 
     useEffect(() => {
         setData(sections.map((section) => processSection(section)))
     }, [sections])
+
+    if (can(permissions.section.list)) {
+        useUrlChangeAlert(getSections, setLoading)
+    }
 
     return (
         <Master>

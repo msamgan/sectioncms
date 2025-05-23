@@ -16,6 +16,7 @@ import EditActionButton from '@/Components/EditActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
+import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -26,7 +27,7 @@ export default function Index() {
     const [loading, setLoading] = useState(true)
     const [pageData, setPageData] = useState(pageObject(null))
 
-    const getLanguages = async () => setLanguages(await _languages.data({}))
+    const getLanguages = async (query) => setLanguages(await _languages.data({ params: query }))
 
     const getLanguage = async (id) => setLanguage(await show.data({ params: { language: id } }))
 
@@ -72,16 +73,12 @@ export default function Index() {
     }
 
     useEffect(() => {
-        if (can(permissions.language.list)) {
-            getLanguages()
-                .then()
-                .finally(() => setLoading(false))
-        }
-    }, [])
-
-    useEffect(() => {
         setData(languages.map((language) => processLanguage(language)))
     }, [languages])
+
+    if (can(permissions.language.list)) {
+        useUrlChangeAlert(getLanguages, setLoading)
+    }
 
     return (
         <Master>

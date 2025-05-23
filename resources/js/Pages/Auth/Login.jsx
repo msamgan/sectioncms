@@ -54,7 +54,7 @@ export default function Login({ status, canResetPassword }) {
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                         placeholder={'awesome@awesomeness.com'}
-                        className="peer w-full rounded-lg border-gray-400 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
@@ -74,7 +74,7 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                         placeholder={'my super secret password'}
-                        className="peer w-full rounded-lg border-gray-400 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>

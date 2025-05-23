@@ -15,7 +15,10 @@ use App\Notifications\RoleCreated;
 use App\Notifications\RoleDeleted;
 use App\Notifications\RoleUpdated;
 use App\Utils\Access;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -85,12 +88,19 @@ final class RoleController extends Controller
         $role->delete();
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws ConnectionException
+     */
     #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
-    public function roles(): Collection
+    public function roles(Request $request): Collection
     {
         return Role::query()->where('business_id', auth()->user()->key('business_id'))
             ->select('name', 'display_name', 'id')
             ->withCount('users')
+            ->when($request->has('q'), function ($query) use ($request): void {
+                $query->where('display_name', 'like', "%{$request->get('q')}%");
+            })
             ->get();
     }
 

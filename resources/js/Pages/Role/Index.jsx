@@ -19,6 +19,7 @@ import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import StatsCard from '@/Components/StatsCard.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
+import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -32,7 +33,7 @@ export default function Index() {
 
     const getPermissions = async () => setPermissionsList(await _permissions.data({}))
 
-    const getRoles = async () => setRoles(await _roles.data({}))
+    const getRoles = async (query) => setRoles(await _roles.data({ params: query }))
 
     const getRole = async (id) => setRole(await show.data({ params: { role: id } }))
 
@@ -69,16 +70,14 @@ export default function Index() {
     }
 
     useEffect(() => {
-        if (can(permissions.role.list)) {
-            getRoles()
-                .then()
-                .finally(() => setLoading(false))
-        }
-
         getPermissions().then()
     }, [])
 
     useEffect(() => setData(roles.map((role) => processRole(role))), [roles])
+
+    if (can(permissions.role.list)) {
+        useUrlChangeAlert(getRoles, setLoading)
+    }
 
     return (
         <Master>

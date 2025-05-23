@@ -163,8 +163,8 @@ export default function Register() {
                             className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                         >
                             Terms and Conditions
-                        </Link>
-                        {' '}and{' '}
+                        </Link>{' '}
+                        and{' '}
                         <Link
                             href={route('privacy')}
                             className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
