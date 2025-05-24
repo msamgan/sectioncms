@@ -3,7 +3,7 @@ import Avatar from '@/Components/helpers/Avatar.jsx'
 import SecondaryButton from '@/Components/SecondaryButton.jsx'
 import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import Modal from '@/Components/Modal.jsx'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import InputError from '@/Components/InputError.jsx'
@@ -24,7 +24,7 @@ export default function AddSite() {
         post(store.route(), {
             onSuccess: () => {
                 window.location.href = route('dashboard')
-            }
+            },
         })
     }
 
@@ -33,6 +33,10 @@ export default function AddSite() {
             <PrimaryButton onClick={() => setConfirming(true)} className={'mr-8'}>
                 <i className="ri-add-line me-2"></i> Add New
             </PrimaryButton>
+
+            <Link href={route('business')} className="">
+                <i className="ri-global-fill ri-22px me-6 cursor-pointer"></i>
+            </Link>
 
             <Modal show={confirming} onClose={closeModal}>
                 <form onSubmit={submit}>

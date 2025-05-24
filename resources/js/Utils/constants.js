@@ -91,4 +91,8 @@ export const moduleConstants = {
         icon: 'ri-file-list-line',
         bgColor: 'bg-secondary',
     },
+    business: {
+        icon: 'ri-building-line',
+        bgColor: 'bg-secondary',
+    },
 }
