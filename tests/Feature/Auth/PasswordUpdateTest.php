@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Hash;
 
 test('password can be updated', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
@@ -26,6 +30,10 @@ test('password can be updated', function (): void {
 
 test('correct password must be provided to update password', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)

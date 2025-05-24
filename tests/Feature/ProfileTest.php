@@ -6,6 +6,10 @@ use App\Models\User;
 
 test('profile page is displayed', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
@@ -16,6 +20,10 @@ test('profile page is displayed', function (): void {
 
 test('profile information can be updated', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
@@ -37,6 +45,10 @@ test('profile information can be updated', function (): void {
 
 test('email verification status is unchanged when the email address is unchanged', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
@@ -54,6 +66,10 @@ test('email verification status is unchanged when the email address is unchanged
 
 test('user can delete their account', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
@@ -71,6 +87,10 @@ test('user can delete their account', function (): void {
 
 test('correct password must be provided to delete account', function (): void {
     $user = User::factory()->create();
+    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
         ->actingAs($user)
