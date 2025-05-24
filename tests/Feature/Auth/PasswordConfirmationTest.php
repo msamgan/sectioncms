@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
+use App\Actions\Business\CreateBusiness;
+use App\Actions\Role\AssignRole;
+use App\Models\Role;
 use App\Models\User;
 
 test('confirm password screen can be rendered', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this->actingAs($user)->get('/confirm-password');
@@ -18,9 +21,9 @@ test('confirm password screen can be rendered', function (): void {
 
 test('password can be confirmed', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this->actingAs($user)->post('/confirm-password', [
@@ -33,9 +36,9 @@ test('password can be confirmed', function (): void {
 
 test('password is not confirmed with invalid password', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this->actingAs($user)->post('/confirm-password', [

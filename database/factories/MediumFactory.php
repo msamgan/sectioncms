@@ -19,7 +19,17 @@ final class MediumFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'model_type' => \App\Models\User::class,
+            'uuid' => $this->faker->uuid(),
+            'collection_name' => COLLECTION_NAME,
+            'name' => $this->faker->word(),
+            'file_name' => $this->faker->word() . '.jpg',
+            'mime_type' => 'image/jpeg',
+            'disk' => 'public',
+            'size' => $this->faker->numberBetween(1000, 10000000),
+            'manipulations' => json_encode([]),
+            'generated_conversions' => json_encode([]),
+            'responsive_images' => json_encode([]),
         ];
     }
 }

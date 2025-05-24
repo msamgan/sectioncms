@@ -2,13 +2,23 @@
 
 declare(strict_types=1);
 
+use App\Actions\Business\CreateBusiness;
+use App\Actions\Role\AssignRole;
+use App\Concerns\ModelFunctions;
 use App\Enums\RoleEnum;
 use App\Models\Business;
 use App\Models\User;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Traits\CausesActivity;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 use Tests\TestCase;
 
 uses(TestCase::class, RefreshDatabase::class);
@@ -77,9 +87,9 @@ test('businesses relationship returns businesses owned by user', function (): vo
 
 test('business relationship returns business user belongs to', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction = new AssignRole();
     $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $createBusinessAction = new CreateBusiness();
     $business = $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     expect($user->business)->toBeInstanceOf(Business::class)
@@ -96,8 +106,8 @@ test('role relationship returns user role', function (): void {
 
 test('hasBusiness returns true when user has business_id', function (): void {
     $user = User::factory()->create();
-    (new App\Actions\Role\AssignRole())->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    (new App\Actions\Business\CreateBusiness())->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    (new AssignRole())->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    (new CreateBusiness())->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     expect($user->hasBusiness())->toBeTrue();
 });
@@ -135,8 +145,8 @@ test('getAccessAttribute returns user permissions', function (): void {
 
 test('businessId returns authenticated user business_id', function (): void {
     $user = User::factory()->create();
-    (new App\Actions\Role\AssignRole())->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $business = (new App\Actions\Business\CreateBusiness())->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    (new AssignRole())->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $business = (new CreateBusiness())->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     // Mock the Auth facade
     Auth::shouldReceive('user')
@@ -159,47 +169,47 @@ test('registerMediaConversions sets up media conversions', function (): void {
 test('user implements HasMedia interface', function (): void {
     $user = new User();
 
-    expect($user)->toBeInstanceOf(Spatie\MediaLibrary\HasMedia::class);
+    expect($user)->toBeInstanceOf(HasMedia::class);
 });
 
 test('user implements MustVerifyEmail interface', function (): void {
     $user = new User();
 
-    expect($user)->toBeInstanceOf(Illuminate\Contracts\Auth\MustVerifyEmail::class);
+    expect($user)->toBeInstanceOf(MustVerifyEmail::class);
 });
 
 test('user uses HasFactory trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(Illuminate\Database\Eloquent\Factories\HasFactory::class);
+    expect($traits)->toHaveKey(HasFactory::class);
 });
 
 test('user uses Notifiable trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(Illuminate\Notifications\Notifiable::class);
+    expect($traits)->toHaveKey(Notifiable::class);
 });
 
 test('user uses HasRoles trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(Spatie\Permission\Traits\HasRoles::class);
+    expect($traits)->toHaveKey(HasRoles::class);
 });
 
 test('user uses InteractsWithMedia trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(Spatie\MediaLibrary\InteractsWithMedia::class);
+    expect($traits)->toHaveKey(InteractsWithMedia::class);
 });
 
 test('user uses CausesActivity trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(Spatie\Activitylog\Traits\CausesActivity::class);
+    expect($traits)->toHaveKey(CausesActivity::class);
 });
 
 test('user uses ModelFunctions trait', function (): void {
     $traits = class_uses(User::class);
 
-    expect($traits)->toHaveKey(App\Concerns\ModelFunctions::class);
+    expect($traits)->toHaveKey(ModelFunctions::class);
 });

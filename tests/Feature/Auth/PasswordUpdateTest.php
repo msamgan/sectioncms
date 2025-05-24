@@ -2,14 +2,17 @@
 
 declare(strict_types=1);
 
+use App\Actions\Business\CreateBusiness;
+use App\Actions\Role\AssignRole;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 test('password can be updated', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this
@@ -30,9 +33,9 @@ test('password can be updated', function (): void {
 
 test('correct password must be provided to update password', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this

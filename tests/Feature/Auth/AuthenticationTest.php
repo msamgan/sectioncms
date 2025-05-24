@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Actions\Business\CreateBusiness;
+use App\Actions\Role\AssignRole;
+use App\Models\Role;
 use App\Models\User;
 
 test('login screen can be rendered', function (): void {
@@ -13,9 +16,9 @@ test('login screen can be rendered', function (): void {
 test('users can authenticate using the login screen', function (): void {
     $user = User::factory()->create();
 
-    $assignRoleAction = new App\Actions\Role\AssignRole();
+    $assignRoleAction = new AssignRole();
 
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
 
     $response = $this->post('/login', [
         'email' => $user->email,
@@ -43,9 +46,9 @@ test('users can not authenticate with invalid password', function (): void {
  */
 test('users can logout', function (): void {
     $user = User::factory()->create();
-    $assignRoleAction = new App\Actions\Role\AssignRole();
-    $assignRoleAction->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $createBusinessAction = new App\Actions\Business\CreateBusiness();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
     $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this->actingAs($user)->post('/logout');
