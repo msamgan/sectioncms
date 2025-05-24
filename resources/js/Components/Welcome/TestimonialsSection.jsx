@@ -40,11 +40,11 @@ export default function TestimonialsSection() {
 
                         <div className="mt-auto flex items-center">
                             <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-900/30">
-                                <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">JD</span>
+                                <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">RM</span>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-gray-900 dark:text-white">Jane Doe</h4>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Lead Developer, TechCorp</p>
+                                <h4 className="font-semibold text-gray-900 dark:text-white">Rashid Maqsood</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">MD, ParcelToShip</p>
                             </div>
                         </div>
                     </div>
@@ -74,11 +74,11 @@ export default function TestimonialsSection() {
 
                         <div className="mt-auto flex items-center">
                             <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30">
-                                <span className="text-lg font-bold text-purple-600 dark:text-purple-400">MS</span>
+                                <span className="text-lg font-bold text-purple-600 dark:text-purple-400">AS</span>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-gray-900 dark:text-white">Michael Smith</h4>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">CTO, AppWorks</p>
+                                <h4 className="font-semibold text-gray-900 dark:text-white">Ankit Saxena</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">SEO, Digitalmise</p>
                             </div>
                         </div>
                     </div>
@@ -109,11 +109,11 @@ export default function TestimonialsSection() {
 
                         <div className="mt-auto flex items-center">
                             <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
-                                <span className="text-lg font-bold text-blue-600 dark:text-blue-400">AJ</span>
+                                <span className="text-lg font-bold text-blue-600 dark:text-blue-400">AB</span>
                             </div>
                             <div>
-                                <h4 className="font-semibold text-gray-900 dark:text-white">Alex Johnson</h4>
-                                <p className="text-sm text-gray-500 dark:text-gray-400">Content Director, MediaHub</p>
+                                <h4 className="font-semibold text-gray-900 dark:text-white">Amit Banerjee</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Content Director, NOIS</p>
                             </div>
                         </div>
                     </div>

@@ -57,7 +57,7 @@ export default function Register() {
                         required
                         type={'url'}
                         placeholder={'https://example.com'}
-                        className="peer w-full rounded-lg border-gray-300 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.website} className="mt-2" />
                 </div>
@@ -77,7 +77,7 @@ export default function Register() {
                         onChange={(e) => setData('name', e.target.value)}
                         required
                         placeholder={'Your full name'}
-                        className="peer w-full rounded-lg border-gray-300 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.name} className="mt-2" />
                 </div>
@@ -98,7 +98,7 @@ export default function Register() {
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         placeholder={'awesome@awesomeness.com'}
-                        className="peer w-full rounded-lg border-gray-300 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.email} className="mt-2" />
                 </div>
@@ -119,7 +119,7 @@ export default function Register() {
                         onChange={(e) => setData('password', e.target.value)}
                         required
                         placeholder={'my super secret password'}
-                        className="peer w-full rounded-lg border-gray-300 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
@@ -140,7 +140,7 @@ export default function Register() {
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                         placeholder={'Confirm your password'}
-                        className="peer w-full rounded-lg border-gray-300 pl-10 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
