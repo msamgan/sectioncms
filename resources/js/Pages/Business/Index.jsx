@@ -5,13 +5,13 @@ import Name from '@/Components/helpers/Name.jsx'
 import DeleteEntityForm from '@/Components/layout/DeleteEntityForm.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import usePermissions from '@/Hooks/usePermissions.js'
-import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
 import Master from '@/Layouts/Master.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { businesses as _businesses, destroy, select } from '@actions/BusinessController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
+import { parseQueryString } from '@/Utils/methods.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -71,9 +71,11 @@ export default function Index() {
         setData(businesses.map((business) => processBusiness(business)))
     }, [businesses])
 
-    if (can(permissions.business.update)) {
-        useUrlChangeAlert(getBusinesses, setLoading)
-    }
+    useEffect(() => {
+        if (can(permissions.business.update)) {
+            getBusinesses(parseQueryString()).then().finally(() => setLoading(false))
+        }
+    }, [])
 
     return (
         <Master hideMenu={true}>
@@ -105,7 +107,7 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.business.update)} />
+                        <Table data={data} loading={loading} permission={can(permissions.business.update)} setLoading={setLoading} refresher={getBusinesses} />
                     </div>
                 </div>
             </div>
