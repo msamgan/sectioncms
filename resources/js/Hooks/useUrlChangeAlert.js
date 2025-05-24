@@ -4,7 +4,6 @@ import { parseQueryString } from '@/Utils/methods.js'
 const useUrlChangeAlert = (refresher, setLoading) => {
     useEffect(() => {
         const handleUrlChange = () => {
-            setLoading(true)
             refresher(parseQueryString())
                 .then()
                 .finally(() => {

@@ -8,6 +8,7 @@ use App\Actions\Language\CreateLanguage;
 use App\Actions\Language\UpdateLanguage;
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Section\CreateLanguageValues;
+use App\Actions\Section\DeleteLanguageValues;
 use App\Actions\Section\UpdateLanguageValues;
 use App\Http\Requests\DeleteLanguageRequest;
 use App\Http\Requests\StoreLanguageRequest;
@@ -90,10 +91,11 @@ final class LanguageController extends Controller
     }
 
     #[Action(method: 'delete', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.delete'])]
-    public function destroy(DeleteLanguageRequest $request, Language $language, NotifyUser $notifyUser): void
+    public function destroy(DeleteLanguageRequest $request, Language $language, DeleteLanguageValues $deleteLanguageValues, NotifyUser $notifyUser): void
     {
         $notifyUser->handle(new LanguageDeleted($language));
 
+        \Illuminate\Support\defer(fn () => $deleteLanguageValues->handle(languageCode: $language->key('code')));
         $language->delete();
     }
 
