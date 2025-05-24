@@ -1,22 +1,22 @@
-import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
-import { permissions } from '@/Utils/permissions/index.js'
-import { useEffect, useState } from 'react'
-import Actions from '@/Components/helpers/Actions.jsx'
-import Name from '@/Components/helpers/Name.jsx'
-import Avatar from '@/Components/helpers/Avatar.jsx'
-import Table from '@/Components/layout/Table.jsx'
-import { pageObject } from '@/Pages/Language/helper.js'
-import PageHeader from '@/Components/PageHeader.jsx'
-import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
-import Form from '@/Pages/Language/Partials/Form.jsx'
-import { destroy, languages as _languages, show } from '@actions/LanguageController.js'
-import usePermissions from '@/Hooks/usePermissions'
-import EditActionButton from '@/Components/EditActionButton.jsx'
-import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
+import EditActionButton from '@/Components/EditActionButton.jsx'
+import PageHeader from '@/Components/PageHeader.jsx'
+import Actions from '@/Components/helpers/Actions.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
+import Name from '@/Components/helpers/Name.jsx'
+import Table from '@/Components/layout/Table.jsx'
+import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
+import usePermissions from '@/Hooks/usePermissions'
+import Master from '@/Layouts/Master.jsx'
+import Form from '@/Pages/Language/Partials/Form.jsx'
+import { pageObject } from '@/Pages/Language/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
-import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
+import { parseQueryString } from '@/Utils/methods.js'
+import { permissions } from '@/Utils/permissions/index.js'
+import { languages as _languages, destroy, show } from '@actions/LanguageController.js'
+import { Head } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -76,9 +76,13 @@ export default function Index() {
         setData(languages.map((language) => processLanguage(language)))
     }, [languages])
 
-    if (can(permissions.language.list)) {
-        useUrlChangeAlert(getLanguages, setLoading)
-    }
+    useEffect(() => {
+        if (can(permissions.language.list)) {
+            getLanguages(parseQueryString())
+                .then()
+                .finally(() => setLoading(false))
+        }
+    }, [])
 
     return (
         <Master>
@@ -124,7 +128,13 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.language.list)} />
+                        <Table
+                            data={data}
+                            setLoading={setLoading}
+                            loading={loading}
+                            permission={can(permissions.language.list)}
+                            refresher={getLanguages}
+                        />
                     </div>
                 </div>
             </div>

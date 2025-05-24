@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { userCount as _userCount } from '@actions/UserController.js'
-import StatsCard from '@/Components/StatsCard.jsx'
 import Loading from '@/Components/Loading.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { userCount as _userCount } from '@actions/UserController.js'
+import { useEffect, useState } from 'react'
 
 export default function UserCountStats() {
     const [userCount, setUserCount] = useState(0)

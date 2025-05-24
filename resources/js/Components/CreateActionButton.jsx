@@ -1,8 +1,8 @@
-import usePermissions from '@/Hooks/usePermissions'
 import OffCanvasButton from '@/Components/off_canvas/OffCanvasButton.jsx'
-import { permissions } from '@/Utils/permissions/index.js'
-import { toTitleCase } from '@/Utils/methods.js'
+import usePermissions from '@/Hooks/usePermissions'
 import caseify from '@/Utils/caseify.js'
+import { toTitleCase } from '@/Utils/methods.js'
+import { permissions } from '@/Utils/permissions/index.js'
 
 export default function CreateActionButton({ module, onClick }) {
     const { can } = usePermissions()

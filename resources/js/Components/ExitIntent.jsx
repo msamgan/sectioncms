@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function ExitIntent() {
     const [isVisible, setIsVisible] = useState(false)

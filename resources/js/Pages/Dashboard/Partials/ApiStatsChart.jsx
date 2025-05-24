@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { stats as _stats } from '@actions/ApiStatsController.js'
-import Chart from '@/Pages/Dashboard/Partials/Chart.jsx'
 import Loading from '@/Components/Loading.jsx'
+import Chart from '@/Pages/Dashboard/Partials/Chart.jsx'
+import { stats as _stats } from '@actions/ApiStatsController.js'
+import { useEffect, useState } from 'react'
 
 export default function ApiStatsChart() {
     const [stats, setStats] = useState({})

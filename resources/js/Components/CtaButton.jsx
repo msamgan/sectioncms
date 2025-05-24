@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function CtaButton({
     href,

@@ -1,11 +1,11 @@
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
-import { useState } from 'react'
-import SecondaryButton from '@/Components/SecondaryButton.jsx'
 import Modal from '@/Components/Modal.jsx'
 import PrimaryButton from '@/Components/PrimaryButton.jsx'
+import SecondaryButton from '@/Components/SecondaryButton.jsx'
 import { regenerateToken as _regenerateToken } from '@actions/BusinessController.js'
-import Avatar from '@/Components/helpers/Avatar.jsx'
 import { Transition } from '@headlessui/react'
+import { useState } from 'react'
 
 export default function AccessToken({ business }) {
     const [confirming, setConfirming] = useState(false)

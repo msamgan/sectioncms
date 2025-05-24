@@ -1,6 +1,6 @@
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.jsx'
-import { permissions } from '@/Utils/permissions/index.js'
 import usePermissions from '@/Hooks/usePermissions'
+import { permissions } from '@/Utils/permissions/index.js'
 
 export default function TopHeaderDropdown({ user }) {
     const { can } = usePermissions()

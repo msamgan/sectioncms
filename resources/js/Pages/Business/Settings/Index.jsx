@@ -1,7 +1,7 @@
 import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
-import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
 import AccessToken from '@/Pages/Business/Settings/Partials/AccessToken.jsx'
+import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
+import { Head } from '@inertiajs/react'
 
 export default function Index({ auth }) {
     return (

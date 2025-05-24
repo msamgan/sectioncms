@@ -1,24 +1,24 @@
-import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
-import { permissions } from '@/Utils/permissions/index.js'
-import { useEffect, useState } from 'react'
-import Name from '@/Components/helpers/Name.jsx'
-import Avatar from '@/Components/helpers/Avatar.jsx'
-import Table from '@/Components/layout/Table.jsx'
-import { pageObject } from '@/Pages/Section/helper.js'
-import PageHeader from '@/Components/PageHeader.jsx'
-import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
-import Form from '@/Pages/Section/Partials/Form.jsx'
-import { destroy, sections as _sections, show } from '@actions/SectionController.js'
-import { languages as _languages } from '@actions/LanguageController.js'
-import usePermissions from '@/Hooks/usePermissions'
-import EditActionButton from '@/Components/EditActionButton.jsx'
-import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
+import EditActionButton from '@/Components/EditActionButton.jsx'
+import PageHeader from '@/Components/PageHeader.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
+import Name from '@/Components/helpers/Name.jsx'
+import Table from '@/Components/layout/Table.jsx'
+import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
+import usePermissions from '@/Hooks/usePermissions'
+import Master from '@/Layouts/Master.jsx'
+import Form from '@/Pages/Section/Partials/Form.jsx'
+import { pageObject } from '@/Pages/Section/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
-import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
+import { parseQueryString } from '@/Utils/methods.js'
+import { permissions } from '@/Utils/permissions/index.js'
+import { languages as _languages } from '@actions/LanguageController.js'
+import { sections as _sections, destroy, show } from '@actions/SectionController.js'
+import { Head } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -71,16 +71,18 @@ export default function Index() {
     }
 
     useEffect(() => {
+        if (can(permissions.section.list)) {
+            getSections(parseQueryString())
+                .then()
+                .finally(() => setLoading(false))
+        }
+
         getLanguages().then()
     }, [])
 
     useEffect(() => {
         setData(sections.map((section) => processSection(section)))
     }, [sections])
-
-    if (can(permissions.section.list)) {
-        useUrlChangeAlert(getSections, setLoading)
-    }
 
     return (
         <Master>
@@ -126,7 +128,13 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.section.list)} />
+                        <Table
+                            data={data}
+                            loading={loading}
+                            permission={can(permissions.section.list)}
+                            setLoading={setLoading}
+                            refresher={getSections}
+                        />
                     </div>
                 </div>
             </div>

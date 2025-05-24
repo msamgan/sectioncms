@@ -1,11 +1,10 @@
-import { Head } from '@inertiajs/react'
-import PublicHeader from '@/Components/layout/PublicHeader.jsx'
-import Navigation from '@/Components/layout/PublicNavigation.jsx'
+import ExitIntent from '@/Components/ExitIntent'
 import PublicFooter from '@/Components/Layout/PublicFooter'
+import PublicHeader from '@/Components/layout/PublicHeader.jsx'
 import PublicNavigation from '@/Components/layout/PublicNavigation.jsx'
 import StickyHeader from '@/Components/layout/StickyHeader.jsx'
 import LiveChat from '@/Components/LiveChat'
-import ExitIntent from '@/Components/ExitIntent'
+import { Head } from '@inertiajs/react'
 
 export default function Public({ auth, children }) {
     return (

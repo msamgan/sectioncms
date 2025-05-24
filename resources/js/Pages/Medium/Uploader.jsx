@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 // Import React FilePond
 import { FilePond, registerPlugin } from 'react-filepond'
@@ -11,8 +11,8 @@ import 'filepond/dist/filepond.min.css'
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
 import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
 // import FilePondPluginImagePreview from "filepond-plugin-image-preview"
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 import { store } from '@actions/MediumController.js'
+import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
 
 // Register the plugins
 registerPlugin(FilePondPluginImageExifOrientation)

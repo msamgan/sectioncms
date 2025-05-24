@@ -1,7 +1,7 @@
-import usePermissions from '@/Hooks/usePermissions'
 import OffCanvasButton from '@/Components/off_canvas/OffCanvasButton.jsx'
-import { permissions } from '@/Utils/permissions/index.js'
+import usePermissions from '@/Hooks/usePermissions'
 import caseify from '@/Utils/caseify.js'
+import { permissions } from '@/Utils/permissions/index.js'
 
 export default function EditActionButton({ module, onClick }) {
     const { can } = usePermissions()

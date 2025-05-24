@@ -1,14 +1,14 @@
-import Loading from '@/Components/Loading.jsx'
 import DisplayMessage from '@/Components/DisplayMessage.jsx'
+import Loading from '@/Components/Loading.jsx'
 import { parseQueryString, toTitleCase } from '@/Utils/methods.js'
 import { useEffect, useState } from 'react'
 
-const TableContainer = ({ columns, data, tdClassName }) => {
+const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) => {
     return (
         <div className="card mt">
             <div className="table-responsive text-nowrap">
                 <div className={'flex justify-between'}>
-                    <SearchForm />
+                    <SearchForm setLoading={setLoading} refresher={refresher} />
                     <h5 className="card-header text-end text-lg font-light">
                         Total Records:
                         <span className="badge rounded-pill ms-4 bg-primary">{data.length}</span>
@@ -44,14 +44,26 @@ const TableContainer = ({ columns, data, tdClassName }) => {
     )
 }
 
-const SearchForm = () => {
+const SearchForm = ({ setLoading, refresher }) => {
     const [query, setQuery] = useState('')
 
-    useEffect(() => setQuery(parseQueryString()), [])
-
+    useEffect(() => setQuery(parseQueryString()['q']), [])
     const searchSubmission = (e) => {
         e.preventDefault()
+
+        if (typeof query === 'undefined') {
+            return
+        }
+
         window.history.pushState({}, '', `?${new URLSearchParams({ q: query })}`)
+        setLoading(true)
+        setTimeout(() => {
+            refresher(parseQueryString())
+                .then()
+                .finally(() => {
+                    setLoading(false)
+                })
+        }, 200)
     }
 
     return (
@@ -61,7 +73,7 @@ const SearchForm = () => {
                     type="search"
                     className="form-control rounded"
                     id="search"
-                    value={query?.q}
+                    value={query}
                     placeholder="Search Query..."
                     aria-describedby="search-help"
                     name={'q'}
@@ -74,17 +86,25 @@ const SearchForm = () => {
     )
 }
 
-export default function Table({ data, tdClassName = [], loading, permission }) {
+export default function Table({ data, tdClassName = [], setLoading, loading, permission, refresher }) {
     const columns = data.length > 0 ? Object.keys(data[0]).map(toTitleCase) : []
 
     return permission ? (
         loading ? (
-            <Loading />
+            <div className={'mb-2 ml-3 mt-2'}>
+                <Loading />
+            </div>
         ) : data.length > 0 ? (
-            <TableContainer columns={columns} data={data} tdClassName={tdClassName} />
+            <TableContainer
+                columns={columns}
+                data={data}
+                tdClassName={tdClassName}
+                setLoading={setLoading}
+                refresher={refresher}
+            />
         ) : (
             <>
-                <SearchForm />
+                <SearchForm setLoading={setLoading} refresher={refresher} />
                 <DisplayMessage text={'No data available.'} type="info" />
             </>
         )

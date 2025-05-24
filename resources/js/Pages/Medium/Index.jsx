@@ -1,20 +1,19 @@
-import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
-import { permissions } from '@/Utils/permissions/index.js'
-import { useEffect, useState } from 'react'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
-import { media as _media } from '@actions/MediumController.js'
-import usePermissions from '@/Hooks/usePermissions'
-import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
-import Uploader from '@/Pages/Medium/Uploader.jsx'
-import { formatFileSize } from '@/Utils/methods.js'
-import Preview from '@/Pages/Medium/Partials/Preview.jsx'
-import ActionsPartial from '@/Pages/Medium/Partials/ActionsPartial.jsx'
-import Avatar from '@/Components/helpers/Avatar.jsx'
 import StatsCard from '@/Components/StatsCard.jsx'
+import usePermissions from '@/Hooks/usePermissions'
+import Master from '@/Layouts/Master.jsx'
+import ActionsPartial from '@/Pages/Medium/Partials/ActionsPartial.jsx'
+import Preview from '@/Pages/Medium/Partials/Preview.jsx'
+import Uploader from '@/Pages/Medium/Uploader.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
+import { formatFileSize, parseQueryString } from '@/Utils/methods.js'
+import { permissions } from '@/Utils/permissions/index.js'
+import { media as _media } from '@actions/MediumController.js'
+import { Head } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -52,9 +51,13 @@ export default function Index() {
         setData(media.map((medium) => processMedium(medium)))
     }, [media])
 
-    if (can(permissions.medium.list)) {
-        useUrlChangeAlert(getMedia, setLoading)
-    }
+    useEffect(() => {
+        if (can(permissions.medium.list)) {
+            getMedia(parseQueryString())
+                .then()
+                .finally(() => setLoading(false))
+        }
+    }, [])
 
     return (
         <Master>
@@ -116,7 +119,13 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.medium.list)} />
+                        <Table
+                            data={data}
+                            loading={loading}
+                            permission={can(permissions.medium.list)}
+                            setLoading={setLoading}
+                            refresher={getMedia}
+                        />
                     </div>
                 </div>
             </div>

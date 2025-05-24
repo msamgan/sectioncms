@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { roleCount as _roleCount } from '@actions/RoleController.js'
-import StatsCard from '@/Components/StatsCard.jsx'
 import Loading from '@/Components/Loading.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { roleCount as _roleCount } from '@actions/RoleController.js'
+import { useEffect, useState } from 'react'
 
 export default function RoleCountStats() {
     const [roleCount, setRoleCount] = useState(0)

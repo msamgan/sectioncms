@@ -1,4 +1,3 @@
-import { Link } from '@inertiajs/react'
 import CtaButton from '@/Components/CtaButton'
 
 export default function CallToActionSection({ auth }) {

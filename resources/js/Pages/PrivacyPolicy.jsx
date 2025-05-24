@@ -1,5 +1,5 @@
-import { Head } from '@inertiajs/react'
 import Public from '@/Layouts/Public'
+import { Head } from '@inertiajs/react'
 
 export default function PrivacyPolicy({ auth }) {
     return (

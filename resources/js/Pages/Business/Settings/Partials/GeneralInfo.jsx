@@ -1,10 +1,10 @@
-import TextInput from '@/Components/TextInput.jsx'
-import InputLabel from '@/Components/InputLabel.jsx'
-import { useForm } from '@inertiajs/react'
-import { timeZones } from '@/Utils/constants.js'
 import InputError from '@/Components/InputError.jsx'
-import { Transition } from '@headlessui/react'
+import InputLabel from '@/Components/InputLabel.jsx'
+import TextInput from '@/Components/TextInput.jsx'
+import { timeZones } from '@/Utils/constants.js'
 import { update } from '@actions/BusinessController.js'
+import { Transition } from '@headlessui/react'
+import { useForm } from '@inertiajs/react'
 
 export default function GeneralInfo({ business }) {
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm({

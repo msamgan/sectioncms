@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Link } from '@inertiajs/react'
 import ApplicationLogo from '@/Components/ApplicationLogo'
+import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function StickyHeader({ auth }) {
     const [isVisible, setIsVisible] = useState(false)

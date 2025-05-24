@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import TextInput from '@/Components/TextInput.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
-import { slugify } from '@/Utils/methods.js'
+import TextInput from '@/Components/TextInput.jsx'
 import { makeLanguageObject } from '@/Pages/Section/helper.js'
+import { slugify } from '@/Utils/methods.js'
+import { useEffect, useState } from 'react'
 
 function DynamicFields({ dataFields, setData, languages }) {
     const [fields, setFields] = useState([{ id: 1, key: '', value: makeLanguageObject(languages) }])

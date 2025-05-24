@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { sectionCount as _sectionCount } from '@actions/SectionController.js'
-import StatsCard from '@/Components/StatsCard.jsx'
 import Loading from '@/Components/Loading.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { sectionCount as _sectionCount } from '@actions/SectionController.js'
+import { useEffect, useState } from 'react'
 
 export default function SectionCountStats() {
     const [sectionCount, setSectionCount] = useState(0)

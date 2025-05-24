@@ -1,13 +1,13 @@
-import Public from '@/Layouts/Public.jsx'
-import HeroSection from '@/Components/Welcome/HeroSection'
-import TrustBadges from '@/Components/Welcome/TrustBadges'
-import FeaturesSection from '@/Components/Welcome/FeaturesSection'
-import HowItWorksSection from '@/Components/Welcome/HowItWorksSection'
-import TestimonialsSection from '@/Components/Welcome/TestimonialsSection'
-import FAQSection from '@/Components/Welcome/FAQSection'
-import PricingSection from '@/Components/Welcome/PricingSection'
 import CallToActionSection from '@/Components/Welcome/CallToActionSection'
+import FAQSection from '@/Components/Welcome/FAQSection'
+import FeaturesSection from '@/Components/Welcome/FeaturesSection'
+import HeroSection from '@/Components/Welcome/HeroSection'
+import HowItWorksSection from '@/Components/Welcome/HowItWorksSection'
+import PricingSection from '@/Components/Welcome/PricingSection'
+import TestimonialsSection from '@/Components/Welcome/TestimonialsSection'
+import TrustBadges from '@/Components/Welcome/TrustBadges'
 import SectionNavigation from '@/Components/layout/SectionNavigation'
+import Public from '@/Layouts/Public.jsx'
 
 export default function Welcome({ auth }) {
     return (

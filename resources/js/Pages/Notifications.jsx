@@ -1,7 +1,7 @@
-import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
 import PageHeader from '@/Components/PageHeader.jsx'
+import Master from '@/Layouts/Master.jsx'
 import { formatDuration } from '@/Utils/methods.js'
+import { Head } from '@inertiajs/react'
 import { useState } from 'react'
 
 export default function Notifications({ auth }) {

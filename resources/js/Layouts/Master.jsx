@@ -1,6 +1,6 @@
+import Footer from '@/Components/layout/Footer.jsx'
 import TopHeader from '@/Components/layout/TopHeader.jsx'
 import TopMenu from '@/Components/layout/TopMenu.jsx'
-import Footer from '@/Components/layout/Footer.jsx'
 import { Head, usePage } from '@inertiajs/react'
 
 export default function Master({ children, hideMenu = false }) {

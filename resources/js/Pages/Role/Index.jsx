@@ -1,25 +1,24 @@
-import Master from '@/Layouts/Master.jsx'
-import { Head } from '@inertiajs/react'
-import PageHeader from '@/Components/PageHeader.jsx'
-import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
-import Table from '@/Components/layout/Table.jsx'
-import { pageObject } from '@/Pages/Role/helper.js'
-import Form from '@/Pages/Role/Partials/Form.jsx'
-import { useEffect, useState } from 'react'
-import Name from '@/Components/helpers/Name.jsx'
-import ActiveBadge from '@/Components/helpers/ActiveBadge.jsx'
+import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
+import EditActionButton from '@/Components/EditActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
-import { permissions } from '@/Utils/permissions/index.js'
-import { destroy, roles as _roles, show } from '@actions/RoleController.js'
-import { permissions as _permissions } from '@actions/PermissionController.js'
-import usePermissions from '@/Hooks/usePermissions'
-import EditActionButton from '@/Components/EditActionButton.jsx'
-import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
-import CreateActionButton from '@/Components/CreateActionButton.jsx'
+import Name from '@/Components/helpers/Name.jsx'
+import Table from '@/Components/layout/Table.jsx'
+import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
+import PageHeader from '@/Components/PageHeader.jsx'
 import StatsCard from '@/Components/StatsCard.jsx'
+import usePermissions from '@/Hooks/usePermissions'
+import Master from '@/Layouts/Master.jsx'
+import { pageObject } from '@/Pages/Role/helper.js'
+import Form from '@/Pages/Role/Partials/Form.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
-import useUrlChangeAlert from '@/Hooks/useUrlChangeAlert.js'
+import { parseQueryString } from '@/Utils/methods.js'
+import { permissions } from '@/Utils/permissions/index.js'
+import { permissions as _permissions } from '@actions/PermissionController.js'
+import { roles as _roles, destroy, show } from '@actions/RoleController.js'
+import { Head } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -70,14 +69,16 @@ export default function Index() {
     }
 
     useEffect(() => {
+        if (can(permissions.role.list)) {
+            getRoles(parseQueryString())
+                .then()
+                .finally(() => setLoading(false))
+        }
+
         getPermissions().then()
     }, [])
 
     useEffect(() => setData(roles.map((role) => processRole(role))), [roles])
-
-    if (can(permissions.role.list)) {
-        useUrlChangeAlert(getRoles, setLoading)
-    }
 
     return (
         <Master>
@@ -132,7 +133,13 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.role.list)} />
+                        <Table
+                            data={data}
+                            loading={loading}
+                            permission={can(permissions.role.list)}
+                            setLoading={setLoading}
+                            refresher={getRoles}
+                        />
                     </div>
                 </div>
             </div>

@@ -1,5 +1,3 @@
-import React from 'react'
-
 /**
  * Avatar component for displaying circular avatars with icons
  *

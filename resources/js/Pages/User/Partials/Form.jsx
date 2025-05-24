@@ -1,15 +1,15 @@
-import { useForm } from '@inertiajs/react'
-import TextInput from '@/Components/TextInput.jsx'
-import InputLabel from '@/Components/InputLabel.jsx'
 import InputError from '@/Components/InputError.jsx'
+import InputLabel from '@/Components/InputLabel.jsx'
+import TextInput from '@/Components/TextInput.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
-import { Transition } from '@headlessui/react'
-import { dataObject } from '@/Pages/User/helper.js'
-import { useEffect, useState } from 'react'
-import { store, update } from '@actions/UserController.js'
 import usePermissions from '@/Hooks/usePermissions.js'
-import { permissions } from '@/Utils/permissions/index.js'
+import { dataObject } from '@/Pages/User/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
+import { permissions } from '@/Utils/permissions/index.js'
+import { store, update } from '@actions/UserController.js'
+import { Transition } from '@headlessui/react'
+import { useForm } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Form({ getUsers, user = null, roles }) {
     const { can } = usePermissions()

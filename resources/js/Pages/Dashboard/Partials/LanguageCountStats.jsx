@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { languageCount as _languageCount } from '@actions/LanguageController.js'
-import StatsCard from '@/Components/StatsCard.jsx'
 import Loading from '@/Components/Loading.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import { languageCount as _languageCount } from '@actions/LanguageController.js'
+import { useEffect, useState } from 'react'
 
 export default function LanguageCountStats() {
     const [languageCount, setLanguageCount] = useState(0)

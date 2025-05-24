@@ -1,8 +1,7 @@
+import Master from '@/Layouts/Master.jsx'
+import { Head } from '@inertiajs/react'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm'
-import { Head } from '@inertiajs/react'
-import Master from '@/Layouts/Master.jsx'
-import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.jsx'
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
     return (
