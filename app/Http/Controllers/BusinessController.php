@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Business\CreateBusiness;
 use App\Actions\Business\UpdateBusiness;
+use App\Actions\Language\CreateLanguage;
 use App\Actions\Notification\NotifyUser;
 use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
@@ -35,10 +37,14 @@ final class BusinessController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @throws RandomException
      */
-    public function store(StoreBusinessRequest $request): void
+    #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:business.update'])]
+    public function store(StoreBusinessRequest $request, CreateBusiness $createBusiness, CreateLanguage $createLanguage): void
     {
-        //
+        $createBusiness->handle(user: $request->user(), businessName: $request->validated('name'), makeBusinessActive: true);
+        $createLanguage->handle(['name' => 'English', 'code' => 'en']);
     }
 
     /**
