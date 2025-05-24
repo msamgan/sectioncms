@@ -7,14 +7,14 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-final class StoreBusinessRequest extends FormRequest
+final class DeleteBusinessRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return $this->user()->hasBusiness() && $this->user()->isBusiness();
+        return $this->user()->isBusiness();
     }
 
     /**
@@ -25,7 +25,7 @@ final class StoreBusinessRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'url', 'max:255'],
+            'password' => ['required', 'string', 'max:255', 'current_password'],
         ];
     }
 }

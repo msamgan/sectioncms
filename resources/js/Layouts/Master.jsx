@@ -3,7 +3,7 @@ import TopMenu from '@/Components/layout/TopMenu.jsx'
 import Footer from '@/Components/layout/Footer.jsx'
 import { Head, usePage } from '@inertiajs/react'
 
-export default function Master({ children }) {
+export default function Master({ children, hideMenu = false }) {
     const { auth } = usePage().props
 
     return (
@@ -37,7 +37,7 @@ export default function Master({ children }) {
 
                     <div className="layout-page">
                         <div className="content-wrapper">
-                            <TopMenu />
+                            {!hideMenu && <TopMenu />}
 
                             <div className="container-xxl flex-grow-1 container-p-y">{children}</div>
 
