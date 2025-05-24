@@ -7,11 +7,11 @@ import Table from '@/Components/layout/Table.jsx'
 import usePermissions from '@/Hooks/usePermissions.js'
 import Master from '@/Layouts/Master.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
+import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { businesses as _businesses, destroy, select } from '@actions/BusinessController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
-import { parseQueryString } from '@/Utils/methods.js'
 
 export default function Index() {
     const { can } = usePermissions()
@@ -73,7 +73,9 @@ export default function Index() {
 
     useEffect(() => {
         if (can(permissions.business.update)) {
-            getBusinesses(parseQueryString()).then().finally(() => setLoading(false))
+            getBusinesses(parseQueryString())
+                .then()
+                .finally(() => setLoading(false))
         }
     }, [])
 
@@ -107,7 +109,13 @@ export default function Index() {
                         </div>
                     </div>
                     <div className="card-body p-0">
-                        <Table data={data} loading={loading} permission={can(permissions.business.update)} setLoading={setLoading} refresher={getBusinesses} />
+                        <Table
+                            data={data}
+                            loading={loading}
+                            permission={can(permissions.business.update)}
+                            setLoading={setLoading}
+                            refresher={getBusinesses}
+                        />
                     </div>
                 </div>
             </div>
