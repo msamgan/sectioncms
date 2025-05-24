@@ -57,7 +57,7 @@ export default function Register() {
                         required
                         type={'url'}
                         placeholder={'https://example.com'}
-                        className="peer w-full rounded-lg border-gray-300focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     <InputError message={errors.website} className="mt-2" />
                 </div>
