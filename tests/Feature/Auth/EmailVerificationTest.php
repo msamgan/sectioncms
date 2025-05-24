@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Actions\Business\CreateBusiness;
+use App\Actions\Role\AssignRole;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Event;
@@ -9,6 +12,10 @@ use Illuminate\Support\Facades\URL;
 
 test('email verification screen can be rendered', function (): void {
     $user = User::factory()->unverified()->create();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     $response = $this->actingAs($user)->get('/verify-email');
 
@@ -17,6 +24,10 @@ test('email verification screen can be rendered', function (): void {
 
 test('email can be verified', function (): void {
     $user = User::factory()->unverified()->create();
+    $assignRoleAction = new AssignRole();
+    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
+    $createBusinessAction = new CreateBusiness();
+    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
 
     Event::fake();
 
