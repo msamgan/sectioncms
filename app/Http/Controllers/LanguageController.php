@@ -30,6 +30,8 @@ use Inertia\Response;
 use Msamgan\Lact\Attributes\Action;
 use Throwable;
 
+use function Illuminate\Support\defer;
+
 final class LanguageController extends Controller
 {
     public function index(): Response
@@ -95,7 +97,7 @@ final class LanguageController extends Controller
     {
         $notifyUser->handle(new LanguageDeleted($language));
 
-        \Illuminate\Support\defer(fn () => $deleteLanguageValues->handle(languageCode: $language->key('code')));
+        defer(fn () => $deleteLanguageValues->handle(languageCode: $language->key('code')));
         $language->delete();
     }
 
