@@ -31,7 +31,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
             <form onSubmit={submit} className="mt-6 space-y-6" noValidate={true}>
                 <div className="relative mb-4">
-                    <InputLabel htmlFor="name" value="Name" className="mb-1 block text-sm font-medium text-gray-700" />
+                    <InputLabel htmlFor="name" value="Name" />
                     <TextInput
                         id="name"
                         value={data.name}
@@ -45,7 +45,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div className="relative mb-4">
-                    <InputLabel htmlFor="email" value="Email" className="mb-1 block text-sm font-medium text-gray-700" />
+                    <InputLabel htmlFor="email" value="Email" />
                     <TextInput
                         id="email"
                         type="email"

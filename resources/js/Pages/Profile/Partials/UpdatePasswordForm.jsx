@@ -48,7 +48,7 @@ export default function UpdatePasswordForm({ className = '' }) {
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
                 <div className="relative mb-4">
-                    <InputLabel htmlFor="current_password" value="Current Password" className="mb-1 block text-sm font-medium text-gray-700" />
+                    <InputLabel htmlFor="current_password" value="Current Password" />
                     <TextInput
                         id="current_password"
                         ref={currentPasswordInput}
@@ -62,7 +62,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="relative mb-4">
-                    <InputLabel htmlFor="password" value="New Password" className="mb-1 block text-sm font-medium text-gray-700" />
+                    <InputLabel htmlFor="password" value="New Password" />
                     <TextInput
                         id="password"
                         ref={passwordInput}
@@ -76,7 +76,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                 </div>
 
                 <div className="relative mb-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" className="mb-1 block text-sm font-medium text-gray-700" />
+                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
                     <TextInput
                         id="password_confirmation"
                         value={data.password_confirmation}

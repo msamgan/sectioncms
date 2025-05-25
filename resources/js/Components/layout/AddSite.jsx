@@ -90,7 +90,6 @@ export default function AddSite() {
                                 htmlFor="site-url"
                                 value="Site URL"
                                 required={true}
-                                className="mb-2 font-medium text-gray-700"
                             />
                             <div className="relative mt-1 group">
                                 <TextInput
@@ -102,7 +101,7 @@ export default function AddSite() {
                                     required={true}
                                     isFocused={true}
                                     placeholder="https://example.com"
-                                    className="shadow-sm w-full border-gray-300 focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 rounded-md transition-all duration-300"
+                                    className="focus:border-blue-300 focus:ring-blue-200"
                                 />
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                     <i className="ri-link text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>

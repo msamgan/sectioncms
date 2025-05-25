@@ -99,7 +99,6 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
                                 htmlFor="password"
                                 value="Enter your password to confirm"
                                 required={true}
-                                className="mb-2 font-medium text-gray-700"
                             />
                             <div className="relative mt-1">
                                 <TextInput
@@ -110,7 +109,7 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
                                     onChange={(e) => setData('password', e.target.value)}
                                     isFocused
                                     placeholder="Password"
-                                    className="shadow-sm w-full border-gray-300 focus:border-red-300 focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md"
+                                    className="focus:border-red-300 focus:ring-red-200"
                                 />
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                                     <i className="ri-lock-line text-gray-400"></i>
