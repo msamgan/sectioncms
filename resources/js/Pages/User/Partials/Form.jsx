@@ -59,7 +59,11 @@ export default function Form({ getUsers, user = null, roles }) {
                     <div className="space-y-8">
                         <div className="w-full">
                             <div className="relative mb-4">
-                                <InputLabel htmlFor="user-name" required={true} className="block text-gray-700 font-medium mb-2">
+                                <InputLabel
+                                    htmlFor="user-name"
+                                    required={true}
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
                                     Name
                                 </InputLabel>
                                 <TextInput
@@ -78,7 +82,11 @@ export default function Form({ getUsers, user = null, roles }) {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="w-full">
                                 <div className="relative mb-4">
-                                    <InputLabel htmlFor="user-email" required={true} className="block text-gray-700 font-medium mb-2">
+                                    <InputLabel
+                                        htmlFor="user-email"
+                                        required={true}
+                                        className="block text-gray-700 font-medium mb-2"
+                                    >
                                         Email
                                     </InputLabel>
                                     <TextInput
@@ -95,7 +103,11 @@ export default function Form({ getUsers, user = null, roles }) {
                             </div>
                             <div className="w-full">
                                 <div className="relative mb-4">
-                                    <InputLabel htmlFor="user-password" required={!user} className="block text-gray-700 font-medium mb-2">
+                                    <InputLabel
+                                        htmlFor="user-password"
+                                        required={!user}
+                                        className="block text-gray-700 font-medium mb-2"
+                                    >
                                         Password
                                     </InputLabel>
                                     <TextInput
@@ -118,7 +130,11 @@ export default function Form({ getUsers, user = null, roles }) {
                         </div>
                         <div className="w-full">
                             <div className="relative mb-4">
-                                <InputLabel htmlFor="role" required={true} className="block text-gray-700 font-medium mb-2">
+                                <InputLabel
+                                    htmlFor="role"
+                                    required={true}
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
                                     Role
                                 </InputLabel>
                                 <select

@@ -14,7 +14,11 @@ export default function Footer() {
                             <i className="inline-block ri-heart-fill"></i>
                         </span>
                         by
-                        <a href="https://msamgan.com" target="_blank" className="text-primary hover:text-secondary ml-1">
+                        <a
+                            href="https://msamgan.com"
+                            target="_blank"
+                            className="text-primary hover:text-secondary ml-1"
+                        >
                             msamgan
                         </a>
                     </div>

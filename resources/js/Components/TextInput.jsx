@@ -9,5 +9,15 @@ export default forwardRef(function TextInput({ type = 'text', className = '', is
         }
     }, [])
 
-    return <input {...props} type={type} className={'w-full px-3 py-2 border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 ' + className} ref={input} />
+    return (
+        <input
+            {...props}
+            type={type}
+            className={
+                'w-full px-3 py-2 border border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 ' +
+                className
+            }
+            ref={input}
+        />
+    )
 })

@@ -88,11 +88,7 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="flex items-center">
-                            <Avatar
-                                size="sm"
-                                bgColor={moduleConstants.role.bgColor}
-                                icon={moduleConstants.role.icon}
-                            />
+                            <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                             <span>Roles</span>
                         </div>
                     }

@@ -15,7 +15,7 @@ export default function Avatar({ size = 'sm', bgColor = 'bg-blue-500', icon, cla
         'bg-info': 'bg-cyan-500',
         'bg-warning': 'bg-yellow-500',
         'bg-secondary': 'bg-gray-500',
-        'bg-danger': 'bg-red-500'
+        'bg-danger': 'bg-red-500',
     }
 
     // Convert Bootstrap color to Tailwind if it's a Bootstrap color

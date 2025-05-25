@@ -60,7 +60,11 @@ export default function Form({ getLanguages, language = null }) {
                     <div className="space-y-8">
                         <div className="w-full">
                             <div className="relative mb-4">
-                                <InputLabel htmlFor="user-name" required={true} className="block text-gray-700 font-medium mb-2">
+                                <InputLabel
+                                    htmlFor="user-name"
+                                    required={true}
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
                                     Name
                                 </InputLabel>
                                 <TextInput
@@ -78,7 +82,11 @@ export default function Form({ getLanguages, language = null }) {
                         </div>
                         <div className="w-full">
                             <div className="relative">
-                                <InputLabel htmlFor="user-code" required={true} className="block text-gray-700 font-medium mb-2">
+                                <InputLabel
+                                    htmlFor="user-code"
+                                    required={true}
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
                                     Code (2 characters)
                                 </InputLabel>
                                 <TextInput

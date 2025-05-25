@@ -8,7 +8,11 @@ export default function EditActionButton({ module, onClick }) {
     const cases = caseify(module)
 
     return can([permissions[module].view, permissions[module].update]) ? (
-        <OffCanvasButton onClick={onClick} className={'w-full text-left px-4 py-2 hover:bg-gray-100'} id={cases.camelCase + 'FormCanvas'}>
+        <OffCanvasButton
+            onClick={onClick}
+            className={'w-full text-left px-4 py-2 hover:bg-gray-100'}
+            id={cases.camelCase + 'FormCanvas'}
+        >
             {can(permissions[module].update) ? (
                 <>
                     <i className="ri-pencil-line mr-1 text-white"></i> Edit

@@ -1,7 +1,7 @@
 import Footer from '@/Components/layout/Footer.jsx'
 import TopHeader from '@/Components/layout/TopHeader.jsx'
 import TopMenu from '@/Components/layout/TopMenu.jsx'
-import { Head, usePage } from '@inertiajs/react'
+import { usePage } from '@inertiajs/react'
 import { useEffect } from 'react'
 
 export default function Master({ children, hideMenu = false }) {
@@ -37,9 +37,7 @@ export default function Master({ children, hideMenu = false }) {
                 {/* Main Content Area with improved spacing */}
                 <main className="flex-grow w-full mt-12">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <div className="bg-white rounded-lg px-4 py-4 transition-all duration-300">
-                            {children}
-                        </div>
+                        <div className="bg-white rounded-lg px-4 py-4 transition-all duration-300">{children}</div>
                     </div>
                 </main>
 

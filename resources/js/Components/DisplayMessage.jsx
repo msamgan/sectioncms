@@ -55,7 +55,9 @@ export default function DisplayMessage({ text, type = 'info' }) {
         <div className="mt-4 bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md w-full">
             <div className={`bg-gradient-to-r ${getGradientColor()} p-4`}>
                 <div className="flex items-center">
-                    <div className={`flex-shrink-0 w-10 h-10 rounded-full ${getMessageColor()} flex items-center justify-center shadow-sm mr-4`}>
+                    <div
+                        className={`flex-shrink-0 w-10 h-10 rounded-full ${getMessageColor()} flex items-center justify-center shadow-sm mr-4`}
+                    >
                         <span className="text-white">
                             <i className={getMessageIcon()}></i>
                         </span>

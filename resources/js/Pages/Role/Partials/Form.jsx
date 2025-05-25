@@ -7,9 +7,11 @@ import { dataObject } from '@/Pages/Role/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { store, update } from '@actions/RoleController.js'
-import { Transition } from '@headlessui/react'
+import { Switch, Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
+import { toTitleCase } from '@/Utils/methods.js'
+import caseify from '@/Utils/caseify.js'
 
 export default function Form({ getRoles, role = null, permissionsList }) {
     const { can } = usePermissions()
@@ -59,7 +61,11 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                     <div className="space-y-8">
                         <div className="w-full">
                             <div className="relative mb-4">
-                                <InputLabel htmlFor="role-name" required={true} className="block text-gray-700 font-medium mb-2">
+                                <InputLabel
+                                    htmlFor="role-name"
+                                    required={true}
+                                    className="block text-gray-700 font-medium mb-2"
+                                >
                                     Role name
                                 </InputLabel>
                                 <TextInput
@@ -122,15 +128,13 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             </div>
                                             <div className="flex flex-wrap gap-4">
                                                 {permissionsList[key].map((permission, index) => (
-                                                    <div className="mb-2" key={index}>
-                                                        <label className="flex items-center cursor-pointer group">
-                                                            <input
+                                                    <div className="mb-2 mr-6" key={index}>
+                                                        <div className="flex items-center cursor-pointer group">
+                                                            <Switch
                                                                 id={`permission-${permission.id}`}
-                                                                type="checkbox"
-                                                                className="form-checkbox h-5 w-5 text-primary rounded border-gray-300 focus:ring-primary transition duration-150 ease-in-out"
                                                                 checked={data.permissions.includes(permission.id)}
-                                                                onChange={(e) => {
-                                                                    if (e.target.checked) {
+                                                                onChange={(checked) => {
+                                                                    if (checked) {
                                                                         setData('permissions', [
                                                                             ...data.permissions,
                                                                             permission.id,
@@ -144,11 +148,43 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                                                         )
                                                                     }
                                                                 }}
-                                                            />
-                                                            <span className="ml-2 text-gray-700 group-hover:text-primary transition-colors duration-150">
+                                                                className={(state) =>
+                                                                    `${
+                                                                        state.checked ? 'bg-primary' : 'bg-gray-200'
+                                                                    } relative inline-flex h-6 w-6 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2`
+                                                                }
+                                                            >
+                                                                <span className="sr-only">{permission.name}</span>
+                                                                <span
+                                                                    className={(state) =>
+                                                                        `${
+                                                                            state.checked
+                                                                                ? 'translate-x-6'
+                                                                                : 'translate-x-1'
+                                                                        } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`
+                                                                    }
+                                                                />
+                                                            </Switch>
+                                                            <span
+                                                                onClick={() => {
+                                                                    if (data.permissions.includes(permission.id)) {
+                                                                        setData(
+                                                                            'permissions',
+                                                                            data.permissions.filter(
+                                                                                (p) => p !== permission.id,
+                                                                            ),
+                                                                        )
+                                                                    } else {
+                                                                        setData('permissions', [
+                                                                            ...data.permissions,
+                                                                            permission.id,
+                                                                        ])
+                                                                    }
+                                                                }}
+                                                                className="ml-3 text-gray-700 group-hover:text-primary transition-colors duration-150">
                                                                 {permission.name}
                                                             </span>
-                                                        </label>
+                                                        </div>
                                                     </div>
                                                 ))}
                                             </div>

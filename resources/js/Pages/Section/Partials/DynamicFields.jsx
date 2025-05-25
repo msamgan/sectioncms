@@ -49,7 +49,11 @@ function DynamicFields({ dataFields, setData, languages }) {
             {fields.map((field) => (
                 <div key={field.id}>
                     <div className={'relative mt-8'}>
-                        <InputLabel htmlFor={'key-' + field.id} required={true} className="block text-gray-700 font-medium mb-2">
+                        <InputLabel
+                            htmlFor={'key-' + field.id}
+                            required={true}
+                            className="block text-gray-700 font-medium mb-2"
+                        >
                             Key
                         </InputLabel>
                         <TextInput
@@ -70,7 +74,9 @@ function DynamicFields({ dataFields, setData, languages }) {
 
                     {Object.keys(field.value).map((lang) => (
                         <div className="flex items-center mt-4" key={lang}>
-                            <span className="bg-gray-100 px-3 py-2 rounded-l-md border border-r-0 border-gray-300 text-gray-700 font-medium">{lang}</span>
+                            <span className="bg-gray-100 px-3 py-2 rounded-l-md border border-r-0 border-gray-300 text-gray-700 font-medium">
+                                {lang}
+                            </span>
                             <div className="flex-grow relative">
                                 <TextInput
                                     type="text"
