@@ -13,9 +13,9 @@ export default function TopMenu() {
     }, [])
 
     return (
-        <aside id="layout-menu" className="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
-            <div className="container-xxl d-flex h-100">
-                <ul className="menu-inner">
+        <aside id="layout-menu" className="w-full bg-white shadow-sm flex-none">
+            <div className="container mx-auto px-4 h-full">
+                <ul className="menu-inner flex flex-wrap">
                     <IndependentMenu item={{ route: 'dashboard', icon: 'ri-home-smile-line', label: 'Dashboard' }} />
                     {Object.keys(menuItems).map((itemKey, index) =>
                         itemKey === ''

@@ -5,29 +5,29 @@ export default function Footer() {
     const { can } = usePermissions()
 
     return (
-        <footer className="content-footer footer bg-footer-theme">
-            <div className="container-xxl">
-                <div className="footer-container d-flex align-items-center justify-content-between flex-md-row flex-column py-4">
-                    <div className="text-body mb-md-0 mb-2">
+        <footer className="w-full py-4 bg-white">
+            <div className="container mx-auto px-4">
+                <div className="flex flex-col md:flex-row items-center justify-between py-4">
+                    <div className="text-gray-600 mb-2 md:mb-0">
                         ©{new Date().getFullYear()}, made with
-                        <span className="text-danger ml-1 mr-2">
-                            <i className="tf-icons ri-heart-fill"></i>
+                        <span className="text-red-500 ml-1 mr-2">
+                            <i className="inline-block ri-heart-fill"></i>
                         </span>
                         by
-                        <a href="https://msamgan.com" target="_blank" className="footer-link ml-1">
+                        <a href="https://msamgan.com" target="_blank" className="text-blue-500 hover:text-blue-700 ml-1">
                             msamgan
                         </a>
                     </div>
-                    <div className="d-none d-lg-inline-block">
+                    <div className="hidden lg:inline-block">
                         {can(permissions.api_doc.view) && (
-                            <a href="/docs/api" target="_blank" className="footer-link me-4">
+                            <a href="/docs/api" target="_blank" className="text-blue-500 hover:text-blue-700 mr-4">
                                 API Documentation
                             </a>
                         )}
-                        <a href={route('terms')} className="footer-link me-4">
+                        <a href={route('terms')} className="text-blue-500 hover:text-blue-700 mr-4">
                             Terms & Conditions
                         </a>
-                        <a href={route('privacy')} className="footer-link me-4">
+                        <a href={route('privacy')} className="text-blue-500 hover:text-blue-700 mr-4">
                             Privacy Policy
                         </a>
                     </div>
