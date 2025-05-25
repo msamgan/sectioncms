@@ -29,8 +29,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </p>
             </header>
 
-            <form onSubmit={submit} className="needs-validation mt-6 space-y-6" noValidate={true}>
-                <div className={'form-floating form-floating-outline'}>
+            <form onSubmit={submit} className="mt-6 space-y-6" noValidate={true}>
+                <div className="relative mb-4">
+                    <InputLabel htmlFor="name" value="Name" className="mb-1 block text-sm font-medium text-gray-700" />
                     <TextInput
                         id="name"
                         value={data.name}
@@ -38,13 +39,13 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         required
                         isFocused
                         autoComplete="name"
-                        placeholder={'Name'}
+                        className="mt-1"
                     />
-                    <InputLabel htmlFor="name" value="Name" />
                     <InputError className="mt-2" message={errors.name} />
                 </div>
 
-                <div className={'form-floating form-floating-outline'}>
+                <div className="relative mb-4">
+                    <InputLabel htmlFor="email" value="Email" className="mb-1 block text-sm font-medium text-gray-700" />
                     <TextInput
                         id="email"
                         type="email"
@@ -52,9 +53,8 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         onChange={(e) => setData('email', e.target.value)}
                         required
                         autoComplete="username"
-                        placeholder={'Email'}
+                        className="mt-1"
                     />
-                    <InputLabel htmlFor="email" value="Email" />
                     <InputError className="mt-2" message={errors.email} />
                 </div>
 

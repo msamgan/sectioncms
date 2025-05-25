@@ -47,7 +47,8 @@ export default function UpdatePasswordForm({ className = '' }) {
             </header>
 
             <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div className={'form-floating form-floating-outline'}>
+                <div className="relative mb-4">
+                    <InputLabel htmlFor="current_password" value="Current Password" className="mb-1 block text-sm font-medium text-gray-700" />
                     <TextInput
                         id="current_password"
                         ref={currentPasswordInput}
@@ -55,13 +56,13 @@ export default function UpdatePasswordForm({ className = '' }) {
                         onChange={(e) => setData('current_password', e.target.value)}
                         type="password"
                         autoComplete="current-password"
-                        placeholder={'Current Password'}
+                        className="mt-1"
                     />
-                    <InputLabel htmlFor="current_password" value="Current Password" />
                     <InputError message={errors.current_password} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline'}>
+                <div className="relative mb-4">
+                    <InputLabel htmlFor="password" value="New Password" className="mb-1 block text-sm font-medium text-gray-700" />
                     <TextInput
                         id="password"
                         ref={passwordInput}
@@ -69,23 +70,21 @@ export default function UpdatePasswordForm({ className = '' }) {
                         onChange={(e) => setData('password', e.target.value)}
                         type="password"
                         autoComplete="new-password"
-                        placeholder={'New Password'}
+                        className="mt-1"
                     />
-                    <InputLabel htmlFor="password" value="New Password" />
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className={'form-floating form-floating-outline'}>
+                <div className="relative mb-4">
+                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" className="mb-1 block text-sm font-medium text-gray-700" />
                     <TextInput
                         id="password_confirmation"
                         value={data.password_confirmation}
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         type="password"
-                        className="mt-1 block w-full"
                         autoComplete="new-password"
-                        placeholder={'Confirm Password'}
+                        className="mt-1"
                     />
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
