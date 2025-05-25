@@ -8,7 +8,7 @@ export default function Master({ children, hideMenu = false }) {
 
     return (
         <>
-            <Head>
+            {/*<Head>
                 <link rel="stylesheet" href="/assets/vendor/libs/node-waves/node-waves.css" />
                 <link rel="stylesheet" href="/assets/vendor/css/rtl/core.css" />
                 <link rel="stylesheet" href="/assets/vendor/css/rtl/theme-default.css" />
@@ -30,12 +30,12 @@ export default function Master({ children, hideMenu = false }) {
                 <script src="/assets/vendor/js/menu.js"></script>
 
                 <script src="/assets/js/main.js"></script>
-            </Head>
-            <div className="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
-                <div className="layout-container">
+            </Head>*/}
+            <div className="flex flex-col min-h-screen w-full">
+                <div className="w-full max-w-screen-2xl mx-auto">
                     <TopHeader user={auth.user} />
 
-                    <div className="layout-page">
+                    {/*<div className="layout-page">
                         <div className="content-wrapper">
                             {!hideMenu && <TopMenu />}
 
@@ -44,7 +44,7 @@ export default function Master({ children, hideMenu = false }) {
                             <Footer />
                             <div className="content-backdrop fade"></div>
                         </div>
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         </>
