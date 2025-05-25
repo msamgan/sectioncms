@@ -124,7 +124,7 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="w-full">
+            <div className="w-full overflow-visible">
                 <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
                     <div className="flex items-center p-4 border-b bg-gray-50">
                         <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />

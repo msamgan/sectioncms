@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) => {
     return (
         <div className="bg-white rounded-xl shadow-lg mt-6 border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl">
-            <div className="overflow-x-auto">
+            <div className="overflow-visible">
                 <div className="flex justify-between items-center border-b border-gray-100">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                     <div className="py-5 px-6 text-end">

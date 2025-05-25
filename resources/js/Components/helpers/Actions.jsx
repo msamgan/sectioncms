@@ -19,7 +19,7 @@ export default function Actions({ children }) {
     }, [])
 
     return (
-        <div className="relative inline-block text-left" ref={dropdownRef}>
+        <div className="relative inline-block text-left overflow-visible" ref={dropdownRef}>
             <button
                 type="button"
                 className="p-1 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-all duration-200"
@@ -29,7 +29,7 @@ export default function Actions({ children }) {
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10">
+                <div style={{ position: 'absolute', right: '0', top: '100%', transform: 'translateY(8px)', width: '12rem', zIndex: 50 }} className="rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                     <div className="py-1">{children}</div>
                 </div>
             )}
