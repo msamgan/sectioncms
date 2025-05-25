@@ -10,8 +10,6 @@ import { store, update } from '@actions/RoleController.js'
 import { Switch, Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
-import { toTitleCase } from '@/Utils/methods.js'
-import caseify from '@/Utils/caseify.js'
 
 export default function Form({ getRoles, role = null, permissionsList }) {
     const { can } = usePermissions()
@@ -181,7 +179,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                                                         ])
                                                                     }
                                                                 }}
-                                                                className="ml-3 text-gray-700 group-hover:text-primary transition-colors duration-150">
+                                                                className="ml-3 text-gray-700 group-hover:text-primary transition-colors duration-150"
+                                                            >
                                                                 {permission.name}
                                                             </span>
                                                         </div>
