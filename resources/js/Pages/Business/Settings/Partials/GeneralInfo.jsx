@@ -24,142 +24,137 @@ export default function GeneralInfo({ business }) {
     }
 
     return (
-        <form onSubmit={submit}>
-            <div className="card mb-6">
-                <div className="card-header">
-                    <h5 className="card-title m-0">General information</h5>
+        <form onSubmit={submit} className="space-y-6">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+                    <h5 className="text-lg font-semibold text-gray-800">General information</h5>
                 </div>
-                <div className="card-body">
-                    <div className="row g-5">
-                        <div className="col-12 col-md-6">
-                            <div className="form-floating form-floating-outline">
-                                <TextInput
-                                    type="text"
-                                    value={data.name}
-                                    onChange={(e) => setData('name', e.target.value)}
-                                    id="business-name"
-                                    placeholder="Business name"
-                                />
-                                <InputLabel htmlFor="business-name" required={true}>
-                                    Legal business name
-                                </InputLabel>
-                                <InputError className="mt-2" message={errors.name} />
-                            </div>
+                <div className="p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <InputLabel htmlFor="business-name" required={true}>
+                                Legal business name
+                            </InputLabel>
+                            <TextInput
+                                type="text"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                id="business-name"
+                                placeholder="Business name"
+                                className="w-full"
+                            />
+                            <InputError className="mt-1" message={errors.name} />
                         </div>
-                        <div className="col-12 col-md-6">
-                            <div className="form-floating form-floating-outline">
-                                <select
-                                    id="country_region"
-                                    className="select2 form-select"
-                                    data-placeholder="United States"
-                                    defaultValue={data.country}
-                                    onChange={(e) => setData('country', e.target.value)}
-                                >
-                                    <option value="US">United States</option>
-                                </select>
-                                <InputLabel htmlFor="country_region" required={true}>
-                                    Country/region
-                                </InputLabel>
-                                <InputError className="mt-2" message={errors.country} />
-                            </div>
+                        <div className="space-y-2">
+                            <InputLabel htmlFor="country_region" required={true}>
+                                Country/region
+                            </InputLabel>
+                            <select
+                                id="country_region"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300"
+                                defaultValue={data.country}
+                                onChange={(e) => setData('country', e.target.value)}
+                            >
+                                <option value="US">United States</option>
+                            </select>
+                            <InputError className="mt-1" message={errors.country} />
                         </div>
-                        <div className="col-12 col-md-12">
-                            <div className="form-floating form-floating-outline">
-                                <TextInput
-                                    type="text"
-                                    id="bill_address"
-                                    placeholder="Address"
-                                    value={data.address}
-                                    onChange={(e) => setData('address', e.target.value)}
-                                />
-                                <InputLabel htmlFor="bill_address">Address</InputLabel>
-                                <InputError className="mt-2" message={errors.address} />
-                            </div>
+                        <div className="space-y-2 md:col-span-2">
+                            <InputLabel htmlFor="bill_address">Address</InputLabel>
+                            <TextInput
+                                type="text"
+                                id="bill_address"
+                                placeholder="Address"
+                                value={data.address}
+                                onChange={(e) => setData('address', e.target.value)}
+                                className="w-full"
+                            />
+                            <InputError className="mt-1" message={errors.address} />
                         </div>
-                        <div className="col-12 col-md-4">
-                            <div className="form-floating form-floating-outline">
-                                <TextInput
-                                    type="text"
-                                    id="bill_city"
-                                    placeholder="City"
-                                    value={data.city}
-                                    onChange={(e) => setData('city', e.target.value)}
-                                />
-                                <InputLabel htmlFor="bill_city">City</InputLabel>
-                                <InputError className="mt-2" message={errors.city} />
-                            </div>
+                        <div className="space-y-2 md:col-span-2 lg:col-span-1">
+                            <InputLabel htmlFor="bill_city">City</InputLabel>
+                            <TextInput
+                                type="text"
+                                id="bill_city"
+                                placeholder="City"
+                                value={data.city}
+                                onChange={(e) => setData('city', e.target.value)}
+                                className="w-full"
+                            />
+                            <InputError className="mt-1" message={errors.city} />
                         </div>
-                        <div className="col-12 col-md-4">
-                            <div className="form-floating form-floating-outline">
-                                <TextInput
-                                    type="text"
-                                    id="bill_state"
-                                    value={data.state}
-                                    onChange={(e) => setData('state', e.target.value)}
-                                    placeholder="State"
-                                />
-                                <InputLabel htmlFor="bill_state">State</InputLabel>
-                                <InputError className="mt-2" message={errors.state} />
-                            </div>
-                        </div>
-                        <div className="col-12 col-md-4">
-                            <div className="form-floating form-floating-outline">
-                                <TextInput
-                                    type="number"
-                                    id="bill_pincode"
-                                    className="form-control"
-                                    placeholder="PIN Code"
-                                    min="0"
-                                    max="999999"
-                                    value={data.zip}
-                                    onChange={(e) => setData('zip', e.target.value)}
-                                />
-                                <InputLabel htmlFor="bill_pincode">PIN Code</InputLabel>
-                                <InputError className="mt-2" message={errors.zip} />
+                        <div className="space-y-2 md:col-span-2 lg:col-span-1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <InputLabel htmlFor="bill_state">State</InputLabel>
+                                    <TextInput
+                                        type="text"
+                                        id="bill_state"
+                                        value={data.state}
+                                        onChange={(e) => setData('state', e.target.value)}
+                                        placeholder="State"
+                                        className="w-full"
+                                    />
+                                    <InputError className="mt-1" message={errors.state} />
+                                </div>
+                                <div className="space-y-2">
+                                    <InputLabel htmlFor="bill_pincode">PIN Code</InputLabel>
+                                    <TextInput
+                                        type="number"
+                                        id="bill_pincode"
+                                        placeholder="PIN Code"
+                                        min="0"
+                                        max="999999"
+                                        value={data.zip}
+                                        onChange={(e) => setData('zip', e.target.value)}
+                                        className="w-full"
+                                    />
+                                    <InputError className="mt-1" message={errors.zip} />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="card mb-6">
-                <div className="card-header">
-                    <div className="card-title mb-0">
-                        <h5 className="mb-0">Time zone and units of measurement</h5>
-                        <p className="card-subtitle mt-0">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+                    <div>
+                        <h5 className="text-lg font-semibold text-gray-800">Time zone and units of measurement</h5>
+                        <p className="text-sm text-gray-600 mt-1">
                             Used to calculate product prices, shipping weighs, and order times.
                         </p>
                     </div>
                 </div>
-                <div className="card-body">
-                    <div className="row g-5">
-                        <div className="col-12">
-                            <div className="form-floating form-floating-outline">
-                                <select
-                                    id="timeZones"
-                                    className="select2 form-select"
-                                    data-placeholder="(GMT-12:00) International Date Line West"
-                                    defaultValue={data.timezone}
-                                    onChange={(e) => setData('timezone', e.target.value)}
-                                >
-                                    {timeZones.map((zone, index) => (
-                                        <option key={index} value={zone.value}>
-                                            {zone.label}
-                                        </option>
-                                    ))}
-                                </select>
-                                <InputLabel htmlFor="timeZones" required={true}>
-                                    Time Zone
-                                </InputLabel>
-                                <InputError className="mt-2" message={errors.timezone} />
-                            </div>
+                <div className="p-6">
+                    <div className="space-y-4">
+                        <div className="space-y-2">
+                            <InputLabel htmlFor="timeZones" required={true}>
+                                Time Zone
+                            </InputLabel>
+                            <select
+                                id="timeZones"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300"
+                                defaultValue={data.timezone}
+                                onChange={(e) => setData('timezone', e.target.value)}
+                            >
+                                {timeZones.map((zone, index) => (
+                                    <option key={index} value={zone.value}>
+                                        {zone.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <InputError className="mt-1" message={errors.timezone} />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="d-flex justify-content-end gap-4">
-                <button disabled={processing} className="btn btn-primary">
+            <div className="flex justify-end items-center gap-4">
+                <button
+                    disabled={processing}
+                    className="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-secondary focus:bg-primary-dark active:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition ease-in-out duration-150 disabled:opacity-25"
+                >
                     Save Changes
                 </button>
                 <Transition
@@ -169,7 +164,7 @@ export default function GeneralInfo({ business }) {
                     leave="transition ease-in-out"
                     leaveTo="opacity-0"
                 >
-                    <p className="mt-3 text-sm text-gray-600">Saved.</p>
+                    <p className="text-sm text-green-600 font-medium">Saved successfully!</p>
                 </Transition>
             </div>
         </form>
