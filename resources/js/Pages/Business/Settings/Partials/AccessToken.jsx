@@ -31,38 +31,43 @@ export default function AccessToken({ business }) {
 
     return (
         <div>
-            <div className="card mb-6 shadow-sm transition-all duration-200 hover:shadow-lg">
-                <div className="card-header border-bottom bg-light-subtle">
-                    <div className="d-flex align-items-center">
-                        <Avatar size="sm" bgColor="bg-info" icon="ri-key-line" />
-                        <h5 className="card-title m-0 text-lg font-semibold">Access Token</h5>
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+                    <div className="flex items-center">
+                        <Avatar size="sm" bgColor="bg-cyan-500" icon="ri-key-line" />
+                        <h5 className="text-lg font-semibold text-gray-800">Access Token</h5>
                     </div>
                 </div>
-                <div className="card-body mt-4">
-                    <div className="row g-5">
-                        <div className="col-12 col-md-12">
-                            <div className="form-floating form-floating-outline">
-                                <p className="text-muted mb-2">Your API access token:</p>
-                                <div className="bg-light-subtle rounded border p-3 shadow-sm transition-all duration-200 hover:shadow-md">
-                                    <ClickToCopy text={token} />
+                <div className="p-6">
+                    <div className="space-y-4">
+                        <div className="space-y-2">
+                            <p className="text-gray-600 mb-2 font-medium">Your API access token:</p>
+                            <div className="bg-gray-50 rounded-md border border-gray-200 p-4 shadow-sm transition-all duration-300 hover:shadow-md hover:border-gray-300">
+                                <div className="flex items-center">
+                                    <div className="flex-grow overflow-hidden">
+                                        <ClickToCopy text={token} />
+                                    </div>
                                 </div>
-                                <small className="text-muted d-block mt-2">
+                            </div>
+                            <div className="flex items-center mt-2">
+                                <i className="ri-information-line text-blue-500 mr-1"></i>
+                                <p className="text-sm text-gray-500">
                                     This token is used to authenticate API requests. Keep it secure.
-                                </small>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="d-flex justify-content-end gap-4">
+            <div className="flex justify-end items-center gap-4">
                 <button
-                    className="btn btn-primary d-inline-flex align-items-center shadow-sm transition-all duration-200 hover:shadow-md"
+                    className="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-secondary focus:bg-primary-dark active:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition ease-in-out duration-150 shadow-sm hover:shadow-md"
                     onClick={() => {
                         setConfirming(true)
                     }}
                 >
-                    <i className="ri-refresh-line me-2"></i>
+                    <i className="ri-refresh-line mr-2"></i>
                     Regenerate Token
                 </button>
                 <Transition
@@ -72,18 +77,18 @@ export default function AccessToken({ business }) {
                     leave="transition ease-in-out"
                     leaveTo="opacity-0"
                 >
-                    <div className="d-flex align-items-center mt-2">
-                        <Avatar size="xs" bgColor="bg-success" icon="ri-check-line" />
-                        <p className="text-success mb-0">Token regenerated successfully!</p>
+                    <div className="flex items-center mt-2">
+                        <Avatar size="xs" bgColor="bg-green-500" icon="ri-check-line" />
+                        <p className="text-green-600 font-medium text-sm">Token regenerated successfully!</p>
                     </div>
                 </Transition>
             </div>
 
             <Modal show={confirming} onClose={closeModal}>
                 <div className="p-6">
-                    <div className="d-flex align-items-center mb-4">
-                        <Avatar size="sm" bgColor="bg-warning" icon="ri-alert-line" />
-                        <h2 className="ms-2 mt-4 text-lg font-medium text-gray-900">
+                    <div className="flex items-center mb-4">
+                        <Avatar size="sm" bgColor="bg-yellow-500" icon="ri-alert-line" />
+                        <h2 className="ml-2 text-lg font-medium text-gray-900">
                             Are you sure you want to regenerate?
                         </h2>
                     </div>
@@ -93,12 +98,12 @@ export default function AccessToken({ business }) {
                         will fail. Make sure to update all your applications with the new token.
                     </p>
 
-                    <div className="mt-6 flex justify-end">
+                    <div className="mt-6 flex justify-end space-x-3">
                         <SecondaryButton
                             onClick={closeModal}
-                            className="shadow-sm transition-all duration-200 hover:shadow-md"
+                            className="shadow-sm transition-all duration-300 hover:shadow-md"
                         >
-                            <i className="ri-close-line me-2"></i>
+                            <i className="ri-close-line mr-2"></i>
                             Cancel
                         </SecondaryButton>
                         <PrimaryButton
@@ -106,9 +111,9 @@ export default function AccessToken({ business }) {
                                 e.preventDefault()
                                 regenerateToken()
                             }}
-                            className="ms-3 shadow-sm transition-all duration-200 hover:shadow-md"
+                            className="shadow-sm transition-all duration-300 hover:shadow-md"
                         >
-                            <i className="ri-refresh-line me-2"></i>
+                            <i className="ri-refresh-line mr-2"></i>
                             Regenerate Token
                         </PrimaryButton>
                     </div>
