@@ -43,16 +43,16 @@ export default function Index() {
     const processSection = (section) => {
         return {
             Name: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon={moduleConstants.section.icon} />
                     <div>
                         <Name value={section.name} />
-                        <small className="text-muted d-block">Section</small>
+                        <small className="text-gray-500 block">Section</small>
                     </div>
                 </div>
             ),
             Identifier: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="xs" bgColor={moduleConstants.hashtag.bgColor} icon={moduleConstants.hashtag.icon} />
                     <ClickToCopy text={section.slug} />
                 </div>
@@ -91,7 +91,7 @@ export default function Index() {
             <div className="mb-6">
                 <PageHeader
                     title={
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                             <Avatar
                                 size="sm"
                                 bgColor={moduleConstants.section.bgColor}
@@ -119,15 +119,13 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="col-12">
-                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
-                    <div className="card-header border-bottom bg-light-subtle">
-                        <div className="d-flex align-items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                            <h5 className="card-title m-0 text-lg font-semibold">Section List</h5>
-                        </div>
+            <div className="w-full">
+                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                    <div className="flex items-center p-4 border-b bg-gray-50">
+                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                        <h5 className="m-0 ml-2 text-lg font-semibold">Section List</h5>
                     </div>
-                    <div className="card-body p-0">
+                    <div className="p-0">
                         <Table
                             data={data}
                             loading={loading}

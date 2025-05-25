@@ -58,7 +58,7 @@ export default function Index() {
                     <span className="font-semibold">{role.users_count}</span>
                 </div>
             ),
-            Status: <span className="inline-flex px-2.5 py-0.5 text-xs font-medium rounded-full bg-green-100 text-green-800">Active</span>,
+            Status: <span className="bg-success text-white text-xs px-2 py-1 rounded-full">Active</span>,
             Actions: (
                 <Actions>
                     <EditActionButton module={'role'} onClick={() => editRole(role)} />
@@ -88,11 +88,15 @@ export default function Index() {
                 <PageHeader
                     title={
                         <div className="flex items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
+                            <Avatar
+                                size="sm"
+                                bgColor={moduleConstants.role.bgColor}
+                                icon={moduleConstants.role.icon}
+                            />
                             <span>Roles</span>
                         </div>
                     }
-                    subtitle={"Find all of your business's roles and there associated permissions."}
+                    subtitle={"Find all of your business's roles and their associated permissions."}
                     action={
                         <CreateActionButton
                             module={'role'}
@@ -125,12 +129,10 @@ export default function Index() {
             )}
 
             <div className="w-full">
-                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg border border-gray-200 overflow-hidden">
-                    <div className="border-b border-gray-200 bg-gray-50 p-4">
-                        <div className="flex items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                            <h5 className="m-0 text-lg font-semibold ml-3">Role List</h5>
-                        </div>
+                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                    <div className="flex items-center p-4 border-b bg-gray-50">
+                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                        <h5 className="m-0 ml-2 text-lg font-semibold">Role List</h5>
                     </div>
                     <div className="p-0">
                         <Table

@@ -82,7 +82,7 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
                         </svg>
                     </button>
                 </div>
-                <div className="p-6 overflow-y-auto">{children}</div>
+                <div className="p-6 overflow-y-auto h-[calc(100vh-80px)]">{children}</div>
             </div>
         </>
     );
