@@ -95,7 +95,7 @@ export default function Index() {
 
             {can(permissions.medium.create) && <Uploader getMedia={getMedia} />}
 
-            {notification && <DisplayMessage message={notification} type="success" />}
+            {notification && <DisplayMessage type="success" text={notification} />}
 
             <div className="w-full">
                 <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
