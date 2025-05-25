@@ -19,9 +19,16 @@ export default {
         colors: {
             primary: "#5F199E",
             secondary: "#8C52FF",
+            success: "#38a169",
+            danger: "#e53e3e",
+            warning: "#d69e2e",
+            info: "#4299e1",
+            light: "#f7fafc",
+            dark: "#1a202c",
             white: "#ffffff",
             black: "#000000",
             gray: {
+                50: "#f9fafb",
                 100: "#f7fafc",
                 200: "#edf2f7",
                 300: "#e2e8f0",
@@ -33,6 +40,7 @@ export default {
                 900: "#1a202c"
             },
             blue: {
+                50: "#eff6ff",
                 100: "#ebf8ff",
                 200: "#bee3f8",
                 300: "#90cdf4",
@@ -44,6 +52,7 @@ export default {
                 900: "#2a4365"
             },
             yellow: {
+                50: "#fffbeb",
                 100: "#fffff0",
                 200: "#fefcbf",
                 300: "#faf089",
@@ -55,6 +64,7 @@ export default {
                 900: "#744210"
             },
             green: {
+                50: "#f0fff4",
                 100: "#f0fff4",
                 200: "#c6f6d5",
                 300: "#9ae6b4",
@@ -66,6 +76,7 @@ export default {
                 900: "#22543d"
             },
             red: {
+                50: "#fef2f2",
                 100: "#fff5f5",
                 200: "#fed7d7",
                 300: "#feb2b2",
@@ -77,6 +88,7 @@ export default {
                 900: "#742a2a"
             },
             purple: {
+                50: "#faf5ff",
                 100: "#faf5ff",
                 200: "#e9d8fd",
                 300: "#d6bcfa",
@@ -88,6 +100,7 @@ export default {
                 900: "#44337a"
             },
             indigo: {
+                50: "#eef2ff",
                 100: "#ebf4ff",
                 200: "#c3dafe",
                 300: "#a3bffa",
@@ -97,6 +110,18 @@ export default {
                 700: "#4c51bf",
                 800: "#434190",
                 900: "#3c366b"
+            },
+            cyan: {
+                50: "#ecfeff",
+                100: "#cffafe",
+                200: "#a5f3fc",
+                300: "#67e8f9",
+                400: "#22d3ee",
+                500: "#06b6d4",
+                600: "#0891b2",
+                700: "#0e7490",
+                800: "#155e75",
+                900: "#164e63"
             }
         }
     },

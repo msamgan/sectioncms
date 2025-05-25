@@ -10,17 +10,17 @@ export default function StatsCard({ label, count, icon }) {
         // Extract the main icon type from the icon class
         const iconType = icon.replace('ri-', '').split('-')[0].toLowerCase()
 
-        // Using Tailwind color classes
+        // Using theme color classes
         const colorMap = {
-            user: 'bg-blue-500',
-            shield: 'bg-green-500',
-            layout: 'bg-cyan-500',
-            global: 'bg-yellow-500',
-            translate: 'bg-yellow-500',
+            user: 'bg-info',
+            shield: 'bg-success',
+            layout: 'bg-secondary',
+            global: 'bg-warning',
+            translate: 'bg-warning',
             file: 'bg-gray-500',
-            login: 'bg-green-500',
-            logout: 'bg-red-500',
-            default: 'bg-blue-500',
+            login: 'bg-success',
+            logout: 'bg-danger',
+            default: 'bg-primary',
         }
 
         return colorMap[iconType] || colorMap.default
@@ -39,7 +39,7 @@ export default function StatsCard({ label, count, icon }) {
             file: 'from-gray-50 to-gray-100',
             login: 'from-green-50 to-green-100',
             logout: 'from-red-50 to-red-100',
-            default: 'from-blue-50 to-blue-100',
+            default: 'from-purple-50 to-purple-100',
         }
 
         return gradientMap[iconType] || gradientMap.default
@@ -50,15 +50,15 @@ export default function StatsCard({ label, count, icon }) {
         const iconType = icon.replace('ri-', '').split('-')[0].toLowerCase()
 
         const textColorMap = {
-            user: 'text-blue-600',
-            shield: 'text-green-600',
-            layout: 'text-cyan-600',
-            global: 'text-yellow-600',
-            translate: 'text-yellow-600',
+            user: 'text-info',
+            shield: 'text-success',
+            layout: 'text-secondary',
+            global: 'text-warning',
+            translate: 'text-warning',
             file: 'text-gray-600',
-            login: 'text-green-600',
-            logout: 'text-red-600',
-            default: 'text-blue-600',
+            login: 'text-success',
+            logout: 'text-danger',
+            default: 'text-primary',
         }
 
         return textColorMap[iconType] || textColorMap.default

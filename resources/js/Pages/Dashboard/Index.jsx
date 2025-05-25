@@ -16,9 +16,9 @@ export default function Dashboard({ auth }) {
         <Master>
             <Head title="Dashboard" />
 
-            <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100">
-                <p className="text-gray-700">
-                    You're logged in as <span className="font-medium text-blue-600">{auth.user.name}</span> (<span className="text-gray-500">{auth.user.email}</span>).
+            <div className="w-full bg-white rounded-xl shadow-sm border border-light">
+                <p className="text-dark">
+                    You're logged in as <span className="font-medium text-primary">{auth.user.name}</span> (<span className="text-gray-500">{auth.user.email}</span>).
                 </p>
             </div>
 
