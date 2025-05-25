@@ -26,21 +26,44 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
 
     // Add event listener for Bootstrap compatibility
     useEffect(() => {
-        const buttons = document.querySelectorAll(`[data-bs-target="#${id}"]`)
+        const setupButtonListeners = () => {
+            const buttons = document.querySelectorAll(`[data-bs-target="#${id}"]`)
 
-        const clickHandler = (e) => {
-            e.preventDefault()
-            handleOpen()
+            const clickHandler = (e) => {
+                e.preventDefault()
+                handleOpen()
+            }
+
+            buttons.forEach((button) => {
+                // Remove any existing listener first to prevent duplicates
+                button.removeEventListener('click', clickHandler)
+                button.addEventListener('click', clickHandler)
+            })
+
+            return () => {
+                buttons.forEach((button) => {
+                    button.removeEventListener('click', clickHandler)
+                })
+            }
         }
 
-        buttons.forEach((button) => {
-            button.addEventListener('click', clickHandler)
+        // Initial setup
+        const cleanup = setupButtonListeners()
+
+        // Setup a mutation observer to detect when new buttons might be added to the DOM
+        const observer = new MutationObserver(() => {
+            cleanup && cleanup()
+            setupButtonListeners()
+        })
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
         })
 
         return () => {
-            buttons.forEach((button) => {
-                button.removeEventListener('click', clickHandler)
-            })
+            cleanup && cleanup()
+            observer.disconnect()
         }
     }, [id])
 
