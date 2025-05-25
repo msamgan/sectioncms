@@ -42,38 +42,42 @@ export default function Index({ auth }) {
                 <div className="w-full lg:w-5/6 lg:pt-0 pt-6">
                     <div className="w-full">
                         <div className="mb-6">
-                            <ul className="flex flex-wrap border-b border-gray-200 mb-4" role="tablist">
-                                <li className="mr-2">
+                            <div className="mb-4 border-b border-gray-200">
+                            <ul className="flex flex-wrap -mb-px" role="tablist">
+                                <li className="mr-4">
                                     <button
                                         type="button"
-                                        className={`px-4 py-2 rounded-t-md text-sm font-medium ${
+                                        className={`inline-flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
                                             activeTab === 'general'
-                                                ? 'bg-white text-blue-600 border border-gray-200 border-b-white'
-                                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                                ? 'text-primary border-primary'
+                                                : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
                                         }`}
                                         role="tab"
                                         onClick={() => setActiveTab('general')}
                                         aria-selected={activeTab === 'general'}
                                     >
+                                        <i className="ri-settings-4-line mr-2"></i>
                                         General
                                     </button>
                                 </li>
-                                <li className="mr-2">
+                                <li className="mr-4">
                                     <button
                                         type="button"
-                                        className={`px-4 py-2 rounded-t-md text-sm font-medium ${
+                                        className={`inline-flex items-center px-4 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
                                             activeTab === 'token'
-                                                ? 'bg-white text-blue-600 border border-gray-200 border-b-white'
-                                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                                                ? 'text-primary border-primary'
+                                                : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
                                         }`}
                                         role="tab"
                                         onClick={() => setActiveTab('token')}
                                         aria-selected={activeTab === 'token'}
                                     >
+                                        <i className="ri-key-line mr-2"></i>
                                         Access Token
                                     </button>
                                 </li>
                             </ul>
+                        </div>
                             <div className="bg-transparent p-0 shadow-none">
                                 <div className={activeTab === 'general' ? 'block' : 'hidden'}>
                                     <GeneralInfo business={auth.user.business} />
