@@ -11,7 +11,7 @@ export default function CreateActionButton({ module, onClick }) {
     return (
         can(permissions[module].create) && (
             <OffCanvasButton onClick={onClick} id={cases.camelCase + 'FormCanvas'}>
-                <i className="ri-add-line me-2"></i>
+                <i className="ri-add-line mr-2"></i>
                 Create {toTitleCase(module)}
             </OffCanvasButton>
         )

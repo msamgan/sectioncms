@@ -68,7 +68,7 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
                     </h5>
                     <button
                         type="button"
-                        className="p-2 text-gray-500 rounded-full hover:bg-red-100 hover:text-red-500 transition-all duration-200"
+                        className="p-2 text-gray-600 rounded-full hover:bg-danger hover:bg-opacity-10 hover:text-danger focus:outline-none focus:ring-2 focus:ring-danger focus:ring-opacity-50 transition-all duration-200"
                         onClick={handleClose}
                         aria-label="Close"
                     >
