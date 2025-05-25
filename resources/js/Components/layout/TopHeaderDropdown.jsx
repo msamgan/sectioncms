@@ -1,19 +1,32 @@
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.jsx'
 import usePermissions from '@/Hooks/usePermissions'
 import { permissions } from '@/Utils/permissions/index.js'
+import { useState } from 'react'
 
 export default function TopHeaderDropdown({ user }) {
     const { can } = usePermissions()
+    const [showMenu, setShowMenu] = useState(false)
+
+    const toggleMenu = () => {
+        setShowMenu(!showMenu)
+    }
 
     return (
         <li className="relative">
-            <a className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100" href="#" data-bs-toggle="dropdown">
+            <a
+                onClick={toggleMenu}
+                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100"
+                href="#"
+                data-bs-toggle="dropdown"
+            >
                 <div className="relative">
                     <img src={'../../assets/img/avatars/1.png'} alt="user-image" className="h-8 w-8 rounded-full" />
                     <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-500 border border-white"></span>
                 </div>
             </a>
-            <ul className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white py-0 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <ul
+                className={`absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white py-0 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${showMenu ? 'block' : 'hidden'}`}
+            >
                 <li>
                     <a className="block px-4 py-2 hover:bg-gray-50" href="#">
                         <div className="flex items-center">
