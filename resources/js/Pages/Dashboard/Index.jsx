@@ -54,7 +54,7 @@ export default function Dashboard({ auth }) {
                 )}
             </div>
 
-            <div className="grid grid-cols-12 gap-6 mt-4">
+            <div className="grid grid-cols-12 gap-6 mt-8">
                 {can(permissions.api_doc.view) && (
                     <div className="col-span-12">
                         <ApiStatsChart />
