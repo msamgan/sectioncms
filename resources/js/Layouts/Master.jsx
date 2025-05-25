@@ -35,9 +35,9 @@ export default function Master({ children, hideMenu = false }) {
                 )}
 
                 {/* Main Content Area with improved spacing */}
-                <main className="flex-grow w-full py-6 md:py-8">
+                <main className="flex-grow w-full">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <div className="bg-white rounded-lg shadow-md p-4 md:p-6 lg:p-8 transition-all duration-300">
+                        <div className="bg-white rounded-lg px-4 py-4 transition-all duration-300">
                             {children}
                         </div>
                     </div>

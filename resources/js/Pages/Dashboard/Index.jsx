@@ -16,45 +16,47 @@ export default function Dashboard({ auth }) {
         <Master>
             <Head title="Dashboard" />
 
-            <div className="col-12">
-                You're logged in as {auth.user.name} ({auth.user.email}).
+            <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100">
+                <p className="text-gray-700">
+                    You're logged in as <span className="font-medium text-blue-600">{auth.user.name}</span> (<span className="text-gray-500">{auth.user.email}</span>).
+                </p>
             </div>
 
-            <div className="row g-6 mt-4">
+            <div className="grid grid-cols-12 gap-6 mt-8">
                 {can(permissions.role.list) && (
-                    <div className="col-sm-3 col-lg-2">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <RoleCountStats />
                     </div>
                 )}
 
                 {can(permissions.user.list) && (
-                    <div className="col-sm-3 col-lg-2">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <UserCountStats />
                     </div>
                 )}
 
                 {can(permissions.medium.list) && (
-                    <div className="col-sm-3 col-lg-2">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <MediaSizeStats />
                     </div>
                 )}
 
                 {can(permissions.section.list) && (
-                    <div className="col-sm-3 col-lg-2">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <SectionCountStats />
                     </div>
                 )}
 
                 {can(permissions.language.list) && (
-                    <div className="col-sm-3 col-lg-2">
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <LanguageCountStats />
                     </div>
                 )}
             </div>
 
-            <div className="row g-6 mt-4">
+            <div className="grid grid-cols-12 gap-6 mt-4">
                 {can(permissions.api_doc.view) && (
-                    <div className="col-sm-12 col-lg-12">
+                    <div className="col-span-12">
                         <ApiStatsChart />
                     </div>
                 )}
