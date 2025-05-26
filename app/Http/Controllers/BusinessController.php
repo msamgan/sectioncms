@@ -98,11 +98,6 @@ final class BusinessController extends Controller
         $business->delete();
     }
 
-    public function settings(): Response
-    {
-        return Inertia::render('Business/Settings/Index');
-    }
-
     /**
      * @throws RandomException
      */

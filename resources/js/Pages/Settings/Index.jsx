@@ -1,8 +1,8 @@
 import Master from '@/Layouts/Master.jsx'
-import AccessToken from '@/Pages/Business/Settings/Partials/AccessToken.jsx'
-import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
-import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm'
-import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm'
+import AccessToken from '@/Pages/Settings/Partials/AccessToken.jsx'
+import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
+import UpdatePasswordForm from '@/Pages/Settings/Partials/UpdatePasswordForm.jsx'
+import UpdateProfileInformationForm from '@/Pages/Settings/Partials/UpdateProfileInformationForm.jsx'
 import { Head } from '@inertiajs/react'
 import { useState } from 'react'
 
