@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
+use App\Actions\Business\CreateAllowedResources;
 use App\Actions\Business\CreateBusiness;
 use App\Actions\Language\CreateLanguage;
 use App\Actions\Role\AssignRole;
@@ -33,6 +34,7 @@ final class RegisteredUserController extends Controller
         AssignRole $assignRoleAction,
         CreateBusiness $createBusinessAction,
         CreateLanguage $createLanguageAction,
+        CreateAllowedResources $createAllowedResourcesAction,
     ) {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -59,6 +61,8 @@ final class RegisteredUserController extends Controller
             $createBusinessAction->handle(user: $user, businessName: $businessName, makeBusinessActive: true);
 
             $createLanguageAction->handle(['name' => 'English', 'code' => 'en']);
+
+            $createAllowedResourcesAction->handle();
 
             event(new Registered($user));
 

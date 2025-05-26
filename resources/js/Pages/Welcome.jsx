@@ -15,20 +15,32 @@ export default function Welcome({ auth }) {
         <Public auth={auth}>
             <Head>
                 <title>Section CMS - Dynamic Content Management System</title>
-                <meta name="description" content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management." />
-                <meta name="keywords" content="CMS, content management system, dynamic content, section cms, web content" />
+                <meta
+                    name="description"
+                    content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management."
+                />
+                <meta
+                    name="keywords"
+                    content="CMS, content management system, dynamic content, section cms, web content"
+                />
                 <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Section CMS - Dynamic Content Management System" />
-                <meta property="og:description" content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management." />
+                <meta
+                    property="og:description"
+                    content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management."
+                />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://sectioncms.com" />
                 <meta property="og:image" content="https://sectioncms.com/images/og-image.jpg" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Section CMS - Dynamic Content Management System" />
-                <meta name="twitter:description" content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management." />
+                <meta
+                    name="twitter:description"
+                    content="Section CMS is a powerful and flexible content management system designed for dynamic content creation and management."
+                />
                 <link rel="canonical" href="https://sectioncms.com" />
                 <script type="application/ld+json">
-                {`
+                    {`
                     {
                         "@context": "https://schema.org",
                         "@type": "WebSite",
@@ -44,7 +56,7 @@ export default function Welcome({ auth }) {
                 `}
                 </script>
                 <script type="application/ld+json">
-                {`
+                    {`
                     {
                         "@context": "https://schema.org",
                         "@type": "SoftwareApplication",

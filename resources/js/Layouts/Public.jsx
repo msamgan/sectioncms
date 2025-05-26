@@ -4,7 +4,6 @@ import PublicHeader from '@/Components/layout/PublicHeader.jsx'
 import PublicNavigation from '@/Components/layout/PublicNavigation.jsx'
 import StickyHeader from '@/Components/layout/StickyHeader.jsx'
 import LiveChat from '@/Components/LiveChat'
-import { Head } from '@inertiajs/react'
 
 export default function Public({ auth, children }) {
     return (
