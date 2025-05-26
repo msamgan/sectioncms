@@ -9,7 +9,6 @@ import { Head } from '@inertiajs/react'
 export default function Public({ auth, children }) {
     return (
         <>
-            <Head title="Dynamic Content Management System" />
             <StickyHeader auth={auth} />
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-blue-500 selection:text-white">

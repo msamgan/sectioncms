@@ -7,7 +7,7 @@ export default function PublicFooter() {
         <footer className="bg-gray-50 mt-16 border-t border-gray-200 dark:border-gray-800 dark:bg-gray-900">
             <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between lg:px-8">
                 {/* Logo and tagline */}
-                <div className="mb-8 md:mb-0 md:w-1/2">
+                <div className="mb-8 md:mb-0 md:w-6/12">
                     <div className="flex items-center justify-center md:justify-start">
                         <svg
                             className="h-8 w-8 text-blue-600"
@@ -33,7 +33,31 @@ export default function PublicFooter() {
                 </div>
 
                 {/* Quick links */}
-                <div className="md:w-1/2">
+                <div className="md:w-3/12">
+                    <h3 className="mb-4 text-right text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
+                        Legals
+                    </h3>
+                    <ul className="flex flex-col items-center space-y-2 md:items-end">
+                        <li>
+                            <Link
+                                href={route('terms')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
+                                Terms & Conditions
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                href={route('privacy')}
+                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                            >
+                                Privacy Policy
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+
+                <div className="md:w-3/12">
                     <h3 className="mb-4 text-right text-sm font-semibold uppercase tracking-wider text-gray-900 dark:text-white">
                         Quick Links
                     </h3>
@@ -60,22 +84,6 @@ export default function PublicFooter() {
                                 className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
                             >
                                 Register
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('terms')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                            >
-                                Terms & Conditions
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href={route('privacy')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                            >
-                                Privacy Policy
                             </Link>
                         </li>
                     </ul>
