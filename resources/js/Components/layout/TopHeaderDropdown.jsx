@@ -51,23 +51,13 @@ export default function TopHeaderDropdown({ user }) {
                     <div className="border-t border-gray-200 my-1"></div>
                 </li>
                 <li>
-                    <ResponsiveNavLink className="px-2" href={route('profile.edit')}>
+                    <ResponsiveNavLink className="px-2" href={route('settings')}>
                         <div className="flex items-center">
-                            <i className="ri-user-3-line mr-3"></i>
-                            <span>My Profile</span>
+                            <i className="ri-settings-3-line mr-3"></i>
+                            <span>Settings</span>
                         </div>
                     </ResponsiveNavLink>
                 </li>
-                {user.business_id && can(permissions.business.update) && (
-                    <li>
-                        <ResponsiveNavLink className="px-2" href={route('business.settings')}>
-                            <div className="flex items-center">
-                                <i className="ri-settings-3-line mr-3"></i>
-                                <span>Business Settings</span>
-                            </div>
-                        </ResponsiveNavLink>
-                    </li>
-                )}
                 {/*<li>
                             <a className="block px-4 py-2 hover:bg-gray-50" href="#">
                                 <div className="flex items-center justify-between">
