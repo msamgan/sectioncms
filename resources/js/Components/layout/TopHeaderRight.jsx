@@ -8,7 +8,7 @@ export default function TopHeaderRight({ user }) {
     const { can } = usePermissions()
     return (
         <div className="flex items-center" id="navbar-collapse">
-            <ul className="flex items-center flex-row">
+            <ul className="flex items-center flex-row gap-2">
                 {can(permissions.business.update) && <AddSite />}
                 <HeaderNotification user={user} />
                 <TopHeaderDropdown user={user} />
