@@ -17,11 +17,10 @@ use App\Models\Language;
 use App\Notifications\LanguageCreated;
 use App\Notifications\LanguageDeleted;
 use App\Notifications\LanguageUpdated;
+use App\Stores\LanguageStore;
 use App\Utils\Access;
 use Exception;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -98,27 +97,19 @@ final class LanguageController extends Controller
         $notifyUser->handle(new LanguageDeleted($language));
 
         defer(fn () => $deleteLanguageValues->handle(languageCode: $language->key('code')));
+
         $language->delete();
     }
 
-    /**
-     * @throws FileNotFoundException
-     * @throws ConnectionException
-     */
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
     public function languages(Request $request): Collection
     {
-        return Language::query()->where('business_id', Auth::user()->key('business_id'))
-            ->orderBy('created_at', 'Asc')
-            ->when($request->get('q'), function ($query) use ($request): void {
-                $query->where('name', 'like', '%' . $request->get('q') . '%')
-                    ->orWhere('code', 'like', '%' . $request->get('q') . '%');
-            })->get();
+        return LanguageStore::languages(businessId: Auth::user()->key('business_id'), query: $request->get('q'));
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
-    public function languageCount()
+    public function languageCount(): int
     {
-        return Language::query()->where('business_id', Auth::user()->key('business_id'))->count();
+        return LanguageStore::languageCount(businessId: Auth::user()->key('business_id'));
     }
 }

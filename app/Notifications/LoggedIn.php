@@ -10,9 +10,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-final class LoggedIn extends Notification implements ShouldQueue
+final class LoggedIn extends Notification // implements ShouldQueue
 {
-    use Queueable;
+    // use Queueable;
 
     /**
      * Create a new notification instance.

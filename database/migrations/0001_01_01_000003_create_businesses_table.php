@@ -23,6 +23,14 @@ return new class extends Migration
             $table->string('token')->unique()->nullable();
             $table->timestamps();
         });
+
+        Schema::create('resource_tracking', function (Blueprint $table) {
+            $table->foreignId('business_id')->constrained()->onDelete('cascade');
+            $table->string('type');
+            $table->string('unit');
+            $table->integer('allowed')->default(0);
+            $table->float('charges')->default(0);
+        });
     }
 
     public function down(): void
