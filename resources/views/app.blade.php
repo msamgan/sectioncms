@@ -7,13 +7,16 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <meta name="description" content="Section CMS is a powerful and flexible content management system built with Laravel and Inertia.js. It provides a modern, intuitive interface for managing your website's content, making it easy to create, edit, and publish content, pages, and more." />
+        <meta
+            name="description"
+            content="Section CMS is a powerful and flexible content management system built with Laravel and Inertia.js. It provides a modern, intuitive interface for managing your website's content, making it easy to create, edit, and publish content, pages, and more."
+        />
 
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/favicon/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
