@@ -1,10 +1,10 @@
 import Master from '@/Layouts/Master.jsx'
+import AccessToken from '@/Pages/Business/Settings/Partials/AccessToken.jsx'
+import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
+import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm'
+import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm'
 import { Head } from '@inertiajs/react'
 import { useState } from 'react'
-import GeneralInfo from '@/Pages/Business/Settings/Partials/GeneralInfo.jsx'
-import AccessToken from '@/Pages/Business/Settings/Partials/AccessToken.jsx'
-import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm'
-import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm'
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const [activeTabGroup, setActiveTabGroup] = useState('business')
@@ -53,7 +53,10 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                         <div className="mb-6">
                             <div className="mb-5 border-b border-gray-200">
                                 {/* Business Settings Tabs */}
-                                <ul className={`flex flex-wrap -mb-px ${activeTabGroup === 'business' ? 'block' : 'hidden'}`} role="tablist">
+                                <ul
+                                    className={`flex flex-wrap -mb-px ${activeTabGroup === 'business' ? 'block' : 'hidden'}`}
+                                    role="tablist"
+                                >
                                     <li className="mr-6">
                                         <button
                                             type="button"
@@ -89,7 +92,10 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 </ul>
 
                                 {/* Profile Settings Tabs */}
-                                <ul className={`flex flex-wrap -mb-px ${activeTabGroup === 'profile' ? 'block' : 'hidden'}`} role="tablist">
+                                <ul
+                                    className={`flex flex-wrap -mb-px ${activeTabGroup === 'profile' ? 'block' : 'hidden'}`}
+                                    role="tablist"
+                                >
                                     <li className="mr-6">
                                         <button
                                             type="button"
@@ -138,7 +144,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 {/* Profile Settings Content */}
                                 <div className={activeTabGroup === 'profile' ? 'block' : 'hidden'}>
                                     <div className={activeProfileTab === 'profile' ? 'block' : 'hidden'}>
-                                        <div className="bg-white p-6 shadow rounded-lg">
+                                        <div className="">
                                             <UpdateProfileInformationForm
                                                 mustVerifyEmail={mustVerifyEmail}
                                                 status={status}
@@ -147,7 +153,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         </div>
                                     </div>
                                     <div className={activeProfileTab === 'password' ? 'block' : 'hidden'}>
-                                        <div className="bg-white p-6 shadow rounded-lg">
+                                        <div className="">
                                             <UpdatePasswordForm className="max-w-2xl" />
                                         </div>
                                     </div>

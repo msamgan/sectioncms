@@ -1,6 +1,5 @@
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.jsx'
 import usePermissions from '@/Hooks/usePermissions'
-import { permissions } from '@/Utils/permissions/index.js'
 import { useState } from 'react'
 
 export default function TopHeaderDropdown({ user }) {

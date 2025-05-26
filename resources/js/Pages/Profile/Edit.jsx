@@ -1,9 +1,9 @@
 import Master from '@/Layouts/Master.jsx'
 import { Head } from '@inertiajs/react'
+import { useState } from 'react'
+import DeleteUserForm from './Partials/DeleteUserForm'
 import UpdatePasswordForm from './Partials/UpdatePasswordForm'
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm'
-import DeleteUserForm from './Partials/DeleteUserForm'
-import { useState } from 'react'
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
     const [activeTab, setActiveTab] = useState('profile')
@@ -83,19 +83,15 @@ export default function Edit({ auth, mustVerifyEmail, status }) {
                                     </li>*/}
                                 </ul>
                             </div>
-                            <div className="bg-white p-6 shadow rounded-lg">
+                            <div className="bg-transparent p-0 shadow-none">
                                 <div className={activeTab === 'profile' ? 'block' : 'hidden'}>
-                                    <UpdateProfileInformationForm
-                                        mustVerifyEmail={mustVerifyEmail}
-                                        status={status}
-                                        className="max-w-2xl"
-                                    />
+                                    <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} />
                                 </div>
                                 <div className={activeTab === 'password' ? 'block' : 'hidden'}>
-                                    <UpdatePasswordForm className="max-w-2xl" />
+                                    <UpdatePasswordForm />
                                 </div>
                                 <div className={activeTab === 'delete' ? 'block' : 'hidden'}>
-                                    <DeleteUserForm className="max-w-2xl" />
+                                    <DeleteUserForm />
                                 </div>
                             </div>
                         </div>

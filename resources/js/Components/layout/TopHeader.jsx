@@ -15,7 +15,8 @@ export default function TopHeader({ user }) {
                             </span>
                             <div className="flex flex-col space-y-1">
                                 <span className="font-medium ml-4 text-gray-800">
-                                    Welcome, {user.name} <span className="text-primary">({user.role.display_name})</span>
+                                    Welcome, {user.name}{' '}
+                                    <span className="text-primary">({user.role.display_name})</span>
                                 </span>
                                 <span className="font-medium ml-4 text-sm text-gray-600">{user.business?.name}</span>
                             </div>
