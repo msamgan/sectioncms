@@ -44,21 +44,21 @@ export default function Index() {
     const processRole = (role) => {
         return {
             Name: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                     <div>
                         <Name value={role.display_name} />
-                        <small className="text-muted d-block">{role.name}</small>
+                        <small className="text-gray-500 block">{role.name}</small>
                     </div>
                 </div>
             ),
             UserCount: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="xs" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
-                    <span className="fw-semibold">{role.users_count}</span>
+                    <span className="font-semibold">{role.users_count}</span>
                 </div>
             ),
-            Status: <span className="badge rounded-pill bg-success">Active</span>,
+            Status: <span className="bg-success text-white text-xs px-2 py-1 rounded-full">Active</span>,
             Actions: (
                 <Actions>
                     <EditActionButton module={'role'} onClick={() => editRole(role)} />
@@ -87,12 +87,12 @@ export default function Index() {
             <div className="mb-6">
                 <PageHeader
                     title={
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                             <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                             <span>Roles</span>
                         </div>
                     }
-                    subtitle={"Find all of your business's roles and there associated permissions."}
+                    subtitle={"Find all of your business's roles and their associated permissions."}
                     action={
                         <CreateActionButton
                             module={'role'}
@@ -105,11 +105,11 @@ export default function Index() {
                 ></PageHeader>
             </div>
 
-            <div className="row g-4 mb-4">
-                <div className="col-sm-6 col-xl-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
+                <div>
                     <StatsCard count={roles.length} label="Total Roles" icon={moduleConstants.role.icon} />
                 </div>
-                <div className="col-sm-6 col-xl-3">
+                <div>
                     <StatsCard
                         count={roles.reduce((acc, role) => acc + role.users_count, 0)}
                         label="Total Users Assigned"
@@ -124,15 +124,13 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="col-12">
-                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
-                    <div className="card-header border-bottom bg-light-subtle">
-                        <div className="d-flex align-items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                            <h5 className="card-title m-0 text-lg font-semibold">Role List</h5>
-                        </div>
+            <div className="w-full overflow-visible">
+                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                    <div className="flex items-center p-4 border-b bg-gray-50">
+                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                        <h5 className="m-0 ml-2 text-lg font-semibold">Role List</h5>
                     </div>
-                    <div className="card-body p-0">
+                    <div className="p-0">
                         <Table
                             data={data}
                             loading={loading}

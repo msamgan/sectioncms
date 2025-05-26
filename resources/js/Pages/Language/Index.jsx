@@ -39,18 +39,18 @@ export default function Index() {
     const processLanguage = (language) => {
         return {
             Name: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="sm" bgColor={moduleConstants.language.bgColor} icon={moduleConstants.language.icon} />
                     <div>
                         <Name value={language.name} />
-                        <small className="text-muted d-block">Language</small>
+                        <small className="text-gray-500 block">Language</small>
                     </div>
                 </div>
             ),
             Code: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="xs" bgColor={moduleConstants.code.bgColor} icon={moduleConstants.code.icon} />
-                    <span className="fw-semibold">{language.code}</span>
+                    <span className="font-semibold">{language.code}</span>
                 </div>
             ),
             Actions: (
@@ -91,7 +91,7 @@ export default function Index() {
             <div className="mb-6">
                 <PageHeader
                     title={
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                             <Avatar
                                 size="sm"
                                 bgColor={moduleConstants.language.bgColor}
@@ -119,15 +119,13 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="col-12">
-                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
-                    <div className="card-header border-bottom bg-light-subtle">
-                        <div className="d-flex align-items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                            <h5 className="card-title m-0 text-lg font-semibold">Language List</h5>
-                        </div>
+            <div className="w-full">
+                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                    <div className="flex items-center p-4 border-b bg-gray-50">
+                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                        <h5 className="m-0 ml-2 text-lg font-semibold">Language List</h5>
                     </div>
-                    <div className="card-body p-0">
+                    <div className="p-0">
                         <Table
                             data={data}
                             setLoading={setLoading}

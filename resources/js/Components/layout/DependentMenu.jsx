@@ -1,40 +1,55 @@
 import { Link } from '@inertiajs/react'
+import { useState } from 'react'
 
 export default function DependentMenu({ menuItems, itemKey, index }) {
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggleOpen = (e) => {
+        e.stopPropagation()
+        setIsOpen(!isOpen)
+    }
+
+    const isActive = menuItems[itemKey].map((item, index) => route().current(item.route)).includes(true)
+
     return (
         <li
             key={index}
-            onClick={(e) => {
-                e.target.parentElement.classList.toggle('open')
-            }}
+            onClick={toggleOpen}
             className={
-                menuItems[itemKey].map((item, index) => route().current(item.route)).includes(true)
-                    ? 'menu-item active'
-                    : 'menu-item'
+                isActive
+                    ? 'relative py-2.5 px-5 text-primary bg-purple-50 rounded-lg shadow-sm font-medium transition-all duration-300 ease-in-out border border-purple-100'
+                    : 'relative py-2.5 px-5 text-gray-700 hover:text-primary hover:bg-purple-50 rounded-lg transition-all duration-300 ease-in-out hover:shadow-sm hover:border hover:border-purple-100'
             }
         >
-            <a href="#" className="menu-link menu-toggle">
-                <i
-                    onClick={(e) => {
-                        e.target.parentElement.parentElement.classList.toggle('open')
-                    }}
-                    className={menuItems[itemKey][0].parent.icon + ' menu-icon tf-icons'}
-                ></i>
-                <div
-                    data-i18n={itemKey}
-                    onClick={(e) => {
-                        e.target.parentElement.parentElement.classList.toggle('open')
-                    }}
-                >
-                    {itemKey}
+            <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center w-full justify-between">
+                <div className="flex items-center">
+                    <i className={menuItems[itemKey][0].parent.icon + ' mr-3 text-lg'}></i>
+                    <div data-i18n={itemKey} className="whitespace-nowrap font-medium">
+                        {itemKey}
+                    </div>
                 </div>
+                <i
+                    className={`ri-arrow-down-s-line ml-3 transition-transform duration-300 ${isOpen ? 'transform rotate-180 text-primary' : ''}`}
+                ></i>
             </a>
-            <ul className="menu-sub">
+
+            <ul
+                className={`absolute left-0 top-full w-full mt-2 py-2 border border-purple-100 rounded-lg shadow-lg bg-white z-10 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'}`}
+            >
                 {menuItems[itemKey].map((item, index) => (
-                    <li key={index} className={route().current(item.route) ? 'menu-item active' : 'menu-item'}>
-                        <Link href={route(item.route)} className="menu-link">
-                            <i className={item.icon + ' menu-icon tf-icons'}></i>
-                            <div data-i18n={item.label}>{item.label}</div>
+                    <li
+                        key={index}
+                        className={
+                            route().current(item.route)
+                                ? 'flex items-center py-2 px-4 mx-2 my-1 text-primary bg-purple-50 rounded-md shadow-sm font-medium transition-all duration-300 ease-in-out border border-purple-100'
+                                : 'flex items-center py-2 px-4 mx-2 my-1 text-gray-700 hover:text-primary hover:bg-purple-50 rounded-md transition-all duration-300 ease-in-out hover:shadow-sm hover:border hover:border-purple-100'
+                        }
+                    >
+                        <Link href={route(item.route)} className="flex items-center w-full">
+                            <i className={item.icon + ' mr-3 text-lg'}></i>
+                            <div data-i18n={item.label} className="whitespace-nowrap font-medium">
+                                {item.label}
+                            </div>
                         </Link>
                     </li>
                 ))}

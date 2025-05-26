@@ -10,8 +10,4 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('business', [BusinessController::class, 'index'])
         ->middleware([PermissionEnum::BusinessUpdate->can(), 'check_has_business'])
         ->name('business');
-
-    Route::get('business/settings', [BusinessController::class, 'settings'])
-        ->middleware([PermissionEnum::BusinessUpdate->can(), 'check_has_business'])
-        ->name('business.settings');
 });

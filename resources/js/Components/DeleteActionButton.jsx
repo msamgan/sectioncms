@@ -6,6 +6,6 @@ export default function DeleteActionButton({ module, route, refresh }) {
     const { can } = usePermissions()
 
     return can(permissions[module].delete) ? (
-        <DeleteEntityForm action={route} refresh={refresh} className={'dropdown-item'} />
+        <DeleteEntityForm action={route} refresh={refresh} className={'w-full text-left px-4 py-2 hover:bg-gray-100'} />
     ) : null
 }

@@ -1,9 +1,10 @@
-import PageHeader from '@/Components/PageHeader.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import DeleteEntityForm from '@/Components/layout/DeleteEntityForm.jsx'
 import Table from '@/Components/layout/Table.jsx'
+import PageHeader from '@/Components/PageHeader.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
 import usePermissions from '@/Hooks/usePermissions.js'
 import Master from '@/Layouts/Master.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
@@ -25,10 +26,11 @@ export default function Index() {
     const processBusiness = (business) => {
         return {
             Name: (
-                <div className="d-flex align-items-center">
+                <div className="flex items-center">
                     <Avatar size="sm" bgColor={moduleConstants.business.bgColor} icon={moduleConstants.business.icon} />
                     <div>
                         <Name value={business.name} />
+                        <small className="text-gray-500 block">Business</small>
                     </div>
                 </div>
             ),
@@ -37,7 +39,7 @@ export default function Index() {
                     {businesses.length >= 2 && (
                         <>
                             <div
-                                className={'dropdown-item ml-5 cursor-pointer'}
+                                className={'px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer'}
                                 onClick={() => {
                                     select
                                         .call({
@@ -52,13 +54,13 @@ export default function Index() {
                                         })
                                 }}
                             >
-                                <i className="ri-cursor-line me-1 text-black"></i> Select
+                                <i className="ri-cursor-line mr-1 text-black"></i> Select
                             </div>
 
                             <DeleteEntityForm
                                 action={destroy.route({ business: business.id })}
                                 refresh={getBusinesses}
-                                className={'dropdown-item'}
+                                className={'px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'}
                             />
                         </>
                     )}
@@ -80,13 +82,13 @@ export default function Index() {
     }, [])
 
     return (
-        <Master hideMenu={true}>
-            <Head title="Users" />
+        <Master>
+            <Head title="Businesses" />
 
             <div className="mb-6">
                 <PageHeader
                     title={
-                        <div className="d-flex align-items-center">
+                        <div className="flex items-center">
                             <Avatar
                                 size="sm"
                                 bgColor={moduleConstants.business.bgColor}
@@ -95,20 +97,27 @@ export default function Index() {
                             <span>Businesses</span>
                         </div>
                     }
-                    subtitle={'Find all of your businesses and there associated details.'}
-                    action={''}
+                    subtitle={'Find all of your businesses and their associated details.'}
                 ></PageHeader>
             </div>
 
-            <div className="col-12">
-                <div className="card shadow-sm transition-all duration-200 hover:shadow-lg">
-                    <div className="card-header border-bottom bg-light-subtle">
-                        <div className="d-flex align-items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                            <h5 className="card-title m-0 text-lg font-semibold">Business List</h5>
-                        </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
+                <div>
+                    <StatsCard
+                        count={businesses.length}
+                        label="Total Businesses"
+                        icon={moduleConstants.business.icon}
+                    />
+                </div>
+            </div>
+
+            <div className="w-full">
+                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                    <div className="flex items-center p-4 border-b bg-gray-50">
+                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                        <h5 className="m-0 ml-2 text-lg font-semibold">Business List</h5>
                     </div>
-                    <div className="card-body p-0">
+                    <div className="p-0 overflow-visible">
                         <Table
                             data={data}
                             loading={loading}
