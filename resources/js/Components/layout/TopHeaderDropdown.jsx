@@ -19,7 +19,7 @@ export default function TopHeaderDropdown({ user }) {
                 data-bs-toggle="dropdown"
             >
                 <div className="relative">
-                    <img src={'../../assets/img/avatars/1.png'} alt="user-image" className="h-8 w-8 rounded-full" />
+                    <img src={'/avatars/1.png'} alt="user-image" className="h-8 w-8 rounded-full" />
                     <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-500 border border-white"></span>
                 </div>
             </a>
@@ -31,11 +31,7 @@ export default function TopHeaderDropdown({ user }) {
                         <div className="flex items-center">
                             <div className="mr-2 flex-shrink-0">
                                 <div className="relative">
-                                    <img
-                                        src={'../../assets/img/avatars/1.png'}
-                                        alt="user-image"
-                                        className="h-8 w-8 rounded-full"
-                                    />
+                                    <img src={'/avatars/1.png'} alt="user-image" className="h-8 w-8 rounded-full" />
                                     <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-500 border border-white"></span>
                                 </div>
                             </div>
