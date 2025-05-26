@@ -19,7 +19,6 @@ use App\Notifications\LanguageDeleted;
 use App\Notifications\LanguageUpdated;
 use App\Stores\LanguageStore;
 use App\Utils\Access;
-use App\Utils\ChargeResource;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -53,10 +52,6 @@ final class LanguageController extends Controller
             $createLanguageValues->handle(languageCode: $language->key('code'));
 
             $notifyUser->handle(new LanguageCreated($language));
-
-            $charges = ChargeResource::language(businessId: auth()->user()->key('business_id'));
-
-            // todo: Generate Invoice for the language creation charge
 
             DB::commit();
         } catch (Exception $e) {
