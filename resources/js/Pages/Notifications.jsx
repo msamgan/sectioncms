@@ -114,9 +114,7 @@ export default function Notifications({ auth }) {
                                 <li
                                     key={index}
                                     className={`py-5 px-4 transition-all duration-200 ${
-                                        !notification.read_at
-                                            ? 'bg-blue-50 hover:bg-blue-100'
-                                            : 'hover:bg-gray-50'
+                                        !notification.read_at ? 'bg-blue-50 hover:bg-blue-100' : 'hover:bg-gray-50'
                                     }`}
                                 >
                                     <div className="flex items-center">
@@ -129,14 +127,18 @@ export default function Notifications({ auth }) {
                                         </div>
                                         <div className="flex-grow min-w-0">
                                             <div className="flex justify-between items-center mb-1">
-                                                <h6 className={`text-sm truncate ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'}`}>
+                                                <h6
+                                                    className={`text-sm truncate ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'}`}
+                                                >
                                                     {notification.data.title}
                                                 </h6>
                                                 <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
                                                     {formatDuration(notification.created_at)}
                                                 </span>
                                             </div>
-                                            <p className="text-sm text-gray-600 line-clamp-2">{notification.data.message}</p>
+                                            <p className="text-sm text-gray-600 line-clamp-2">
+                                                {notification.data.message}
+                                            </p>
                                         </div>
                                         {!notification.read_at && (
                                             <div className="ml-4 flex-shrink-0">

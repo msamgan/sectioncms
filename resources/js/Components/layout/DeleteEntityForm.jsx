@@ -95,11 +95,7 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
 
                         {/* Password Input */}
                         <div className="mb-6 relative">
-                            <InputLabel
-                                htmlFor="password"
-                                value="Enter your password to confirm"
-                                required={true}
-                            />
+                            <InputLabel htmlFor="password" value="Enter your password to confirm" required={true} />
                             <div className="relative mt-1">
                                 <TextInput
                                     id="password"

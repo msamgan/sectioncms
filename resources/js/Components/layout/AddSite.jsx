@@ -7,7 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton.jsx'
 import TextInput from '@/Components/TextInput.jsx'
 import { store } from '@actions/BusinessController.js'
 import { Link, useForm } from '@inertiajs/react'
-import { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 
 export default function AddSite() {
     const [confirming, setConfirming] = useState(false)
@@ -41,10 +41,7 @@ export default function AddSite() {
                 <span>Add New</span>
             </PrimaryButton>
 
-            <Link
-                href={route('business')}
-                className="text-blue-600 hover:text-blue-800 transition-colors duration-300"
-            >
+            <Link href={route('business')} className="text-blue-600 hover:text-blue-800 transition-colors duration-300">
                 <i className="ri-global-fill ri-22px me-6 cursor-pointer hover:scale-110 transition-transform duration-300"></i>
             </Link>
 
@@ -54,12 +51,7 @@ export default function AddSite() {
                     <div className="bg-blue-50 p-6 rounded-t-lg border-b border-blue-100">
                         <div className="flex items-center justify-center mb-4">
                             <div className="p-3 bg-blue-100 rounded-full transform transition-transform duration-300 hover:scale-110">
-                                <Avatar
-                                    size="xl"
-                                    bgColor="bg-blue-500"
-                                    icon="ri-global-line"
-                                    className="mx-auto"
-                                />
+                                <Avatar size="xl" bgColor="bg-blue-500" icon="ri-global-line" className="mx-auto" />
                             </div>
                         </div>
                         <h2 className="text-2xl font-bold text-center text-blue-700 mb-1">Add New Site</h2>
@@ -77,8 +69,8 @@ export default function AddSite() {
                                 <div className="ml-3">
                                     <h3 className="text-sm font-medium text-blue-800">Important Information</h3>
                                     <p className="mt-1 text-sm text-blue-700">
-                                        This action will create a new site in your account. Please make sure to provide the correct
-                                        information before proceeding.
+                                        This action will create a new site in your account. Please make sure to provide
+                                        the correct information before proceeding.
                                     </p>
                                 </div>
                             </div>
@@ -86,11 +78,7 @@ export default function AddSite() {
 
                         {/* URL Input */}
                         <div className="mb-6 relative">
-                            <InputLabel
-                                htmlFor="site-url"
-                                value="Site URL"
-                                required={true}
-                            />
+                            <InputLabel htmlFor="site-url" value="Site URL" required={true} />
                             <div className="relative mt-1 group">
                                 <TextInput
                                     id="site-url"

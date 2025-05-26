@@ -1,7 +1,7 @@
 import { formatDuration } from '@/Utils/methods.js'
 import { routes } from '@/Utils/routes/index.js'
 import { Link } from '@inertiajs/react'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function HeaderNotification({ user }) {
     const [unreadNotifications, setUnreadNotifications] = useState(0)
@@ -97,9 +97,7 @@ export default function HeaderNotification({ user }) {
 
             <div
                 className={`absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-lg bg-white py-0 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none transform transition-all duration-200 ease-in-out ${
-                    showMenu
-                        ? 'opacity-100 scale-100'
-                        : 'opacity-0 scale-95 pointer-events-none'
+                    showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
                 }`}
             >
                 <div className="border-b border-gray-200">
@@ -131,14 +129,22 @@ export default function HeaderNotification({ user }) {
                                     }`}
                                 >
                                     <div className="flex p-4 items-start">
-                                        <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3 ${getNotificationColor(notification)}`}>
-                                            <i className={`${getNotificationIcon(notification)} text-white text-sm`}></i>
+                                        <div
+                                            className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3 ${getNotificationColor(notification)}`}
+                                        >
+                                            <i
+                                                className={`${getNotificationIcon(notification)} text-white text-sm`}
+                                            ></i>
                                         </div>
                                         <div className="flex-grow min-w-0">
-                                            <h6 className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} mb-0.5 line-clamp-1`}>
+                                            <h6
+                                                className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} mb-0.5 line-clamp-1`}
+                                            >
                                                 {notification.data.title}
                                             </h6>
-                                            <p className="text-xs text-gray-600 mb-1 line-clamp-2">{notification.data.message}</p>
+                                            <p className="text-xs text-gray-600 mb-1 line-clamp-2">
+                                                {notification.data.message}
+                                            </p>
                                             <p className="text-xs text-gray-500">
                                                 {formatDuration(notification.created_at)}
                                             </p>

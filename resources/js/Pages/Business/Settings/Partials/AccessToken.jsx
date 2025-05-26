@@ -90,12 +90,7 @@ export default function AccessToken({ business }) {
                     <div className="bg-amber-50 p-6 rounded-t-lg border-b border-amber-100">
                         <div className="flex items-center justify-center mb-4">
                             <div className="p-3 bg-amber-100 rounded-full transform transition-transform duration-300 hover:scale-110">
-                                <Avatar
-                                    size="xl"
-                                    bgColor="bg-amber-500"
-                                    icon="ri-refresh-line"
-                                    className="mx-auto"
-                                />
+                                <Avatar size="xl" bgColor="bg-amber-500" icon="ri-refresh-line" className="mx-auto" />
                             </div>
                         </div>
                         <h2 className="text-2xl font-bold text-center text-amber-700 mb-1">Regenerate Access Token</h2>
@@ -112,8 +107,9 @@ export default function AccessToken({ business }) {
                                 <div className="ml-3">
                                     <h3 className="text-sm font-medium text-yellow-800">Important Warning</h3>
                                     <p className="mt-1 text-sm text-yellow-700">
-                                        Once this token is regenerated, the old token will no longer be valid and any API calls using it
-                                        will fail. Make sure to update all your applications with the new token.
+                                        Once this token is regenerated, the old token will no longer be valid and any
+                                        API calls using it will fail. Make sure to update all your applications with the
+                                        new token.
                                     </p>
                                 </div>
                             </div>
