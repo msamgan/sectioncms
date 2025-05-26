@@ -12,7 +12,7 @@ export default function Index({ auth }) {
             <Head title="Business Settings" />
 
             <div className="flex flex-col lg:flex-row gap-8">
-                <div className="w-full lg:w-1/4">
+                <div className="w-full lg:w-1/2">
                     <div className="flex flex-col justify-between mb-4 lg:mb-0">
                         <ul className="flex flex-col space-y-2">
                             <li>
@@ -39,15 +39,15 @@ export default function Index({ auth }) {
                         </ul>
                     </div>
                 </div>
-                <div className="w-full lg:w-3/4 lg:pt-0 pt-6">
+                <div className="w-full lg:w-1/2 lg:pt-0 pt-6">
                     <div className="w-full">
                         <div className="mb-6">
                             <div className="mb-5 border-b border-gray-200">
                                 <ul className="flex flex-wrap -mb-px" role="tablist">
-                                    <li className="mr-6">
+                                    <li className="w-1/2">
                                         <button
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
+                                            className={`inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
                                                 activeTab === 'general'
                                                     ? 'text-primary border-primary'
                                                     : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
@@ -60,10 +60,10 @@ export default function Index({ auth }) {
                                             General
                                         </button>
                                     </li>
-                                    <li className="mr-6">
+                                    <li className="w-1/2">
                                         <button
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
+                                            className={`inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
                                                 activeTab === 'token'
                                                     ? 'text-primary border-primary'
                                                     : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
