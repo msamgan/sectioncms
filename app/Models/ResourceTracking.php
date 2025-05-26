@@ -4,15 +4,20 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\ModelFunctions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class ResourceTracking extends Model
 {
+    use ModelFunctions;
+
+    public $timestamps = false;
+
     protected $table = 'resource_tracking';
 
     protected $fillable = [
-        'user_id',
+        'business_id',
         'type',
         'unit',
         'allowed',
@@ -22,9 +27,9 @@ final class ResourceTracking extends Model
         'charge_on',
     ];
 
-    public function user(): BelongsTo
+    public function business(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Business::class, 'business_id', 'id');
     }
 
     protected function casts(): array

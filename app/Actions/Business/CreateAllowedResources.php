@@ -13,12 +13,10 @@ final class CreateAllowedResources
     {
         foreach (ResourceEnum::cases() as $case) {
             ResourceTracking::query()->create([
-                'user_id' => auth()->id(),
+                'business_id' => auth()->user()->key('business_id'),
                 'type' => $case->label(),
                 'unit' => $case->unit(),
                 'allowed' => $case->allowed(),
-                'used' => $case->label() === ResourceEnum::WEBSITE->label() || $case->label() === ResourceEnum::LANGUAGES->label() ? 1 : 0,
-                'changeable' => 0,
                 'charges' => $case->changes(),
             ]);
         }

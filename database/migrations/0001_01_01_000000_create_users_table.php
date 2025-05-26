@@ -34,19 +34,6 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
-
-        Schema::create('resource_tracking', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('type');
-            $table->string('unit');
-            $table->integer('allowed')->default(0);
-            $table->integer('used')->default(0);
-            $table->integer('changeable')->default(0);
-            $table->float('charges')->default(0);
-            $table->integer('charge_on')->nullable()->comment('date of the month when the charge is applied');
-            $table->timestamps();
-        });
     }
 
     public function down(): void
