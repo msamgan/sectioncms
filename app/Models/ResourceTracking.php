@@ -21,10 +21,7 @@ final class ResourceTracking extends Model
         'type',
         'unit',
         'allowed',
-        'used',
-        'changeable',
         'charges',
-        'charge_on',
     ];
 
     public function business(): BelongsTo
@@ -36,8 +33,6 @@ final class ResourceTracking extends Model
     {
         return [
             'allowed' => 'integer',
-            'used' => 'integer',
-            'remaining' => 'integer',
         ];
     }
 }
