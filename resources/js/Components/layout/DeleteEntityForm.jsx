@@ -117,10 +117,7 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
 
                     {/* Action Buttons */}
                     <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg border-t border-gray-100">
-                        <SecondaryButton
-                            onClick={closeModal}
-                            className="transition-all duration-200 hover:bg-gray-200"
-                        >
+                        <SecondaryButton onClick={closeModal} className="transition-all duration-200 hover:bg-gray-200">
                             <i className="ri-close-line mr-1"></i> Cancel
                         </SecondaryButton>
 

@@ -1,6 +1,6 @@
-import Master from '@/Layouts/Master.jsx'
 import NavButton from '@/Components/NavButton.jsx'
 import TabButton from '@/Components/TabButton.jsx'
+import Master from '@/Layouts/Master.jsx'
 import AccessToken from '@/Pages/Settings/Partials/AccessToken.jsx'
 import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
 import UpdatePasswordForm from '@/Pages/Settings/Partials/UpdatePasswordForm.jsx'
