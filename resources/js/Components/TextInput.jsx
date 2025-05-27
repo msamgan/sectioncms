@@ -50,10 +50,10 @@ export default forwardRef(function TextInput({
 
     // Adjust input padding based on icon position
     const inputClassName = hasIcon
-        ? `w-full border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${
-            iconPosition === 'left' ? 'pl-10 pr-3' : 'pl-3 pr-10'
-          } py-2 ${className}`
-        : `w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${className}`;
+        ? `w-full h-input-height text-sm border border-gray-300 rounded-input shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${
+            iconPosition === 'left' ? 'pl-10 pr-input-padding-x' : 'pl-input-padding-x pr-10'
+          } py-input-padding-y ${className}`
+        : `w-full h-input-height text-sm px-input-padding-x py-input-padding-y border border-gray-300 rounded-input shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${className}`;
 
     return hasIcon ? (
         <div className="relative">
