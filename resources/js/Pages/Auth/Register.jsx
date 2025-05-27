@@ -46,18 +46,23 @@ export default function Register() {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-400 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="website"
-                        name="website"
-                        value={data.website}
-                        autoComplete="website"
-                        isFocused={true}
-                        onChange={(e) => setData('website', e.target.value)}
-                        required
-                        type={'url'}
-                        placeholder={'https://example.com'}
-                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-global-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="website"
+                            name="website"
+                            value={data.website}
+                            autoComplete="website"
+                            isFocused={true}
+                            onChange={(e) => setData('website', e.target.value)}
+                            required
+                            type={'url'}
+                            placeholder={'https://example.com'}
+                            className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.website} className="mt-2" />
                 </div>
 
@@ -68,16 +73,21 @@ export default function Register() {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-400 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        autoComplete="name"
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                        placeholder={'Your full name'}
-                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-user-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="name"
+                            name="name"
+                            value={data.name}
+                            autoComplete="name"
+                            onChange={(e) => setData('name', e.target.value)}
+                            required
+                            placeholder={'Your full name'}
+                            className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
@@ -88,17 +98,22 @@ export default function Register() {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-400 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                        placeholder={'awesome@awesomeness.com'}
-                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-mail-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            autoComplete="username"
+                            onChange={(e) => setData('email', e.target.value)}
+                            required
+                            placeholder={'awesome@awesomeness.com'}
+                            className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
@@ -109,17 +124,22 @@ export default function Register() {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-400 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                        placeholder={'my super secret password'}
-                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-lock-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            autoComplete="new-password"
+                            onChange={(e) => setData('password', e.target.value)}
+                            required
+                            placeholder={'my super secret password'}
+                            className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
@@ -130,17 +150,22 @@ export default function Register() {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-400 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                        placeholder={'Confirm your password'}
-                        className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-lock-password-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="password_confirmation"
+                            type="password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
+                            autoComplete="new-password"
+                            onChange={(e) => setData('password_confirmation', e.target.value)}
+                            required
+                            placeholder={'Confirm your password'}
+                            className="peer w-full rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 
