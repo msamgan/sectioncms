@@ -1,5 +1,6 @@
 import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
+import PrimaryButton from '@/Components/PrimaryButton'
 import TextInput from '@/Components/TextInput'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Head, Link, useForm } from '@inertiajs/react'
@@ -200,10 +201,10 @@ export default function Register() {
                 </div>
 
                 <div className="mt-8">
-                    <button
+                    <PrimaryButton
                         type="submit"
                         disabled={processing || disabled}
-                        className="group relative flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70"
+                        className="group relative w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg"
                     >
                         <svg
                             className="mr-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
@@ -220,7 +221,7 @@ export default function Register() {
                             ></path>
                         </svg>
                         Register
-                    </button>
+                    </PrimaryButton>
                 </div>
 
                 <div className="mt-8 text-center">

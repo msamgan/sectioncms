@@ -92,7 +92,7 @@ export default function StatsCard({ label, count, icon }) {
                             className={`mr-0 ${isHovered ? 'scale-110' : ''} transition-transform duration-300`}
                         />
                     </div>
-                    <h3 className={`font-bold text-2xl m-0 ${getTextColor()} transition-all duration-300 ml-10`}>
+                    <h3 className={`font-bold text-2xl m-0 ${getTextColor()} transition-all duration-300 ml-1`}>
                         {count}
                     </h3>
                 </div>
