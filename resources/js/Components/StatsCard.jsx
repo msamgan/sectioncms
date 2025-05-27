@@ -76,7 +76,7 @@ export default function StatsCard({ label, count, icon }) {
     return (
         <div
             className={`bg-gradient-to-br ${getGradientColor()} rounded-xl h-full border border-gray-100
-                      ${isHovered ? 'shadow-md scale-105' : 'shadow-sm'}
+                      ${isHovered ? 'shadow-md' : 'shadow-sm'}
                       transition-all duration-300 ease-in-out overflow-hidden
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
             onMouseEnter={() => setIsHovered(true)}
@@ -89,7 +89,7 @@ export default function StatsCard({ label, count, icon }) {
                             size="sm"
                             bgColor={getIconColor()}
                             icon={icon}
-                            className={`mr-0 ${isHovered ? 'scale-110' : ''} transition-transform duration-300`}
+                            className={`mr-0 transition-transform duration-300`}
                         />
                     </div>
                     <h3 className={`font-bold text-2xl m-0 ${getTextColor()} transition-all duration-300 ml-1`}>
