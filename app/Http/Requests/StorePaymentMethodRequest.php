@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Enums\PermissionEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +15,11 @@ final class StorePaymentMethodRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        if (! $this->user()->can(PermissionEnum::PaymentMethodCreate->value)) {
+            return false;
+        }
+
+        return (bool) $this->user()->isBusiness();
     }
 
     /**
