@@ -7,7 +7,7 @@ import usePermissions from '@/Hooks/usePermissions'
 import { moduleConstants } from '@/Utils/constants.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { paymentMethods as _paymentMethods, destroy, updateDefault } from '@actions/PaymentMethodController.js'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import { useEffect, useState } from 'react'
@@ -147,7 +147,17 @@ export default function Index({ publishableKey, clientSecret }) {
                             Manage your payment methods and set your preferred default payment option.
                         </span>
                     }
-                    action={''}
+                    action={
+                        <Link
+                            href={route('dashboard')}
+                            className="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                        >
+                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Back to Dashboard
+                        </Link>
+                    }
                 ></PageHeader>
             </div>
 
