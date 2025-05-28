@@ -50,7 +50,7 @@ final class PaymentMethodController extends Controller
         try {
             $user->addPaymentMethod($paymentMethod);
         } catch (ApiErrorException $e) {
-            throw new Error('Invalid payment method or already exists: ' . $e->getMessage());
+            throw new Error('Invalid payment method or already exists: ' . $e->getMessage(), $e->getCode(), $e);
         }
 
         UserCard::query()->create([
@@ -94,8 +94,6 @@ final class PaymentMethodController extends Controller
 
     /**
      * Get all payment methods for the authenticated user.
-     *
-     * @throws ApiErrorException
      */
     #[Action(middleware: ['auth'])]
     public function paymentMethods(Request $request)
@@ -109,13 +107,11 @@ final class PaymentMethodController extends Controller
         $defaultPaymentMethod = $user->defaultPaymentMethod();
 
         // Mark default payment method
-        $paymentMethods = collect($paymentMethods)->map(function ($method) use ($defaultPaymentMethod) {
+        return collect($paymentMethods)->map(function ($method) use ($defaultPaymentMethod) {
             $method->isDefault = $defaultPaymentMethod?->id === $method->id;
 
             return $method;
         });
-
-        return $paymentMethods;
     }
 
     /**

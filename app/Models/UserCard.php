@@ -19,16 +19,19 @@ final class UserCard extends Model
         'metadata',
     ];
 
-    protected $casts = [
-        'metadata' => 'array',
-        'is_default' => 'boolean',
-    ];
-
     /**
      * Get the user that owns the card.
      */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'metadata' => 'array',
+            'is_default' => 'boolean',
+        ];
     }
 }

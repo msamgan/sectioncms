@@ -4,8 +4,9 @@ import { usePage } from '@inertiajs/react'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { useState } from 'react'
 
-export default function StripeForm({ clientSecret }) {
+export default function StripeForm({ clientSecret, onSuccess }) {
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
     const { auth } = usePage().props
 
     const stripe = useStripe()
@@ -18,6 +19,7 @@ export default function StripeForm({ clientSecret }) {
         }
 
         setLoading(true)
+        setError(null)
 
         stripe
             .confirmCardSetup(clientSecret, {
@@ -30,11 +32,11 @@ export default function StripeForm({ clientSecret }) {
                 },
             })
             .then((result) => {
-                setLoading(false)
-
                 if (result.error) {
                     // Show error to your customer (e.g., insufficient funds)
                     console.error(result.error.message)
+                    setError(result.error.message)
+                    setLoading(false)
                 } else {
                     // The setup has succeeded. You can now use the payment method.
                     console.log('Payment method added successfully:', result.setupIntent.payment_method)
@@ -45,9 +47,18 @@ export default function StripeForm({ clientSecret }) {
                                 is_default: true,
                             },
                         })
-                        .then()
+                        .then(() => {
+                            // Clear the card element
+                            elements.getElement('card').clear()
+
+                            // Call the onSuccess callback if provided
+                            if (onSuccess && typeof onSuccess === 'function') {
+                                onSuccess()
+                            }
+                        })
                         .catch((error) => {
                             console.error('Error storing payment method:', error)
+                            setError(error.message || 'Failed to store payment method')
                         })
                         .finally(() => {
                             setLoading(false)
@@ -56,14 +67,38 @@ export default function StripeForm({ clientSecret }) {
             })
             .catch((error) => {
                 setLoading(false)
+                setError(error.message || 'An unexpected error occurred')
                 console.error('Error confirming card setup:', error)
             })
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <CardElement />
-            <PrimaryButton className={'w-full mt-4'}>{loading ? 'Processing...' : 'Add Payment Method'}</PrimaryButton>
+            <div className="p-4 border rounded-md bg-gray-50">
+                <CardElement
+                    className="p-2"
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                        },
+                    }}
+                />
+            </div>
+
+            {error && <div className="mt-2 text-sm text-red-600">{error}</div>}
+
+            <PrimaryButton className={'w-full mt-4'} disabled={loading}>
+                {loading ? 'Processing...' : 'Add Payment Method'}
+            </PrimaryButton>
         </form>
     )
 }
