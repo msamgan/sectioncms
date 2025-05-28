@@ -66,14 +66,13 @@ final class PaymentMethodController extends Controller
 
     /**
      * Remove the specified payment method.
-     *
-     * @throws ApiErrorException
      */
     #[Action(method: 'delete', middleware: ['auth'])]
     public function destroy(Request $request): void
     {
         $request->validate([
             'payment_method' => 'required|string',
+            'password' => ['required', 'string', 'max:255', 'current_password'],
         ]);
 
         $user = $request->user();
@@ -94,7 +93,7 @@ final class PaymentMethodController extends Controller
      * Get all payment methods for the authenticated user.
      */
     #[Action(middleware: ['auth'])]
-    public function paymentMethods(Request $request)
+    public function paymentMethods(Request $request): array
     {
         $user = $request->user();
 

@@ -34,7 +34,6 @@ export default function Index({ publishableKey, clientSecret }) {
             setPaymentMethods(response.payment_methods)
             setDefaultPaymentMethod(response.default_payment_method)
         } catch (error) {
-            console.error('Error fetching payment methods:', error)
             setNotification({
                 type: 'error',
                 message: 'Failed to load payment methods',
@@ -60,7 +59,6 @@ export default function Index({ publishableKey, clientSecret }) {
             // Refresh payment methods
             fetchPaymentMethods().then()
         } catch (error) {
-            console.error('Error updating default payment method:', error)
             setNotification({
                 type: 'error',
                 message: error.message || 'Failed to update default payment method',
@@ -134,7 +132,7 @@ export default function Index({ publishableKey, clientSecret }) {
                 <PageHeader
                     title={
                         <div className="flex items-center">
-                            <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon="credit-card" />
+                            <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon="ri-bank-card-line" />
                             <span className="text-2xl font-bold text-gray-900">Payment Methods</span>
                         </div>
                     }
@@ -183,7 +181,9 @@ export default function Index({ publishableKey, clientSecret }) {
                                                 />
                                             </svg>
                                         </div>
-                                        <p className="mt-4 text-base font-medium text-gray-600">Loading payment methods...</p>
+                                        <p className="mt-4 text-base font-medium text-gray-600">
+                                            Loading payment methods...
+                                        </p>
                                     </div>
                                 </div>
                             ) : paymentMethods.length === 0 ? (
@@ -203,16 +203,19 @@ export default function Index({ publishableKey, clientSecret }) {
                                             />
                                         </svg>
                                     </div>
-                                    <h3 className="mt-2 text-lg font-semibold text-gray-900">No payment methods found</h3>
+                                    <h3 className="mt-2 text-lg font-semibold text-gray-900">
+                                        No payment methods found
+                                    </h3>
                                     <p className="mt-3 text-base text-gray-600 max-w-md mx-auto mb-6">
-                                        Add your first payment method to start making secure payments for your subscriptions and services.
+                                        Add your first payment method to start making secure payments for your
+                                        subscriptions and services.
                                     </p>
                                 </div>
                             ) : (
                                 <div className="space-y-5 mb-6">
                                     {paymentMethods.map((method) => {
-                                        const isDefault = method.id === defaultPaymentMethod.id;
-                                        const cardBrandIcon = `https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/${method.card.brand}.svg`;
+                                        const isDefault = method.id === defaultPaymentMethod.id
+                                        const cardBrandIcon = `https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/${method.card.brand}.svg`
 
                                         return (
                                             <div
@@ -225,7 +228,9 @@ export default function Index({ publishableKey, clientSecret }) {
                                             >
                                                 <div className="flex items-center">
                                                     <div className="h-12 w-12 rounded-lg flex items-center justify-center bg-white border border-gray-200 p-1">
-                                                        {['visa', 'mastercard', 'amex', 'discover'].includes(method.card.brand) ? (
+                                                        {['visa', 'mastercard', 'amex', 'discover'].includes(
+                                                            method.card.brand,
+                                                        ) ? (
                                                             <img
                                                                 src={cardBrandIcon}
                                                                 alt={method.card.brand}
@@ -250,7 +255,8 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     <div className="ml-4">
                                                         <div className="flex items-center">
                                                             <p className="text-base font-semibold text-gray-800">
-                                                                {method.card.brand.charAt(0).toUpperCase() + method.card.brand.slice(1)}{' '}
+                                                                {method.card.brand.charAt(0).toUpperCase() +
+                                                                    method.card.brand.slice(1)}{' '}
                                                                 •••• {method.card.last4}
                                                             </p>
                                                             {isDefault && (
@@ -302,7 +308,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                                             Set Default
                                                         </button>
                                                     )}
-                                                    {canDeletePaymentMethod(method) ? (
+                                                    {canDeletePaymentMethod(method) && !isDefault ? (
                                                         <DeleteEntityForm
                                                             action={destroy.route({ payment_method: method.id })}
                                                             refresh={fetchPaymentMethods}
@@ -312,7 +318,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     )}
                                                 </div>
                                             </div>
-                                        );
+                                        )
                                     })}
                                 </div>
                             )}
@@ -341,7 +347,8 @@ export default function Index({ publishableKey, clientSecret }) {
                         <div className="p-6">
                             <div className="mb-6">
                                 <p className="text-gray-700 mb-4">
-                                    Add a new payment method to your account for seamless transactions and subscription management.
+                                    Add a new payment method to your account for seamless transactions and subscription
+                                    management.
                                 </p>
                                 <div className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100 text-sm text-blue-700 mb-6">
                                     <svg

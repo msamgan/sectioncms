@@ -2,7 +2,7 @@ import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import { store } from '@actions/PaymentMethodController.js'
 import { usePage } from '@inertiajs/react'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function StripeForm({ clientSecret, onSuccess }) {
     const [loading, setLoading] = useState(false)
@@ -48,12 +48,10 @@ export default function StripeForm({ clientSecret, onSuccess }) {
             .then((result) => {
                 if (result.error) {
                     // Show error to your customer (e.g., insufficient funds)
-                    console.error(result.error.message)
                     setError(result.error.message)
                     setLoading(false)
                 } else {
                     // The setup has succeeded. You can now use the payment method.
-                    console.log('Payment method added successfully:', result.setupIntent.payment_method)
                     store
                         .call({
                             data: {
@@ -72,7 +70,6 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                             }
                         })
                         .catch((error) => {
-                            console.error('Error storing payment method:', error)
                             setError(error.message || 'Failed to store payment method')
                         })
                         .finally(() => {
@@ -83,7 +80,6 @@ export default function StripeForm({ clientSecret, onSuccess }) {
             .catch((error) => {
                 setLoading(false)
                 setError(error.message || 'An unexpected error occurred')
-                console.error('Error confirming card setup:', error)
             })
     }
 
@@ -91,8 +87,8 @@ export default function StripeForm({ clientSecret, onSuccess }) {
         { name: 'visa', src: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/visa.svg' },
         { name: 'mastercard', src: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/mastercard.svg' },
         { name: 'amex', src: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/amex.svg' },
-        { name: 'discover', src: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/discover.svg' }
-    ];
+        { name: 'discover', src: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/min/flat/discover.svg' },
+    ]
 
     return (
         <form onSubmit={handleSubmit} className="w-full">
@@ -100,24 +96,12 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                 <div className="p-6 border rounded-lg bg-white shadow-md hover:shadow-lg transition-all duration-300">
                     <div className="mb-5">
                         <label className="block text-lg font-semibold text-gray-800 mb-2">Card Information</label>
-                        <p className="text-sm text-gray-600 mb-4">Enter your card details to securely save your payment method.</p>
+                        <p className="text-sm text-gray-600 mb-4">
+                            Enter your card details to securely save your payment method.
+                        </p>
                     </div>
 
                     <div className="mb-6">
-                        <div className="flex justify-between items-center mb-2">
-                            <label className="block text-sm font-medium text-gray-700">Card Details</label>
-                            <div className="flex space-x-2">
-                                {cardBrands.map(brand => (
-                                    <img
-                                        key={brand.name}
-                                        src={brand.src}
-                                        alt={brand.name}
-                                        className="h-6 w-auto"
-                                        title={brand.name.charAt(0).toUpperCase() + brand.name.slice(1)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
                         <div className="card-element-container">
                             <CardElement
                                 className="p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-gray-50 hover:bg-white"
@@ -146,6 +130,19 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                                 }}
                             />
                         </div>
+                        <div className="flex justify-end items-center mt-2">
+                            <div className="flex space-x-2">
+                                {cardBrands.map((brand) => (
+                                    <img
+                                        key={brand.name}
+                                        src={brand.src}
+                                        alt={brand.name}
+                                        className="h-6 w-auto"
+                                        title={brand.name.charAt(0).toUpperCase() + brand.name.slice(1)}
+                                    />
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     <div className="flex items-center p-3 bg-blue-50 rounded-md border border-blue-100 text-sm text-blue-700">
@@ -162,7 +159,9 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                                 d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                             />
                         </svg>
-                        <span>Your payment information is encrypted and secure. We never store your full card details.</span>
+                        <span>
+                            Your payment information is encrypted and secure. We never store your full card details.
+                        </span>
                     </div>
                 </div>
             </div>
@@ -184,19 +183,16 @@ export default function StripeForm({ clientSecret, onSuccess }) {
             {success && (
                 <div className="mt-4 flex items-start text-sm text-green-600 bg-green-50 p-4 rounded-md border border-green-200 shadow-sm">
                     <svg className="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span className="font-medium">Payment method added successfully!</span>
                 </div>
             )}
 
             <PrimaryButton
-                className={'w-full mt-5 py-3.5 text-base font-medium flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300'}
+                className={
+                    'w-full mt-5 py-3.5 text-base font-medium flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300'
+                }
                 disabled={loading}
             >
                 {loading ? (
