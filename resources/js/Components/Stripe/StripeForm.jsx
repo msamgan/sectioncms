@@ -73,31 +73,101 @@ export default function StripeForm({ clientSecret, onSuccess }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="p-4 border rounded-md bg-gray-50">
-                <CardElement
-                    className="p-2"
-                    options={{
-                        style: {
-                            base: {
-                                fontSize: '16px',
-                                color: '#424770',
-                                '::placeholder': {
-                                    color: '#aab7c4',
+        <form onSubmit={handleSubmit} className="w-full">
+            <div className="relative">
+                <div className="p-5 border rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-200">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Card Information</label>
+                    <CardElement
+                        className="p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    fontWeight: '500',
+                                    fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+                                    color: '#1f2937',
+                                    '::placeholder': {
+                                        color: '#9ca3af',
+                                        fontWeight: '400',
+                                    },
+                                    ':-webkit-autofill': {
+                                        color: '#1f2937',
+                                    },
+                                },
+                                invalid: {
+                                    color: '#ef4444',
+                                    iconColor: '#ef4444',
                                 },
                             },
-                            invalid: {
-                                color: '#9e2146',
-                            },
-                        },
-                    }}
-                />
+                            hidePostalCode: true,
+                        }}
+                    />
+                    <div className="mt-4 flex items-center text-xs text-gray-500">
+                        <svg
+                            className="h-4 w-4 mr-1.5 text-gray-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                            />
+                        </svg>
+                        Your payment information is encrypted and secure
+                    </div>
+                </div>
             </div>
 
-            {error && <div className="mt-2 text-sm text-red-600">{error}</div>}
+            {error && (
+                <div className="mt-3 flex items-start text-sm text-red-600 bg-red-50 p-3 rounded-md border border-red-100">
+                    <svg className="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                    </svg>
+                    <span>{error}</span>
+                </div>
+            )}
 
-            <PrimaryButton className={'w-full mt-4'} disabled={loading}>
-                {loading ? 'Processing...' : 'Add Payment Method'}
+            <PrimaryButton className={'w-full mt-4 py-3 text-base flex items-center justify-center'} disabled={loading}>
+                {loading ? (
+                    <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                            ></circle>
+                            <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                        </svg>
+                        Processing...
+                    </>
+                ) : (
+                    <>
+                        <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                            />
+                        </svg>
+                        Add Payment Method
+                    </>
+                )}
             </PrimaryButton>
         </form>
     )
