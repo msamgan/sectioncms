@@ -54,14 +54,17 @@ final class PaymentMethodController extends Controller
 
         // Attach the payment method to the user
         try {
-            $createPaymentMethod->handle($request->validated());
-            $notifyUser->handle(new PaymentMethodCreated());
+            $paymentMethod = $createPaymentMethod->handle($request->validated());
+
+            $notifyUser->handle(new PaymentMethodCreated($paymentMethod));
 
             UserCard::query()->create([
                 'user_id' => $user->id,
                 'stripe_payment_method_id' => $request->get('payment_method'),
                 'metadata' => $user->findPaymentMethod($request->get('payment_method')),
             ]);
+
+            auth()->user()->updateDefaultPaymentMethod($request->get('payment_method'));
 
             DB::commit();
         } catch (Exception $e) {
@@ -73,10 +76,10 @@ final class PaymentMethodController extends Controller
     #[Action(method: 'delete', middleware: ['auth', 'check_has_business', 'can:payment_method.delete'])]
     public function destroy(DeletePaymentMethodRequest $request, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new PaymentMethodDeleted());
-
-        // Delete the payment method
         $paymentMethod = auth()->user()->findPaymentMethod($request->get('payment_method'));
+
+        $notifyUser->handle(new PaymentMethodDeleted($paymentMethod));
+
         $paymentMethod->delete();
     }
 

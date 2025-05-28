@@ -2,8 +2,8 @@ import PageHeader from '@/Components/PageHeader.jsx'
 import StripeForm from '@/Components/Stripe/StripeForm.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
 import DeleteEntityForm from '@/Components/layout/DeleteEntityForm.jsx'
-import FullPage from '@/Layouts/FullPage.jsx'
 import usePermissions from '@/Hooks/usePermissions'
+import FullPage from '@/Layouts/FullPage.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { paymentMethods as _paymentMethods, destroy, updateDefault } from '@actions/PaymentMethodController.js'
@@ -152,8 +152,19 @@ export default function Index({ publishableKey, clientSecret }) {
                             href={route('dashboard')}
                             className="inline-flex items-center px-4 py-2 bg-indigo-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-indigo-700 focus:bg-indigo-700 active:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
                         >
-                            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            <svg
+                                className="w-4 h-4 mr-2"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                                ></path>
                             </svg>
                             Back to Dashboard
                         </Link>
@@ -244,18 +255,18 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     }`}
                                                 >
                                                     <div className="flex items-center">
-                                                        <div className="h-12 w-12 rounded-lg flex items-center justify-center bg-white border border-gray-200 p-1">
+                                                        <div className="h-12 w-12 rounded-lg flex items-center justify-center">
                                                             {['visa', 'mastercard', 'amex', 'discover'].includes(
                                                                 method.card.brand,
                                                             ) ? (
                                                                 <img
                                                                     src={cardBrandIcon}
                                                                     alt={method.card.brand}
-                                                                    className="h-8 w-auto"
+                                                                    className="h-6 w-8"
                                                                 />
                                                             ) : (
                                                                 <svg
-                                                                    className="h-6 w-6 text-gray-600"
+                                                                    className="h-6 w-8 text-gray-600"
                                                                     fill="none"
                                                                     viewBox="0 0 24 24"
                                                                     stroke="currentColor"
@@ -366,8 +377,8 @@ export default function Index({ publishableKey, clientSecret }) {
                             <div className="p-6">
                                 <div className="mb-6">
                                     <p className="text-gray-700 mb-4">
-                                        Add a new payment method to your account for seamless transactions and subscription
-                                        management.
+                                        Add a new payment method to your account for seamless transactions and
+                                        subscription management.
                                     </p>
                                     <div className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100 text-sm text-blue-700 mb-6">
                                         <svg

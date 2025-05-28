@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Permission;
 
 final class PermissionController extends Controller
 {
-    private array $excludedModules = ['business'];
+    private array $excludedModules = ['business', 'payment_method'];
 
     #[Action(middleware: ['auth'])]
     public function permissions(): Collection|HigherOrderCollectionProxy

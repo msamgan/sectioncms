@@ -9,6 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Laravel\Cashier\PaymentMethod;
 
 final class PaymentMethodCreated extends Notification implements ShouldQueue
 {
@@ -18,7 +19,9 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct() {}
+    public function __construct(
+        private PaymentMethod $paymentMethod
+    ) {}
 
     /**
      * Get the notification's delivery channels.
@@ -35,10 +38,12 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
+        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
+
         $notification = $this->notificationGenerator(
             notifiable: $notifiable,
             entity: 'Payment Method',
-            entityName: 'Payment Method',
+            entityName: $lastFourDigits
         );
 
         return (new MailMessage)
@@ -56,10 +61,12 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
+        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
+
         $notification = $this->notificationGenerator(
             notifiable: $notifiable,
             entity: 'Payment Method',
-            entityName: 'Payment Method',
+            entityName: $lastFourDigits
         );
 
         return [
