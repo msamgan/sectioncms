@@ -1,6 +1,7 @@
 import Footer from '@/Components/layout/Footer.jsx'
 import TopHeader from '@/Components/layout/TopHeader.jsx'
 import TopMenu from '@/Components/layout/TopMenu.jsx'
+import StatusBar from '@/Components/StatusBar.jsx'
 import { usePage } from '@inertiajs/react'
 import { useEffect } from 'react'
 
@@ -33,6 +34,9 @@ export default function Master({ children, hideMenu = false }) {
                         </div>
                     </div>
                 )}
+
+                {/* Status Bar for important notifications */}
+                <StatusBar />
 
                 {/* Main Content Area with improved spacing */}
                 <main className="flex-grow w-full mt-12 mb-12">

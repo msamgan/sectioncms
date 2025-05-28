@@ -10,7 +10,7 @@ export default function EditActionButton({ module, onClick }) {
     return can([permissions[module].view, permissions[module].update]) ? (
         <OffCanvasButton
             onClick={onClick}
-            className={'text-left px-4 py-2 hover:bg-gray-100'}
+            className={'text-left hover:bg-gray-100'}
             id={cases.camelCase + 'FormCanvas'}
         >
             {can(permissions[module].update) ? (

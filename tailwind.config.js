@@ -15,6 +15,22 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            fontSize: {
+                'xs': ['0.75rem', { lineHeight: '1rem' }],
+                'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+                'base': ['1rem', { lineHeight: '1.5rem' }],
+                'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+                'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+                '2xl': ['1.5rem', { lineHeight: '2rem' }],
+            },
+            spacing: {
+                'input-height': '2.5rem', // Consistent height for inputs and buttons
+                'input-padding-x': '1rem', // Consistent horizontal padding
+                'input-padding-y': '0.5rem', // Consistent vertical padding
+            },
+            borderRadius: {
+                'input': '0.375rem', // Consistent border radius for inputs and buttons
+            },
         },
         colors: {
             primary: "#3B82F6", // blue-500

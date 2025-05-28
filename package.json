@@ -29,6 +29,8 @@
         "vite-plugin-run": "^0.6.1"
     },
     "dependencies": {
+        "@stripe/react-stripe-js": "^3.7.0",
+        "@stripe/stripe-js": "^7.3.1",
         "chart.js": "^4.4.9",
         "filepond-plugin-image-exif-orientation": "^1.0.11",
         "filepond-plugin-image-preview": "^4.6.12",

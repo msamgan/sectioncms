@@ -51,7 +51,7 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
     return (
         <section className={`${className}`}>
             <button
-                className="group text-white cursor-pointer transition-all duration-300 bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-md px-4 py-2 shadow-sm hover:shadow-md inline-flex items-center"
+                className="group text-white cursor-pointer transition-all duration-300 bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 rounded-input h-input-height px-input-padding-x py-input-padding-y text-sm shadow-sm hover:shadow-md inline-flex items-center"
                 onClick={confirmUserDeletion}
             >
                 <i className="ri-delete-bin-7-line mr-2 transition-transform duration-300 group-hover:rotate-12"></i>
@@ -117,15 +117,12 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
 
                     {/* Action Buttons */}
                     <div className="bg-gray-50 px-6 py-4 flex justify-end space-x-3 rounded-b-lg border-t border-gray-100">
-                        <SecondaryButton
-                            onClick={closeModal}
-                            className="px-4 py-2 transition-all duration-200 hover:bg-gray-200"
-                        >
+                        <SecondaryButton onClick={closeModal} className="transition-all duration-200 hover:bg-gray-200">
                             <i className="ri-close-line mr-1"></i> Cancel
                         </SecondaryButton>
 
                         <DangerButton
-                            className="px-4 py-2 transition-all duration-300 hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                            className="transition-all duration-300 hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
                             disabled={processing}
                         >
                             <i className="ri-delete-bin-7-line mr-1"></i>

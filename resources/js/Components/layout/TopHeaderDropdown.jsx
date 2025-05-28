@@ -1,5 +1,6 @@
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.jsx'
 import usePermissions from '@/Hooks/usePermissions'
+import { permissions } from '@/Utils/permissions/index.js'
 import { useState } from 'react'
 
 export default function TopHeaderDropdown({ user }) {
@@ -52,6 +53,14 @@ export default function TopHeaderDropdown({ user }) {
                             <span>Settings</span>
                         </div>
                     </ResponsiveNavLink>
+                    {can(permissions.payment_method.list) && (
+                        <ResponsiveNavLink className="px-2" href={route('payment-methods.index')}>
+                            <div className="flex items-center">
+                                <i className="ri-bank-card-line mr-3"></i>
+                                <span>Payment Methods</span>
+                            </div>
+                        </ResponsiveNavLink>
+                    )}
                 </li>
                 {/*<li>
                             <a className="block px-4 py-2 hover:bg-gray-50" href="#">

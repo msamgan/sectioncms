@@ -1,3 +1,5 @@
+import NavButton from '@/Components/NavButton.jsx'
+import TabButton from '@/Components/TabButton.jsx'
 import Master from '@/Layouts/Master.jsx'
 import AccessToken from '@/Pages/Settings/Partials/AccessToken.jsx'
 import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
@@ -20,30 +22,22 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                     <div className="flex flex-col justify-between mb-4 lg:mb-0">
                         <ul className="flex flex-col space-y-2">
                             <li>
-                                <button
-                                    className={`flex items-center px-5 py-3 rounded-md text-sm font-medium ${
-                                        activeTabGroup === 'business'
-                                            ? 'bg-blue-500 text-white'
-                                            : 'text-gray-700 hover:bg-gray-100'
-                                    } transition-colors`}
+                                <NavButton
+                                    active={activeTabGroup === 'business'}
                                     onClick={() => setActiveTabGroup('business')}
                                 >
                                     <i className="ri-store-2-line mr-3"></i>
                                     <span>Business Settings</span>
-                                </button>
+                                </NavButton>
                             </li>
                             <li>
-                                <button
-                                    className={`flex items-center px-5 py-3 rounded-md text-sm font-medium ${
-                                        activeTabGroup === 'profile'
-                                            ? 'bg-blue-500 text-white'
-                                            : 'text-gray-700 hover:bg-gray-100'
-                                    } transition-colors`}
+                                <NavButton
+                                    active={activeTabGroup === 'profile'}
                                     onClick={() => setActiveTabGroup('profile')}
                                 >
                                     <i className="ri-user-line mr-3"></i>
                                     <span>Profile Settings</span>
-                                </button>
+                                </NavButton>
                             </li>
                         </ul>
                     </div>
@@ -58,36 +52,28 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     role="tablist"
                                 >
                                     <li className="mr-6">
-                                        <button
+                                        <TabButton
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
-                                                activeBusinessTab === 'general'
-                                                    ? 'text-primary border-primary'
-                                                    : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
-                                            }`}
+                                            active={activeBusinessTab === 'general'}
                                             role="tab"
                                             onClick={() => setActiveBusinessTab('general')}
                                             aria-selected={activeBusinessTab === 'general'}
                                         >
                                             <i className="ri-settings-4-line mr-3"></i>
                                             Business Information
-                                        </button>
+                                        </TabButton>
                                     </li>
                                     <li className="mr-6">
-                                        <button
+                                        <TabButton
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
-                                                activeBusinessTab === 'token'
-                                                    ? 'text-primary border-primary'
-                                                    : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
-                                            }`}
+                                            active={activeBusinessTab === 'token'}
                                             role="tab"
                                             onClick={() => setActiveBusinessTab('token')}
                                             aria-selected={activeBusinessTab === 'token'}
                                         >
                                             <i className="ri-key-line mr-3"></i>
                                             Access Token
-                                        </button>
+                                        </TabButton>
                                     </li>
                                 </ul>
 
@@ -97,36 +83,28 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     role="tablist"
                                 >
                                     <li className="mr-6">
-                                        <button
+                                        <TabButton
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
-                                                activeProfileTab === 'profile'
-                                                    ? 'text-primary border-primary'
-                                                    : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
-                                            }`}
+                                            active={activeProfileTab === 'profile'}
                                             role="tab"
                                             onClick={() => setActiveProfileTab('profile')}
                                             aria-selected={activeProfileTab === 'profile'}
                                         >
                                             <i className="ri-user-line mr-3"></i>
                                             Profile Information
-                                        </button>
+                                        </TabButton>
                                     </li>
                                     <li className="mr-6">
-                                        <button
+                                        <TabButton
                                             type="button"
-                                            className={`inline-flex items-center px-5 py-3 text-sm font-medium border-b-2 transition-all duration-200 ease-in-out ${
-                                                activeProfileTab === 'password'
-                                                    ? 'text-primary border-primary'
-                                                    : 'text-gray-500 border-transparent hover:text-gray-700 hover:border-gray-300'
-                                            }`}
+                                            active={activeProfileTab === 'password'}
                                             role="tab"
                                             onClick={() => setActiveProfileTab('password')}
                                             aria-selected={activeProfileTab === 'password'}
                                         >
                                             <i className="ri-lock-line mr-3"></i>
                                             Password
-                                        </button>
+                                        </TabButton>
                                     </li>
                                 </ul>
                             </div>

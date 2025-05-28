@@ -1,6 +1,7 @@
 import Checkbox from '@/Components/Checkbox'
 import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
+import PrimaryButton from '@/Components/PrimaryButton'
 import TextInput from '@/Components/TextInput'
 import GuestLayout from '@/Layouts/GuestLayout'
 import { Head, Link, useForm } from '@inertiajs/react'
@@ -44,17 +45,19 @@ export default function Login({ status, canResetPassword }) {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-600 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-300 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        autoComplete="username"
-                        isFocused={true}
-                        onChange={(e) => setData('email', e.target.value)}
-                        placeholder={'awesome@awesomeness.com'}
-                        className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <TextInput
+                            id="email"
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            autoComplete="username"
+                            isFocused={true}
+                            onChange={(e) => setData('email', e.target.value)}
+                            placeholder={'awesome@awesomeness.com'}
+                            className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
@@ -65,16 +68,21 @@ export default function Login({ status, canResetPassword }) {
                         required={true}
                         className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-sm text-gray-600 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-blue-600 dark:bg-gray-800 dark:text-gray-300 peer-focus:dark:text-blue-500"
                     />
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        autoComplete="current-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        placeholder={'my super secret password'}
-                        className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white"
-                    />
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i className="ri-lock-line text-gray-500"></i>
+                        </div>
+                        <TextInput
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            autoComplete="current-password"
+                            onChange={(e) => setData('password', e.target.value)}
+                            placeholder={'my super secret password'}
+                            className="peer w-full rounded-lg border-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/20 dark:border-gray-500 dark:bg-gray-700 dark:text-white pl-10"
+                        />
+                    </div>
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
@@ -100,10 +108,10 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-8">
-                    <button
+                    <PrimaryButton
                         type="submit"
                         disabled={processing}
-                        className="group relative flex w-full transform items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-70"
+                        className="group relative w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-[1.02] hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg"
                     >
                         <svg
                             className="mr-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-12"
@@ -120,7 +128,7 @@ export default function Login({ status, canResetPassword }) {
                             ></path>
                         </svg>
                         Log in
-                    </button>
+                    </PrimaryButton>
                 </div>
 
                 <div className="mt-8 text-center">

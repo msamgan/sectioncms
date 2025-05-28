@@ -61,8 +61,8 @@ export default function CtaButton({
     // Size styles
     const sizeStyles = {
         sm: 'px-3 py-1.5 text-sm',
-        md: 'px-4 py-2 text-base',
-        lg: 'px-6 py-3 text-lg',
+        md: 'h-input-height px-input-padding-x py-input-padding-y text-sm',
+        lg: 'px-6 py-3 text-base',
     }
 
     // Color styles

@@ -26,6 +26,7 @@ export default function Notifications({ auth }) {
             medium: 'ri-file-list-line',
             login: 'ri-login-circle-line',
             logout: 'ri-logout-circle-line',
+            paymentmethod: 'ri-bank-card-line',
             default: 'ri-notification-2-line',
         }
 
@@ -51,6 +52,7 @@ export default function Notifications({ auth }) {
             medium: 'bg-purple-500',
             login: 'bg-green-500',
             logout: 'bg-red-500',
+            paymentmethod: 'bg-indigo-500',
             default: 'bg-blue-500',
         }
 
