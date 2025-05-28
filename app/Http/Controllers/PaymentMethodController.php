@@ -102,16 +102,13 @@ final class PaymentMethodController extends Controller
 
         // Get all payment methods
         $paymentMethods = $user->paymentMethods();
-
         // Get default payment method
         $defaultPaymentMethod = $user->defaultPaymentMethod();
 
-        // Mark default payment method
-        return collect($paymentMethods)->map(function ($method) use ($defaultPaymentMethod) {
-            $method->isDefault = $defaultPaymentMethod?->id === $method->id;
-
-            return $method;
-        });
+        return [
+            'payment_methods' => $paymentMethods,
+            'default_payment_method' => $defaultPaymentMethod,
+        ];
     }
 
     /**

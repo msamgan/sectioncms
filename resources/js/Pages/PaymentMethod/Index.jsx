@@ -13,13 +13,15 @@ import { useEffect, useState } from 'react'
 export default function Index({ publishableKey, clientSecret }) {
     const [stripePromise, setStripePromise] = useState(null)
     const [paymentMethods, setPaymentMethods] = useState([])
+    const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null)
     const [loading, setLoading] = useState(true)
     const [notification, setNotification] = useState(null)
     const fetchPaymentMethods = async () => {
         setLoading(true)
         try {
             const response = await _paymentMethods.data({})
-            setPaymentMethods(response)
+            setPaymentMethods(response.payment_methods)
+            setDefaultPaymentMethod(response.default_payment_method)
         } catch (error) {
             console.error('Error fetching payment methods:', error)
             setNotification({
@@ -45,7 +47,7 @@ export default function Index({ publishableKey, clientSecret }) {
             })
 
             // Refresh payment methods
-            fetchPaymentMethods()
+            fetchPaymentMethods().then()
         } catch (error) {
             console.error('Error updating default payment method:', error)
             setNotification({
@@ -75,7 +77,7 @@ export default function Index({ publishableKey, clientSecret }) {
         }
 
         loadStripeData().then()
-        fetchPaymentMethods()
+        fetchPaymentMethods().then()
     }, [])
 
     return (
@@ -222,7 +224,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     </p>
                                                 </div>
                                             </div>
-                                            {method.isDefault && (
+                                            {method.id === defaultPaymentMethod.id && (
                                                 <span className="inline-flex items-center mt-3 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
                                                     <svg
                                                         className="w-3.5 h-3.5 mr-1"
@@ -241,7 +243,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                             )}
                                         </div>
                                         <div className="flex space-x-3">
-                                            {!method.isDefault && (
+                                            {method.id !== defaultPaymentMethod.id && (
                                                 <button
                                                     onClick={() => handleSetAsDefault(method.id)}
                                                     className="text-sm px-4 py-2 rounded-md bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors duration-200 font-medium flex items-center"
