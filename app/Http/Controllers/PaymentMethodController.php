@@ -70,7 +70,7 @@ final class PaymentMethodController extends Controller
      * @throws ApiErrorException
      */
     #[Action(method: 'delete', middleware: ['auth'])]
-    public function destroy(Request $request)
+    public function destroy(Request $request): void
     {
         $request->validate([
             'payment_method' => 'required|string',
@@ -82,14 +82,12 @@ final class PaymentMethodController extends Controller
         // Check if this is the default payment method
         $defaultPaymentMethod = $user->defaultPaymentMethod();
         if ($defaultPaymentMethod && $defaultPaymentMethod->id === $paymentMethodId) {
-            return response()->json(['message' => 'Cannot delete default payment method'], 422);
+            return;
         }
 
         // Delete the payment method
         $paymentMethod = $user->findPaymentMethod($paymentMethodId);
         $paymentMethod->delete();
-
-        return response()->json(['message' => 'Payment method deleted successfully']);
     }
 
     /**

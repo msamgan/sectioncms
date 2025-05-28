@@ -2,12 +2,24 @@ import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import { store } from '@actions/PaymentMethodController.js'
 import { usePage } from '@inertiajs/react'
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function StripeForm({ clientSecret, onSuccess }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [success, setSuccess] = useState(false)
+
+    // Auto-hide error and success messages after 2 seconds
+    useEffect(() => {
+        if (error || success) {
+            const timer = setTimeout(() => {
+                if (error) setError(null)
+                if (success) setSuccess(false)
+            }, 2000)
+
+            return () => clearTimeout(timer)
+        }
+    }, [error, success])
     const { auth } = usePage().props
 
     const stripe = useStripe()

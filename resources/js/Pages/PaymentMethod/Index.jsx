@@ -16,6 +16,17 @@ export default function Index({ publishableKey, clientSecret }) {
     const [defaultPaymentMethod, setDefaultPaymentMethod] = useState(null)
     const [loading, setLoading] = useState(true)
     const [notification, setNotification] = useState(null)
+
+    // Auto-hide notifications after 2 seconds
+    useEffect(() => {
+        if (notification) {
+            const timer = setTimeout(() => {
+                setNotification(null)
+            }, 2000)
+
+            return () => clearTimeout(timer)
+        }
+    }, [notification])
     const fetchPaymentMethods = async () => {
         setLoading(true)
         try {
