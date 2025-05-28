@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\UserCard;
+use Error;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use Laravel\Cashier\Payment;
+use Laravel\Cashier\Exceptions\CustomerAlreadyCreated;
 use Msamgan\Lact\Attributes\Action;
 use Stripe\Exception\ApiErrorException;
 
@@ -20,33 +21,47 @@ final class PaymentMethodController extends Controller
     public function index(): Response
     {
         return Inertia::render('PaymentMethod/Index')->with([
-            'intent' => auth()->user()->createSetupIntent(),
+            'publishableKey' => config('cashier.key'),
+            'clientSecret' => auth()->user()->createSetupIntent()->client_secret,
         ]);
     }
 
     /**
      * Store a new payment method.
      *
-     * @throws ApiErrorException
+     * @throws CustomerAlreadyCreated
      */
     #[Action(method: 'post', middleware: ['auth'])]
-    public function store(Request $request)
+    public function store(Request $request): void
     {
         $request->validate([
             'payment_method' => 'required|string',
         ]);
 
         $user = $request->user();
+        $paymentMethod = $request->get('payment_method');
 
-        // Add the payment method to the user
-        $paymentMethod = $user->addPaymentMethod($request->payment_method);
-
-        // If this is the first payment method, make it the default
-        if (! $user->hasDefaultPaymentMethod()) {
-            $user->updateDefaultPaymentMethod($paymentMethod->id);
+        // if a user is not a stripe customer, create one
+        if (! $user->hasStripeId()) {
+            $user->createAsStripeCustomer();
         }
 
-        return $paymentMethod;
+        // Attach the payment method to the user
+        try {
+            $user->addPaymentMethod($paymentMethod);
+        } catch (ApiErrorException $e) {
+            throw new Error('Invalid payment method or already exists: ' . $e->getMessage());
+        }
+
+        UserCard::query()->create([
+            'user_id' => $user->id,
+            'stripe_payment_method_id' => $paymentMethod,
+            'metadata' => $user->findPaymentMethod($paymentMethod),
+        ]);
+
+        if (! $user->defaultPaymentMethod()) {
+            $user->updateDefaultPaymentMethod($paymentMethod);
+        }
     }
 
     /**
