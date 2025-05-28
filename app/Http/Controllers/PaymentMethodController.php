@@ -81,6 +81,9 @@ final class PaymentMethodController extends Controller
         $notifyUser->handle(new PaymentMethodDeleted($paymentMethod));
 
         $paymentMethod->delete();
+        UserCard::query()->where('stripe_payment_method_id', $request->get('payment_method'))
+            ->where('user_id', auth()->id())
+            ->delete();
     }
 
     /**
