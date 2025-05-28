@@ -6,6 +6,12 @@ namespace App\Enums;
 
 enum PermissionEnum: string
 {
+    case PaymentMethodList = 'payment_method.list';
+    case PaymentMethodCreate = 'payment_method.create';
+    case PaymentMethodView = 'payment_method.view';
+    case PaymentMethodUpdate = 'payment_method.update';
+    case PaymentMethodDelete = 'payment_method.delete';
+
     case LanguageList = 'language.list';
     case LanguageCreate = 'language.create';
     case LanguageView = 'language.view';
@@ -84,6 +90,12 @@ enum PermissionEnum: string
             self::LanguageView => 'can:language.view',
             self::LanguageUpdate => 'can:language.update',
             self::LanguageDelete => 'can:language.delete',
+
+            self::PaymentMethodList => 'can:payment_method.list',
+            self::PaymentMethodCreate => 'can:payment_method.create',
+            self::PaymentMethodView => 'can:payment_method.view',
+            self::PaymentMethodUpdate => 'can:payment_method.update',
+            self::PaymentMethodDelete => 'can:payment_method.delete',
         };
     }
 }

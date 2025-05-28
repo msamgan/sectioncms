@@ -4,14 +4,22 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\Notification\NotifyUser;
+use App\Actions\PaymentMethod\CreatePaymentMethod;
+use App\Http\Requests\DeletePaymentMethodRequest;
+use App\Http\Requests\StorePaymentMethodRequest;
 use App\Models\UserCard;
-use Error;
+use App\Notifications\PaymentMethodCreated;
+use App\Notifications\PaymentMethodDeleted;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 use Laravel\Cashier\Exceptions\CustomerAlreadyCreated;
 use Msamgan\Lact\Attributes\Action;
 use Stripe\Exception\ApiErrorException;
+use Throwable;
 
 final class PaymentMethodController extends Controller
 {
@@ -30,77 +38,58 @@ final class PaymentMethodController extends Controller
      * Store a new payment method.
      *
      * @throws CustomerAlreadyCreated
+     * @throws Exception|Throwable
      */
-    #[Action(method: 'post', middleware: ['auth'])]
-    public function store(Request $request): void
+    #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:payment_method.create'])]
+    public function store(StorePaymentMethodRequest $request, CreatePaymentMethod $createPaymentMethod, NotifyUser $notifyUser): void
     {
-        $request->validate([
-            'payment_method' => 'required|string',
-        ]);
-
         $user = $request->user();
-        $paymentMethod = $request->get('payment_method');
 
         // if a user is not a stripe customer, create one
         if (! $user->hasStripeId()) {
             $user->createAsStripeCustomer();
         }
 
+        DB::beginTransaction();
+
         // Attach the payment method to the user
         try {
-            $user->addPaymentMethod($paymentMethod);
-        } catch (ApiErrorException $e) {
-            throw new Error('Invalid payment method or already exists: ' . $e->getMessage(), $e->getCode(), $e);
-        }
+            $createPaymentMethod->handle($request->validated());
+            $notifyUser->handle(new PaymentMethodCreated());
 
-        UserCard::query()->create([
-            'user_id' => $user->id,
-            'stripe_payment_method_id' => $paymentMethod,
-            'metadata' => $user->findPaymentMethod($paymentMethod),
-        ]);
+            UserCard::query()->create([
+                'user_id' => $user->id,
+                'stripe_payment_method_id' => $request->get('payment_method'),
+                'metadata' => $user->findPaymentMethod($request->get('payment_method')),
+            ]);
 
-        if (! $user->defaultPaymentMethod()) {
-            $user->updateDefaultPaymentMethod($paymentMethod);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
     }
 
-    /**
-     * Remove the specified payment method.
-     */
-    #[Action(method: 'delete', middleware: ['auth'])]
-    public function destroy(Request $request): void
+    #[Action(method: 'delete', middleware: ['auth', 'check_has_business', 'can:payment_method.delete'])]
+    public function destroy(DeletePaymentMethodRequest $request, NotifyUser $notifyUser): void
     {
-        $request->validate([
-            'payment_method' => 'required|string',
-            'password' => ['required', 'string', 'max:255', 'current_password'],
-        ]);
-
-        $user = $request->user();
-        $paymentMethodId = $request->payment_method;
-
-        // Check if this is the default payment method
-        $defaultPaymentMethod = $user->defaultPaymentMethod();
-        if ($defaultPaymentMethod && $defaultPaymentMethod->id === $paymentMethodId) {
-            return;
-        }
+        $notifyUser->handle(new PaymentMethodDeleted());
 
         // Delete the payment method
-        $paymentMethod = $user->findPaymentMethod($paymentMethodId);
+        $paymentMethod = auth()->user()->findPaymentMethod($request->get('payment_method'));
         $paymentMethod->delete();
     }
 
     /**
      * Get all payment methods for the authenticated user.
      */
-    #[Action(middleware: ['auth'])]
-    public function paymentMethods(Request $request): array
+    #[Action(middleware: ['auth', 'check_has_business', 'can:payment_method.list'])]
+    public function paymentMethods(): array
     {
-        $user = $request->user();
-
         // Get all payment methods
-        $paymentMethods = $user->paymentMethods();
+        $paymentMethods = auth()->user()->paymentMethods();
         // Get default payment method
-        $defaultPaymentMethod = $user->defaultPaymentMethod();
+        $defaultPaymentMethod = auth()->user()->defaultPaymentMethod();
 
         return [
             'payment_methods' => $paymentMethods,
