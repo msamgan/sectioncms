@@ -8,6 +8,7 @@ use App\Concerns\ModelFunctions;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Cashier\Billable;
 use Random\RandomException;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -17,6 +18,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 final class Business extends Model
 {
+    use Billable;
     use HasFactory;
     use LogsActivity;
     use ModelFunctions;

@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Chargers\LanguageCharger;
+use App\Models\Business;
 use Illuminate\Console\Command;
+use Laravel\Cashier\Exceptions\IncompletePayment;
 
 final class DailyChargeCalculator extends Command
 {
@@ -27,15 +29,20 @@ final class DailyChargeCalculator extends Command
 
     /**
      * Execute the console command.
+     *
+     * @throws IncompletePayment
      */
     public function handle(): int
     {
         $businessId = (int) $this->argument('businessId');
+
         if ($businessId <= 0) {
             $this->error('Invalid business ID provided.');
 
             return self::FAILURE;
         }
+
+        $business = Business::query()->find($businessId);
 
         $languageCharger = new LanguageCharger(businessId: $businessId);
 
@@ -51,16 +58,8 @@ final class DailyChargeCalculator extends Command
         $changesInDollars = number_format($changes / 100, 2);
 
         $totalCharge = $chargeableUnits * $changes;
-        $totalChargeInDollars = number_format($totalCharge / 100, 2);
 
-        $this->invoiceLineItems[] = [
-            'type' => 'language',
-            'unit' => $languageCharger->getUnit(),
-            'quantity' => $chargeableUnits,
-            'amount' => $changesInDollars,
-            'total' => $totalChargeInDollars,
-            'description' => "Charge for {$chargeableUnits} additional language(s) at \${$changesInDollars} each.",
-        ];
+        $business->invoiceFor("Charge for {$chargeableUnits} additional language(s) at \${$changesInDollars} each.", $totalCharge);
 
         return self::SUCCESS;
     }

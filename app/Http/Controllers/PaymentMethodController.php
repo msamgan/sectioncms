@@ -30,7 +30,7 @@ final class PaymentMethodController extends Controller
     {
         return Inertia::render('PaymentMethod/Index')->with([
             'publishableKey' => config('cashier.key'),
-            'clientSecret' => auth()->user()->createSetupIntent()->client_secret,
+            'clientSecret' => auth()->user()->key('business')->createSetupIntent()->client_secret,
         ]);
     }
 
@@ -43,11 +43,11 @@ final class PaymentMethodController extends Controller
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:payment_method.create'])]
     public function store(StorePaymentMethodRequest $request, CreatePaymentMethod $createPaymentMethod, NotifyUser $notifyUser): void
     {
-        $user = $request->user();
+        $business = auth()->user()->key('business');
 
         // if a user is not a stripe customer, create one
-        if (! $user->hasStripeId()) {
-            $user->createAsStripeCustomer();
+        if (! $business->hasStripeId()) {
+            $business->createAsStripeCustomer();
         }
 
         DB::beginTransaction();
@@ -59,12 +59,13 @@ final class PaymentMethodController extends Controller
             $notifyUser->handle(new PaymentMethodCreated($paymentMethod));
 
             UserCard::query()->create([
-                'user_id' => $user->id,
+                'user_id' => auth()->id(),
+                'business_id' => $business->getKey(),
                 'stripe_payment_method_id' => $request->get('payment_method'),
-                'metadata' => $user->findPaymentMethod($request->get('payment_method')),
+                'metadata' => $business->findPaymentMethod($request->get('payment_method')),
             ]);
 
-            auth()->user()->updateDefaultPaymentMethod($request->get('payment_method'));
+            $business->updateDefaultPaymentMethod($request->get('payment_method'));
 
             DB::commit();
         } catch (Exception $e) {
@@ -76,14 +77,12 @@ final class PaymentMethodController extends Controller
     #[Action(method: 'delete', middleware: ['auth', 'check_has_business', 'can:payment_method.delete'])]
     public function destroy(DeletePaymentMethodRequest $request, NotifyUser $notifyUser): void
     {
-        $paymentMethod = auth()->user()->findPaymentMethod($request->get('payment_method'));
+        $paymentMethod = auth()->user()->key('business')->findPaymentMethod($request->get('payment_method'));
 
         $notifyUser->handle(new PaymentMethodDeleted($paymentMethod));
 
         $paymentMethod->delete();
-        UserCard::query()->where('stripe_payment_method_id', $request->get('payment_method'))
-            ->where('user_id', auth()->id())
-            ->delete();
+        UserCard::query()->where('stripe_payment_method_id', $request->get('payment_method'))->delete();
     }
 
     /**
@@ -93,9 +92,9 @@ final class PaymentMethodController extends Controller
     public function paymentMethods(): array
     {
         // Get all payment methods
-        $paymentMethods = auth()->user()->paymentMethods();
+        $paymentMethods = auth()->user()->key('business')->paymentMethods();
         // Get default payment method
-        $defaultPaymentMethod = auth()->user()->defaultPaymentMethod();
+        $defaultPaymentMethod = auth()->user()->key('business')->defaultPaymentMethod();
 
         return [
             'payment_methods' => $paymentMethods,
@@ -111,14 +110,10 @@ final class PaymentMethodController extends Controller
     #[Action(method: 'post', middleware: ['auth'])]
     public function updateDefault(Request $request)
     {
-        $request->validate([
-            'payment_method' => 'required|string',
-        ]);
-
-        $user = $request->user();
+        $request->validate(['payment_method' => 'required|string']);
 
         // Update the default payment method
-        $user->updateDefaultPaymentMethod($request->payment_method);
+        auth()->user()->key('business')->updateDefaultPaymentMethod($request->get('payment_method'));
 
         return response()->json(['message' => 'Default payment method updated successfully']);
     }

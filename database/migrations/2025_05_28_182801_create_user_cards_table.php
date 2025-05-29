@@ -13,6 +13,7 @@ return new class extends Migration
         Schema::create('user_cards', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('business_id')->constrained()->onDelete('cascade'); // Assuming each card is linked to a business
             $table->string('stripe_payment_method_id')->unique();
             $table->json('metadata')->nullable(); // Optional metadata field for additional information
             $table->timestamps();
