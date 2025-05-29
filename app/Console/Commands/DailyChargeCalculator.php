@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Adapters\InvoiceAdapter;
 use App\Chargers\LanguageCharger;
 use App\Models\Business;
 use Illuminate\Console\Command;
-use Laravel\Cashier\Exceptions\IncompletePayment;
+use Stripe\Exception\ApiErrorException;
+use Stripe\Stripe;
+use Throwable;
 
 final class DailyChargeCalculator extends Command
 {
@@ -25,14 +28,13 @@ final class DailyChargeCalculator extends Command
      */
     protected $description = 'Calculate daily charges for businesses resources';
 
-    private array $invoiceLineItems;
-
     /**
      * Execute the console command.
      *
-     * @throws IncompletePayment
+     * @throws ApiErrorException
+     * @throws Throwable
      */
-    public function handle(): int
+    public function handle(InvoiceAdapter $invoiceAdapter): int
     {
         $businessId = (int) $this->argument('businessId');
 
@@ -44,22 +46,18 @@ final class DailyChargeCalculator extends Command
 
         $business = Business::query()->find($businessId);
 
-        $languageCharger = new LanguageCharger(businessId: $businessId);
+        $proRatedCharges = (new LanguageCharger(businessId: $businessId))->proRateCharges();
 
-        $chargeableUnits = $languageCharger->getChargeableUnits();
+        Stripe::setApiKey(config('cashier.secret'));
 
-        if ($chargeableUnits <= 0) {
-            $this->info('No chargeable units for today.');
-
-            return self::SUCCESS;
-        }
-
-        $changes = $languageCharger->getChanges();
-        $changesInDollars = number_format($changes / 100, 2);
-
-        $totalCharge = $chargeableUnits * $changes;
-
-        $business->invoiceFor("Charge for {$chargeableUnits} additional language(s) at \${$changesInDollars} each.", $totalCharge);
+        // we have to put a delay here to ensure that the Stripe API is ready to accept requests
+        $invoiceAdapter->createInvoice(stripeId: $business->stripeId())
+            ->addLine(
+                quantity: $proRatedCharges['chargeableUnits'],
+                unitAmount: $proRatedCharges['changes'] * $proRatedCharges['daysMultiplier'],
+                description: "Charge for {$proRatedCharges['chargeableUnits']} additional language(s) at \${$proRatedCharges['chargesInDollars']} each.",
+                productName: 'Additional Languages Charge'
+            )->pay();
 
         return self::SUCCESS;
     }
