@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Utils\Caseify;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HigherOrderCollectionProxy;
 use Msamgan\Lact\Attributes\Action;
@@ -11,7 +12,7 @@ use Spatie\Permission\Models\Permission;
 
 final class PermissionController extends Controller
 {
-    private array $excludedModules = ['business', 'payment_method'];
+    private array $excludedModules = ['business'];
 
     #[Action(middleware: ['auth'])]
     public function permissions(): Collection|HigherOrderCollectionProxy
@@ -25,7 +26,7 @@ final class PermissionController extends Controller
             }
 
             $filteredPermissions[] = [
-                'module' => $module,
+                'module' => Caseify::underscoreToTitle($module),
                 'name' => $action,
                 'id' => $permission->id,
             ];
