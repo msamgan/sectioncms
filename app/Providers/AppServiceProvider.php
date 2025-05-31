@@ -9,6 +9,7 @@ use App\Models\User;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,6 @@ final class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->autoloadRoutes();
-        $this->loadMacros();
     }
 
     /**
@@ -35,6 +35,7 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadScrambleConfig();
+        $this->loadMacros();
     }
 
     private function autoloadRoutes(): void
@@ -48,7 +49,7 @@ final class AppServiceProvider extends ServiceProvider
 
     private function loadMacros(): void
     {
-        // Auth::macro('businessId', fn (): int => Auth::user()->key('business_id'));
+        Auth::macro('businessId', fn (): ?int => Auth::user()?->key('business_id'));
     }
 
     private function loadScrambleConfig(): void

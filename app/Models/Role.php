@@ -43,12 +43,14 @@ final class Role extends \Spatie\Permission\Models\Role
     {
         parent::boot();
 
-        self::creating(function (self $role) {
+        self::creating(function (self $role): void {
+            $role->business_id = auth()->businessId();
             $role->created_by = auth()->id();
             $role->updated_by = auth()->id();
+            $role->guard_name = 'web';
         });
 
-        self::updating(function (self $role) {
+        self::updating(function (self $role): void {
             $role->updated_by = auth()->id();
         });
     }

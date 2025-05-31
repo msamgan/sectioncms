@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Laravel\Cashier\Billable;
+use Override;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
@@ -51,6 +51,8 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         'role_id',
         'business_id',
         'email_verified_at',
+        'created_by',
+        'updated_by',
     ];
 
     /**
@@ -61,9 +63,28 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+        'created_by',
+        'updated_by',
     ];
 
     protected $appends = ['access'];
+
+    #[Override]
+    public static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function ($model): void {
+            $model->business_id = auth()->businessId();
+            $model->created_by = auth()->id();
+            $model->updated_by = auth()->id();
+        });
+
+        self::updating(function ($model): void {
+            $model->updated_by = auth()->id();
+        });
+    }
 
     public function registerMediaConversions(?Media $media = null): void
     {
@@ -105,7 +126,7 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     public function businessId(): int
     {
-        return Auth::user()->key('business_id');
+        return auth()->user()->key('business_id');
     }
 
     /**

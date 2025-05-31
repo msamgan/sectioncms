@@ -15,6 +15,7 @@ use App\Models\User;
 use App\Notifications\UserCreated;
 use App\Notifications\UserDeleted;
 use App\Notifications\UserUpdated;
+use App\Stores\RoleStore;
 use App\Utils\Access;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -46,10 +47,9 @@ final class UserController extends Controller
                 'name' => $request->get('name'),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
-                'business_id' => auth()->user()->business_id,
             ]);
 
-            $role = Role::query()->find($request->get('role'));
+            $role = RoleStore::role(roleId: (int) $request->get('role'));
 
             $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
