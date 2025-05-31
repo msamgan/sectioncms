@@ -4,6 +4,13 @@
         <title>Error 403 - {{ config('app.name') }}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
 
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -738,7 +745,7 @@
             <div class="flex flex-col items-center gap-4">
                 <h1 class="text-center text-3xl font-medium">You are not authorized</h1>
                 <p class="text-center text-xl">You tried to access a page you did not have prior authorization for.</p>
-                <a href="/" class="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Go to Home</a>
+                <a href="{{ url('/') }}" class="block text-center text-indigo-600 hover:text-indigo-500 font-semibold text-sm py-4">Go back to home</a>
             </div>
         </div>
     </body>
