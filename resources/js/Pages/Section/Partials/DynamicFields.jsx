@@ -4,11 +4,18 @@ import { makeLanguageObject } from '@/Pages/Section/helper.js'
 import { slugify } from '@/Utils/methods.js'
 import { useEffect, useState } from 'react'
 
-function DynamicFields({ dataFields, setData, languages }) {
+function DynamicFields({ dataFields, setData, languages, callDynamicFieldsReset }) {
     const [fields, setFields] = useState([{ id: 1, key: '', value: makeLanguageObject(languages) }])
     const [nextId, setNextId] = useState(1)
     const [locked, setLocked] = useState(false)
     const [error, setError] = useState(null)
+
+    const resetFields = () => {
+        setFields([{ id: 1, key: '', value: makeLanguageObject(languages) }])
+        setNextId(2)
+        setLocked(false)
+        setError(null)
+    }
 
     const handleAddField = () => {
         setFields([...fields, { id: nextId, key: '', value: makeLanguageObject(languages) }])
@@ -45,6 +52,12 @@ function DynamicFields({ dataFields, setData, languages }) {
 
         setData('fields', fields)
     }, [fields])
+
+    useEffect(() => {
+        if (callDynamicFieldsReset) {
+            resetFields()
+        }
+    }, [callDynamicFieldsReset])
 
     useEffect(() => {
         setLocked(true)

@@ -18,6 +18,7 @@ export default function Form({ getSections, section = null, languages }) {
     const [action, setAction] = useState(store.route())
     const { data, setData, post, errors, processing, recentlySuccessful, reset } = useForm(dataObject(null, languages))
     const [showSaveButton, setShowSaveButton] = useState(false)
+    const [callDynamicFieldsReset, setCallDynamicFieldsReset] = useState(false)
 
     useEffect(() => {
         setAction(section ? update.route({ section: section.id }) : store.route())
@@ -31,6 +32,7 @@ export default function Form({ getSections, section = null, languages }) {
             onSuccess: (r) => {
                 if (!section) {
                     reset('name')
+                    setCallDynamicFieldsReset(true)
                 }
 
                 getSections()
@@ -80,7 +82,7 @@ export default function Form({ getSections, section = null, languages }) {
                             </div>
                         </div>
                         <div className="w-full">
-                            <DynamicFields dataFields={data.fields} setData={setData} languages={languages} />
+                            <DynamicFields dataFields={data.fields} setData={setData} languages={languages} callDynamicFieldsReset={callDynamicFieldsReset} />
                         </div>
                     </div>
                 </div>
