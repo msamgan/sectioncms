@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { Link } from '@inertiajs/react'
 import DisplayMessage from '@/Components/DisplayMessage.jsx'
 import { paymentMethods as _paymentMethods } from '@actions/PaymentMethodController.js'
+import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function StatusBar() {
     const [hasPaymentMethods, setHasPaymentMethods] = useState(true)

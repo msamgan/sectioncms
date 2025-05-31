@@ -13,6 +13,7 @@ return new class extends Migration
         Schema::table('roles', function (Blueprint $table) {
             $table->foreignId('business_id')->after('guard_name')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('created_by')->after('business_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('updated_by')->after('created_by')->nullable()->constrained('users')->cascadeOnDelete();
         });
     }
 
