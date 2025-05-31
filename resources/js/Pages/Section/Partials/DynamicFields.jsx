@@ -8,6 +8,7 @@ function DynamicFields({ dataFields, setData, languages }) {
     const [fields, setFields] = useState([{ id: 1, key: '', value: makeLanguageObject(languages) }])
     const [nextId, setNextId] = useState(1)
     const [locked, setLocked] = useState(false)
+    const [error, setError] = useState(null)
 
     const handleAddField = () => {
         setFields([...fields, { id: nextId, key: '', value: makeLanguageObject(languages) }])
@@ -27,6 +28,13 @@ function DynamicFields({ dataFields, setData, languages }) {
     }
 
     const handleRemoveField = (id) => {
+        if (fields.length <= 1) {
+            setError('At least one key is required.')
+            setTimeout(() => setError(null), 3000)
+            return
+        }
+
+        setLocked(false)
         setFields(fields.filter((field) => field.id !== id))
     }
 
@@ -111,6 +119,10 @@ function DynamicFields({ dataFields, setData, languages }) {
             >
                 <i className="ri-add-line mr-1"></i> Add Key
             </button>
+
+            <div className="text-red-500 mb-4 float-end">
+                {error && <span className="text-sm">{error}</span>}
+            </div>
         </div>
     )
 }
