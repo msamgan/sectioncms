@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('business_id')->constrained('businesses')->cascadeOnDelete();
             $table->string('name');
             $table->string('code');
+            $table->boolean('is_active')->default(true);
             $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
             $table->foreignId('updated_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();

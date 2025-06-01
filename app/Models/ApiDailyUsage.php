@@ -14,7 +14,6 @@ final class ApiDailyUsage extends Model
 
     protected $fillable = [
         'business_id',
-        'date',
         'count',
     ];
 

@@ -4,6 +4,7 @@ import EditActionButton from '@/Components/EditActionButton.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
+import IsActiveToggle from '@/Components/helpers/IsActiveToggle.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
@@ -14,7 +15,7 @@ import { pageObject } from '@/Pages/Language/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
-import { languages as _languages, destroy, show } from '@actions/LanguageController.js'
+import { languages as _languages, destroy, show, toggleIsActive } from '@actions/LanguageController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -52,6 +53,16 @@ export default function Index() {
                     <Avatar size="xs" bgColor={moduleConstants.code.bgColor} icon={moduleConstants.code.icon} />
                     <span className="font-semibold">{language.code}</span>
                 </div>
+            ),
+            Status: can(permissions.language.update) ? (
+                <IsActiveToggle
+                    toggleIsActive={toggleIsActive}
+                    toggleIsActiveParams={{ language: language.id }}
+                    isActive={language.is_active}
+                    refresher={getLanguages}
+                />
+            ) : (
+                <span className="text-gray-500">{language.is_active ? 'Active' : 'Inactive'}</span>
             ),
             Actions: (
                 <>

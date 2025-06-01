@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Stores;
 
 use App\Models\Role;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 final class RoleStore
@@ -34,7 +33,7 @@ final class RoleStore
             ->get();
     }
 
-    private static function roleBaseQuery(int $businessId, ?string $q): Builder
+    private static function roleBaseQuery(int $businessId, ?string $q)
     {
         return Role::query()->where('business_id', $businessId)
             ->select('name', 'display_name', 'id', 'is_active')

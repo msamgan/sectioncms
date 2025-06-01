@@ -21,6 +21,7 @@ final class BusinessFactory extends Factory
         return [
             'name' => fake()->url(),
             'user_id' => null,
+            'token' => fake()->uuid(),
         ];
     }
 }
