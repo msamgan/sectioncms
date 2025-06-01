@@ -89,7 +89,9 @@ test('fillable attributes are correctly defined', function (): void {
         ->toContain('guard_name')
         ->toContain('business_id')
         ->toContain('created_by')
-        ->toHaveCount(5);
+        ->toContain('updated_by')
+        ->toContain('is_active')
+        ->toHaveCount(7);
 });
 
 test('hidden attributes are correctly defined', function (): void {
@@ -101,7 +103,9 @@ test('hidden attributes are correctly defined', function (): void {
         ->toContain('created_at')
         ->toContain('updated_at')
         ->toContain('created_by')
-        ->toHaveCount(4);
+        ->toContain('updated_by')
+        ->toContain('business_id')
+        ->toHaveCount(6);
 });
 
 test('role inherits from spatie permission role', function (): void {

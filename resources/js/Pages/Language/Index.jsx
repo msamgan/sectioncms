@@ -54,16 +54,17 @@ export default function Index() {
                     <span className="font-semibold">{language.code}</span>
                 </div>
             ),
-            Status: can(permissions.language.update) ? (
-                <IsActiveToggle
-                    toggleIsActive={toggleIsActive}
-                    toggleIsActiveParams={{ language: language.id }}
-                    isActive={language.is_active}
-                    refresher={getLanguages}
-                />
-            ) : (
-                <span className="text-gray-500">{language.is_active ? 'Active' : 'Inactive'}</span>
-            ),
+            Status:
+                can(permissions.language.update) && languages.length >= 2 ? (
+                    <IsActiveToggle
+                        toggleIsActive={toggleIsActive}
+                        toggleIsActiveParams={{ language: language.id }}
+                        isActive={language.is_active}
+                        refresher={getLanguages}
+                    />
+                ) : (
+                    <span className="text-gray-700">{language.is_active ? 'Active' : 'Inactive'}</span>
+                ),
             Default: can(permissions.language.update) ? (
                 <IsActiveToggle
                     toggleIsActive={setDefault}

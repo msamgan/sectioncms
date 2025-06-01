@@ -27,7 +27,7 @@ final readonly class TestUserCreator
         $test->actingAs($user);
 
         $createLanguageAction = new CreateLanguage();
-        $en = $createLanguageAction->handle(['name' => 'English', 'code' => 'en']);
+        $en = $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
         $es = $createLanguageAction->handle(['name' => 'Spanish', 'code' => 'es']);
 
         return [

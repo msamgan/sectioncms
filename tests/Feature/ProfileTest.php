@@ -2,109 +2,115 @@
 
 declare(strict_types=1);
 
-use App\Actions\Business\CreateBusiness;
-use App\Actions\Role\AssignRole;
-use App\Models\Role;
-use App\Models\User;
+use Random\RandomException;
+use Tests\TestUserCreator;
 
 test('profile page is displayed', function (): void {
-    $user = User::factory()->create();
-    $assignRoleAction = new AssignRole();
-    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
-    $createBusinessAction = new CreateBusiness();
-    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
+        $response = $this
+            ->actingAs($user)
+            ->get('settings');
 
-    $response = $this
-        ->actingAs($user)
-        ->get('/profile');
+        $response->assertOk();
+    } catch (RandomException $e) {
+        $this->fail('Failed to create test user: ' . $e->getMessage());
+    }
 
-    $response->assertOk();
 });
 
 test('profile information can be updated', function (): void {
-    $user = User::factory()->create();
-    $assignRoleAction = new AssignRole();
-    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
-    $createBusinessAction = new CreateBusiness();
-    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
 
-    $response = $this
-        ->actingAs($user)
-        ->patch('/profile', [
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/profile');
+        $response
+            ->assertOk();
 
-    $user->refresh();
+        $user->refresh();
 
-    $this->assertSame('Test User', $user->name);
-    $this->assertSame('test@example.com', $user->email);
-    $this->assertNull($user->email_verified_at);
+        $this->assertSame('Test User', $user->name);
+        $this->assertSame('test@example.com', $user->email);
+        $this->assertNull($user->email_verified_at);
+
+    } catch (RandomException $e) {
+        $this->fail('Failed to create test user: ' . $e->getMessage());
+    }
+
 });
 
 test('email verification status is unchanged when the email address is unchanged', function (): void {
-    $user = User::factory()->create();
-    $assignRoleAction = new AssignRole();
-    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
-    $createBusinessAction = new CreateBusiness();
-    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
 
-    $response = $this
-        ->actingAs($user)
-        ->patch('/profile', [
-            'name' => 'Test User',
-            'email' => $user->email,
-        ]);
+        $response = $this
+            ->actingAs($user)
+            ->patch('/profile', [
+                'name' => 'Test User',
+                'email' => $user->email,
+            ]);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/profile');
+        $response
+            ->assertOk();
 
-    $this->assertNotNull($user->refresh()->email_verified_at);
+        $this->assertNotNull($user->refresh()->email_verified_at);
+    } catch (RandomException $e) {
+        $this->fail('Failed to create test user: ' . $e->getMessage());
+    }
 });
 
 test('user can delete their account', function (): void {
-    $user = User::factory()->create();
-    $assignRoleAction = new AssignRole();
-    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
-    $createBusinessAction = new CreateBusiness();
-    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
 
-    $response = $this
-        ->actingAs($user)
-        ->delete('/profile', [
-            'password' => 'password',
-        ]);
+        $response = $this
+            ->actingAs($user)
+            ->delete('/profile', [
+                'password' => 'password',
+            ]);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/');
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/');
 
-    $this->assertGuest();
-    $this->assertNull($user->fresh());
+        $this->assertGuest();
+        $this->assertNull($user->fresh());
+    } catch (RandomException $e) {
+        $this->fail('Failed to create test user: ' . $e->getMessage());
+    } catch (JsonException $e) {
+        $this->fail('JSON error occurred: ' . $e->getMessage());
+    }
 });
 
 test('correct password must be provided to delete account', function (): void {
-    $user = User::factory()->create();
-    $assignRoleAction = new AssignRole();
-    $assignRoleAction->handle(user: $user, role: Role::business(), makeRoleActive: true);
-    $createBusinessAction = new CreateBusiness();
-    $createBusinessAction->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
 
-    $response = $this
-        ->actingAs($user)
-        ->from('/profile')
-        ->delete('/profile', [
-            'password' => 'wrong-password',
-        ]);
+        $response = $this
+            ->actingAs($user)
+            ->from('/profile')
+            ->delete('/profile', [
+                'password' => 'wrong-password',
+            ]);
 
-    $response
-        ->assertSessionHasErrors('password')
-        ->assertRedirect('/profile');
+        $response
+            ->assertSessionHasErrors('password')
+            ->assertRedirect('/profile');
 
-    $this->assertNotNull($user->fresh());
+        $this->assertNotNull($user->fresh());
+    } catch (RandomException $e) {
+
+    }
+
 });

@@ -40,7 +40,7 @@ final class SectionStore
             'fields' => $section->keys->map(fn ($key): array => [
                 'key' => $key->key,
                 'value' => $key->values->where('lang', $langCode)->first()->value,
-            ]),
+            ])->keyBy('key')->map(fn ($item) => $item['value'])->toArray(),
         ];
     }
 
