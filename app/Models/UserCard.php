@@ -14,8 +14,8 @@ final class UserCard extends Model
 
     protected $fillable = [
         'user_id',
+        'business_id',
         'stripe_payment_method_id',
-        'is_default',
         'metadata',
     ];
 

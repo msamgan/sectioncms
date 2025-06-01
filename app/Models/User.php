@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
-use Laravel\Cashier\Billable;
 use Override;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Image\Enums\Fit;
@@ -31,7 +30,6 @@ use Spatie\Permission\Traits\HasRoles;
  */
 final class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use Billable;
     use CausesActivity;
     use HasFactory, Notifiable;
     use HasRoles;
@@ -127,7 +125,7 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
 
     public function businessId(): int
     {
-        return auth()->user()->key('business_id');
+        return auth()->businessId();
     }
 
     /**

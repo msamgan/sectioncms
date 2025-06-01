@@ -108,7 +108,7 @@ export default function Register() {
                             type="email"
                             name="email"
                             value={data.email}
-                            autoComplete="username"
+                            autoComplete="email"
                             onChange={(e) => setData('email', e.target.value)}
                             required
                             placeholder={'awesome@awesomeness.com'}
@@ -160,7 +160,7 @@ export default function Register() {
                             type="password"
                             name="password_confirmation"
                             value={data.password_confirmation}
-                            autoComplete="new-password"
+                            autoComplete="confirm-password"
                             onChange={(e) => setData('password_confirmation', e.target.value)}
                             required
                             placeholder={'Confirm your password'}
