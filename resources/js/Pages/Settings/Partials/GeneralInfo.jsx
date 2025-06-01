@@ -156,9 +156,9 @@ export default function GeneralInfo({ business }) {
                     <div className="flex items-center">
                         <Avatar size="sm" bgColor="bg-purple-500" icon="ri-time-line" />
                         <div className="ml-3">
-                            <h5 className="text-lg font-semibold text-gray-800">Time zone and units of measurement</h5>
+                            <h5 className="text-lg font-semibold text-gray-800">Time zone</h5>
                             <p className="text-sm text-gray-600 mt-1">
-                                Used to calculate product prices, shipping weighs, and order times.
+                                Used to calculate stuff like due dates, reminders, and other time-sensitive operations.
                             </p>
                         </div>
                     </div>

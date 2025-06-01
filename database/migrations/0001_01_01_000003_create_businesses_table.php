@@ -25,6 +25,7 @@ return new class extends Migration
         });
 
         Schema::create('resource_tracking', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('business_id')->constrained()->onDelete('cascade');
             $table->string('type');
             $table->string('unit');
