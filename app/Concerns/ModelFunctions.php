@@ -33,4 +33,9 @@ trait ModelFunctions
     {
         $this->saveKey('is_active', ! $this->key('is_active'));
     }
+
+    public function isActive()
+    {
+        return $this->key('is_active') ?? true;
+    }
 }
