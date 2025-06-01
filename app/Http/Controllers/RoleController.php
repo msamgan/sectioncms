@@ -96,6 +96,10 @@ final class RoleController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
     public function roles(Request $request): Collection
     {
+        if ($request->get('active')) {
+            return RoleStore::activeRoles(businessId: auth()->businessId(), q: $request->get('q'));
+        }
+
         return RoleStore::roles(businessId: auth()->businessId(), q: $request->get('q'));
     }
 

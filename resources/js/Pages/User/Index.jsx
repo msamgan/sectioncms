@@ -15,7 +15,7 @@ import { pageObject } from '@/Pages/User/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
-import { roles as rcRoles } from '@actions/RoleController.js'
+import { roles as _roles } from '@actions/RoleController.js'
 import { users as _users, destroy, show, toggleIsActive } from '@actions/UserController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
@@ -32,7 +32,7 @@ export default function Index() {
 
     const getUsers = async (query) => setUsers(await _users.data({ params: query }))
 
-    const getRoles = async () => setRoles(await rcRoles.data({}))
+    const getRoles = async () => setRoles(await _roles.data({ params: { active: 1 }}))
 
     const getUser = async (id) => setUser(await show.data({ params: { user: id } }))
 

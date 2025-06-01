@@ -36,4 +36,19 @@ final class RoleStore
     {
         return Role::query()->find($roleId);
     }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws ConnectionException
+     */
+    public static function activeRoles(int $businessId, ?string $q)
+    {
+        return Role::query()->where('business_id', $businessId)
+            ->select('name', 'display_name', 'id', 'is_active')
+            ->where('is_active', true)
+            ->withCount('users')
+            ->when($q, function ($query) use ($q): void {
+                $query->where('display_name', 'like', "%{$q}%");
+            })->get();
+    }
 }
