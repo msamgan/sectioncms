@@ -12,6 +12,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->foreignId('role_id')->after('remember_token')->nullable()->constrained('roles')->cascadeOnDelete();
+            $table->foreignId('created_by')->after('remember_token')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->foreignId('updated_by')->after('created_by')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->boolean('is_active')->default(true)->after('updated_by');
         });
     }
 

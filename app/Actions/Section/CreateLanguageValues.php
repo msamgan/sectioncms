@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace App\Actions\Section;
 
+use App\Stores\LanguageStore;
 use App\Stores\SectionStore;
 
 final class CreateLanguageValues
 {
     public function handle(string $languageCode): void
     {
-        $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->user()->key('business_id'));
+        $defaultLanguage = LanguageStore::defaultLanguage(businessId: auth()->businessId());
+        $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->businessId(), langCode: $defaultLanguage->key('code'));
 
         foreach ($businessSectionValues as $sectionValue) {
             $newValue = $sectionValue->replicate();

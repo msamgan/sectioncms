@@ -20,9 +20,10 @@ use App\Notifications\LanguageUpdated;
 use App\Stores\LanguageStore;
 use App\Utils\Access;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -101,15 +102,39 @@ final class LanguageController extends Controller
         $language->delete();
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws ConnectionException
+     */
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
     public function languages(Request $request): Collection
     {
-        return LanguageStore::languages(businessId: Auth::user()->key('business_id'), query: $request->get('q'));
+        if ($request->get('active')) {
+            return LanguageStore::activeLanguages(businessId: auth()->businessId(), query: $request->get('q'));
+        }
+
+        return LanguageStore::languages(businessId: auth()->businessId(), query: $request->get('q'));
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:language.list'])]
     public function languageCount(): int
     {
-        return LanguageStore::languageCount(businessId: Auth::user()->key('business_id'));
+        return LanguageStore::languageCount(businessId: auth()->businessId());
+    }
+
+    #[Action(method: 'post', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.update'])]
+    public function toggleIsActive(Request $request, Language $language, NotifyUser $notifyUser): void
+    {
+        $language->toggleIsActive();
+
+        $notifyUser->handle(new LanguageUpdated($language));
+    }
+
+    #[Action(method: 'post', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.update'])]
+    public function setDefault(Request $request, Language $language, NotifyUser $notifyUser): void
+    {
+        Language::query()->where('business_id', auth()->businessId())->update(['is_default' => false]);
+        $language->update(['is_default' => true]);
+        $notifyUser->handle(new LanguageUpdated($language));
     }
 }

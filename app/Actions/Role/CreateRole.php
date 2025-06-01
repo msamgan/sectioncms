@@ -21,7 +21,7 @@ final class CreateRole
 
         $roleExists = Role::query()
             ->where('display_name', $name)
-            ->where('business_id', auth()->user()->key('business_id') ?? null)
+            ->where('business_id', auth()->businessId())
             ->first();
 
         if ($roleExists) {
@@ -31,9 +31,6 @@ final class CreateRole
         return Role::create([
             'name' => Str::uuid(),
             'display_name' => $name,
-            'guard_name' => 'web',
-            'business_id' => auth()->user()->key('business_id') ?? null,
-            'created_by' => auth()->id() ?? null,
         ]);
     }
 }

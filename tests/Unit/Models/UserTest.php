@@ -13,13 +13,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
+use Random\RandomException;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Tests\TestCase;
+use Tests\TestUserCreator;
 
 uses(TestCase::class, RefreshDatabase::class);
 
@@ -51,7 +52,10 @@ test('fillable attributes are correctly defined', function (): void {
         ->toContain('role_id')
         ->toContain('business_id')
         ->toContain('email_verified_at')
-        ->toHaveCount(6);
+        ->toContain('created_by')
+        ->toContain('updated_by')
+        ->toContain('is_active')
+        ->toHaveCount(9);
 });
 
 test('hidden attributes are correctly defined', function (): void {
@@ -61,7 +65,10 @@ test('hidden attributes are correctly defined', function (): void {
     expect($hidden)->toBeArray()
         ->toContain('password')
         ->toContain('remember_token')
-        ->toHaveCount(2);
+        ->toContain('email_verified_at')
+        ->toContain('created_by')
+        ->toContain('updated_by')
+        ->toHaveCount(5);
 });
 
 test('casts are correctly defined', function (): void {
@@ -144,16 +151,16 @@ test('getAccessAttribute returns user permissions', function (): void {
 });
 
 test('businessId returns authenticated user business_id', function (): void {
-    $user = User::factory()->create();
-    (new AssignRole())->handle(user: $user, role: App\Models\Role::business(), makeRoleActive: true);
-    $business = (new CreateBusiness())->handle(user: $user, businessName: 'laravel.com', makeBusinessActive: true);
+    try {
+        $userData = TestUserCreator::create($this);
+        $user = $userData['user'];
+        $business = $userData['business'];
 
-    // Mock the Auth facade
-    Auth::shouldReceive('user')
-        ->once()
-        ->andReturn($user);
-
-    expect($user->businessId())->toBe($business->id);
+        expect($user->businessId())->toBe($business->id)
+            ->and(auth()->businessId())->toBe($business->id);
+    } catch (RandomException $e) {
+        $this->fail('Failed to create test user: ' . $e->getMessage());
+    }
 });
 
 test('registerMediaConversions sets up media conversions', function (): void {

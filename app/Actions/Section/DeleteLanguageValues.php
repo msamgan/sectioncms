@@ -11,7 +11,7 @@ final class DeleteLanguageValues
     public function handle(string $languageCode): void
     {
         foreach (SectionStore::businessLangValues(
-            businessId: auth()->user()->key('business_id'),
+            businessId: auth()->businessId(),
             langCode: $languageCode
         ) as $sectionValue) {
             $sectionValue->delete();

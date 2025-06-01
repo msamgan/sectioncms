@@ -8,7 +8,6 @@ use App\Concerns\ModelFunctions;
 use Database\Factories\LanguageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Override;
 
 final class Language extends Model
@@ -24,6 +23,8 @@ final class Language extends Model
         'code',
         'created_by',
         'updated_by',
+        'is_active',
+        'is_default',
     ];
 
     protected $hidden = [
@@ -40,13 +41,13 @@ final class Language extends Model
         parent::boot();
 
         self::creating(function ($model): void {
-            $model->business_id = Auth::user()->key('business_id');
-            $model->created_by = Auth::user()->getKey();
-            $model->updated_by = Auth::user()->getKey();
+            $model->business_id = auth()->user()->key('business_id');
+            $model->created_by = auth()->id();
+            $model->updated_by = auth()->id();
         });
 
         self::updating(function ($model): void {
-            $model->updated_by = Auth::user()->getKey();
+            $model->updated_by = auth()->id();
         });
     }
 

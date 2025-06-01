@@ -18,6 +18,7 @@
         "msamgan/lact": "^1.1",
         "nunomaduro/essentials": "@dev",
         "predis/predis": "^2.0",
+        "spatie/fork": "^1.2",
         "spatie/laravel-activitylog": "^4.8",
         "spatie/laravel-medialibrary": "^11.12",
         "spatie/laravel-permission": "^6.9",

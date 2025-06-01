@@ -55,18 +55,13 @@ final class RegisteredUserController extends Controller
             Auth::login($user);
 
             $assignRoleAction->handle(user: $user, role: RoleEnum::Business->role(), makeRoleActive: true);
-
-            $businessName = parse_url((string) $request->get('website'), PHP_URL_HOST);
-
-            $createBusinessAction->handle(user: $user, businessName: $businessName, makeBusinessActive: true);
-
-            $createLanguageAction->handle(['name' => 'English', 'code' => 'en']);
-
+            $createBusinessAction->handle(user: $user, businessName: extractDomain(url: $request->get('website')), makeBusinessActive: true);
+            $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
             $createAllowedResourcesAction->handle();
 
-            event(new Registered($user));
-
             DB::commit();
+
+            event(new Registered($user));
 
             return redirect(route('dashboard', absolute: false));
 

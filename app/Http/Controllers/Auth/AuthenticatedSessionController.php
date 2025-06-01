@@ -38,6 +38,11 @@ final class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        if (! $request->user()->isActive()) {
+            Auth::guard('web')->logout();
+            abort(403, 'Your account is inactive. Please contact Your Business.');
+        }
+
         $request->session()->regenerate();
 
         $this->setActiveRole($request->user());
