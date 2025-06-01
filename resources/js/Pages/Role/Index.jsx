@@ -59,13 +59,15 @@ export default function Index() {
                     <span className="font-semibold">{role.users_count}</span>
                 </div>
             ),
-            Status: (
+            Status: can(permissions.role.update) ? (
                 <IsActiveToggle
                     isActive={role.is_active}
                     toggleIsActive={toggleIsActive}
                     toggleIsActiveParams={{ role: role.id }}
                     refresher={getRoles}
                 />
+            ) : (
+                <span className="text-gray-500">{role.is_active ? 'Active' : 'Inactive'}</span>
             ),
             Actions: (
                 <Actions>

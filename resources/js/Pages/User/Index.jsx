@@ -32,7 +32,7 @@ export default function Index() {
 
     const getUsers = async (query) => setUsers(await _users.data({ params: query }))
 
-    const getRoles = async () => setRoles(await _roles.data({ params: { active: 1 }}))
+    const getRoles = async () => setRoles(await _roles.data({ params: { active: 1 } }))
 
     const getUser = async (id) => setUser(await show.data({ params: { user: id } }))
 
@@ -58,13 +58,15 @@ export default function Index() {
                     <span className="font-semibold">{user.roles.map((role) => role.display_name).join(', ')}</span>
                 </div>
             ),
-            Status: (
+            Status: can(permissions.user.update) ? (
                 <IsActiveToggle
                     isActive={user.is_active}
                     toggleIsActive={toggleIsActive}
                     toggleIsActiveParams={{ user: user.id }}
                     refresher={getUsers}
                 />
+            ) : (
+                <span className="text-gray-500">{user.is_active ? 'Active' : 'Inactive'}</span>
             ),
             Actions: (
                 <Actions>
