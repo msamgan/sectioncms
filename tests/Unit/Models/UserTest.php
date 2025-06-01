@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Random\RandomException;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -157,7 +158,7 @@ test('businessId returns authenticated user business_id', function (): void {
 
         expect($user->businessId())->toBe($business->id)
             ->and(auth()->businessId())->toBe($business->id);
-    } catch (Random\RandomException $e) {
+    } catch (RandomException $e) {
         $this->fail('Failed to create test user: ' . $e->getMessage());
     }
 });

@@ -9,6 +9,9 @@ use Database\Factories\MediumFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method getUrl() // Returns the URL of the medium
+ */
 final class Medium extends Model
 {
     /** @use HasFactory<MediumFactory> */

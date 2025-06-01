@@ -10,7 +10,7 @@ final class UpdateLanguageValues
 {
     public function handle(string $languageCode, string $newLanguageCode): void
     {
-        $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->user()->key('business_id'), langCode: $languageCode);
+        $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->businessId(), langCode: $languageCode);
 
         foreach ($businessSectionValues as $sectionValue) {
             $sectionValue->update(['lang' => $newLanguageCode]);
