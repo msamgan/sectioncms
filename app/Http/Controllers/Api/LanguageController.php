@@ -6,8 +6,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Concerns\ApiResponses;
 use App\Http\Controllers\Controller;
-use App\Models\Language;
 use App\Stores\LanguageStore;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 
 final class LanguageController extends Controller
@@ -15,18 +16,22 @@ final class LanguageController extends Controller
     use ApiResponses;
 
     /**
-     * Languages
+     * Active Languages
+     *
+     * @return mixed
+     *
+     * @throws ConnectionException
+     * @throws FileNotFoundException
      */
     public function index(Request $request)
     {
         return $this->ok(
-            payload: LanguageStore::languageBaseQuery(businessId: $request->get('business')->getKey())
-                ->where('is_active', true)->get()->map(
-                    fn (Language $language): array => [
-                        'name' => $language->key('name'),
-                        'code' => $language->key('code'),
-                    ]
-                )
+            payload: LanguageStore::activeLanguages(businessId: $request->get('business')->getKey())->map(
+                fn ($language): array => [
+                    'name' => $language->name,
+                    'code' => $language->code,
+                ]
+            ),
         );
     }
 }

@@ -34,7 +34,7 @@ final class LanguageStore
      * @throws FileNotFoundException
      * @throws ConnectionException
      */
-    public static function activeLanguages(int $businessId, ?string $query): Collection
+    public static function activeLanguages(int $businessId, ?string $query = null): Collection
     {
         return self::languageBaseQuery(businessId: $businessId, q: $query)->where('is_active', true)->get();
     }
