@@ -133,9 +133,7 @@ function DynamicFields({ dataFields, setData, languages, callDynamicFieldsReset 
                 <i className="ri-add-line mr-1"></i> Add Key
             </button>
 
-            <div className="text-red-500 mb-4 float-end">
-                {error && <span className="text-sm">{error}</span>}
-            </div>
+            <div className="text-red-500 mb-4 float-end">{error && <span className="text-sm">{error}</span>}</div>
         </div>
     )
 }

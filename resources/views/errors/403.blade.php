@@ -745,7 +745,12 @@
             <div class="flex flex-col items-center gap-4">
                 <h1 class="text-center text-3xl font-medium">You are not authorized</h1>
                 <p class="text-center text-xl">You tried to access a page you did not have prior authorization for.</p>
-                <a href="{{ url('/') }}" class="block text-center text-indigo-600 hover:text-indigo-500 font-semibold text-sm py-4">Go back to home</a>
+                <a
+                    href="{{ url('/') }}"
+                    class="block py-4 text-center text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+                >
+                    Go back to home
+                </a>
             </div>
         </div>
     </body>

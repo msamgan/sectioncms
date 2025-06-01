@@ -82,7 +82,12 @@ export default function Form({ getSections, section = null, languages }) {
                             </div>
                         </div>
                         <div className="w-full">
-                            <DynamicFields dataFields={data.fields} setData={setData} languages={languages} callDynamicFieldsReset={callDynamicFieldsReset} />
+                            <DynamicFields
+                                dataFields={data.fields}
+                                setData={setData}
+                                languages={languages}
+                                callDynamicFieldsReset={callDynamicFieldsReset}
+                            />
                         </div>
                     </div>
                 </div>
