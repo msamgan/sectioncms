@@ -24,6 +24,7 @@ final class Language extends Model
         'created_by',
         'updated_by',
         'is_active',
+        'is_default',
     ];
 
     protected $hidden = [

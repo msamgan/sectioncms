@@ -56,7 +56,7 @@ final class RegisteredUserController extends Controller
 
             $assignRoleAction->handle(user: $user, role: RoleEnum::Business->role(), makeRoleActive: true);
             $createBusinessAction->handle(user: $user, businessName: extractDomain(url: $request->get('website')), makeBusinessActive: true);
-            $createLanguageAction->handle(['name' => 'English', 'code' => 'en']);
+            $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
             $createAllowedResourcesAction->handle();
 
             DB::commit();

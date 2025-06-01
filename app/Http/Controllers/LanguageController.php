@@ -129,4 +129,12 @@ final class LanguageController extends Controller
 
         $notifyUser->handle(new LanguageUpdated($language));
     }
+
+    #[Action(method: 'post', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.update'])]
+    public function setDefault(Request $request, Language $language, NotifyUser $notifyUser): void
+    {
+        Language::query()->where('business_id', auth()->businessId())->update(['is_default' => false]);
+        $language->update(['is_default' => true]);
+        $notifyUser->handle(new LanguageUpdated($language));
+    }
 }

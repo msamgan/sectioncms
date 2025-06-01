@@ -15,7 +15,7 @@ import { pageObject } from '@/Pages/Language/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
-import { languages as _languages, destroy, show, toggleIsActive } from '@actions/LanguageController.js'
+import { languages as _languages, destroy, setDefault, show, toggleIsActive } from '@actions/LanguageController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -64,9 +64,19 @@ export default function Index() {
             ) : (
                 <span className="text-gray-500">{language.is_active ? 'Active' : 'Inactive'}</span>
             ),
+            Default: can(permissions.language.update) ? (
+                <IsActiveToggle
+                    toggleIsActive={setDefault}
+                    toggleIsActiveParams={{ language: language.id }}
+                    isActive={language.is_default}
+                    refresher={getLanguages}
+                />
+            ) : (
+                <span className="text-gray-500">{language.is_active ? 'Active' : 'Inactive'}</span>
+            ),
             Actions: (
                 <>
-                    {language.code !== 'en' ? (
+                    {!language.is_default ? (
                         <Actions>
                             <EditActionButton module={'language'} onClick={() => editLanguage(language)} />
                             <DeleteActionButton

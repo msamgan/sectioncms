@@ -43,4 +43,10 @@ final class LanguageStore
     {
         return Language::query()->where('business_id', $businessId)->count();
     }
+
+    public static function defaultLanguage(int $businessId)
+    {
+        return Language::query()
+            ->where('business_id', $businessId)->where('is_default', true)->first();
+    }
 }

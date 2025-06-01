@@ -25,7 +25,7 @@ export default function IsActiveToggle({ isActive, toggleIsActive, toggleIsActiv
                     }}
                 />
                 <div className="w-6 h-6 bg-gray-200 rounded-full peer-checked:bg-blue-500 peer-focus:ring-2 peer-focus:ring-blue-300 transition-all duration-200"></div>
-                <span className="ml-2 text-gray-700">Active</span>
+                <span className="ml-2 text-gray-700">{isActive ? 'Active' : 'Inactive'}</span>
             </label>
 
             <Modal show={confirming} onClose={closeModal} maxWidth="md">

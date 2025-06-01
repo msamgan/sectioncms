@@ -10,10 +10,11 @@ use Illuminate\Support\Str;
 
 final class CreateLanguage
 {
-    public function handle(array $data): Language
+    public function handle(array $data, bool $isDefault = false): Language
     {
         $data['name'] = Caseify::handle($data['name'])['titleCase'];
         $data['code'] = Str::lower($data['code']);
+        $data['is_default'] = $isDefault;
 
         return Language::query()->create($data);
     }
