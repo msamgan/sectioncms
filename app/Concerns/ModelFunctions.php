@@ -28,4 +28,9 @@ trait ModelFunctions
             ->logOnlyDirty()
             ->logFillable();
     }
+
+    public function toggleIsActive(): void
+    {
+        $this->saveKey('is_active', ! $this->key('is_active'));
+    }
 }

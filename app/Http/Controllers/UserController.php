@@ -6,16 +6,15 @@ namespace App\Http\Controllers;
 
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Role\AssignRole;
-use App\Enums\RoleEnum;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Role;
 use App\Models\User;
 use App\Notifications\UserCreated;
 use App\Notifications\UserDeleted;
 use App\Notifications\UserUpdated;
 use App\Stores\RoleStore;
+use App\Stores\UserStore;
 use App\Utils\Access;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -77,7 +76,7 @@ final class UserController extends Controller
             $request->merge(['password' => bcrypt($request->get('password'))]);
         }
 
-        $role = Role::query()->find($request->get('role'));
+        $role = RoleStore::role(roleId: (int) $request->get('role'));
 
         $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
@@ -102,29 +101,20 @@ final class UserController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:user.list'])]
     public function users(Request $request): Collection
     {
-        $query = User::query()->where('business_id', auth()->user()->key('business_id'))
-            ->where('id', '!=', auth()->id())
-            ->with(['roles']);
-
-        if (! auth()->user()->hasRole([RoleEnum::Business, RoleEnum::SuperAdmin])) {
-            $query->whereDoesntHave('roles', function ($q): void {
-                $q->where('display_name', RoleEnum::Business);
-            });
-        }
-
-        $query->when($request->has('q'), function ($query) use ($request): void {
-            $query->where('name', 'like', "%{$request->get('q')}%")
-                ->orWhere('email', 'like', "%{$request->get('q')}%");
-        });
-
-        return $query->get();
+        return UserStore::users(businessId: auth()->businessId(), q: $request->get('q'));
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:user.list'])]
     public function userCount(): int
     {
-        return User::query()
-            ->where('business_id', auth()->user()->key('business_id'))
-            ->count();
+        return UserStore::userCount(businessId: auth()->businessId());
+    }
+
+    #[Action(method: 'post', params: ['user'], middleware: ['auth', 'check_has_business', 'can:user.update'])]
+    public function toggleIsActive(Request $request, User $user, NotifyUser $notifyUser): void
+    {
+        $user->toggleIsActive();
+
+        $notifyUser->handle(new UserUpdated($user));
     }
 }
