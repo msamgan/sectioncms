@@ -17,7 +17,7 @@ final class Role extends \Spatie\Permission\Models\Role
     use HasFactory;
     use ModelFunctions;
 
-    protected $fillable = ['name', 'display_name', 'guard_name', 'business_id', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'display_name', 'guard_name', 'business_id', 'created_by', 'updated_by', 'is_active'];
 
     protected $hidden = [
         'guard_name',

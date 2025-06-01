@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Notifications\RoleCreated;
 use App\Notifications\RoleDeleted;
 use App\Notifications\RoleUpdated;
+use App\Stores\RoleStore;
 use App\Utils\Access;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
@@ -95,20 +96,20 @@ final class RoleController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
     public function roles(Request $request): Collection
     {
-        return Role::query()->where('business_id', auth()->user()->key('business_id'))
-            ->select('name', 'display_name', 'id')
-            ->withCount('users')
-            ->when($request->has('q'), function ($query) use ($request): void {
-                $query->where('display_name', 'like', "%{$request->get('q')}%");
-            })
-            ->get();
+        return RoleStore::roles(businessId: auth()->businessId(), q: $request->get('q'));
     }
 
     #[Action(middleware: ['auth', 'check_has_business', 'can:role.list'])]
     public function roleCount(): int
     {
-        return Role::query()
-            ->where('business_id', auth()->user()->key('business_id'))
-            ->select('id')->count();
+        return RoleStore::roleCount(businessId: auth()->businessId());
+    }
+
+    #[Action(method: 'post', params: ['role'], middleware: ['auth', 'check_has_business', 'can:role.update'])]
+    public function toggleIsActive(Request $request, Role $role, NotifyUser $notifyUser): void
+    {
+        $role->toggleIsActive();
+
+        $notifyUser->handle(new RoleUpdated($role));
     }
 }

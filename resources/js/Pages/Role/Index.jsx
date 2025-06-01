@@ -3,6 +3,7 @@ import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
+import IsActiveToggle from '@/Components/helpers/IsActiveToggle.jsx'
 import Name from '@/Components/helpers/Name.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
@@ -16,7 +17,7 @@ import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { permissions as _permissions } from '@actions/PermissionController.js'
-import { roles as _roles, destroy, show } from '@actions/RoleController.js'
+import { roles as _roles, destroy, show, toggleIsActive } from '@actions/RoleController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -58,7 +59,14 @@ export default function Index() {
                     <span className="font-semibold">{role.users_count}</span>
                 </div>
             ),
-            Status: <span className="bg-success text-white text-xs px-2 py-1 rounded-full">Active</span>,
+            Status: (
+                <IsActiveToggle
+                    isActive={role.is_active}
+                    toggleIsActive={toggleIsActive}
+                    toggleIsActiveParams={{ role: role.id }}
+                    refresher={getRoles}
+                />
+            ),
             Actions: (
                 <Actions>
                     <EditActionButton module={'role'} onClick={() => editRole(role)} />

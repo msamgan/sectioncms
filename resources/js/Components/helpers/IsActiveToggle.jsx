@@ -1,8 +1,8 @@
-import { parseQueryString } from '@/Utils/methods.js'
 import Avatar from '@/Components/helpers/Avatar.jsx'
-import SecondaryButton from '@/Components/SecondaryButton.jsx'
-import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import Modal from '@/Components/Modal.jsx'
+import PrimaryButton from '@/Components/PrimaryButton.jsx'
+import SecondaryButton from '@/Components/SecondaryButton.jsx'
+import { parseQueryString } from '@/Utils/methods.js'
 import { useState } from 'react'
 
 export default function IsActiveToggle({ isActive, toggleIsActive, toggleIsActiveParams, refresher }) {
@@ -34,7 +34,12 @@ export default function IsActiveToggle({ isActive, toggleIsActive, toggleIsActiv
                     <div className="bg-amber-50 p-8 rounded-t-lg border-b border-amber-100">
                         <div className="flex items-center justify-center mb-5">
                             <div className="p-4 bg-amber-100 rounded-full transform transition-transform duration-300 hover:scale-110">
-                                <Avatar size="xl" bgColor="bg-yellow-500" icon="ri-file-warning-line" className="mx-auto" />
+                                <Avatar
+                                    size="xl"
+                                    bgColor="bg-yellow-500"
+                                    icon="ri-file-warning-line"
+                                    className="mx-auto"
+                                />
                             </div>
                         </div>
                         <h2 className="text-2xl font-bold text-center text-amber-700 mb-2">Are you sure?</h2>
@@ -51,8 +56,9 @@ export default function IsActiveToggle({ isActive, toggleIsActive, toggleIsActiv
                                 <div className="ml-4">
                                     <h3 className="text-sm font-medium text-yellow-800">Important Warning</h3>
                                     <p className="mt-2 text-sm text-yellow-700">
-                                        Once you change the status, it will affect the visibility and accessibility of this
-                                        entity across the application. Make sure to review all implications before proceeding.
+                                        Once you change the status, it will affect the visibility and accessibility of
+                                        this entity across the application. Make sure to review all implications before
+                                        proceeding.
                                     </p>
                                 </div>
                             </div>
