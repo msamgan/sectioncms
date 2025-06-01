@@ -225,7 +225,7 @@ export default function PricingSection() {
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     ></path>
                                 </svg>
-                                <span className="font-medium mr-1">$5</span> per extra website
+                                <span className="font-medium mr-1">$5</span> per extra website per month
                             </li>
                             <li className="flex items-center">
                                 <svg
@@ -241,7 +241,7 @@ export default function PricingSection() {
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     ></path>
                                 </svg>
-                                <span className="font-medium mr-1">$1</span> per 20 extra sections
+                                <span className="font-medium mr-1">$1</span> per 20 extra sections per month
                             </li>
                             <li className="flex items-center">
                                 <svg
@@ -257,7 +257,7 @@ export default function PricingSection() {
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     ></path>
                                 </svg>
-                                <span className="font-medium mr-1">$1</span> per 50 extra keys
+                                <span className="font-medium mr-1">$1</span> per 50 extra keys per month
                             </li>
                             <li className="flex items-center">
                                 <svg
@@ -273,7 +273,7 @@ export default function PricingSection() {
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     ></path>
                                 </svg>
-                                <span className="font-medium mr-1">$1</span> per additional language
+                                <span className="font-medium mr-1">$1</span> per additional language per month
                             </li>
                             <li className="flex items-center">
                                 <svg
@@ -289,7 +289,7 @@ export default function PricingSection() {
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                                     ></path>
                                 </svg>
-                                <span className="font-medium mr-1">$0.25</span> per GB of media storage
+                                <span className="font-medium mr-1">$0.25</span> per GB of media storage per month
                             </li>
                             <li className="flex items-center">
                                 <svg

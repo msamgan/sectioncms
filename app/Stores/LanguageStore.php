@@ -23,4 +23,10 @@ final class LanguageStore
     {
         return Language::query()->where('business_id', $businessId)->count();
     }
+
+    public static function languageCountCreatedToday(int $businessId): int
+    {
+        return Language::query()
+            ->where('business_id', $businessId)->whereDate('created_at', now()->toDateString())->count();
+    }
 }

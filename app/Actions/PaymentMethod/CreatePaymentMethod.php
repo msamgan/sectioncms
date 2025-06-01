@@ -10,6 +10,6 @@ final class CreatePaymentMethod
 {
     public function handle(array $data): PaymentMethod
     {
-        return auth()->user()->addPaymentMethod($data['payment_method']);
+        return auth()->user()->key('business')->addPaymentMethod($data['payment_method']);
     }
 }

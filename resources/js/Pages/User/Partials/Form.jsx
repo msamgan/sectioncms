@@ -60,7 +60,7 @@ export default function Form({ getUsers, user = null, roles }) {
                         <div className="w-full">
                             <div className="relative mb-4">
                                 <InputLabel
-                                    htmlFor="user-name"
+                                    htmlFor="name"
                                     required={true}
                                     className="block text-gray-700 font-medium mb-2"
                                 >
@@ -70,7 +70,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                     type="text"
                                     value={data.name}
                                     onChange={(e) => setData('name', e.target.value)}
-                                    id="user-name"
+                                    id="name"
                                     placeholder="John Doe"
                                     required={true}
                                     isFocused={true}
@@ -83,7 +83,7 @@ export default function Form({ getUsers, user = null, roles }) {
                             <div className="w-full">
                                 <div className="relative mb-4">
                                     <InputLabel
-                                        htmlFor="user-email"
+                                        htmlFor="email"
                                         required={true}
                                         className="block text-gray-700 font-medium mb-2"
                                     >
@@ -93,7 +93,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                         type="text"
                                         value={data.email}
                                         onChange={(e) => setData('email', e.target.value)}
-                                        id="user-email"
+                                        id="email"
                                         placeholder="john@example.com"
                                         required={true}
                                         className="shadow-sm transition-all duration-200 focus:shadow-md focus:border-primary rounded-md hover:border-primary"
@@ -104,7 +104,7 @@ export default function Form({ getUsers, user = null, roles }) {
                             <div className="w-full">
                                 <div className="relative mb-4">
                                     <InputLabel
-                                        htmlFor="user-password"
+                                        htmlFor="password"
                                         required={!user}
                                         className="block text-gray-700 font-medium mb-2"
                                     >
@@ -114,7 +114,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                         type="password"
                                         value={data.password}
                                         onChange={(e) => setData('password', e.target.value)}
-                                        id="user-password"
+                                        id="password"
                                         placeholder="••••••••"
                                         required={!user}
                                         className="shadow-sm transition-all duration-200 focus:shadow-md focus:border-primary rounded-md hover:border-primary"

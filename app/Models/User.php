@@ -14,7 +14,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Cashier\Billable;
 use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
@@ -31,7 +30,6 @@ use Spatie\Permission\Traits\HasRoles;
  */
 final class User extends Authenticatable implements HasMedia, MustVerifyEmail
 {
-    use Billable;
     use CausesActivity;
     use HasFactory, Notifiable;
     use HasRoles;

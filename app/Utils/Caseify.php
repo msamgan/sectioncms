@@ -26,6 +26,11 @@ final class Caseify
         ];
     }
 
+    public static function underscoreToTitle(string $text): string
+    {
+        return ucwords(str_replace('_', ' ', $text));
+    }
+
     private static function toDotCase(string $text): string
     {
         return mb_trim(mb_strtolower((string) preg_replace('/([A-Z])/', '.$1', $text)), '.');
