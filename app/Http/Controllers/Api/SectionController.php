@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
-use App\Concerns\ApiResponses;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SectionApiRequest;
 use App\Models\Section;
@@ -13,8 +12,6 @@ use Exception;
 
 final class SectionController extends Controller
 {
-    use ApiResponses;
-
     /**
      * Section data
      */
@@ -28,15 +25,15 @@ final class SectionController extends Controller
             );
 
             if (! $section instanceof Section) {
-                return $this->notFound($request->input('id'));
+                return response()->notFound(slug: $request->input('id'));
             }
 
-            return $this->ok(payload: SectionStore::mapSectionApi(
+            return response()->ok(payload: SectionStore::mapSectionApi(
                 section: $section,
                 langCode: $request->input('lang', 'en')
             ));
         } catch (Exception) {
-            return $this->error();
+            return response()->error();
         }
     }
 }

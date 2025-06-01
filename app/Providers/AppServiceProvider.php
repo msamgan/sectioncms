@@ -9,6 +9,7 @@ use App\Models\User;
 use Dedoc\Scramble\Scramble;
 use Dedoc\Scramble\Support\Generator\OpenApi;
 use Dedoc\Scramble\Support\Generator\SecurityScheme;
+use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Gate;
@@ -47,16 +48,43 @@ final class AppServiceProvider extends ServiceProvider
         }
     }
 
-    private function loadMacros(): void
-    {
-        Auth::macro('businessId', fn (): ?int => Auth::user()?->key('business_id'));
-    }
-
     private function loadScrambleConfig(): void
     {
         Gate::define('viewApiDocs', fn (User $user): bool => $user->can(PermissionEnum::ApiDocView->value));
         Scramble::configure()->withDocumentTransformers(function (OpenApi $openApi): void {
             $openApi->secure(SecurityScheme::http('bearer'));
+        });
+    }
+
+    private function loadMacros(): void
+    {
+        Auth::macro('businessId', fn (): ?int => Auth::user()?->key('business_id'));
+
+        ResponseFactory::macro('ok', fn ($payload) => response()->json([
+            'status' => 'ok',
+            'message' => 'Request was successful',
+            'error' => null,
+            'payload' => $payload,
+        ]));
+
+        ResponseFactory::macro('notFound', fn (string $slug) => response()->json([
+            'status' => 'not_found',
+            'message' => 'Resource not found',
+            'error' => 'Resource with id:' . $slug . ' not found',
+            'payload' => null,
+        ], 404));
+
+        ResponseFactory::macro('error', function (?string $message = null, int $code = 500) {
+            if (! $message) {
+                $message = 'An error occurred while processing your request';
+            }
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Request failed',
+                'error' => $message,
+                'payload' => null,
+            ], $code);
         });
     }
 }
