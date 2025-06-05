@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Actions\Section;
 
+use App\Jobs\Translate;
 use App\Stores\LanguageStore;
 use App\Stores\SectionStore;
 
@@ -18,6 +19,9 @@ final class CreateLanguageValues
             $newValue = $sectionValue->replicate();
             $newValue->lang = $languageCode;
             $newValue->save();
+            $newValue = $newValue->refresh();
+
+            Translate::dispatch(sectionValueId: $newValue->key('id'));
         }
     }
 }

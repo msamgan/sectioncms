@@ -35,7 +35,7 @@ final class TestTranslationAdapter extends Command
         $language = text('Enter the language to translate to (e.g., "French"):');
         $query = text('Enter the query to translate:');
 
-        if (empty($language) || empty($query)) {
+        if ($language === '' || $language === '0' || ($query === '' || $query === '0')) {
             $this->error('Language and query cannot be empty.');
 
             return;

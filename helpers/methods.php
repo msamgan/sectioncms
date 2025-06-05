@@ -12,3 +12,13 @@ if (! function_exists('extractDomain')) {
         return parse_url($url, PHP_URL_HOST);
     }
 }
+
+if (! function_exists('trimString')) {
+    function trimString(string $string): string
+    {
+        $string = preg_replace('/^[\s\W]+|[\s\W]+$/u', '', $string); // Trim leading and trailing special characters
+        $string = preg_replace('/[\s\W]+/u', ' ', $string); // Replace multiple spaces with a single space
+
+        return mb_trim($string, '"'); // Trim double quotes from the beginning and end
+    }
+}
