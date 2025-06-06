@@ -23,7 +23,7 @@ final class LanguageStore
     public static function languageBaseQuery(int $businessId, ?string $q = null)
     {
         return Language::query()->where('business_id', $businessId)
-            ->orderBy('created_at', 'Asc')
+            ->orderBy('is_default', 'Desc')
             ->when($q, function ($query) use ($q): void {
                 $query->where('name', 'like', '%' . $q . '%')
                     ->orWhere('code', 'like', '%' . $q . '%');
