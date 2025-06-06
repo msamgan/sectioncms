@@ -8,6 +8,7 @@
         "php": "^8.3",
         "dedoc/scramble": "^0.12.19",
         "driftingly/rector-laravel": "^2.0",
+        "google/cloud-translate": "^2.0",
         "hisorange/browser-detect": "^5.0",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/cashier": "^15.6",
