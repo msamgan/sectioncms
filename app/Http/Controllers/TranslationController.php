@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Adapters\TranslationAdapter;
+use App\Adapters\GoogleTranslationAdapter;
 use App\Http\Requests\TranslationRequest;
 use App\Stores\LanguageStore;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -21,7 +21,7 @@ final class TranslationController extends Controller
      * @throws Throwable
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business'])]
-    public function translate(TranslationRequest $request, TranslationAdapter $translationAdapter): JsonResponse
+    public function translate(TranslationRequest $request, GoogleTranslationAdapter $googleTranslationAdapter): JsonResponse
     {
         $languageCode = $request->validated('language');
         $value = $request->validated('value');
@@ -30,8 +30,8 @@ final class TranslationController extends Controller
 
         $responseArray = [];
         foreach ($languages as $language) {
-            $translation = $translationAdapter->translate(language: $language->key('name'), query: $value);
-            $responseArray[$language->code] = trimString($translation['response']);
+            $translation = $googleTranslationAdapter->translate(languageCode: $language->key('code'), query: $value);
+            $responseArray[$language->code] = trimString($translation);
         }
 
         return response()->ok(payload: $responseArray);

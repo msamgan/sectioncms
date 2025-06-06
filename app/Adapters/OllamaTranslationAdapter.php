@@ -8,7 +8,7 @@ use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Throwable;
 
-final class TranslationAdapter
+final class OllamaTranslationAdapter
 {
     private const string BASE_URL = 'http://127.0.0.1:11434';
 
