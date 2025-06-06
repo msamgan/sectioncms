@@ -10,10 +10,6 @@ use Throwable;
 
 final class OllamaTranslationAdapter
 {
-    private const string BASE_URL = 'http://127.0.0.1:11434';
-
-    private const string MODEL = 'llama3:8b';
-
     /**
      * @throws ConnectionException
      * @throws Throwable
@@ -22,7 +18,7 @@ final class OllamaTranslationAdapter
     {
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post(self::BASE_URL . '/api/generate', $this->mapper(language: $language, query: $query));
+        ])->post(config('translation.ollama.base_url') . '/api/generate', $this->mapper(language: $language, query: $query));
 
         throw_if($response->failed(), new ConnectionException('Failed to connect to the translation service.'));
 
@@ -32,7 +28,7 @@ final class OllamaTranslationAdapter
     private function mapper(string $language, string $query): array
     {
         return [
-            'model' => self::MODEL,
+            'model' => config('translation.ollama.model'),
             'prompt' => $this->prompter(language: $language, query: $query),
             'stream' => false,
             'format' => [

@@ -11,10 +11,6 @@ use Google\Cloud\Translate\V3\TranslateTextRequest;
 
 final class GoogleTranslationAdapter
 {
-    private string $projectId = 'section-cms';
-
-    private string $location = 'global'; // or 'us-central1' if you specified a regional endpoint
-
     /**
      * @throws ValidationException
      * @throws ApiException
@@ -25,7 +21,7 @@ final class GoogleTranslationAdapter
             'credentials' => storage_path('section-cms.json'),
         ]);
 
-        $parent = $client->locationName($this->projectId, $this->location);
+        $parent = $client->locationName((string) config('translation.google.project_id'), (string) config('translation.google.location'));
 
         // Build the request using the TranslateTextRequest object
         $request = (new TranslateTextRequest())
