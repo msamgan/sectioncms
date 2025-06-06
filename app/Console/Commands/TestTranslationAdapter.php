@@ -51,9 +51,9 @@ final class TestTranslationAdapter extends Command
         $projectId = 'section-cms';
         $location = 'global'; // or 'us-central1' if you specified a regional endpoint
 
-        $targetLanguage = 'es'; // e.g., 'zh' for Chinese
+        $targetLanguage = 'hi'; // e.g., 'zh' for Chinese
 
-        $contents = ['Hello, how are you?'];
+        $contents = ['Welcome to SectionCMS'];
         $mimeType = 'text/plain';
 
         $client = new TranslationServiceClient([
