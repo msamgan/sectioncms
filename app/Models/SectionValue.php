@@ -30,7 +30,7 @@ final class SectionValue extends Model
         parent::boot();
 
         self::creating(function ($model): void {
-            $model->business_id = auth()->user()->key('business_id');
+            $model->business_id = auth()->businessId();
         });
     }
 }
