@@ -8,6 +8,7 @@ import SectionCountStats from '@/Pages/Dashboard/Partials/SectionCountStats.jsx'
 import UserCountStats from '@/Pages/Dashboard/Partials/UserCountStats.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
 import { Head } from '@inertiajs/react'
+import KeyCountStats from '@/Pages/Dashboard/Partials/KeyCountStats.jsx'
 
 export default function Dashboard({ auth }) {
     const { can } = usePermissions()
@@ -42,15 +43,23 @@ export default function Dashboard({ auth }) {
                     </div>
                 )}
 
+                {can(permissions.language.list) && (
+                    <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                        <LanguageCountStats />
+                    </div>
+                )}
+            </div>
+
+            <div className="grid grid-cols-12 gap-6 mt-8">
                 {can(permissions.section.list) && (
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
                         <SectionCountStats />
                     </div>
                 )}
 
-                {can(permissions.language.list) && (
+                {can(permissions.section.list) && (
                     <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                        <LanguageCountStats />
+                        <KeyCountStats />
                     </div>
                 )}
             </div>

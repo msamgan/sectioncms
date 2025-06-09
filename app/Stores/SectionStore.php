@@ -71,4 +71,18 @@ final class SectionStore
             }, 'keys.values'])
             ->first();
     }
+
+    public static function sectionCount(int $businessId): int
+    {
+        return Section::query()->where('business_id', $businessId)->count();
+    }
+
+    public static function keysCount(int $businessId): int
+    {
+        return Section::query()
+            ->where('business_id', $businessId)
+            ->withCount(['keys'])
+            ->get()
+            ->sum('keys_count');
+    }
 }

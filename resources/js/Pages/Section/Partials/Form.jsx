@@ -111,8 +111,8 @@ export default function Form({ getSections, section = null, languages }) {
                         leaveFrom="opacity-100 transform scale-100"
                         leaveTo="opacity-0 transform scale-95"
                     >
-                        <div className="flex items-center mt-2 bg-green-50 px-5 py-3 rounded-lg border border-green-200 shadow-sm">
-                            <div className="bg-success p-1.5 rounded-md shadow-md mr-3">
+                        <div className="flex items-center bg-green-50 px-5 py-3 rounded-lg border border-green-200 shadow-sm">
+                            <div className="bg-success rounded-md shadow-md mr-3">
                                 <Avatar
                                     size="xs"
                                     bgColor="transparent"

@@ -18,7 +18,6 @@ use App\Notifications\SectionUpdated;
 use App\Stores\SectionStore;
 use App\Utils\Access;
 use Exception;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
@@ -96,7 +95,6 @@ final class SectionController extends Controller
     }
 
     /**
-     * @throws FileNotFoundException
      * @throws ConnectionException
      */
     #[Action(middleware: ['auth', 'check_has_business', 'can:section.list'])]
@@ -112,6 +110,12 @@ final class SectionController extends Controller
     #[Action(middleware: ['auth', 'check_has_business', 'can:section.list'])]
     public function sectionCount(): int
     {
-        return Section::query()->where('business_id', Auth::user()->key('business_id'))->count();
+        return SectionStore::sectionCount(businessId: auth()->businessId());
+    }
+
+    #[Action(middleware: ['auth', 'check_has_business', 'can:section.list'])]
+    public function keysCount(): int
+    {
+        return SectionStore::keysCount(businessId: auth()->businessId());
     }
 }
