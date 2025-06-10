@@ -10,6 +10,7 @@ use App\Actions\Language\CreateLanguage;
 use App\Actions\Role\AssignRole;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
+use App\Jobs\PostRegistration;
 use App\Models\User;
 use Exception;
 use Illuminate\Auth\Events\Registered;
@@ -56,12 +57,15 @@ final class RegisteredUserController extends Controller
 
             $assignRoleAction->handle(user: $user, role: RoleEnum::Business->role(), makeRoleActive: true);
             $createBusinessAction->handle(user: $user, businessName: extractDomain(url: $request->get('website')), makeBusinessActive: true);
-            $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
-            $createAllowedResourcesAction->handle();
+
+            // $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
+            // $createAllowedResourcesAction->handle();
 
             DB::commit();
 
             event(new Registered($user));
+
+            PostRegistration::dispatch()->onQueue('high');
 
             return redirect(route('dashboard', absolute: false));
 

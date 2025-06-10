@@ -1,6 +1,7 @@
 import usePermissions from '@/Hooks/usePermissions'
 import Master from '@/Layouts/Master.jsx'
 import ApiStatsChart from '@/Pages/Dashboard/Partials/ApiStatsChart.jsx'
+import KeyCountStats from '@/Pages/Dashboard/Partials/KeyCountStats.jsx'
 import LanguageCountStats from '@/Pages/Dashboard/Partials/LanguageCountStats.jsx'
 import MediaSizeStats from '@/Pages/Dashboard/Partials/MediaSizeStats.jsx'
 import RoleCountStats from '@/Pages/Dashboard/Partials/RoleCountStats.jsx'
@@ -8,7 +9,6 @@ import SectionCountStats from '@/Pages/Dashboard/Partials/SectionCountStats.jsx'
 import UserCountStats from '@/Pages/Dashboard/Partials/UserCountStats.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
 import { Head } from '@inertiajs/react'
-import KeyCountStats from '@/Pages/Dashboard/Partials/KeyCountStats.jsx'
 
 export default function Dashboard({ auth }) {
     const { can } = usePermissions()

@@ -17,6 +17,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.2",
         "laravel/tinker": "^2.9",
+        "mrpunyapal/laravel-auth-jobs": "^1.0",
         "msamgan/lact": "^1.1",
         "nunomaduro/essentials": "@dev",
         "predis/predis": "^2.0",
