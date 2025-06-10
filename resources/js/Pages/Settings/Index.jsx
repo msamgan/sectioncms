@@ -15,6 +15,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
     const [activeTabGroup, setActiveTabGroup] = useState('profile')
     const [activeBusinessTab, setActiveBusinessTab] = useState('general')
     const [activeProfileTab, setActiveProfileTab] = useState('profile')
+    const [activeSettingsTab, setActiveSettingsTab] = useState('settings')
 
     return (
         <Master user={auth.user} header={'Settings'}>
@@ -42,6 +43,15 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 >
                                     <i className="ri-user-line mr-3"></i>
                                     <span>Profile Settings</span>
+                                </NavButton>
+                            </li>
+                            <li>
+                                <NavButton
+                                    active={activeTabGroup === 'settings'}
+                                    onClick={() => setActiveTabGroup('settings')}
+                                >
+                                    <i className="ri-settings-3-line mr-3"></i>
+                                    <span>Account Settings</span>
                                 </NavButton>
                             </li>
                         </ul>
@@ -115,6 +125,25 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         </TabButton>
                                     </li>
                                 </ul>
+
+                                {/* Account Settings Tabs */}
+                                <ul
+                                    className={`flex flex-wrap -mb-px ${activeTabGroup === 'settings' ? 'block' : 'hidden'}`}
+                                    role="tablist"
+                                >
+                                    <li className="mr-6">
+                                        <TabButton
+                                            type="button"
+                                            active={activeSettingsTab === 'notifications'}
+                                            role="tab"
+                                            onClick={() => setActiveSettingsTab('notifications')}
+                                            aria-selected={activeSettingsTab === 'notifications'}
+                                        >
+                                            <i className="ri-notification-3-line mr-3"></i>
+                                            Notifications
+                                        </TabButton>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div className="bg-transparent p-0 shadow-none">
@@ -145,6 +174,13 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         <div className="">
                                             <UpdatePasswordForm className="max-w-2xl" />
                                         </div>
+                                    </div>
+                                </div>
+
+                                {/* Account Settings Content */}
+                                <div className={activeTabGroup === 'settings' ? 'block' : 'hidden'}>
+                                    <div className={activeSettingsTab === 'notifications' ? 'block' : 'hidden'}>
+                                        //
                                     </div>
                                 </div>
                             </div>

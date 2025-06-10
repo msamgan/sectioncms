@@ -15,9 +15,5 @@ export default function KeyCountStats() {
             .finally(() => setLoading(false))
     }, [])
 
-    return loading ? (
-        <Loading />
-    ) : (
-        <StatsCard count={keysCount} label={'Active Keys'} icon={'ri-instance-line'} />
-    )
+    return loading ? <Loading /> : <StatsCard count={keysCount} label={'Active Keys'} icon={'ri-instance-line'} />
 }

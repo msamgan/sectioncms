@@ -85,6 +85,11 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         });
     }
 
+    public function businessId(): int
+    {
+        return auth()->businessId();
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
@@ -123,9 +128,16 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return $this->belongsTo(Role::class, 'role_id')->select(['id', 'name', 'display_name']);
     }
 
-    public function businessId(): int
+    public function setting(string $key): mixed
     {
-        return auth()->businessId();
+        return $this->settings()
+            ->where('setting_id', Setting::query()->where('slug', $key)->first()->getKey())
+            ->first()->key('value') ?? null;
+    }
+
+    public function settings(): HasMany
+    {
+        return $this->hasMany(UserSetting::class);
     }
 
     /**
