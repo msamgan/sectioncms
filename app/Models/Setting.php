@@ -21,6 +21,12 @@ final class Setting extends Model
         'options',
     ];
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function userSettings()
     {
         return $this->hasMany(UserSetting::class);

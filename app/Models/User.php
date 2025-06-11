@@ -132,7 +132,7 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
     {
         return $this->settings()
             ->where('setting_id', Setting::query()->where('slug', $key)->first()->getKey())
-            ->first()->key('value') ?? null;
+            ->first() ?? null;
     }
 
     public function settings(): HasMany

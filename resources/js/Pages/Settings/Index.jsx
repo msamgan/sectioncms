@@ -7,15 +7,24 @@ import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
 import UpdatePasswordForm from '@/Pages/Settings/Partials/UpdatePasswordForm.jsx'
 import UpdateProfileInformationForm from '@/Pages/Settings/Partials/UpdateProfileInformationForm.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
+import { notificationSettings as _notificationSettings } from '@actions/SettingsController.js'
+import { Switch } from '@headlessui/react'
 import { Head } from '@inertiajs/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const { can } = usePermissions()
     const [activeTabGroup, setActiveTabGroup] = useState('profile')
     const [activeBusinessTab, setActiveBusinessTab] = useState('general')
     const [activeProfileTab, setActiveProfileTab] = useState('profile')
-    const [activeSettingsTab, setActiveSettingsTab] = useState('settings')
+    const [activeSettingsTab, setActiveSettingsTab] = useState('notifications')
+    const [notificationSettings, setNotificationSettings] = useState([])
+
+    const getNotificationSettings = async () => setNotificationSettings(await _notificationSettings.data({}))
+
+    useEffect(() => {
+        getNotificationSettings().then()
+    }, [])
 
     return (
         <Master user={auth.user} header={'Settings'}>
@@ -180,7 +189,40 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 {/* Account Settings Content */}
                                 <div className={activeTabGroup === 'settings' ? 'block' : 'hidden'}>
                                     <div className={activeSettingsTab === 'notifications' ? 'block' : 'hidden'}>
-                                        //
+                                        {notificationSettings.length > 0 ? (
+                                            notificationSettings.map((setting) => (
+                                                <div
+                                                    key={setting.slug}
+                                                    className={'flex items-center justify-between p-4 bg-white w-1/2'}
+                                                >
+                                                    <div className="mb-4">
+                                                        <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
+                                                        <p className="text-gray-600">{setting.description}</p>
+                                                    </div>
+                                                    <span className="inline-flex items-center">
+                                                        <Switch
+                                                            checked={setting.value}
+                                                            onChange={async (checked) => {
+                                                                console.log(`Toggling ${setting.slug} to ${checked}`)
+                                                            }}
+                                                            className={`${
+                                                                setting.value ? 'bg-blue-600' : 'bg-gray-200'
+                                                            } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`}
+                                                        >
+                                                            <span
+                                                                className={`${
+                                                                    setting.enabled ? 'translate-x-5' : 'translate-x-0'
+                                                                } inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                                                            />
+                                                        </Switch>
+                                                    </span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div key={'one'} className="text-gray-500">
+                                                No notification settings available.
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
