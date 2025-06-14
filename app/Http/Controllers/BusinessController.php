@@ -13,6 +13,9 @@ use App\Http\Requests\StoreBusinessRequest;
 use App\Http\Requests\UpdateBusinessRequest;
 use App\Models\Business;
 use App\Notifications\AccessTokenRegenerated;
+use App\Notifications\BusinessCreated;
+use App\Notifications\BusinessDeleted;
+use App\Notifications\BusinessUpdated;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
@@ -55,7 +58,7 @@ final class BusinessController extends Controller
         );
         $createLanguage->handle(['name' => 'English', 'code' => 'en']);
 
-        $notifyUser->handle(new \App\Notifications\BusinessCreated($business, auth()->user()));
+        $notifyUser->handle(new BusinessCreated($business, auth()->user()));
     }
 
     /**
@@ -82,7 +85,7 @@ final class BusinessController extends Controller
     {
         $business = $updateBusiness->handle(business: $business, data: $request->validated());
 
-        $notifyUser->handle(new \App\Notifications\BusinessUpdated($business, auth()->user()));
+        $notifyUser->handle(new BusinessUpdated($business, auth()->user()));
     }
 
     /**
@@ -98,7 +101,7 @@ final class BusinessController extends Controller
 
         throw_unless($notSelectedBusiness, new RuntimeException('No other business found.'));
 
-        $notifyUser->handle(new \App\Notifications\BusinessDeleted($business, auth()->user()));
+        $notifyUser->handle(new BusinessDeleted($business, auth()->user()));
 
         $request->user()->saveKey('business_id', $notSelectedBusiness->getKey());
         $business->delete();
