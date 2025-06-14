@@ -96,7 +96,7 @@ Note: The primary theme color across the application is Tailwind Blue-500 (#3B82
 	•	Language should be clear, direct, and helpful.
 	•	Avoid jargon unless necessary for the audience.
 	•	Keep copy short, relevant, and action-oriented.
-	•	Use consistent voice and tense throughout.
+	•	Use a consistent voice and tense throughout.
 
 ⸻
 
