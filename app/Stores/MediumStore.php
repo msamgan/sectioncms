@@ -31,7 +31,7 @@ final class MediumStore
 
     public static function mediaSize(int $businessId): float
     {
-        return Media::query()
+        return (float) Media::query()
             ->where('custom_properties->businessId', $businessId)
             ->sum('size');
     }

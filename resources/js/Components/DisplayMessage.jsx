@@ -48,7 +48,7 @@ export default function DisplayMessage({ text, type = 'info', icon = null, class
     }
 
     return (
-        <div className={`mt-4 bg-white rounded-panel overflow-hidden transition-all duration-250 w-full border border-gray-100 ${className}`}>
+        <div className={`mt-4 bg-white rounded-panel overflow-hidden transition-all duration-250 w-full ${className}`}>
             <div className={`${getBackgroundColor()} p-4`}>
                 <div className="flex items-center">
                     <div

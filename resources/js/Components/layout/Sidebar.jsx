@@ -56,8 +56,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                                           href={route(item.route)}
                                           className={`flex items-center px-3 py-2.5 rounded-md transition-colors ${
                                               route().current(item.route)
-                                                    ? `${menuItemActiveClass}`
-                                                    : `${menuItemInactiveClass}`
+                                                  ? `${menuItemActiveClass}`
+                                                  : `${menuItemInactiveClass}`
                                           }`}
                                       >
                                           <i className={`${item.icon} text-lg`}></i>

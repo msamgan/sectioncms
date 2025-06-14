@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) => {
     return (
-        <div className="bg-white rounded-panel mt-6 border border-gray-200 overflow-hidden transition-all duration-250">
+        <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250">
             <div className="overflow-x-auto">
                 <div className="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
@@ -109,7 +109,7 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
 
     return permission ? (
         loading ? (
-            <div className="bg-white rounded-panel mt-6 border border-gray-200 p-8 flex justify-center items-center min-h-[200px]">
+            <div className="bg-white rounded-panel mt-6 p-8 flex justify-center items-center min-h-[200px]">
                 <Loading />
             </div>
         ) : data.length > 0 ? (
@@ -121,22 +121,21 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
                 refresher={refresher}
             />
         ) : (
-            <div className="bg-white rounded-panel mt-6 border border-gray-200 overflow-hidden transition-all duration-250">
+            <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250">
                 <div className="border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                 </div>
-                <div className="p-8 flex justify-center items-center">
+                <div className="p-8 flex">
                     <DisplayMessage
-                        text="No data available. Try adjusting your search criteria."
+                        text="No data available. Try adjusting your search criteria or adding new records."
                         type="info"
                         icon="ri-inbox-line"
-                        className="max-w-md"
                     />
                 </div>
             </div>
         )
     ) : (
-        <div className="bg-white rounded-panel mt-6 border border-gray-200 overflow-hidden transition-all duration-250 p-8 flex justify-center items-center min-h-[200px]">
+        <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250 p-8 flex min-h-[200px]">
             <DisplayMessage
                 text="You do not have permission to view this content."
                 type="error"
