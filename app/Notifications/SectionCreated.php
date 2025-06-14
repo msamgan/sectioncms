@@ -6,6 +6,7 @@ namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
 use App\Models\Section;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -19,7 +20,7 @@ final class SectionCreated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Section $section) {}
+    public function __construct(private readonly Section $section, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -28,7 +29,7 @@ final class SectionCreated extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -37,7 +38,7 @@ final class SectionCreated extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Section',
             entityName: $this->section->key('name'),
         );
@@ -58,7 +59,7 @@ final class SectionCreated extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Section',
             entityName: $this->section->key('name'),
         );

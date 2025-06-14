@@ -6,6 +6,7 @@ namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
 use App\Models\Section;
+use App\Models\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -16,7 +17,7 @@ final class SectionDeleted extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Section $section) {}
+    public function __construct(private readonly Section $section, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -25,7 +26,7 @@ final class SectionDeleted extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -34,7 +35,7 @@ final class SectionDeleted extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Section',
             entityName: $this->section->key('name'),
         );
@@ -55,7 +56,7 @@ final class SectionDeleted extends Notification
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Section',
             entityName: $this->section->key('name'),
         );
