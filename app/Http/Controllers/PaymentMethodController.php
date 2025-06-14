@@ -56,7 +56,7 @@ final class PaymentMethodController extends Controller
         try {
             $paymentMethod = $createPaymentMethod->handle($request->validated());
 
-            $notifyUser->handle(new PaymentMethodCreated($paymentMethod));
+            $notifyUser->handle(new PaymentMethodCreated($paymentMethod, auth()->user()));
 
             UserCard::query()->create([
                 'user_id' => auth()->id(),
@@ -79,7 +79,7 @@ final class PaymentMethodController extends Controller
     {
         $paymentMethod = auth()->user()->key('business')->findPaymentMethod($request->get('payment_method'));
 
-        $notifyUser->handle(new PaymentMethodDeleted($paymentMethod));
+        $notifyUser->handle(new PaymentMethodDeleted($paymentMethod, auth()->user()));
 
         $paymentMethod->delete();
         UserCard::query()->where('stripe_payment_method_id', $request->get('payment_method'))->delete();

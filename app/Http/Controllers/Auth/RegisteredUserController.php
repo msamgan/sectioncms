@@ -8,6 +8,7 @@ use App\Actions\Business\CreateAllowedResources;
 use App\Actions\Business\CreateBusiness;
 use App\Actions\Language\CreateLanguage;
 use App\Actions\Role\AssignRole;
+use App\Actions\Setting\CreateSetting;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -35,6 +36,7 @@ final class RegisteredUserController extends Controller
         CreateBusiness $createBusinessAction,
         CreateLanguage $createLanguageAction,
         CreateAllowedResources $createAllowedResourcesAction,
+        CreateSetting $createSettingAction
     ) {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -58,6 +60,7 @@ final class RegisteredUserController extends Controller
             $createBusinessAction->handle(user: $user, businessName: extractDomain(url: $request->get('website')), makeBusinessActive: true);
             $createLanguageAction->handle(['name' => 'English', 'code' => 'en'], isDefault: true);
             $createAllowedResourcesAction->handle();
+            $createSettingAction->handle();
 
             DB::commit();
 

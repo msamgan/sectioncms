@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -20,7 +21,8 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
      * Create a new notification instance.
      */
     public function __construct(
-        private PaymentMethod $paymentMethod
+        private PaymentMethod $paymentMethod,
+        private readonly User $initiator
     ) {}
 
     /**
@@ -30,7 +32,7 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -41,7 +43,7 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
         $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
 
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Payment Method',
             entityName: $lastFourDigits
         );
@@ -64,7 +66,7 @@ final class PaymentMethodCreated extends Notification implements ShouldQueue
         $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
 
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Payment Method',
             entityName: $lastFourDigits
         );

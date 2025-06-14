@@ -16,7 +16,7 @@ final class UserDeleted extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $newUser) {}
+    public function __construct(private readonly User $newUser, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -25,7 +25,7 @@ final class UserDeleted extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -34,7 +34,7 @@ final class UserDeleted extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'User',
             entityName: $this->newUser->key('name'),
         );
@@ -55,7 +55,7 @@ final class UserDeleted extends Notification
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'User',
             entityName: $this->newUser->key('name'),
         );

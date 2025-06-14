@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Concerns\ModelFunctions;
 use App\Enums\RoleEnum;
+use App\Stores\SettingStore;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -85,6 +86,11 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         });
     }
 
+    public function businessId(): int
+    {
+        return auth()->businessId();
+    }
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this
@@ -123,9 +129,18 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return $this->belongsTo(Role::class, 'role_id')->select(['id', 'name', 'display_name']);
     }
 
-    public function businessId(): int
+    public function notifiableVia(): array
     {
-        return auth()->businessId();
+        $userSettings = SettingStore::userSetting(
+            userId: $this->getKey(),
+            settingId: (SettingStore::settingBySlug('email-notifications'))->getKey()
+        );
+
+        if ($userSettings instanceof UserSetting && (bool) $userSettings->key('value') === false) {
+            return ['database'];
+        }
+
+        return ['database', 'mail'];
     }
 
     /**

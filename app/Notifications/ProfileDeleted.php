@@ -10,9 +10,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Laravel\Cashier\PaymentMethod;
 
-final class PaymentMethodDeleted extends Notification implements ShouldQueue
+final class ProfileDeleted extends Notification implements ShouldQueue
 {
     use NotificationFunctions;
     use Queueable;
@@ -20,10 +19,7 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(
-        private PaymentMethod $paymentMethod,
-        private readonly User $initiator
-    ) {}
+    public function __construct(private readonly User $user, private readonly ?User $initiator = null) {}
 
     /**
      * Get the notification's delivery channels.
@@ -40,12 +36,10 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
-
         $notification = $this->notificationGenerator(
-            notifiable: $this->initiator,
-            entity: 'Payment Method',
-            entityName: $lastFourDigits
+            notifiable: $this->initiator ?? $this->user,
+            entity: 'Profile',
+            entityName: $this->user->name
         );
 
         return (new MailMessage)
@@ -63,12 +57,10 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
-
         $notification = $this->notificationGenerator(
-            notifiable: $this->initiator,
-            entity: 'Payment Method',
-            entityName: $lastFourDigits
+            notifiable: $this->initiator ?? $this->user,
+            entity: 'Profile',
+            entityName: $this->user->name
         );
 
         return [

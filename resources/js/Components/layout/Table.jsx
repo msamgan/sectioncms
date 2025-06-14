@@ -91,7 +91,6 @@ const SearchForm = ({ setLoading, refresher }) => {
                     aria-describedby="search-help"
                     name="q"
                     onChange={(e) => setQuery(e.target.value)}
-                    autoFocus={true}
                 />
                 <label
                     htmlFor="search"

@@ -6,6 +6,7 @@ namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -19,7 +20,7 @@ final class LanguageUpdated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Language $language) {}
+    public function __construct(private readonly Language $language, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -28,7 +29,7 @@ final class LanguageUpdated extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -37,7 +38,7 @@ final class LanguageUpdated extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Language',
             entityName: $this->language->key('name'),
         );
@@ -58,7 +59,7 @@ final class LanguageUpdated extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Language',
             entityName: $this->language->key('name'),
         );

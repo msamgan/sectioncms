@@ -47,7 +47,7 @@ final class SectionController extends Controller
             $section = $createSection->handle(['name' => $request->validated('name')]);
             $createSectionChildren->handle(section: $section, fields: $request->validated('fields'));
 
-            $notifyUser->handle(new SectionCreated($section));
+            $notifyUser->handle(new SectionCreated($section, auth()->user()));
 
             DB::commit();
         } catch (Exception $e) {
@@ -79,7 +79,7 @@ final class SectionController extends Controller
             );
 
             DB::commit();
-            $notifyUser->handle(new SectionUpdated($section->refresh()));
+            $notifyUser->handle(new SectionUpdated($section->refresh(), auth()->user()));
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -89,7 +89,7 @@ final class SectionController extends Controller
     #[Action(method: 'delete', params: ['section'], middleware: ['auth', 'check_has_business', 'can:section.delete'])]
     public function destroy(DeleteSectionRequest $request, Section $section, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new SectionDeleted($section));
+        $notifyUser->handle(new SectionDeleted($section, auth()->user()));
 
         $section->delete();
     }

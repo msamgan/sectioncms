@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
+use App\Models\Business;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Laravel\Cashier\PaymentMethod;
 
-final class PaymentMethodDeleted extends Notification implements ShouldQueue
+final class BusinessCreated extends Notification implements ShouldQueue
 {
     use NotificationFunctions;
     use Queueable;
@@ -20,10 +20,7 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(
-        private PaymentMethod $paymentMethod,
-        private readonly User $initiator
-    ) {}
+    public function __construct(private readonly Business $business, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -40,19 +37,13 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
-
-        $notification = $this->notificationGenerator(
-            notifiable: $this->initiator,
-            entity: 'Payment Method',
-            entityName: $lastFourDigits
-        );
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Business', entityName: $this->business->name);
 
         return (new MailMessage)
-            ->subject($notification['deleteSubject'])
-            ->line($notification['deleteTitle'])
+            ->subject($notification['createSubject'])
+            ->line($notification['createTitle'])
             ->action('Notifications', url('notifications'))
-            ->line($notification['deleteMessage'])
+            ->line($notification['createMessage'])
             ->line('Thank you for using our application!');
     }
 
@@ -63,17 +54,11 @@ final class PaymentMethodDeleted extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        $lastFourDigits = $this->paymentMethod->card->last4 ?? 'N/A';
-
-        $notification = $this->notificationGenerator(
-            notifiable: $this->initiator,
-            entity: 'Payment Method',
-            entityName: $lastFourDigits
-        );
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Business', entityName: $this->business->name);
 
         return [
-            'title' => $notification['deleteTitle'],
-            'message' => $notification['deleteMessage'],
+            'title' => $notification['createTitle'],
+            'message' => $notification['createMessage'],
         ];
     }
 }

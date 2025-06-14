@@ -44,7 +44,7 @@ final class RoleController extends Controller
             $role = $createRole->handle(name: $request->get('name'));
             $role->syncPermissions($request->get('permissions'));
 
-            $notifyUser->handle(new RoleCreated($role));
+            $notifyUser->handle(new RoleCreated($role, auth()->user()));
 
             DB::commit();
         } catch (Throwable $th) {
@@ -72,7 +72,7 @@ final class RoleController extends Controller
             $role = $updateRole->handle(role: $role, name: $request->get('name'));
             $role->syncPermissions($request->get('permissions'));
 
-            $notifyUser->handle(new RoleUpdated($role));
+            $notifyUser->handle(new RoleUpdated($role, auth()->user()));
 
             DB::commit();
         } catch (Throwable $th) {
@@ -84,7 +84,7 @@ final class RoleController extends Controller
     #[Action(method: 'delete', params: ['role'], middleware: ['auth', 'check_has_business', 'can:role.delete'])]
     public function destroy(DeleteRoleRequest $request, Role $role, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new RoleDeleted($role));
+        $notifyUser->handle(new RoleDeleted($role, auth()->user()));
 
         $role->delete();
     }
@@ -114,6 +114,6 @@ final class RoleController extends Controller
     {
         $role->toggleIsActive();
 
-        $notifyUser->handle(new RoleUpdated($role));
+        $notifyUser->handle(new RoleUpdated($role, auth()->user()));
     }
 }

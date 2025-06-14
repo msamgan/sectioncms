@@ -1,6 +1,7 @@
 import InputError from '@/Components/InputError.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import TextInput from '@/Components/TextInput.jsx'
+import Avatar from '@/Components/helpers/Avatar.jsx'
 import { Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { useRef } from 'react'
@@ -37,16 +38,14 @@ export default function UpdatePasswordForm({ className = '' }) {
 
     return (
         <form onSubmit={updatePassword} className="space-y-6">
-            <div className="bg-white rounded-md border border-gray-200 overflow-hidden mb-4 transition-all duration-300">
-                <div className="border-b border-gray-200 bg-gray-50 px-4 py-3">
+            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
                     <div className="flex items-center">
-                        <div className="text-primary">
-                            <i className="ri-lock-line text-lg"></i>
-                        </div>
-                        <h5 className="ml-2 text-base font-medium text-primary">Update Password</h5>
+                        <Avatar size="sm" bgColor="bg-blue-500" icon="ri-lock-line" />
+                        <h5 className="ml-3 text-lg font-semibold text-gray-800">Update Password</h5>
                     </div>
                 </div>
-                <div className="p-4">
+                <div className="p-6">
                     <p className="mb-4 text-sm text-gray-600">
                         Ensure your account is using a long, random password to stay secure.
                     </p>

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Role\AssignRole;
+use App\Actions\Setting\CreateSetting;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -37,7 +38,7 @@ final class UserController extends Controller
      * @throws Throwable
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:user.create'])]
-    public function store(StoreUserRequest $request, AssignRole $assignRole, NotifyUser $notifyUser): void
+    public function store(StoreUserRequest $request, AssignRole $assignRole, CreateSetting $createSettingAction, NotifyUser $notifyUser): void
     {
         DB::beginTransaction();
 
@@ -52,7 +53,9 @@ final class UserController extends Controller
 
             $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
-            $notifyUser->handle(new UserCreated($user, $role));
+            $notifyUser->handle(new UserCreated($user, $role, auth()->user()));
+
+            $createSettingAction->handle(userId: $user->getKey());
 
             DB::commit();
         } catch (Exception $e) {
@@ -87,13 +90,13 @@ final class UserController extends Controller
 
         $user->update($filteredData);
 
-        $notifyUser->handle(new UserUpdated($user));
+        $notifyUser->handle(new UserUpdated($user, auth()->user()));
     }
 
     #[Action(method: 'delete', params: ['user'], middleware: ['auth', 'check_has_business', 'can:user.delete'])]
     public function destroy(DeleteUserRequest $request, User $user, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new UserDeleted($user));
+        $notifyUser->handle(new UserDeleted($user, auth()->user()));
 
         $user->delete();
     }
@@ -115,6 +118,6 @@ final class UserController extends Controller
     {
         $user->toggleIsActive();
 
-        $notifyUser->handle(new UserUpdated($user));
+        $notifyUser->handle(new UserUpdated($user, auth()->user()));
     }
 }

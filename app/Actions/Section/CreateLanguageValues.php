@@ -15,13 +15,17 @@ final class CreateLanguageValues
         $defaultLanguage = LanguageStore::defaultLanguage(businessId: auth()->businessId());
         $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->businessId(), langCode: $defaultLanguage->key('code'));
 
+        $autoTranslate = auth()->user()->key('business')->key('auto_translation');
+
         foreach ($businessSectionValues as $sectionValue) {
             $newValue = $sectionValue->replicate();
             $newValue->lang = $languageCode;
             $newValue->save();
             $newValue = $newValue->refresh();
 
-            Translate::dispatch(sectionValueId: $newValue->key('id'));
+            if ($autoTranslate) {
+                Translate::dispatch(sectionValueId: $newValue->key('id'));
+            }
         }
     }
 }

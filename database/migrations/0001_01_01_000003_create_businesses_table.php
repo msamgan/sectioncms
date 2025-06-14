@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('zip')->nullable();
             $table->string('timezone')->nullable()->default('GMT-05:00');
             $table->string('token')->unique()->nullable();
+            $table->boolean('auto_translation')->default(true);
             $table->timestamps();
         });
 
