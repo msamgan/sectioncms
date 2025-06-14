@@ -1,14 +1,11 @@
-import ExitIntent from '@/Components/ExitIntent'
 import PublicFooter from '@/Components/Layout/PublicFooter'
 import PublicHeader from '@/Components/layout/PublicHeader.jsx'
 import PublicNavigation from '@/Components/layout/PublicNavigation.jsx'
-import StickyHeader from '@/Components/layout/StickyHeader.jsx'
-import LiveChat from '@/Components/LiveChat'
 
 export default function Public({ auth, children }) {
     return (
         <>
-            <StickyHeader auth={auth} />
+            {/*<StickyHeader auth={auth} />*/}
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-blue-500 selection:text-white">
                     <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
@@ -23,8 +20,8 @@ export default function Public({ auth, children }) {
                     </div>
                 </div>
             </div>
-            <LiveChat />
-            <ExitIntent />
+            {/* <LiveChat />
+            <ExitIntent />*/}
         </>
     )
 }
