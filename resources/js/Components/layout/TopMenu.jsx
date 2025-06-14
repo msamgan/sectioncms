@@ -15,8 +15,8 @@ export default function TopMenu() {
     return (
         <aside id="layout-menu" className="w-full flex-none transition-all duration-300">
             <div className="py-4 h-full border-b border-gray-100">
-                <ul className="menu-inner flex flex-wrap items-center gap-3">
-                    <IndependentMenu item={{ route: 'dashboard', icon: 'ri-home-smile-line', label: 'Dashboard' }} />
+                <ul className="menu-inner flex flex-wrap items-center gap-4">
+                    <IndependentMenu item={{ route: 'dashboard', icon: 'ri-home-line', label: 'Dashboard' }} />
                     {Object.keys(menuItems).map((itemKey, index) =>
                         itemKey === ''
                             ? menuItems[itemKey].map((item, index) => <IndependentMenu key={index} item={item} />)

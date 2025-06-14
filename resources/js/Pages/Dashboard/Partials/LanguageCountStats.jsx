@@ -18,6 +18,6 @@ export default function LanguageCountStats() {
     return loading ? (
         <Loading />
     ) : (
-        <StatsCard count={languageCount} label={'Enabled Languages'} icon={'ri-global-line'} />
+        <StatsCard count={languageCount} label={'Languages'} icon={'ri-global-line'} />
     )
 }

@@ -6,8 +6,8 @@ export default function IndependentMenu({ item, index }) {
             key={index}
             className={
                 route().current(item.route)
-                    ? 'flex items-center py-2.5 px-5 text-primary font-medium transition-all duration-300 ease-in-out border border-l-0 border-t-0 border-r-0 border-b-2 border-b-primary'
-                    : 'flex items-center py-2.5 px-5 text-gray-700 hover:text-primary transition-all duration-300 ease-in-out hover:border hover:border-l-primary hover:border-l-0 hover:border-t-0 hover:border-r-0 hover:border-b-1 hover:border-b-primary'
+                    ? 'flex items-center py-2.5 px-5 text-[#3B82F6] font-medium transition-all duration-300 ease-in-out border-b-2 border-[#3B82F6]'
+                    : 'flex items-center py-2.5 px-5 text-gray-700 hover:text-[#3B82F6] transition-all duration-300 ease-in-out hover:border-b hover:border-b-[#3B82F6]'
             }
         >
             <Link href={route(item.route)} className="flex items-center w-full">

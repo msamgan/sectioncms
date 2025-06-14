@@ -18,9 +18,9 @@ export default function Master({ children, hideMenu = false }) {
 
     return (
         <>
-            <div className="flex flex-col min-h-screen w-full bg-gray-50">
+            <div className="flex flex-col min-h-screen w-full bg-white">
                 {/* Header Section */}
-                <header className="sticky top-0 z-30 w-full bg-white shadow-sm transition-all duration-300">
+                <header className="sticky top-0 z-30 w-full bg-white border-b border-gray-100 transition-all duration-300">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
                         <TopHeader user={auth.user} />
                     </div>
@@ -28,7 +28,7 @@ export default function Master({ children, hideMenu = false }) {
 
                 {/* Menu Section */}
                 {!hideMenu && (
-                    <div className="w-full bg-white border-b border-gray-200 shadow-sm transition-all duration-300 ease-in-out">
+                    <div className="w-full bg-white border-b border-gray-100 transition-all duration-300 ease-in-out">
                         <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
                             <TopMenu />
                         </div>
@@ -39,14 +39,14 @@ export default function Master({ children, hideMenu = false }) {
                 <StatusBar />
 
                 {/* Main Content Area with improved spacing */}
-                <main className="flex-grow w-full mt-12 mb-12">
+                <main className="flex-grow w-full mt-8 mb-8">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <div className="bg-white rounded-lg px-4 py-4 transition-all duration-300">{children}</div>
+                        <div className="bg-white rounded-lg px-6 py-6 transition-all duration-300">{children}</div>
                     </div>
                 </main>
 
                 {/* Footer Section with improved styling */}
-                <div className="w-full border-t border-gray-200 bg-white mt-auto">
+                <div className="w-full border-t border-gray-100 bg-white mt-auto">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
                         <Footer />
                     </div>
@@ -54,7 +54,7 @@ export default function Master({ children, hideMenu = false }) {
 
                 {/* Modal Overlay with improved transition */}
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 hidden transition-opacity duration-300"
+                    className="fixed inset-0 bg-black bg-opacity-30 z-40 hidden transition-opacity duration-300"
                     id="modal-overlay"
                 ></div>
             </div>
