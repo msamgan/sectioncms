@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
+use App\Models\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Spatie\Permission\Models\Role;
@@ -16,7 +17,7 @@ final class RoleDeleted extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly \Spatie\Permission\Contracts\Role|Role $role) {}
+    public function __construct(private readonly \Spatie\Permission\Contracts\Role|Role $role, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -25,7 +26,7 @@ final class RoleDeleted extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -33,7 +34,7 @@ final class RoleDeleted extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Role', entityName: $this->role->display_name);
 
         return (new MailMessage)
             ->subject($notification['deleteSubject'])
@@ -50,7 +51,7 @@ final class RoleDeleted extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Role', entityName: $this->role->display_name);
 
         return [
             'title' => $notification['deleteTitle'],

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -19,7 +20,7 @@ final class RoleUpdated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly \Spatie\Permission\Contracts\Role|Role $role) {}
+    public function __construct(private readonly \Spatie\Permission\Contracts\Role|Role $role, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -28,7 +29,7 @@ final class RoleUpdated extends Notification implements ShouldQueue
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -36,7 +37,7 @@ final class RoleUpdated extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Role', entityName: $this->role->display_name);
 
         return (new MailMessage)
             ->subject($notification['updateSubject'])
@@ -53,7 +54,7 @@ final class RoleUpdated extends Notification implements ShouldQueue
      */
     public function toArray(object $notifiable): array
     {
-        $notification = $this->notificationGenerator(notifiable: $notifiable, entity: 'Role', entityName: $this->role->display_name);
+        $notification = $this->notificationGenerator(notifiable: $this->initiator, entity: 'Role', entityName: $this->role->display_name);
 
         return [
             'title' => $notification['updateTitle'],
