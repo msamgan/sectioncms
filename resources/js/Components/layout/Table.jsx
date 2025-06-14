@@ -5,50 +5,50 @@ import { useEffect, useState } from 'react'
 
 const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) => {
     return (
-        <div className="bg-white rounded-xl shadow-lg mt-6 border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl">
-            <div className="overflow-visible">
-                <div className="flex justify-between items-center border-b border-gray-100">
+        <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250">
+            <div className="overflow-x-auto">
+                <div className="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
-                    <div className="py-5 px-6 text-end">
-                        <h5 className="text-lg font-medium text-gray-700 flex items-center">
+                    <div className="py-4 px-6 text-end">
+                        <h5 className="text-sm font-medium text-gray-700 flex items-center">
                             Total Records:
-                            <span className="ml-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-xs font-medium px-3 py-1 rounded-full shadow-sm transition-all duration-300 hover:shadow-md">
-                                {data.length}
-                            </span>
+                            <span className="ml-2 text-primary text-xs font-medium px-2">{data.length}</span>
                         </h5>
                     </div>
                 </div>
-                <table className="w-full text-sm text-left">
-                    <thead className="text-xs uppercase">
-                        <tr className="bg-gradient-to-r from-gray-700 to-gray-800 text-white">
-                            {columns.map((column, index) => (
-                                <th key={index} className="px-6 py-4 font-medium tracking-wider">
-                                    {toTitleCase(column)}
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-100">
-                        {data.map((row, index) => (
-                            <tr
-                                key={index}
-                                className="bg-white transition-colors duration-200 ease-in-out hover:bg-blue-50"
-                            >
-                                {Object.values(row).map((cell, index) => (
-                                    <td
-                                        key={index}
-                                        className={`px-6 py-4 ${
-                                            tdClassName.filter((item) => item.column === columns[index])[0]
-                                                ?.className || ''
-                                        }`}
-                                    >
-                                        {cell}
-                                    </td>
+                <div className="relative overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs sticky top-0 z-10">
+                            <tr className="bg-gray-50 text-gray-700 border-b border-gray-200">
+                                {columns.map((column, index) => (
+                                    <th key={index} className="px-6 py-3 font-medium tracking-wider">
+                                        {toTitleCase(column)}
+                                    </th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {data.map((row, index) => (
+                                <tr
+                                    key={index}
+                                    className="bg-white transition-all duration-250 ease-in-out hover:bg-gray-50"
+                                >
+                                    {Object.values(row).map((cell, index) => (
+                                        <td
+                                            key={index}
+                                            className={`px-6 py-4 max-w-xs truncate ${
+                                                tdClassName.filter((item) => item.column === columns[index])[0]
+                                                    ?.className || ''
+                                            }`}
+                                        >
+                                            {cell}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )
@@ -77,28 +77,14 @@ const SearchForm = ({ setLoading, refresher }) => {
     }
 
     return (
-        <form className="w-1/3 px-6 py-5" onSubmit={searchSubmission}>
+        <form className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 px-6 py-4" onSubmit={searchSubmission}>
             <div className="relative group">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg
-                        className="w-4 h-4 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                        />
-                    </svg>
+                    <i className="ri-search-line text-gray-400 group-focus-within:text-primary transition-colors duration-200"></i>
                 </div>
                 <input
                     type="search"
-                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 ease-in-out"
+                    className="w-full pl-10 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-md focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-200 ease-in-out"
                     id="search"
                     value={query}
                     placeholder="Search Query..."
@@ -109,7 +95,7 @@ const SearchForm = ({ setLoading, refresher }) => {
                 />
                 <label
                     htmlFor="search"
-                    className="absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium text-gray-600 transition-all duration-200 group-focus-within:text-blue-500"
+                    className="absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium text-gray-600 transition-all duration-200 group-focus-within:text-primary"
                 >
                     Search
                 </label>
@@ -123,7 +109,7 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
 
     return permission ? (
         loading ? (
-            <div className="bg-white rounded-xl shadow-lg mt-6 border border-gray-100 p-8 flex justify-center items-center min-h-[200px]">
+            <div className="bg-white rounded-panel mt-6 p-8 flex justify-center items-center min-h-[200px]">
                 <Loading />
             </div>
         ) : data.length > 0 ? (
@@ -135,18 +121,27 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
                 refresher={refresher}
             />
         ) : (
-            <div className="bg-white rounded-xl shadow-lg mt-6 border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl">
-                <div className="border-b border-gray-100">
+            <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250">
+                <div className="border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                 </div>
-                <div className="p-8 flex justify-center items-center">
-                    <DisplayMessage text="No data available." type="info" />
+                <div className="p-8 flex">
+                    <DisplayMessage
+                        text="No data available. Try adjusting your search criteria or adding new records."
+                        type="info"
+                        icon="ri-inbox-line"
+                    />
                 </div>
             </div>
         )
     ) : (
-        <div className="bg-white rounded-xl shadow-lg mt-6 border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl p-8 flex justify-center items-center min-h-[200px]">
-            <DisplayMessage text="You do not have permission to view this content..." type="error" />
+        <div className="bg-white rounded-panel mt-6 overflow-hidden transition-all duration-250 p-8 flex min-h-[200px]">
+            <DisplayMessage
+                text="You do not have permission to view this content."
+                type="error"
+                icon="ri-lock-line"
+                className="max-w-md"
+            />
         </div>
     )
 }

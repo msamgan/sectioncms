@@ -41,34 +41,37 @@ export default function AddSite() {
                 <span>Add New</span>
             </PrimaryButton>
 
-            <Link href={route('business')} className="text-blue-600 hover:text-blue-800 transition-colors duration-300">
+            <Link
+                href={route('business')}
+                className="text-primary hover:text-primary/80 transition-colors duration-300"
+            >
                 <i className="ri-global-fill ri-22px me-6 cursor-pointer hover:scale-110 transition-transform duration-300"></i>
             </Link>
 
             <Modal show={confirming} onClose={closeModal} maxWidth="md">
                 <form onSubmit={submit} className="p-0">
-                    {/* Enhanced Header Section */}
-                    <div className="bg-blue-50 p-6 rounded-t-lg border-b border-blue-100">
+                    {/* Header Section */}
+                    <div className="bg-gray-50 p-6 rounded-t-lg border-b border-gray-100">
                         <div className="flex items-center justify-center mb-4">
-                            <div className="p-3 bg-blue-100 rounded-full transform transition-transform duration-300 hover:scale-110">
-                                <Avatar size="xl" bgColor="bg-blue-500" icon="ri-global-line" className="mx-auto" />
+                            <div className="p-3 bg-gray-100 rounded-full transform transition-transform duration-300 hover:scale-110">
+                                <Avatar size="xl" bgColor="bg-primary" icon="ri-global-line" className="mx-auto" />
                             </div>
                         </div>
-                        <h2 className="text-2xl font-bold text-center text-blue-700 mb-1">Add New Site</h2>
+                        <h2 className="text-2xl font-bold text-center text-gray-800 mb-1">Add New Site</h2>
                         <p className="text-center text-gray-600">Enter the URL for your new site</p>
                     </div>
 
                     {/* Main Content */}
                     <div className="px-6 pt-6">
                         {/* Info Message */}
-                        <div className="bg-blue-50 border border-blue-200 p-4 mb-5 rounded-lg shadow-sm">
+                        <div className="bg-gray-50 border border-gray-200 p-4 mb-5 rounded-lg shadow-sm">
                             <div className="flex items-start">
                                 <div className="flex-shrink-0">
-                                    <i className="ri-information-line text-xl text-blue-600"></i>
+                                    <i className="ri-information-line text-xl text-primary"></i>
                                 </div>
                                 <div className="ml-3">
-                                    <h3 className="text-sm font-medium text-blue-800">Important Information</h3>
-                                    <p className="mt-1 text-sm text-blue-700">
+                                    <h3 className="text-sm font-medium text-gray-800">Important Information</h3>
+                                    <p className="mt-1 text-sm text-gray-700">
                                         This action will create a new site in your account. Please make sure to provide
                                         the correct information before proceeding.
                                     </p>
@@ -89,10 +92,10 @@ export default function AddSite() {
                                     required={true}
                                     isFocused={true}
                                     placeholder="https://example.com"
-                                    className="focus:border-blue-300 focus:ring-blue-200"
+                                    className="focus:border-primary focus:ring-primary/20"
                                 />
                                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                    <i className="ri-link text-gray-400 group-hover:text-blue-500 transition-colors duration-300"></i>
+                                    <i className="ri-link text-gray-400 group-hover:text-primary transition-colors duration-300"></i>
                                 </div>
                             </div>
                             <InputError message={errors.name} className="mt-2" />
@@ -109,7 +112,7 @@ export default function AddSite() {
                         </SecondaryButton>
 
                         <PrimaryButton
-                            className="px-4 py-2 transition-all duration-300 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            className="px-4 py-2 transition-all duration-300 hover:bg-primary/80 focus:ring-2 focus:ring-primary/50 focus:ring-opacity-50"
                             disabled={processing}
                         >
                             <i className="ri-add-line mr-1"></i>

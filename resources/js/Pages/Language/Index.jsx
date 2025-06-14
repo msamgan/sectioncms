@@ -28,12 +28,18 @@ export default function Index() {
     const [loading, setLoading] = useState(true)
     const [pageData, setPageData] = useState(pageObject(null))
 
-    const getLanguages = async (query) => setLanguages(await _languages.data({ params: query }))
+    const getLanguages = async (query) => {
+        const data = await _languages.data({ params: query })
+        setLanguages(data)
+    }
 
-    const getLanguage = async (id) => setLanguage(await show.data({ params: { language: id } }))
+    const getLanguage = async (id) => {
+        const data = await show.data({ params: { language: id } })
+        setLanguage(data)
+    }
 
-    const editLanguage = (language) => {
-        getLanguage(language.id).then()
+    const editLanguage = async (language) => {
+        await getLanguage(language.id)
         setPageData(pageObject(language))
     }
 
@@ -73,7 +79,7 @@ export default function Index() {
                     refresher={getLanguages}
                 />
             ) : (
-                <span className="text-gray-500">{language.is_active ? 'Active' : 'Inactive'}</span>
+                <span className="text-gray-500">{language.is_default ? 'Yes' : 'No'}</span>
             ),
             Actions: (
                 <>
@@ -99,11 +105,17 @@ export default function Index() {
     }, [languages])
 
     useEffect(() => {
-        if (can(permissions.language.list)) {
-            getLanguages(parseQueryString())
-                .then()
-                .finally(() => setLoading(false))
+        const fetchLanguages = async () => {
+            if (can(permissions.language.list)) {
+                try {
+                    await getLanguages(parseQueryString())
+                } finally {
+                    setLoading(false)
+                }
+            }
         }
+
+        fetchLanguages()
     }, [])
 
     return (
@@ -141,22 +153,18 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="w-full">
-                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
-                    <div className="flex items-center p-4 border-b bg-gray-50">
-                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                        <h5 className="m-0 ml-2 text-lg font-semibold">Language List</h5>
-                    </div>
-                    <div className="p-0">
-                        <Table
-                            data={data}
-                            setLoading={setLoading}
-                            loading={loading}
-                            permission={can(permissions.language.list)}
-                            refresher={getLanguages}
-                        />
-                    </div>
+            <div className="bg-white rounded-lg transition-all duration-200">
+                <div className="flex items-center p-4 border-b bg-gray-50">
+                    <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
+                    <h5 className="ml-2 text-lg font-semibold">Language List</h5>
                 </div>
+                <Table
+                    data={data}
+                    setLoading={setLoading}
+                    loading={loading}
+                    permission={can(permissions.language.list)}
+                    refresher={getLanguages}
+                />
             </div>
         </Master>
     )

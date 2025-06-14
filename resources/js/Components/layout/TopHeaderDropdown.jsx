@@ -25,7 +25,7 @@ export default function TopHeaderDropdown({ user }) {
                 </div>
             </a>
             <ul
-                className={`absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white py-0 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${showMenu ? 'block' : 'hidden'}`}
+                className={`absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white py-0 border border-gray-100 ring-1 ring-black ring-opacity-5 focus:outline-none ${showMenu ? 'block' : 'hidden'}`}
             >
                 <li>
                     <a className="block px-4 py-2 hover:bg-gray-50" href="#">

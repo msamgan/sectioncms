@@ -95,10 +95,10 @@ export default function Index() {
 
             {can(permissions.medium.create) && <Uploader getMedia={getMedia} />}
 
-            {notification && <DisplayMessage type="success" text={notification} />}
+            {notification && <DisplayMessage type="success" text={notification} className={'mb-3'} />}
 
             <div className="w-full">
-                <div className="bg-white rounded-lg shadow-sm transition-all duration-200 hover:shadow-lg">
+                <div className="bg-white rounded-lg transition-all duration-200">
                     <div className="flex items-center p-4 border-b bg-gray-50">
                         <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
                         <h5 className="m-0 ml-2 text-lg font-semibold">Media Files</h5>
