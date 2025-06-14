@@ -17,8 +17,8 @@ export default function DependentMenu({ menuItems, itemKey, index }) {
             onClick={toggleOpen}
             className={
                 isActive
-                    ? 'relative py-2.5 px-5 text-primary  rounded-lg font-medium transition-all duration-300 ease-in-out border border-l-0 border-t-0 border-r-0 border-b-2 border-b-primary'
-                    : 'relative py-2.5 px-5 text-gray-700 hover:text-primary hover: rounded-lg transition-all duration-300 ease-in-out hover:border hover:border-l-primary hover:border-l-0 hover:border-t-0 hover:border-r-0 hover:border-b-1 hover:border-b-primary'
+                    ? 'relative py-2.5 px-5 text-primary font-medium transition-all duration-300 ease-in-out border border-l-0 border-t-0 border-r-0 border-b-2 border-b-primary'
+                    : 'relative py-2.5 px-5 text-gray-700 hover:text-primary transition-all duration-300 ease-in-out hover:border hover:border-l-primary hover:border-l-0 hover:border-t-0 hover:border-r-0 hover:border-b-1 hover:border-b-primary'
             }
         >
             <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center w-full justify-between">
@@ -41,8 +41,8 @@ export default function DependentMenu({ menuItems, itemKey, index }) {
                         key={index}
                         className={
                             route().current(item.route)
-                                ? 'flex items-center py-2 px-4 mx-2 my-1 text-primary  rounded-md font-medium transition-all duration-300 ease-in-out border border-l-0 border-t-0 border-r-0 border-b-2 border-b-primary'
-                                : 'flex items-center py-2 px-4 mx-2 my-1 text-gray-700 hover:text-primary hover: rounded-md transition-all duration-300 ease-in-out hover:border hover:border-l-primary hover:border-l-0 hover:border-t-0 hover:border-r-0 hover:border-b-1 hover:border-b-primary'
+                                ? 'flex items-center py-2 px-4 mx-2 my-1 text-primary font-medium transition-all duration-300 ease-in-out border border-l-0 border-t-0 border-r-0 border-b-2 border-b-primary'
+                                : 'flex items-center py-2 px-4 mx-2 my-1 text-gray-700 hover:text-primary transition-all duration-300 ease-in-out hover:border hover:border-l-primary hover:border-l-0 hover:border-t-0 hover:border-r-0 hover:border-b-1 hover:border-b-primary'
                         }
                     >
                         <Link href={route(item.route)} className="flex items-center w-full">
