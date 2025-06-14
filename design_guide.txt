@@ -25,6 +25,22 @@ Suggested Minimal Color Palette:
 
 Note: The primary theme color across the application is Tailwind Blue-500 (#3B82F6). It should be used consistently for buttons, links, and key interactive elements to maintain visual unity.
 
+Supporting Color Usage Guidelines:
+	•	Blue (#3B82F6 - Tailwind Blue-500)
+	•	Use for primary actions, links, icons, and highlights.
+	•	Indicates general interactivity or focus.
+	•	Green (#10B981 - Tailwind Green-500)
+	•	Use for success messages, confirmations, valid states.
+	•	Red (#EF4444 - Tailwind Red-500)
+	•	Use for errors, destructive actions (delete), warnings.
+	•	Yellow (#FACC15 - Tailwind Yellow-400)
+	•	Use for warnings, cautions, or pending statuses.
+	•	Gray Shades (#6B7280, #9CA3AF, etc.)
+	•	Use for secondary text, placeholders, and disabled elements.
+	•	Background Overlays: Use darkened semi-transparent backgrounds (#000000 with 30–60% opacity) for modals and off-canvas drawers.
+
+Use color sparingly and purposefully. Each color should convey specific meaning or function to aid user understanding and reinforce consistency.
+
 3. Typography
 	•	Use one or two complementary fonts.
 	•	Establish a modular scale for font sizing.
@@ -96,7 +112,7 @@ Note: The primary theme color across the application is Tailwind Blue-500 (#3B82
 	•	Language should be clear, direct, and helpful.
 	•	Avoid jargon unless necessary for the audience.
 	•	Keep copy short, relevant, and action-oriented.
-	•	Use a consistent voice and tense throughout.
+	•	Use consistent voice and tense throughout.
 
 ⸻
 
