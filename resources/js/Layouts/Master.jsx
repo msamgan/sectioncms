@@ -30,15 +30,15 @@ export default function Master({ children, hideMenu = false }) {
                     <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
                 )}
 
-                {/* Main Content Wrapper */}
-                <div className={`flex flex-col flex-1 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''} transition-all duration-300`}>
-                    {/* Header Section */}
-                    <header className="sticky top-0 z-30 w-full bg-white border-b border-gray-100 transition-all duration-300">
-                        <div className="w-full px-4 md:px-6">
-                            <TopHeader user={auth.user} />
-                        </div>
-                    </header>
+                {/* Header Section - Full Width */}
+                <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 transition-all duration-300">
+                    <div className="w-full px-4 md:px-6">
+                        <TopHeader user={auth.user} />
+                    </div>
+                </header>
 
+                {/* Main Content Wrapper */}
+                <div className={`flex flex-col flex-1 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''} transition-all duration-300 pt-16`}>
                     {/* Status Bar for important notifications */}
                     <StatusBar />
 
@@ -59,7 +59,7 @@ export default function Master({ children, hideMenu = false }) {
 
                 {/* Modal Overlay with improved transition */}
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-30 z-40 hidden transition-opacity duration-300"
+                    className="fixed inset-0 bg-black bg-opacity-30 z-50 hidden transition-opacity duration-300"
                     id="modal-overlay"
                 ></div>
             </div>

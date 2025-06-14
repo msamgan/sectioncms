@@ -17,18 +17,11 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                 collapsed ? 'w-16' : 'w-64'
             }`}
         >
-            {/* Sidebar Header with Logo */}
-            <div className="flex items-center justify-between h-16 px-4 border-b border-gray-100">
-                <Link href="/" className="flex items-center">
-                    <span className={`text-primary ${collapsed ? 'hidden' : 'block'}`}>
-                        <svg className="h-8 w-auto" viewBox="0 0 50 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25 0L50 12.5V37.5L25 50L0 37.5V12.5L25 0Z" fill="currentColor" />
-                        </svg>
-                    </span>
-                    <span className={`ml-3 font-medium text-gray-800 ${collapsed ? 'hidden' : 'block'}`}>
-                        Enier Portal
-                    </span>
-                </Link>
+            {/* Sidebar Header with Logo - Hidden but preserved for spacing */}
+            <div className="invisible h-16"></div>
+
+            {/* Sidebar Toggle Button - Positioned in the top corner */}
+            <div className="absolute top-3 right-3">
                 <button
                     onClick={onToggle}
                     className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none"
@@ -37,8 +30,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                 </button>
             </div>
 
-            {/* Navigation Menu */}
-            <div className="flex-1 overflow-y-auto py-4">
+            {/* Navigation Menu - With top padding to account for header */}
+            <div className="flex-1 overflow-y-auto py-4 pt-16">
                 <ul className="space-y-1 px-3">
                     {/* Dashboard Link */}
                     <li>
