@@ -94,6 +94,8 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         <BusinessContent
                                             activeBusinessTab={activeBusinessTab}
                                             business={auth.user.business}
+                                            translationSettings={settings.translation}
+                                            getSettings={getSettings}
                                         />
                                     </div>
                                 )}
@@ -112,12 +114,6 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     <div className={activeSettingsTab === 'notifications' ? 'block' : 'hidden'}>
                                         <NotificationsContent
                                             notificationSettings={settings.notifications}
-                                            getSettings={getSettings}
-                                        />
-                                    </div>
-                                    <div className={activeSettingsTab === 'translation' ? 'block' : 'hidden'}>
-                                        <TranslationContent
-                                            translationSettings={settings.translation}
                                             getSettings={getSettings}
                                         />
                                     </div>

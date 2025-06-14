@@ -27,6 +27,18 @@ export default function BusinessTabs({ activeBusinessTab, setActiveBusinessTab, 
                     Access Token
                 </TabButton>
             </li>
+            <li className="mr-6">
+                <TabButton
+                    type="button"
+                    active={activeBusinessTab === 'translation'}
+                    role="tab"
+                    onClick={() => setActiveBusinessTab('translation')}
+                    aria-selected={activeBusinessTab === 'translation'}
+                >
+                    <i className="ri-translate-2 mr-3"></i>
+                    Translation
+                </TabButton>
+            </li>
         </ul>
     )
 }
