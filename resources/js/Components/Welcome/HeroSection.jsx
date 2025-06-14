@@ -3,14 +3,12 @@ import CtaButton from '@/Components/CtaButton'
 export default function HeroSection() {
     return (
         <div className="relative overflow-hidden py-16">
-            {/* Background decoration */}
             <div className="absolute inset-0 overflow-hidden">
                 <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 opacity-70 blur-3xl dark:from-blue-900/20 dark:to-indigo-900/20"></div>
                 <div className="to-pink-100 dark:to-pink-900/20 absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-gradient-to-tr from-purple-100 opacity-70 blur-3xl dark:from-purple-900/20"></div>
             </div>
 
             <div className="relative grid items-center gap-12 lg:grid-cols-2">
-                {/* Left column - Text content */}
                 <div className="text-center lg:text-left">
                     <span className="mb-6 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
                         Next-Gen Content Management
@@ -106,10 +104,8 @@ export default function HeroSection() {
                     </div>
                 </div>
 
-                {/* Right column - Illustration */}
                 <div className="relative flex justify-center lg:justify-end">
                     <div className="relative h-96 w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-gray-800">
-                        {/* Header bar */}
                         <div className="flex h-10 items-center bg-gray-100 px-4 dark:bg-gray-700">
                             <div className="flex space-x-2">
                                 <div className="h-3 w-3 rounded-full bg-red-500"></div>
@@ -118,12 +114,9 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        {/* Content area */}
                         <div className="p-6">
-                            {/* Section header */}
                             <div className="mb-4 h-8 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-600"></div>
 
-                            {/* Section content */}
                             <div className="space-y-3">
                                 <div className="grid grid-cols-3 gap-4">
                                     <div className="flex h-20 items-center justify-center rounded bg-blue-100 dark:bg-blue-900/30">
@@ -146,7 +139,6 @@ export default function HeroSection() {
                         </div>
                     </div>
 
-                    {/* Floating elements */}
                     <div className="absolute -right-6 -top-6 flex h-20 w-20 rotate-12 transform items-center justify-center rounded-lg bg-yellow-300 shadow-lg dark:bg-yellow-500">
                         <svg
                             className="h-10 w-10 text-white"

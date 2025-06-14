@@ -46,17 +46,22 @@ export default forwardRef(function TextInput(
 
     // Adjust input padding based on icon position
     const inputClassName = hasIcon
-        ? `w-full h-input-height text-sm border border-gray-300 rounded-input shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${
-              iconPosition === 'left' ? 'pl-10 pr-input-padding-x' : 'pl-input-padding-x pr-10'
-          } py-input-padding-y ${className}`
-        : `w-full h-input-height text-sm px-input-padding-x py-input-padding-y border border-gray-300 rounded-input shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50 transition-all duration-300 ${className}`
+        ? `w-full h-input-height text-sm border border-gray-200 rounded-input shadow-sm
+           focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-30
+           hover:border-gray-300 transition-all duration-250
+           ${iconPosition === 'left' ? 'pl-10 pr-input-padding-x' : 'pl-input-padding-x pr-10'}
+           py-input-padding-y ${className}`
+        : `w-full h-input-height text-sm px-input-padding-x py-input-padding-y
+           border border-gray-200 rounded-input shadow-sm
+           focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-30
+           hover:border-gray-300 transition-all duration-250 ${className}`
 
     return hasIcon ? (
-        <div className="relative">
+        <div className="relative group">
             <div
-                className={`absolute inset-y-0 ${iconPosition === 'left' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center pointer-events-none`}
+                className={`absolute inset-y-0 ${iconPosition === 'left' ? 'left-0 pl-3' : 'right-0 pr-3'} flex items-center pointer-events-none transition-colors duration-250`}
             >
-                <i className={`${iconClass} text-gray-400`}></i>
+                <i className={`${iconClass} text-gray-400 text-base group-focus-within:text-primary`}></i>
             </div>
             <input {...props} type={type} className={inputClassName} ref={input} />
         </div>

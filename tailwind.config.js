@@ -22,14 +22,32 @@ export default {
                 'lg': ['1.125rem', { lineHeight: '1.75rem' }],
                 'xl': ['1.25rem', { lineHeight: '1.75rem' }],
                 '2xl': ['1.5rem', { lineHeight: '2rem' }],
+                '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+                '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+                '5xl': ['3rem', { lineHeight: '1' }],
             },
             spacing: {
                 'input-height': '2.5rem', // Consistent height for inputs and buttons
                 'input-padding-x': '1rem', // Consistent horizontal padding
                 'input-padding-y': '0.5rem', // Consistent vertical padding
+                'section': '2rem', // Consistent section spacing
+                'card': '1.5rem', // Consistent card padding
             },
             borderRadius: {
                 'input': '0.375rem', // Consistent border radius for inputs and buttons
+                'card': '0.5rem', // Consistent border radius for cards
+                'panel': '0.5rem', // Consistent border radius for panels
+            },
+            boxShadow: {
+                'card': 'none',
+                'panel': 'none',
+            },
+            transitionProperty: {
+                'height': 'height',
+                'spacing': 'margin, padding',
+            },
+            transitionDuration: {
+                '250': '250ms',
             },
         },
         colors: {
@@ -44,16 +62,16 @@ export default {
             white: "#ffffff",
             black: "#000000",
             gray: {
-                50: "#f9fafb",
-                100: "#f7fafc",
-                200: "#edf2f7",
-                300: "#e2e8f0",
-                400: "#cbd5e0",
-                500: "#a0aec0",
-                600: "#718096",
-                700: "#4a5568",
-                800: "#2d3748",
-                900: "#1a202c"
+                50: "#f4f3f3",
+                100: "#e4e4e7",
+                200: "#d4d4d8",
+                300: "#a1a1aa",
+                400: "#71717a",
+                500: "#52525b",
+                600: "#3f3f46",
+                700: "#27272a",
+                800: "#18181b",
+                900: "#0f0f11"
             },
             blue: {
                 50: "#eff6ff",

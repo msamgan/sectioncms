@@ -15,7 +15,6 @@ export default function StatusBar() {
                 setHasPaymentMethods(response.payment_methods.length > 0)
             } catch (error) {
                 console.error('Failed to check payment methods:', error)
-                // Default to true to avoid showing the message if there's an error
                 setHasPaymentMethods(true)
             } finally {
                 setLoading(false)
@@ -30,23 +29,21 @@ export default function StatusBar() {
     }
 
     return (
-        <div className="w-full">
-            <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 py-2">
-                <DisplayMessage
-                    text={
-                        <span>
-                            You don't have any payment methods set up.
-                            <Link
-                                href={route('payment-methods.index')}
-                                className="ml-2 font-medium text-blue-600 hover:text-blue-800 underline"
-                            >
-                                Add a payment method
-                            </Link>
-                        </span>
-                    }
-                    type="warning"
-                />
-            </div>
+        <div className="px-4 md:px-6 py-2">
+            <DisplayMessage
+                text={
+                    <span>
+                        You don't have any payment methods set up.
+                        <Link
+                            href={route('payment-methods.index')}
+                            className="ml-2 font-medium text-primary hover:text-primary/80 underline"
+                        >
+                            Add a payment method
+                        </Link>
+                    </span>
+                }
+                type="warning"
+            />
         </div>
     )
 }

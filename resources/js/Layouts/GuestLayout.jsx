@@ -12,11 +12,11 @@ export default function Guest({ children }) {
 
             <div className="relative z-10">
                 <Link href="/" className="block transition-transform duration-300 hover:scale-105">
-                    <ApplicationLogo className="h-40 w-40 drop-shadow-md" />
+                    <ApplicationLogo className="h-40 w-40" />
                 </Link>
             </div>
 
-            <div className="animate-fadeIn relative z-10 mt-8 w-full overflow-hidden border border-gray-100 bg-white/90 px-8 py-6 shadow-xl backdrop-blur-sm sm:max-w-md sm:rounded-xl dark:border-gray-700 dark:bg-gray-800/90 dark:text-white">
+            <div className="animate-fadeIn relative z-10 mt-8 w-full overflow-hidden border border-gray-100 bg-white/90 px-8 py-6 backdrop-blur-sm sm:max-w-md sm:rounded-xl dark:border-gray-700 dark:bg-gray-800/90 dark:text-white">
                 {children}
             </div>
 

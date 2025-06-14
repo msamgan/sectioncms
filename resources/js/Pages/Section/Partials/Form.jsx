@@ -43,10 +43,10 @@ export default function Form({ getSections, section = null, languages }) {
 
     return (
         <form onSubmit={submit}>
-            <div className="mb-6 w-2/3 shadow-lg transition-all duration-300 hover:shadow-xl rounded-lg border border-gray-200 overflow-hidden">
-                <div className="border-b bg-gradient-to-r from-blue-100 to-indigo-100 p-5">
+            <div className="mb-6 w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300">
+                <div className="border-b border-gray-200 bg-gray-50 p-4">
                     <div className="flex items-center">
-                        <div className="bg-primary rounded-md shadow-md p-1">
+                        <div className="bg-primary rounded-md p-1">
                             <Avatar
                                 size="sm"
                                 bgColor="transparent"
@@ -54,11 +54,11 @@ export default function Form({ getSections, section = null, languages }) {
                                 className="text-white"
                             />
                         </div>
-                        <h5 className="text-xl font-bold text-primary ml-3">Section Details</h5>
+                        <h5 className="text-lg font-medium text-primary ml-3">Section Details</h5>
                     </div>
                 </div>
-                <div className="p-8 bg-white">
-                    <div className="space-y-8">
+                <div className="p-6 bg-white">
+                    <div className="space-y-6">
                         <div className="w-full">
                             <div className="relative mb-4">
                                 <InputLabel
@@ -76,7 +76,7 @@ export default function Form({ getSections, section = null, languages }) {
                                     placeholder="Home Page - Hero"
                                     required={true}
                                     isFocused={true}
-                                    className="shadow-sm transition-all duration-200 focus:shadow-md focus:border-primary rounded-md hover:border-primary"
+                                    className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                 />
                                 <InputError className="mt-2" message={errors.name} />
                             </div>
@@ -97,9 +97,9 @@ export default function Form({ getSections, section = null, languages }) {
                 <div className="flex justify-end w-2/3 gap-4">
                     <button
                         disabled={processing}
-                        className="bg-primary hover:bg-blue-700 text-white flex items-center shadow-md transition-all duration-300 hover:shadow-xl px-6 py-3 rounded-lg font-medium text-base"
+                        className="bg-primary hover:bg-primary/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
                     >
-                        <i className="ri-save-line mr-2 text-lg"></i>
+                        <i className="ri-save-line mr-2"></i>
                         Save Changes
                     </button>
                     <Transition
@@ -111,16 +111,11 @@ export default function Form({ getSections, section = null, languages }) {
                         leaveFrom="opacity-100 transform scale-100"
                         leaveTo="opacity-0 transform scale-95"
                     >
-                        <div className="flex items-center bg-green-50 px-5 py-3 rounded-lg border border-green-200 shadow-sm">
-                            <div className="bg-success rounded-md shadow-md mr-3">
-                                <Avatar
-                                    size="xs"
-                                    bgColor="transparent"
-                                    icon={moduleConstants.submit.icon}
-                                    className="text-white"
-                                />
+                        <div className="flex items-center mt-2 bg-green-50 px-4 py-2 rounded-md border border-green-200">
+                            <div className="text-green-500 mr-2">
+                                <i className="ri-check-line"></i>
                             </div>
-                            <p className="text-success m-0 font-medium">Saved successfully!</p>
+                            <p className="text-green-600 m-0 text-sm">Saved successfully!</p>
                         </div>
                     </Transition>
                 </div>

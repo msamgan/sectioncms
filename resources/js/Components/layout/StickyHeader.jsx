@@ -19,7 +19,7 @@ export default function StickyHeader({ auth }) {
     if (!isVisible) return null
 
     return (
-        <div className="fixed left-0 right-0 top-0 z-50 transform bg-white/90 shadow-md backdrop-blur-sm transition-transform duration-300 ease-in-out dark:bg-gray-900/90">
+        <div className="fixed left-0 right-0 top-0 z-50 transform bg-white/90 border-b border-gray-100 backdrop-blur-sm transition-transform duration-300 ease-in-out dark:bg-gray-900/90">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
@@ -54,7 +54,7 @@ export default function StickyHeader({ auth }) {
                         {auth.user ? (
                             <Link
                                 href={route('dashboard')}
-                                className="border-transparent inline-flex items-center rounded-md border bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                                className="border-transparent inline-flex items-center rounded-md border bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                             >
                                 Dashboard
                             </Link>
