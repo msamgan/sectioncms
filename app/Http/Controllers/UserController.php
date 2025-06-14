@@ -52,7 +52,7 @@ final class UserController extends Controller
 
             $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
-            $notifyUser->handle(new UserCreated($user, $role));
+            $notifyUser->handle(new UserCreated($user, $role, auth()->user()));
 
             DB::commit();
         } catch (Exception $e) {
@@ -87,13 +87,13 @@ final class UserController extends Controller
 
         $user->update($filteredData);
 
-        $notifyUser->handle(new UserUpdated($user));
+        $notifyUser->handle(new UserUpdated($user, auth()->user()));
     }
 
     #[Action(method: 'delete', params: ['user'], middleware: ['auth', 'check_has_business', 'can:user.delete'])]
     public function destroy(DeleteUserRequest $request, User $user, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new UserDeleted($user));
+        $notifyUser->handle(new UserDeleted($user, auth()->user()));
 
         $user->delete();
     }
@@ -115,6 +115,6 @@ final class UserController extends Controller
     {
         $user->toggleIsActive();
 
-        $notifyUser->handle(new UserUpdated($user));
+        $notifyUser->handle(new UserUpdated($user, auth()->user()));
     }
 }
