@@ -143,6 +143,16 @@ final class User extends Authenticatable implements HasMedia, MustVerifyEmail
         return ['database', 'mail'];
     }
 
+    public function autoTranslation(): bool
+    {
+        $userSettings = SettingStore::userSetting(
+            userId: $this->getKey(),
+            settingId: (SettingStore::settingBySlug('auto-translate'))->getKey()
+        );
+
+        return ! ($userSettings instanceof UserSetting && (bool) $userSettings->key('value') === false);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
