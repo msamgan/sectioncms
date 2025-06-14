@@ -11,7 +11,7 @@ return new class extends Migration
     public function up(): void
     {
         $userManagement = (new CreateMenu)->handle(
-            label: 'User Management',
+            label: 'HR',
             route: '#',
             icon: 'ri-user-settings-line',
             permission: null
