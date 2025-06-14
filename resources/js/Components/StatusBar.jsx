@@ -22,7 +22,7 @@ export default function StatusBar() {
             }
         }
 
-        checkPaymentMethods().then()
+        checkPaymentMethods()
     }, [])
 
     if (loading || hasPaymentMethods) {
@@ -30,23 +30,21 @@ export default function StatusBar() {
     }
 
     return (
-        <div className="w-full">
-            <div className="w-full mx-auto px-4 md:px-6 py-2">
-                <DisplayMessage
-                    text={
-                        <span>
-                            You don't have any payment methods set up.
-                            <Link
-                                href={route('payment-methods.index')}
-                                className="ml-2 font-medium text-primary hover:text-primary/80 underline"
-                            >
-                                Add a payment method
-                            </Link>
-                        </span>
-                    }
-                    type="warning"
-                />
-            </div>
+        <div className="px-4 md:px-6 py-2">
+            <DisplayMessage
+                text={
+                    <span>
+                        You don't have any payment methods set up.
+                        <Link
+                            href={route('payment-methods.index')}
+                            className="ml-2 font-medium text-primary hover:text-primary/80 underline"
+                        >
+                            Add a payment method
+                        </Link>
+                    </span>
+                }
+                type="warning"
+            />
         </div>
     )
 }

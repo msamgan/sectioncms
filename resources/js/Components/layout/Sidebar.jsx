@@ -5,10 +5,18 @@ import { useEffect, useState } from 'react'
 export default function Sidebar({ user, collapsed = false, onToggle }) {
     const [menuItems, setMenuItems] = useState([])
 
-    const getMenus = async () => setMenuItems(await index.data({}))
+    // Common class for menu items
+    const menuItemBaseClass = "flex items-center rounded-md transition-colors"
+    const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
+    const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
+
+    const getMenus = async () => {
+        const data = await index.data({})
+        setMenuItems(data)
+    }
 
     useEffect(() => {
-        getMenus().then()
+        getMenus()
     }, [])
 
     return (
@@ -22,7 +30,10 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
 
             {/* Sidebar Toggle Button - Positioned in the top corner */}
             <div className="absolute top-3 right-3">
-                <button onClick={onToggle} className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none">
+                <button
+                    onClick={onToggle}
+                    className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none"
+                >
                     <i className={`text-lg ${collapsed ? 'ri-menu-line' : 'ri-menu-fold-line'}`}></i>
                 </button>
             </div>
@@ -34,10 +45,10 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                     <li>
                         <Link
                             href={route('dashboard')}
-                            className={`flex items-center px-3 py-2.5 rounded-md transition-colors ${
+                            className={`${menuItemBaseClass} px-3 py-2.5 ${
                                 route().current('dashboard')
-                                    ? 'bg-blue-50 text-primary font-medium'
-                                    : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+                                    ? menuItemActiveClass
+                                    : menuItemInactiveClass
                             }`}
                         >
                             <i className="ri-home-line text-lg"></i>
@@ -92,15 +103,18 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
         }
     }, [isActive])
 
+    // Common class for menu items
+    const menuItemBaseClass = "flex items-center rounded-md transition-colors"
+    const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
+    const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
+
     return (
         <li>
             {/* Parent menu item */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className={`flex items-center justify-between w-full px-3 py-2.5 rounded-md transition-colors ${
-                    isActive
-                        ? 'bg-blue-50 text-primary font-medium'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+                className={`${menuItemBaseClass} justify-between w-full px-3 py-2.5 ${
+                    isActive ? menuItemActiveClass : menuItemInactiveClass
                 }`}
             >
                 <div className="flex items-center">
@@ -120,10 +134,8 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
                     <Link
                         key={index}
                         href={route(item.route)}
-                        className={`flex items-center pl-8 pr-3 py-2.5 rounded-md transition-colors ${
-                            route().current(item.route)
-                                ? 'bg-blue-50 text-primary font-medium'
-                                : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+                        className={`${menuItemBaseClass} pl-8 pr-3 py-2.5 ${
+                            route().current(item.route) ? menuItemActiveClass : menuItemInactiveClass
                         }`}
                     >
                         <i className={`${item.icon} text-lg`}></i>

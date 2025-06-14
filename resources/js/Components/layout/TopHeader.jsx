@@ -6,7 +6,7 @@ export default function TopHeader({ user }) {
         <nav className="flex items-center bg-white shadow-sm w-full" id="layout-navbar">
             <div className="w-full flex justify-between py-3">
                 <div className="flex items-center">
-                    <div className="hidden xl:flex items-center py-0">
+                    <div className="hidden xl:flex items-center">
                         <a href="/" className="flex items-center gap-3">
                             <span className="block">
                                 <span className="text-primary">
@@ -20,16 +20,6 @@ export default function TopHeader({ user }) {
                                 </span>
                                 <span className="font-medium ml-4 text-sm text-gray-600">{user.business?.name}</span>
                             </div>
-                        </a>
-
-                        <a href="#" className="xl:hidden ml-auto text-xl">
-                            <i className="ri-close-fill align-middle"></i>
-                        </a>
-                    </div>
-
-                    <div className="xl:hidden flex items-center">
-                        <a className="px-0 mr-6" href="#">
-                            <i className="ri-menu-fill text-2xl"></i>
                         </a>
                     </div>
                 </div>
