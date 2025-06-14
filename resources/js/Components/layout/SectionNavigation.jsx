@@ -27,6 +27,7 @@ export default function SectionNavigation() {
             'hero',
             'trust',
             'features',
+            'translation',
             'how-it-works',
             'testimonials',
             'faq',
@@ -89,6 +90,7 @@ export default function SectionNavigation() {
         { id: 'hero', title: 'Hero', icon: 'ri-home-line', color: '#FF6B6B' },
         { id: 'trust', title: 'Trusted By', icon: 'ri-shield-check-line', color: '#4ECDC4' },
         { id: 'features', title: 'Features', icon: 'ri-star-line', color: '#FFD166' },
+        { id: 'translation', title: 'Translation', icon: 'ri-translate-2', color: '#4CAF50' },
         { id: 'how-it-works', title: 'How It Works', icon: 'ri-question-line', color: '#6A0572' },
         { id: 'testimonials', title: 'Testimonials', icon: 'ri-chat-quote-line', color: '#1A936F' },
         { id: 'faq', title: 'FAQ', icon: 'ri-questionnaire-line', color: '#3D5A80' },
@@ -98,7 +100,7 @@ export default function SectionNavigation() {
 
     return (
         <>
-            <div className="fixed right-6 top-1/2 z-50 -translate-y-1/2 transform p-3 transition-all duration-300">
+            <div className="fixed left-6 top-1/2 z-50 -translate-y-1/2 transform p-3 transition-all duration-300">
                 <div className="backdrop-blur-md bg-white/30 rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20">
                     <ul className="flex flex-col items-center space-y-4">
                         {navItems.map((item) => {
@@ -139,7 +141,7 @@ export default function SectionNavigation() {
                                     </a>
                                     {isActive && (
                                         <span
-                                            className="absolute -left-2 top-1/2 h-2 w-2 rounded-full transform -translate-y-1/2"
+                                            className="absolute -right-2 top-1/2 h-2 w-2 rounded-full transform -translate-y-1/2"
                                             style={{ backgroundColor: item.color }}
                                         />
                                     )}
@@ -178,7 +180,7 @@ export default function SectionNavigation() {
                     />
                     <style jsx>{`
                         @keyframes fadeIn {
-                            from { opacity: 0; transform: translateY(-50%) translateX(-10px); }
+                            from { opacity: 0; transform: translateY(-50%) translateX(10px); }
                             to { opacity: 1; transform: translateY(-50%) translateX(0); }
                         }
                     `}</style>
