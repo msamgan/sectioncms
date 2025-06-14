@@ -93,8 +93,6 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                         <BusinessContent
                                             activeBusinessTab={activeBusinessTab}
                                             business={auth.user.business}
-                                            translationSettings={settings.translation}
-                                            getSettings={getSettings}
                                         />
                                     </div>
                                 )}

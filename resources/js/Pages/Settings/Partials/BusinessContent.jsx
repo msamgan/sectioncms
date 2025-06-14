@@ -2,7 +2,7 @@ import AccessToken from '@/Pages/Settings/Partials/AccessToken.jsx'
 import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
 import TranslationContent from '@/Pages/Settings/Partials/TranslationContent.jsx'
 
-export default function BusinessContent({ activeBusinessTab, business, translationSettings, getSettings }) {
+export default function BusinessContent({ activeBusinessTab, business }) {
     return (
         <>
             <div className={activeBusinessTab === 'general' ? 'block' : 'hidden'}>
@@ -12,7 +12,7 @@ export default function BusinessContent({ activeBusinessTab, business, translati
                 <AccessToken business={business} />
             </div>
             <div className={activeBusinessTab === 'translation' ? 'block' : 'hidden'}>
-                <TranslationContent translationSettings={translationSettings} getSettings={getSettings} />
+                <TranslationContent business={business} />
             </div>
         </>
     )

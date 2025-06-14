@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Actions\Section;
 
-use App\Actions\Business\BusinessUser;
 use App\Jobs\Translate;
 use App\Stores\LanguageStore;
 use App\Stores\SectionStore;
@@ -16,7 +15,7 @@ final class CreateLanguageValues
         $defaultLanguage = LanguageStore::defaultLanguage(businessId: auth()->businessId());
         $businessSectionValues = SectionStore::businessLangValues(businessId: auth()->businessId(), langCode: $defaultLanguage->key('code'));
 
-        $autoTranslate = (new BusinessUser)->autoTranslation();
+        $autoTranslate = auth()->user()->key('business')->key('auto_translation');
 
         foreach ($businessSectionValues as $sectionValue) {
             $newValue = $sectionValue->replicate();

@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Notification\NotifyUser;
 use App\Actions\Role\AssignRole;
+use App\Actions\Setting\CreateSetting;
 use App\Http\Requests\DeleteUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -37,7 +38,7 @@ final class UserController extends Controller
      * @throws Throwable
      */
     #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:user.create'])]
-    public function store(StoreUserRequest $request, AssignRole $assignRole, NotifyUser $notifyUser): void
+    public function store(StoreUserRequest $request, AssignRole $assignRole, CreateSetting $createSettingAction, NotifyUser $notifyUser): void
     {
         DB::beginTransaction();
 
@@ -53,6 +54,8 @@ final class UserController extends Controller
             $assignRole->handle(user: $user, role: $role, makeRoleActive: true);
 
             $notifyUser->handle(new UserCreated($user, $role, auth()->user()));
+
+            $createSettingAction->handle(userId: $user->getKey());
 
             DB::commit();
         } catch (Exception $e) {

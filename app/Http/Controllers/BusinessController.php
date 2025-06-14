@@ -16,7 +16,6 @@ use App\Notifications\AccessTokenRegenerated;
 use App\Notifications\BusinessCreated;
 use App\Notifications\BusinessDeleted;
 use App\Notifications\BusinessUpdated;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -123,7 +122,6 @@ final class BusinessController extends Controller
     }
 
     /**
-     * @throws FileNotFoundException
      * @throws ConnectionException
      */
     #[Action(middleware: ['auth', 'check_has_business', 'can:business.update'])]
@@ -139,5 +137,12 @@ final class BusinessController extends Controller
     public function select(Request $request, Business $business): void
     {
         $request->user()->saveKey('business_id', $business->getKey());
+    }
+
+    #[Action(method: 'post', middleware: ['auth', 'check_has_business', 'can:business.update'])]
+    public function toggleAutoTranslation(): void
+    {
+        $business = auth()->user()->key('business');
+        $business->saveKey('auto_translation', ! $business->key('auto_translation'));
     }
 }

@@ -9,12 +9,16 @@ use App\Models\UserSetting;
 
 final class CreateSetting
 {
-    public function handle(): void
+    public function handle(?int $userId = null): void
     {
+        if (! $userId) {
+            $userId = auth()->id();
+        }
+
         foreach (Setting::all() as $setting) {
             $userSetting = UserSetting::query()
                 ->where('setting_id', $setting->id)
-                ->where('user_id', auth()->id())
+                ->where('user_id', $userId)
                 ->first();
 
             if ($userSetting) {
@@ -22,6 +26,7 @@ final class CreateSetting
             }
 
             UserSetting::query()->create([
+                'user_id' => $userId,
                 'setting_id' => $setting->id,
                 'value' => $setting->default,
             ]);

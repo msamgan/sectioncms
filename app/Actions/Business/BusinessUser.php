@@ -7,9 +7,6 @@ namespace App\Actions\Business;
 use App\Enums\RoleEnum;
 use App\Models\User;
 
-/**
- * @method autoTranslation()
- */
 final class BusinessUser
 {
     public function handle(): User

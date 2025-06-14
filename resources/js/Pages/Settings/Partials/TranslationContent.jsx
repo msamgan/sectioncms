@@ -1,12 +1,22 @@
-import { toggleSetting } from '@actions/SettingsController.js'
+import { toggleAutoTranslation } from '@actions/BusinessController.js'
 import { Switch } from '@headlessui/react'
+import { useState } from 'react'
 
-export default function TranslationContent({ translationSettings, getSettings }) {
+export default function TranslationContent({ business }) {
+    const [translationSettings, setTranslationSettings] = useState([
+        {
+            slug: 'auto-translate',
+            name: 'Auto Translate',
+            description: 'Automatically translate content using AI when a new language is created.',
+            value: business.auto_translation,
+            type: 'boolean',
+        },
+    ])
     return (
         <>
             {translationSettings?.length > 0 ? (
                 translationSettings.map((setting) => (
-                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-1/2'}>
+                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-2/3'}>
                         <div className="mb-4">
                             <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
                             <p className="text-gray-600">{setting.description}</p>
@@ -16,13 +26,17 @@ export default function TranslationContent({ translationSettings, getSettings })
                                 checked={setting.value}
                                 onChange={async (checked) => {
                                     if (setting.type === 'boolean') {
-                                        await toggleSetting
-                                            .call({
-                                                params: { setting: setting.slug },
-                                            })
-                                            .then((response) => {
-                                                getSettings().then()
-                                            })
+                                        await toggleAutoTranslation.call({}).then((response) => {
+                                            setTranslationSettings((prevSettings) =>
+                                                prevSettings.map((s) => {
+                                                    if (s.slug === setting.slug) {
+                                                        return { ...s, value: checked }
+                                                    }
+
+                                                    return s
+                                                }),
+                                            )
+                                        })
                                     }
                                 }}
                                 className={`${

@@ -17,15 +17,6 @@ return new class extends Migration
             'type' => 'boolean',
             'default' => 'true',
         ]);
-
-        Setting::query()->create([
-            'name' => 'Auto Translate',
-            'description' => 'When a new language is added, automatically translate all existing content to the new language.',
-            'slug' => 'auto-translate',
-            'group' => 'translation',
-            'type' => 'boolean',
-            'default' => 'true',
-        ]);
     }
 
     public function down(): void

@@ -37,7 +37,7 @@ export default function Master({ children, hideMenu = false }) {
 
                 <main className="flex-grow w-full my-section">
                     <div className="w-full px-4 md:px-6">
-                        <div className="bg-white rounded-panel py-section transition-all duration-250">{children}</div>
+                        <div className="bg-white rounded-panel transition-all duration-250">{children}</div>
                     </div>
                 </main>
 

@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Concerns\ModelFunctions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Override;
 
 final class UserSetting extends Model
 {
@@ -27,15 +26,5 @@ final class UserSetting extends Model
     public function setting(): BelongsTo
     {
         return $this->belongsTo(Setting::class);
-    }
-
-    #[Override]
-    protected static function boot(): void
-    {
-        parent::boot();
-
-        self::creating(function ($model): void {
-            $model->user_id = auth()->id();
-        });
     }
 }
