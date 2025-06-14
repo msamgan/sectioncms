@@ -15,7 +15,7 @@ final class PasswordController extends Controller
     /**
      * Update the user's password.
      */
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request, \App\Actions\Notification\NotifyUser $notifyUser): RedirectResponse
     {
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
@@ -25,6 +25,8 @@ final class PasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
+
+        $notifyUser->handle(new \App\Notifications\PasswordUpdated($request->user()));
 
         return back();
     }

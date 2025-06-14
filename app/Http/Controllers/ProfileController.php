@@ -15,7 +15,7 @@ final class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): void
+    public function update(ProfileUpdateRequest $request, \App\Actions\Notification\NotifyUser $notifyUser): void
     {
         $request->user()->fill($request->validated());
 
@@ -24,18 +24,22 @@ final class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        $notifyUser->handle(new \App\Notifications\ProfileUpdated($request->user()));
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request, \App\Actions\Notification\NotifyUser $notifyUser): RedirectResponse
     {
         $request->validate([
             'password' => ['required', 'current_password'],
         ]);
 
         $user = $request->user();
+
+        $notifyUser->handle(new \App\Notifications\ProfileDeleted($user));
 
         Auth::logout();
 
