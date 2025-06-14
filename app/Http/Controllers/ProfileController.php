@@ -28,7 +28,7 @@ final class ProfileController extends Controller
 
         $request->user()->save();
 
-        $notifyUser->handle(new ProfileUpdated($request->user()));
+        $notifyUser->handle(new ProfileUpdated($request->user(), auth()->user()));
     }
 
     /**
@@ -42,7 +42,7 @@ final class ProfileController extends Controller
 
         $user = $request->user();
 
-        $notifyUser->handle(new ProfileDeleted($user));
+        $notifyUser->handle(new ProfileDeleted($user, auth()->user()));
 
         Auth::logout();
 

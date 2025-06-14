@@ -19,7 +19,7 @@ final class PasswordUpdated extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly User $user) {}
+    public function __construct(private readonly User $user, private readonly ?User $initiator = null) {}
 
     /**
      * Get the notification's delivery channels.
@@ -37,7 +37,7 @@ final class PasswordUpdated extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $this->user,
+            notifiable: $this->initiator ?? $this->user,
             entity: 'Password',
             entityName: $this->user->name
         );
@@ -58,7 +58,7 @@ final class PasswordUpdated extends Notification implements ShouldQueue
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $this->user,
+            notifiable: $this->initiator ?? $this->user,
             entity: 'Password',
             entityName: $this->user->name
         );
