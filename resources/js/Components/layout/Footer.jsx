@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-between py-4">
                     <div className="text-dark mb-2 md:mb-0">
-                        ©{new Date().getFullYear()}, made with
+                        ©{new Date().getFullYear()} made with
                         <span className="text-danger ml-1 mr-2">
                             <i className="inline-block ri-heart-fill"></i>
                         </span>
