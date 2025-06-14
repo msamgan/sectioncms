@@ -44,7 +44,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
             <div className="mb-6 w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300">
                 <div className="border-b border-gray-200 bg-gray-50 p-4">
                     <div className="flex items-center">
-                        <div className="bg-[#3B82F6] rounded-md p-1">
+                        <div className="bg-primary rounded-md p-1">
                             <Avatar
                                 size="sm"
                                 bgColor="transparent"
@@ -52,7 +52,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                 className="text-white"
                             />
                         </div>
-                        <h5 className="text-lg font-medium text-[#3B82F6] ml-3">Role Details</h5>
+                        <h5 className="text-lg font-medium text-primary ml-3">Role Details</h5>
                     </div>
                 </div>
                 <div className="p-6 bg-white">
@@ -74,7 +74,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                     placeholder="Role name"
                                     required={true}
                                     isFocused={true}
-                                    className="transition-all duration-200 focus:border-[#3B82F6] rounded-md hover:border-[#3B82F6]"
+                                    className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                 />
                                 <InputError className="mt-2" message={errors.name} />
                             </div>
@@ -86,7 +86,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
             <div className="mb-6 w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300">
                 <div className="border-b border-gray-200 bg-gray-50 p-4">
                     <div className="flex items-center">
-                        <div className="bg-[#3B82F6] rounded-md p-1">
+                        <div className="bg-primary rounded-md p-1">
                             <Avatar
                                 size="sm"
                                 bgColor="transparent"
@@ -94,7 +94,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                 className="text-white"
                             />
                         </div>
-                        <h5 className="text-lg font-medium text-[#3B82F6] ml-3">Permissions</h5>
+                        <h5 className="text-lg font-medium text-primary ml-3">Permissions</h5>
                     </div>
                 </div>
                 <div className="p-6 bg-white">
@@ -108,7 +108,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             className="mb-6 p-4 rounded-md border border-gray-200 bg-white transition-all duration-200"
                                         >
                                             <div className="flex items-center mb-4">
-                                                <div className="bg-[#3B82F6] rounded-md p-1 mr-3">
+                                                <div className="bg-primary rounded-md p-1 mr-3">
                                                     <Avatar
                                                         size="xs"
                                                         bgColor="transparent"
@@ -120,7 +120,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                                         className="text-white"
                                                     />
                                                 </div>
-                                                <h6 className="text-base font-medium text-[#3B82F6]">
+                                                <h6 className="text-base font-medium text-primary">
                                                     {key.toUpperCase() + ' MODULE'}
                                                 </h6>
                                             </div>
@@ -148,8 +148,8 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                                                 }}
                                                                 className={(state) =>
                                                                     `${
-                                                                        state.checked ? 'bg-[#3B82F6]' : 'bg-gray-200'
-                                                                    } relative inline-flex h-6 w-6 items-center rounded-full transition-colors focus:outline-none focus:ring-1 focus:ring-[#3B82F6] focus:ring-offset-1`
+                                                                        state.checked ? 'bg-primary' : 'bg-gray-200'
+                                                                    } relative inline-flex h-6 w-6 items-center rounded-full transition-colors focus:outline-none focus:ring-1 focus:ring-primary focus:ring-offset-1`
                                                                 }
                                                             >
                                                                 <span className="sr-only">{permission.name}</span>
@@ -200,7 +200,7 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                 <div className="flex justify-end w-2/3 gap-4">
                     <button
                         disabled={processing}
-                        className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
+                        className="bg-primary hover:bg-primary/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
                     >
                         <i className="ri-save-line mr-2"></i>
                         Save Changes

@@ -41,10 +41,10 @@ export default function UpdatePasswordForm({ className = '' }) {
             <div className="bg-white rounded-md border border-gray-200 overflow-hidden mb-4 transition-all duration-300">
                 <div className="border-b border-gray-200 bg-gray-50 px-4 py-3">
                     <div className="flex items-center">
-                        <div className="text-[#3B82F6]">
+                        <div className="text-primary">
                             <i className="ri-lock-line text-lg"></i>
                         </div>
-                        <h5 className="ml-2 text-base font-medium text-[#3B82F6]">Update Password</h5>
+                        <h5 className="ml-2 text-base font-medium text-primary">Update Password</h5>
                     </div>
                 </div>
                 <div className="p-4">

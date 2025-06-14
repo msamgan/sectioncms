@@ -44,7 +44,7 @@ export default function Form({ getUsers, user = null, roles }) {
             <div className="mb-6 w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300">
                 <div className="border-b border-gray-200 bg-gray-50 p-4">
                     <div className="flex items-center">
-                        <div className="bg-[#3B82F6] rounded-md p-1">
+                        <div className="bg-primary rounded-md p-1">
                             <Avatar
                                 size="sm"
                                 bgColor="transparent"
@@ -52,7 +52,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                 className="text-white"
                             />
                         </div>
-                        <h5 className="text-lg font-medium text-[#3B82F6] ml-3">User Details</h5>
+                        <h5 className="text-lg font-medium text-primary ml-3">User Details</h5>
                     </div>
                 </div>
                 <div className="p-6 bg-white">
@@ -74,7 +74,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                     placeholder="John Doe"
                                     required={true}
                                     isFocused={true}
-                                    className="transition-all duration-200 focus:border-[#3B82F6] rounded-md hover:border-[#3B82F6]"
+                                    className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                 />
                                 <InputError className="mt-2" message={errors.name} />
                             </div>
@@ -96,7 +96,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                         id="email"
                                         placeholder="john@example.com"
                                         required={true}
-                                        className="transition-all duration-200 focus:border-[#3B82F6] rounded-md hover:border-[#3B82F6]"
+                                        className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                     />
                                     <InputError className="mt-2" message={errors.email} />
                                 </div>
@@ -117,7 +117,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                         id="password"
                                         placeholder="••••••••"
                                         required={!user}
-                                        className="transition-all duration-200 focus:border-[#3B82F6] rounded-md hover:border-[#3B82F6]"
+                                        className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                     />
                                     <InputError className="mt-2" message={errors.password} />
                                     {user && (
@@ -139,7 +139,7 @@ export default function Form({ getUsers, user = null, roles }) {
                                 </InputLabel>
                                 <select
                                     id="role"
-                                    className="w-full rounded-md transition-all duration-200 focus:border-[#3B82F6] hover:border-[#3B82F6]"
+                                    className="w-full rounded-md transition-all duration-200 focus:border-primary hover:border-primary"
                                     value={data.role}
                                     onChange={(e) => setData('role', e.target.value)}
                                 >
@@ -160,7 +160,7 @@ export default function Form({ getUsers, user = null, roles }) {
                 <div className="flex justify-end w-2/3 gap-4">
                     <button
                         disabled={processing}
-                        className="bg-[#3B82F6] hover:bg-[#3B82F6]/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
+                        className="bg-primary hover:bg-primary/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
                     >
                         <i className="ri-save-line mr-2"></i>
                         Save Changes

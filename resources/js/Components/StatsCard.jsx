@@ -23,7 +23,7 @@ export default function StatsCard({ label, count, icon }) {
                 <div className="flex items-center justify-between mb-3">
                     <h6 className="font-medium text-gray-700 m-0">{label}</h6>
                     <div className="flex-shrink-0">
-                        <i className={`${icon} text-[#3B82F6] text-xl`}></i>
+                        <i className={`${icon} text-primary text-xl`}></i>
                     </div>
                 </div>
                 <div className="flex items-center">

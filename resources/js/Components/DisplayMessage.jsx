@@ -15,11 +15,11 @@ export default function DisplayMessage({ text, type = 'info' }) {
     // Function to determine message color based on type
     const getMessageColor = () => {
         const colorMap = {
-            info: 'bg-[#3B82F6]',
+            info: 'bg-primary',
             success: 'bg-green-500',
             warning: 'bg-yellow-500',
             error: 'bg-red-500',
-            default: 'bg-[#3B82F6]',
+            default: 'bg-primary',
         }
 
         return colorMap[type] || colorMap.default
@@ -28,11 +28,11 @@ export default function DisplayMessage({ text, type = 'info' }) {
     // Function to determine text color based on type
     const getTextColor = () => {
         const colorMap = {
-            info: 'text-[#3B82F6]',
+            info: 'text-primary',
             success: 'text-green-500',
             warning: 'text-yellow-500',
             error: 'text-red-500',
-            default: 'text-[#3B82F6]',
+            default: 'text-primary',
         }
 
         return colorMap[type] || colorMap.default

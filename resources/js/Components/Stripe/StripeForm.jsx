@@ -104,7 +104,7 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                     <div className="mb-6">
                         <div className="card-element-container">
                             <CardElement
-                                className="p-3 border border-gray-200 rounded-md focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 bg-white"
+                                className="p-3 border border-gray-200 rounded-md focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-200 bg-white"
                                 options={{
                                     style: {
                                         base: {
@@ -146,7 +146,7 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                     </div>
 
                     <div className="flex items-center p-2 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
-                        <i className="ri-lock-line text-[#3B82F6] mr-2 flex-shrink-0"></i>
+                        <i className="ri-lock-line text-primary mr-2 flex-shrink-0"></i>
                         <span>
                             Your payment information is encrypted and secure. We never store your full card details.
                         </span>

@@ -17,8 +17,8 @@ export default function DependentMenu({ menuItems, itemKey, index }) {
             onClick={toggleOpen}
             className={
                 isActive
-                    ? 'relative py-2.5 px-5 text-[#3B82F6] font-medium transition-all duration-300 ease-in-out border-b-2 border-[#3B82F6]'
-                    : 'relative py-2.5 px-5 text-gray-700 hover:text-[#3B82F6] transition-all duration-300 ease-in-out hover:border-b hover:border-b-[#3B82F6]'
+                    ? 'relative py-2.5 px-5 text-primary font-medium transition-all duration-300 ease-in-out border-b-2 border-primary'
+                    : 'relative py-2.5 px-5 text-gray-700 hover:text-primary transition-all duration-300 ease-in-out hover:border-b hover:border-b-primary'
             }
         >
             <a href="#" onClick={(e) => e.preventDefault()} className="flex items-center w-full justify-between">
@@ -29,7 +29,7 @@ export default function DependentMenu({ menuItems, itemKey, index }) {
                     </div>
                 </div>
                 <i
-                    className={`ri-arrow-down-s-line ml-3 transition-transform duration-300 ${isOpen ? 'transform rotate-180 text-[#3B82F6]' : ''}`}
+                    className={`ri-arrow-down-s-line ml-3 transition-transform duration-300 ${isOpen ? 'transform rotate-180 text-primary' : ''}`}
                 ></i>
             </a>
 
@@ -41,8 +41,8 @@ export default function DependentMenu({ menuItems, itemKey, index }) {
                         key={index}
                         className={
                             route().current(item.route)
-                                ? 'flex items-center py-2 px-4 mx-2 my-1 text-[#3B82F6] font-medium transition-all duration-300 ease-in-out border-b-2 border-[#3B82F6]'
-                                : 'flex items-center py-2 px-4 mx-2 my-1 text-gray-700 hover:text-[#3B82F6] transition-all duration-300 ease-in-out hover:border-b hover:border-b-[#3B82F6]'
+                                ? 'flex items-center py-2 px-4 mx-2 my-1 text-primary font-medium transition-all duration-300 ease-in-out border-b-2 border-primary'
+                                : 'flex items-center py-2 px-4 mx-2 my-1 text-gray-700 hover:text-primary transition-all duration-300 ease-in-out hover:border-b hover:border-b-primary'
                         }
                     >
                         <Link href={route(item.route)} className="flex items-center w-full">

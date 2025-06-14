@@ -23,7 +23,7 @@ export default function SectionNavigation() {
                         title="Hero"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-home-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-home-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -33,7 +33,7 @@ export default function SectionNavigation() {
                         title="Trusted By"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-shield-check-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-shield-check-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -43,7 +43,7 @@ export default function SectionNavigation() {
                         title="Features"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-star-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-star-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -53,7 +53,7 @@ export default function SectionNavigation() {
                         title="How It Works"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-question-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-question-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -63,7 +63,7 @@ export default function SectionNavigation() {
                         title="Testimonials"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-chat-quote-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-chat-quote-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -73,7 +73,7 @@ export default function SectionNavigation() {
                         title="FAQ"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-questionnaire-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-questionnaire-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -83,7 +83,7 @@ export default function SectionNavigation() {
                         title="Pricing"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-price-tag-3-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-price-tag-3-line text-primary text-lg"></i>
                     </a>
                 </li>
                 <li>
@@ -93,7 +93,7 @@ export default function SectionNavigation() {
                         title="Get Started"
                         onClick={scrollToSection}
                     >
-                        <i className="ri-rocket-line text-[#3B82F6] text-lg"></i>
+                        <i className="ri-rocket-line text-primary text-lg"></i>
                     </a>
                 </li>
             </ul>

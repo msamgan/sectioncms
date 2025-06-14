@@ -11,7 +11,7 @@ export default function NavButton({
             {...props}
             type={type}
             className={`flex items-center px-input-padding-x py-input-padding-y text-sm font-medium ${
-                active ? 'text-[#3B82F6] border-b-2 border-[#3B82F6]' : 'text-gray-700 hover:text-[#3B82F6]'
+                active ? 'text-primary border-b-2 border-primary' : 'text-gray-700 hover:text-primary'
             } transition-colors ${disabled && 'opacity-50'} ${className}`}
             disabled={disabled}
         >

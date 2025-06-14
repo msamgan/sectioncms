@@ -12,7 +12,7 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                     <div className="py-4 px-6 text-end">
                         <h5 className="text-sm font-medium text-gray-700 flex items-center">
                             Total Records:
-                            <span className="ml-2 text-[#3B82F6] text-xs font-medium px-2">
+                            <span className="ml-2 text-primary text-xs font-medium px-2">
                                 {data.length}
                             </span>
                         </h5>
@@ -80,11 +80,11 @@ const SearchForm = ({ setLoading, refresher }) => {
         <form className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 px-6 py-4" onSubmit={searchSubmission}>
             <div className="relative group">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i className="ri-search-line text-gray-400 group-focus-within:text-[#3B82F6] transition-colors duration-200"></i>
+                    <i className="ri-search-line text-gray-400 group-focus-within:text-primary transition-colors duration-200"></i>
                 </div>
                 <input
                     type="search"
-                    className="w-full pl-10 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-md focus:ring-1 focus:ring-[#3B82F6] focus:border-[#3B82F6] transition-all duration-200 ease-in-out"
+                    className="w-full pl-10 pr-4 py-2 text-sm bg-white border border-gray-200 rounded-md focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-200 ease-in-out"
                     id="search"
                     value={query}
                     placeholder="Search Query..."
@@ -95,7 +95,7 @@ const SearchForm = ({ setLoading, refresher }) => {
                 />
                 <label
                     htmlFor="search"
-                    className="absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium text-gray-600 transition-all duration-200 group-focus-within:text-[#3B82F6]"
+                    className="absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium text-gray-600 transition-all duration-200 group-focus-within:text-primary"
                 >
                     Search
                 </label>
