@@ -6,6 +6,7 @@ namespace App\Notifications;
 
 use App\Concerns\NotificationFunctions;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -16,7 +17,7 @@ final class LanguageDeleted extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(private readonly Language $language) {}
+    public function __construct(private readonly Language $language, private readonly User $initiator) {}
 
     /**
      * Get the notification's delivery channels.
@@ -25,7 +26,7 @@ final class LanguageDeleted extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->notifiableVia();
     }
 
     /**
@@ -34,7 +35,7 @@ final class LanguageDeleted extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Language',
             entityName: $this->language->key('name'),
         );
@@ -55,7 +56,7 @@ final class LanguageDeleted extends Notification
     public function toArray(object $notifiable): array
     {
         $notification = $this->notificationGenerator(
-            notifiable: $notifiable,
+            notifiable: $this->initiator,
             entity: 'Language',
             entityName: $this->language->key('name'),
         );

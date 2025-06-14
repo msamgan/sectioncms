@@ -52,7 +52,7 @@ final class LanguageController extends Controller
 
             $createLanguageValues->handle(languageCode: $language->key('code'));
 
-            $notifyUser->handle(new LanguageCreated($language));
+            $notifyUser->handle(new LanguageCreated($language, auth()->user()));
 
             DB::commit();
         } catch (Exception $e) {
@@ -84,7 +84,7 @@ final class LanguageController extends Controller
 
             $updateLanguage->handle($language, $request->validated());
 
-            $notifyUser->handle(new LanguageUpdated($language->refresh()));
+            $notifyUser->handle(new LanguageUpdated($language->refresh(), auth()->user()));
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
@@ -95,7 +95,7 @@ final class LanguageController extends Controller
     #[Action(method: 'delete', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.delete'])]
     public function destroy(DeleteLanguageRequest $request, Language $language, DeleteLanguageValues $deleteLanguageValues, NotifyUser $notifyUser): void
     {
-        $notifyUser->handle(new LanguageDeleted($language));
+        $notifyUser->handle(new LanguageDeleted($language, auth()->user()));
 
         defer(fn () => $deleteLanguageValues->handle(languageCode: $language->key('code')));
 
@@ -127,7 +127,7 @@ final class LanguageController extends Controller
     {
         $language->toggleIsActive();
 
-        $notifyUser->handle(new LanguageUpdated($language));
+        $notifyUser->handle(new LanguageUpdated($language, auth()->user()));
     }
 
     #[Action(method: 'post', params: ['language'], middleware: ['auth', 'check_has_business', 'can:language.update'])]
@@ -135,6 +135,6 @@ final class LanguageController extends Controller
     {
         Language::query()->where('business_id', auth()->businessId())->update(['is_default' => false]);
         $language->update(['is_default' => true]);
-        $notifyUser->handle(new LanguageUpdated($language));
+        $notifyUser->handle(new LanguageUpdated($language, auth()->user()));
     }
 }
