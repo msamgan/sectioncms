@@ -38,14 +38,16 @@ export default function UpdatePasswordForm({ className = '' }) {
 
     return (
         <form onSubmit={updatePassword} className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
-                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+            <div className="bg-white rounded-md border border-gray-200 overflow-hidden mb-4 transition-all duration-300">
+                <div className="border-b border-gray-200 bg-gray-50 px-4 py-3">
                     <div className="flex items-center">
-                        <Avatar size="sm" bgColor="bg-purple-500" icon="ri-lock-line" />
-                        <h5 className="ml-3 text-lg font-semibold text-gray-800">Update Password</h5>
+                        <div className="text-[#3B82F6]">
+                            <i className="ri-lock-line text-lg"></i>
+                        </div>
+                        <h5 className="ml-2 text-base font-medium text-[#3B82F6]">Update Password</h5>
                     </div>
                 </div>
-                <div className="p-6">
+                <div className="p-4">
                     <p className="mb-4 text-sm text-gray-600">
                         Ensure your account is using a long, random password to stay secure.
                     </p>
