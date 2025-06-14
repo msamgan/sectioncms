@@ -107,6 +107,7 @@ export default function FeaturesSection() {
                     </p>
                 </div>
             </div>
+
         </div>
     )
 }
