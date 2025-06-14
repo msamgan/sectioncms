@@ -22,14 +22,32 @@ export default {
                 'lg': ['1.125rem', { lineHeight: '1.75rem' }],
                 'xl': ['1.25rem', { lineHeight: '1.75rem' }],
                 '2xl': ['1.5rem', { lineHeight: '2rem' }],
+                '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+                '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+                '5xl': ['3rem', { lineHeight: '1' }],
             },
             spacing: {
                 'input-height': '2.5rem', // Consistent height for inputs and buttons
                 'input-padding-x': '1rem', // Consistent horizontal padding
                 'input-padding-y': '0.5rem', // Consistent vertical padding
+                'section': '2rem', // Consistent section spacing
+                'card': '1.5rem', // Consistent card padding
             },
             borderRadius: {
                 'input': '0.375rem', // Consistent border radius for inputs and buttons
+                'card': '0.5rem', // Consistent border radius for cards
+                'panel': '0.5rem', // Consistent border radius for panels
+            },
+            boxShadow: {
+                'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+                'panel': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+            },
+            transitionProperty: {
+                'height': 'height',
+                'spacing': 'margin, padding',
+            },
+            transitionDuration: {
+                '250': '250ms',
             },
         },
         colors: {

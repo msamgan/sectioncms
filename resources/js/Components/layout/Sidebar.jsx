@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 export default function Sidebar({ user, collapsed = false, onToggle }) {
     const [menuItems, setMenuItems] = useState([])
 
-    const menuItemBaseClass = 'flex items-center rounded-md transition-colors'
-    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium'
-    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+    const menuItemBaseClass = 'flex items-center rounded-md transition-all duration-250'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary shadow-sm'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary hover:shadow-sm'
 
     const getMenus = async () => {
         const data = await index.data({})
@@ -20,14 +20,17 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
 
     return (
         <aside
-            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-white border-r border-gray-100 shadow-sm transition-all duration-300 ${
+            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-white border-r border-gray-100 shadow-panel transition-all duration-250 ${
                 collapsed ? 'w-16' : 'w-64'
             }`}
         >
             <div className="invisible h-16"></div>
 
             <div className="absolute top-3 right-3">
-                <button onClick={onToggle} className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none">
+                <button
+                    onClick={onToggle}
+                    className="p-1.5 rounded-md text-gray-500 hover:bg-gray-50 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-all duration-250"
+                >
                     <i className={`text-lg ${collapsed ? 'ri-menu-line' : 'ri-menu-fold-line'}`}></i>
                 </button>
             </div>
@@ -87,9 +90,9 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
         }
     }, [isActive])
 
-    const menuItemBaseClass = 'flex items-center rounded-md transition-colors'
-    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium'
-    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+    const menuItemBaseClass = 'flex items-center rounded-md transition-all duration-250'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary shadow-sm'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary hover:shadow-sm'
 
     return (
         <li>

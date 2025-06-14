@@ -14,13 +14,13 @@ export default function StatsCard({ label, count, icon }) {
 
     return (
         <div
-            className={`bg-white rounded-lg h-full border border-gray-100
-                      transition-all duration-300 ease-in-out overflow-hidden
+            className={`bg-white rounded-card h-full border border-gray-100 shadow-card
+                      transition-all duration-250 ease-in-out overflow-hidden hover:shadow-md
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
-            <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                    <h6 className="font-medium text-gray-700 m-0">{label}</h6>
+            <div className="p-card">
+                <div className="flex items-center justify-between mb-4">
+                    <h6 className="font-medium text-gray-700 m-0 text-base">{label}</h6>
                     <div className="flex-shrink-0">
                         <i className={`${icon} text-primary text-xl`}></i>
                     </div>

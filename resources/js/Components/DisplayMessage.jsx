@@ -1,4 +1,4 @@
-export default function DisplayMessage({ text, type = 'info' }) {
+export default function DisplayMessage({ text, type = 'info', icon = null, className = '' }) {
     const getMessageIcon = () => {
         const iconMap = {
             info: 'ri-information-line',
@@ -48,22 +48,22 @@ export default function DisplayMessage({ text, type = 'info' }) {
     }
 
     return (
-        <div className="mt-4 bg-white rounded-md overflow-hidden transition-all duration-300 w-full">
-            <div className={`${getBackgroundColor()} p-3`}>
+        <div className={`mt-4 bg-white rounded-panel overflow-hidden transition-all duration-250 w-full shadow-panel ${className}`}>
+            <div className={`${getBackgroundColor()} p-4`}>
                 <div className="flex items-center">
                     <div
-                        className={`flex-shrink-0 w-8 h-8 rounded-md ${getMessageColor()} flex items-center justify-center mr-3`}
+                        className={`flex-shrink-0 w-10 h-10 rounded-md ${getMessageColor()} flex items-center justify-center mr-4 shadow-sm`}
                     >
-                        <span className="text-white text-sm">
-                            <i className={getMessageIcon()}></i>
+                        <span className="text-white text-base">
+                            <i className={icon || getMessageIcon()}></i>
                         </span>
                     </div>
                     <div className="flex-grow">
-                        <p className={`m-0 text-sm ${getTextColor()}`}>{text}</p>
+                        <p className={`m-0 text-sm font-medium ${getTextColor()}`}>{text}</p>
                     </div>
                 </div>
             </div>
-            <div className={`h-0.5 w-full ${getMessageColor()}`}></div>
+            <div className={`h-1 w-full ${getMessageColor()}`}></div>
         </div>
     )
 }

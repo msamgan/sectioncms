@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 
 const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) => {
     return (
-        <div className="bg-white rounded-md mt-6 border border-gray-200 overflow-hidden transition-all duration-300">
+        <div className="bg-white rounded-panel mt-6 border border-gray-200 shadow-panel overflow-hidden transition-all duration-250">
             <div className="overflow-x-auto">
                 <div className="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
@@ -16,37 +16,39 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                         </h5>
                     </div>
                 </div>
-                <table className="w-full text-sm text-left">
-                    <thead className="text-xs">
-                        <tr className="bg-gray-50 text-gray-700 border-b border-gray-200">
-                            {columns.map((column, index) => (
-                                <th key={index} className="px-6 py-3 font-medium tracking-wider">
-                                    {toTitleCase(column)}
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                        {data.map((row, index) => (
-                            <tr
-                                key={index}
-                                className="bg-white transition-colors duration-200 ease-in-out hover:bg-gray-50"
-                            >
-                                {Object.values(row).map((cell, index) => (
-                                    <td
-                                        key={index}
-                                        className={`px-6 py-4 ${
-                                            tdClassName.filter((item) => item.column === columns[index])[0]
-                                                ?.className || ''
-                                        }`}
-                                    >
-                                        {cell}
-                                    </td>
+                <div className="relative overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs sticky top-0 z-10">
+                            <tr className="bg-gray-50 text-gray-700 border-b border-gray-200">
+                                {columns.map((column, index) => (
+                                    <th key={index} className="px-6 py-3 font-medium tracking-wider">
+                                        {toTitleCase(column)}
+                                    </th>
                                 ))}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {data.map((row, index) => (
+                                <tr
+                                    key={index}
+                                    className="bg-white transition-all duration-250 ease-in-out hover:bg-gray-50 hover:shadow-panel"
+                                >
+                                    {Object.values(row).map((cell, index) => (
+                                        <td
+                                            key={index}
+                                            className={`px-6 py-4 max-w-xs truncate ${
+                                                tdClassName.filter((item) => item.column === columns[index])[0]
+                                                    ?.className || ''
+                                            }`}
+                                        >
+                                            {cell}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     )
@@ -107,7 +109,7 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
 
     return permission ? (
         loading ? (
-            <div className="bg-white rounded-md mt-6 border border-gray-200 p-6 flex justify-center items-center min-h-[200px]">
+            <div className="bg-white rounded-panel mt-6 border border-gray-200 shadow-panel p-8 flex justify-center items-center min-h-[200px]">
                 <Loading />
             </div>
         ) : data.length > 0 ? (
@@ -119,18 +121,28 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
                 refresher={refresher}
             />
         ) : (
-            <div className="bg-white rounded-md mt-6 border border-gray-200 overflow-hidden transition-all duration-300">
+            <div className="bg-white rounded-panel mt-6 border border-gray-200 shadow-panel overflow-hidden transition-all duration-250">
                 <div className="border-b border-gray-200">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                 </div>
-                <div className="p-6 flex justify-center items-center">
-                    <DisplayMessage text="No data available." type="info" />
+                <div className="p-8 flex justify-center items-center">
+                    <DisplayMessage
+                        text="No data available. Try adjusting your search criteria."
+                        type="info"
+                        icon="ri-inbox-line"
+                        className="max-w-md"
+                    />
                 </div>
             </div>
         )
     ) : (
-        <div className="bg-white rounded-md mt-6 border border-gray-200 overflow-hidden transition-all duration-300 p-6 flex justify-center items-center min-h-[200px]">
-            <DisplayMessage text="You do not have permission to view this content..." type="error" />
+        <div className="bg-white rounded-panel mt-6 border border-gray-200 shadow-panel overflow-hidden transition-all duration-250 p-8 flex justify-center items-center min-h-[200px]">
+            <DisplayMessage
+                text="You do not have permission to view this content."
+                type="error"
+                icon="ri-lock-line"
+                className="max-w-md"
+            />
         </div>
     )
 }
