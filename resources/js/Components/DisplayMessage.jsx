@@ -1,5 +1,4 @@
 export default function DisplayMessage({ text, type = 'info' }) {
-    // Function to determine message icon based on type
     const getMessageIcon = () => {
         const iconMap = {
             info: 'ri-information-line',
@@ -12,7 +11,6 @@ export default function DisplayMessage({ text, type = 'info' }) {
         return iconMap[type] || iconMap.default
     }
 
-    // Function to determine message color based on type
     const getMessageColor = () => {
         const colorMap = {
             info: 'bg-primary',
@@ -25,7 +23,6 @@ export default function DisplayMessage({ text, type = 'info' }) {
         return colorMap[type] || colorMap.default
     }
 
-    // Function to determine text color based on type
     const getTextColor = () => {
         const colorMap = {
             info: 'text-primary',
@@ -38,7 +35,6 @@ export default function DisplayMessage({ text, type = 'info' }) {
         return colorMap[type] || colorMap.default
     }
 
-    // Function to determine background color based on type
     const getBackgroundColor = () => {
         const colorMap = {
             info: 'bg-blue-50',

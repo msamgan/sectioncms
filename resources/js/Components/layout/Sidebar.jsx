@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 export default function Sidebar({ user, collapsed = false, onToggle }) {
     const [menuItems, setMenuItems] = useState([])
 
-    // Common class for menu items
     const menuItemBaseClass = "flex items-center rounded-md transition-colors"
     const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
     const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
@@ -25,10 +24,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                 collapsed ? 'w-16' : 'w-64'
             }`}
         >
-            {/* Sidebar Header with Logo - Hidden but preserved for spacing */}
             <div className="invisible h-16"></div>
 
-            {/* Sidebar Toggle Button - Positioned in the top corner */}
             <div className="absolute top-3 right-3">
                 <button
                     onClick={onToggle}
@@ -38,10 +35,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                 </button>
             </div>
 
-            {/* Navigation Menu - With top padding to account for header */}
             <div className="flex-1 overflow-y-auto py-4 pt-8">
                 <ul className="space-y-1 px-3">
-                    {/* Dashboard Link */}
                     <li>
                         <Link
                             href={route('dashboard')}
@@ -55,8 +50,6 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                             <span className={`ml-3 ${collapsed ? 'hidden' : 'block'}`}>Dashboard</span>
                         </Link>
                     </li>
-
-                    {/* Dynamic Menu Items */}
                     {Object.keys(menuItems).map((itemKey, index) =>
                         itemKey === ''
                             ? menuItems[itemKey].map((item, idx) => (
@@ -89,28 +82,22 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
     )
 }
 
-// Submenu component for sidebar
 function SidebarSubmenu({ itemKey, items, collapsed }) {
     const [isOpen, setIsOpen] = useState(false)
 
-    // Check if any child route is active
     const isActive = items.map((item) => route().current(item.route)).includes(true)
-
-    // Auto-expand menu if a child is active
     useEffect(() => {
         if (isActive) {
             setIsOpen(true)
         }
     }, [isActive])
 
-    // Common class for menu items
     const menuItemBaseClass = "flex items-center rounded-md transition-colors"
     const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
     const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
 
     return (
         <li>
-            {/* Parent menu item */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={`${menuItemBaseClass} justify-between w-full px-3 py-2.5 ${
@@ -127,8 +114,6 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
                     ></i>
                 )}
             </button>
-
-            {/* Submenu items */}
             <div className={`mt-1 ml-2 space-y-1 ${isOpen ? 'block' : 'hidden'}`}>
                 {items.map((item, index) => (
                     <Link

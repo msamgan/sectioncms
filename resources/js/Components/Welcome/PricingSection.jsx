@@ -13,12 +13,9 @@ export default function PricingSection() {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
-                {/* Free Tier */}
                 <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
-                    {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
 
-                    {/* Icon with circle background */}
                     <div className="mt-8 flex justify-center">
                         <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
                             <svg
@@ -38,7 +35,6 @@ export default function PricingSection() {
                         </div>
                     </div>
 
-                    {/* Content */}
                     <div className="flex flex-1 flex-col p-6">
                         <h3 className="mb-2 text-center text-xl font-bold text-gray-900 dark:text-white">Free Tier</h3>
                         <div className="mb-6 text-center">

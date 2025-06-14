@@ -15,7 +15,6 @@ export default function StatusBar() {
                 setHasPaymentMethods(response.payment_methods.length > 0)
             } catch (error) {
                 console.error('Failed to check payment methods:', error)
-                // Default to true to avoid showing the message if there's an error
                 setHasPaymentMethods(true)
             } finally {
                 setLoading(false)

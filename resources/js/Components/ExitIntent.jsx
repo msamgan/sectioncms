@@ -8,8 +8,6 @@ export default function ExitIntent() {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        // Only show exit intent popup after 10 seconds on the page
-        // This prevents it from showing immediately when the user arrives
         const timer = setTimeout(() => {
             document.addEventListener('mouseleave', handleMouseLeave)
         }, 10000)
@@ -21,14 +19,11 @@ export default function ExitIntent() {
     }, [])
 
     const handleMouseLeave = (e) => {
-        // Only trigger when mouse leaves through the top of the page
         if (e.clientY <= 0) {
-            // Check if we've shown this popup before in this session
             const hasSeenPopup = sessionStorage.getItem('exitIntentShown')
 
             if (!hasSeenPopup) {
                 setIsVisible(true)
-                // Mark that we've shown the popup in this session
                 sessionStorage.setItem('exitIntentShown', 'true')
 
                 // Remove the event listener after showing once
