@@ -7,6 +7,7 @@ import NotificationsContent from '@/Pages/Settings/Partials/NotificationsContent
 import ProfileContent from '@/Pages/Settings/Partials/ProfileContent.jsx'
 import ProfileTabs from '@/Pages/Settings/Partials/ProfileTabs.jsx'
 import Sidebar from '@/Pages/Settings/Partials/Sidebar.jsx'
+import TranslationContent from '@/Pages/Settings/Partials/TranslationContent.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
 import { settings as _settings } from '@actions/SettingsController.js'
 import { Head } from '@inertiajs/react'
@@ -111,6 +112,12 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                     <div className={activeSettingsTab === 'notifications' ? 'block' : 'hidden'}>
                                         <NotificationsContent
                                             notificationSettings={settings.notifications}
+                                            getSettings={getSettings}
+                                        />
+                                    </div>
+                                    <div className={activeSettingsTab === 'translation' ? 'block' : 'hidden'}>
+                                        <TranslationContent
+                                            translationSettings={settings.translation}
                                             getSettings={getSettings}
                                         />
                                     </div>

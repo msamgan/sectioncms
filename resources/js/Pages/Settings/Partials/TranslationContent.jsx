@@ -1,0 +1,48 @@
+import { toggleSetting } from '@actions/SettingsController.js'
+import { Switch } from '@headlessui/react'
+
+export default function TranslationContent({ translationSettings, getSettings }) {
+    return (
+        <>
+            {translationSettings?.length > 0 ? (
+                translationSettings.map((setting) => (
+                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-1/2'}>
+                        <div className="mb-4">
+                            <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
+                            <p className="text-gray-600">{setting.description}</p>
+                        </div>
+                        <span className="inline-flex items-center">
+                            <Switch
+                                checked={setting.value}
+                                onChange={async (checked) => {
+                                    if (setting.type === 'boolean') {
+                                        await toggleSetting
+                                            .call({
+                                                params: { setting: setting.slug },
+                                            })
+                                            .then((response) => {
+                                                getSettings().then()
+                                            })
+                                    }
+                                }}
+                                className={`${
+                                    setting.value ? 'bg-blue-600' : 'bg-gray-200'
+                                } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`}
+                            >
+                                <span
+                                    className={`${
+                                        setting.value ? 'translate-x-5' : 'translate-x-0'
+                                    } inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
+                                />
+                            </Switch>
+                        </span>
+                    </div>
+                ))
+            ) : (
+                <div key={'one'} className="text-gray-500">
+                    No translation settings available.
+                </div>
+            )}
+        </>
+    )
+}
