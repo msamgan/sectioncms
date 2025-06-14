@@ -24,7 +24,7 @@ export default function Master({ children, hideMenu = false }) {
         <div className="flex min-h-screen w-full bg-white">
             {!hideMenu && <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
 
-            <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 shadow-panel transition-all duration-250">
+            <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 transition-all duration-250">
                 <div className="w-full px-4 md:px-6">
                     <TopHeader user={auth.user} />
                 </div>
@@ -37,11 +37,11 @@ export default function Master({ children, hideMenu = false }) {
 
                 <main className="flex-grow w-full my-section">
                     <div className="w-full px-4 md:px-6">
-                        <div className="bg-white rounded-panel shadow-panel py-section transition-all duration-250">{children}</div>
+                        <div className="bg-white rounded-panel py-section transition-all duration-250">{children}</div>
                     </div>
                 </main>
 
-                <div className="w-full border-t border-gray-100 bg-white mt-auto shadow-panel">
+                <div className="w-full border-t border-gray-100 bg-white mt-auto">
                     <div className="w-full px-4 md:px-6">
                         <Footer />
                     </div>

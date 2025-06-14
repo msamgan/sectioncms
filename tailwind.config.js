@@ -39,8 +39,8 @@ export default {
                 'panel': '0.5rem', // Consistent border radius for panels
             },
             boxShadow: {
-                'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-                'panel': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+                'card': 'none',
+                'panel': 'none',
             },
             transitionProperty: {
                 'height': 'height',

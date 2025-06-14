@@ -48,11 +48,11 @@ export default function DisplayMessage({ text, type = 'info', icon = null, class
     }
 
     return (
-        <div className={`mt-4 bg-white rounded-panel overflow-hidden transition-all duration-250 w-full shadow-panel ${className}`}>
+        <div className={`mt-4 bg-white rounded-panel overflow-hidden transition-all duration-250 w-full border border-gray-100 ${className}`}>
             <div className={`${getBackgroundColor()} p-4`}>
                 <div className="flex items-center">
                     <div
-                        className={`flex-shrink-0 w-10 h-10 rounded-md ${getMessageColor()} flex items-center justify-center mr-4 shadow-sm`}
+                        className={`flex-shrink-0 w-10 h-10 rounded-md ${getMessageColor()} flex items-center justify-center mr-4`}
                     >
                         <span className="text-white text-base">
                             <i className={icon || getMessageIcon()}></i>

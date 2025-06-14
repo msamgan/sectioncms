@@ -3,7 +3,7 @@ import TopHeaderRight from '@/Components/layout/TopHeaderRight.jsx'
 
 export default function TopHeader({ user }) {
     return (
-        <nav className="flex items-center bg-white shadow-sm w-full" id="layout-navbar">
+        <nav className="flex items-center bg-white w-full" id="layout-navbar">
             <div className="w-full flex justify-between py-3">
                 <div className="flex items-center">
                     <div className="hidden xl:flex items-center">

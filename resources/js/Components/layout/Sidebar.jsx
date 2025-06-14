@@ -6,8 +6,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
     const [menuItems, setMenuItems] = useState([])
 
     const menuItemBaseClass = 'flex items-center rounded-md transition-all duration-250'
-    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary shadow-sm'
-    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary hover:shadow-sm'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
 
     const getMenus = async () => {
         const data = await index.data({})
@@ -20,7 +20,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
 
     return (
         <aside
-            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-white border-r border-gray-100 shadow-panel transition-all duration-250 ${
+            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-white border-r border-gray-100 transition-all duration-250 ${
                 collapsed ? 'w-16' : 'w-64'
             }`}
         >
@@ -56,8 +56,8 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                                           href={route(item.route)}
                                           className={`flex items-center px-3 py-2.5 rounded-md transition-colors ${
                                               route().current(item.route)
-                                                  ? 'bg-blue-50 text-primary font-medium'
-                                                  : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+                                                    ? `${menuItemActiveClass}`
+                                                    : `${menuItemInactiveClass}`
                                           }`}
                                       >
                                           <i className={`${item.icon} text-lg`}></i>
@@ -91,8 +91,8 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
     }, [isActive])
 
     const menuItemBaseClass = 'flex items-center rounded-md transition-all duration-250'
-    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary shadow-sm'
-    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary hover:shadow-sm'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium border-l-2 border-primary'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
 
     return (
         <li>

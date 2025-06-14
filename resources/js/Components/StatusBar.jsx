@@ -21,7 +21,7 @@ export default function StatusBar() {
             }
         }
 
-        checkPaymentMethods()
+        checkPaymentMethods().then()
     }, [])
 
     if (loading || hasPaymentMethods) {

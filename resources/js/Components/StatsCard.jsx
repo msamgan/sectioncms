@@ -14,8 +14,8 @@ export default function StatsCard({ label, count, icon }) {
 
     return (
         <div
-            className={`bg-white rounded-card h-full border border-gray-100 shadow-card
-                      transition-all duration-250 ease-in-out overflow-hidden hover:shadow-md
+            className={`bg-white rounded-card h-full border border-gray-100
+                      transition-all duration-250 ease-in-out overflow-hidden
                       ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
         >
             <div className="p-card">
