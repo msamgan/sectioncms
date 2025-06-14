@@ -1,14 +1,12 @@
+import { toggleSetting } from '@actions/SettingsController.js'
 import { Switch } from '@headlessui/react'
 
-export default function NotificationsContent({ notificationSettings }) {
+export default function NotificationsContent({ notificationSettings, getSettings }) {
     return (
         <>
-            {notificationSettings.length > 0 ? (
+            {notificationSettings?.length > 0 ? (
                 notificationSettings.map((setting) => (
-                    <div
-                        key={setting.slug}
-                        className={'flex items-center justify-between p-4 bg-white w-1/2'}
-                    >
+                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-1/2'}>
                         <div className="mb-4">
                             <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
                             <p className="text-gray-600">{setting.description}</p>
@@ -17,7 +15,15 @@ export default function NotificationsContent({ notificationSettings }) {
                             <Switch
                                 checked={setting.value}
                                 onChange={async (checked) => {
-                                    console.log(`Toggling ${setting.slug} to ${checked}`)
+                                    if (setting.type === 'boolean') {
+                                        await toggleSetting
+                                            .call({
+                                                params: { setting: setting.slug },
+                                            })
+                                            .then((response) => {
+                                                getSettings().then()
+                                            })
+                                    }
                                 }}
                                 className={`${
                                     setting.value ? 'bg-blue-600' : 'bg-gray-200'
@@ -25,7 +31,7 @@ export default function NotificationsContent({ notificationSettings }) {
                             >
                                 <span
                                     className={`${
-                                        setting.enabled ? 'translate-x-5' : 'translate-x-0'
+                                        setting.value ? 'translate-x-5' : 'translate-x-0'
                                     } inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out`}
                                 />
                             </Switch>

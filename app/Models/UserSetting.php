@@ -38,11 +38,4 @@ final class UserSetting extends Model
             $model->user_id = auth()->id();
         });
     }
-
-    protected function casts(): array
-    {
-        return [
-            'value' => 'string',
-        ];
-    }
 }

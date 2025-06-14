@@ -1,5 +1,5 @@
-import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
 import AccessToken from '@/Pages/Settings/Partials/AccessToken.jsx'
+import GeneralInfo from '@/Pages/Settings/Partials/GeneralInfo.jsx'
 
 export default function BusinessContent({ activeBusinessTab, business }) {
     return (

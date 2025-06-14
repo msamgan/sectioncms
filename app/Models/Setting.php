@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Concerns\ModelFunctions;
 use Illuminate\Database\Eloquent\Model;
+use Override;
 
 final class Setting extends Model
 {
@@ -27,9 +28,13 @@ final class Setting extends Model
         'updated_at',
     ];
 
-    public function userSettings()
+    /**
+     * Get the route key for the model.
+     */
+    #[Override]
+    public function getRouteKeyName(): string
     {
-        return $this->hasMany(UserSetting::class);
+        return 'slug';
     }
 
     protected function casts(): array

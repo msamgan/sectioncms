@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ToggleSettingRequest;
 use App\Models\Setting;
-use App\Models\UserSetting;
+use App\Stores\SettingStore;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -27,26 +28,15 @@ final class SettingsController extends Controller
     }
 
     #[Action(middleware: ['auth', 'verified'])]
-    public function notificationSettings()
+    public function settings(): Collection
     {
-        $settings = Setting::query()->where('group', 'notifications')->get();
-        foreach ($settings as $setting) {
-            $setting->value = (auth()->user()->setting(key: $setting->key('slug')))->key('value') ?? $setting->default;
-            if ($setting->key('type') === 'boolean') {
-                $setting->value = (bool) $setting->value;
-            }
-        }
-
-        return $settings;
+        return SettingStore::userSettings(userId: auth()->id());
     }
 
-    public function toggleSetting(ToggleSettingRequest $request): Response
+    #[Action(params: ['setting'], middleware: ['auth', 'verified'])]
+    public function toggleSetting(ToggleSettingRequest $request, Setting $setting): void
     {
-        $userSettingValue = (auth()->user()->setting(key: $request->get('slug')))->key('value');
-        UserSetting::query()
-            ->where('setting_id', Setting::query()->where('slug', $request->get('slug'))->firstOrFail()->getKey())
-            ->where('user_id', auth()->id())->update([
-                'value' => ! $userSettingValue,
-            ]);
+        $userSetting = SettingStore::userSetting(userId: auth()->id(), settingId: $setting->getKey());
+        $userSetting->update(['value' => ! $userSetting->key('value')]);
     }
 }

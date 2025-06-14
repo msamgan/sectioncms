@@ -2,10 +2,7 @@ import TabButton from '@/Components/TabButton.jsx'
 
 export default function BusinessTabs({ activeBusinessTab, setActiveBusinessTab, isVisible }) {
     return (
-        <ul
-            className={`flex flex-wrap -mb-px ${isVisible ? 'block' : 'hidden'}`}
-            role="tablist"
-        >
+        <ul className={`flex flex-wrap -mb-px ${isVisible ? 'block' : 'hidden'}`} role="tablist">
             <li className="mr-6">
                 <TabButton
                     type="button"

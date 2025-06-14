@@ -1,5 +1,5 @@
-import UpdateProfileInformationForm from '@/Pages/Settings/Partials/UpdateProfileInformationForm.jsx'
 import UpdatePasswordForm from '@/Pages/Settings/Partials/UpdatePasswordForm.jsx'
+import UpdateProfileInformationForm from '@/Pages/Settings/Partials/UpdateProfileInformationForm.jsx'
 
 export default function ProfileContent({ activeProfileTab, mustVerifyEmail, status }) {
     return (

@@ -8,7 +8,7 @@ import ProfileContent from '@/Pages/Settings/Partials/ProfileContent.jsx'
 import ProfileTabs from '@/Pages/Settings/Partials/ProfileTabs.jsx'
 import Sidebar from '@/Pages/Settings/Partials/Sidebar.jsx'
 import { permissions } from '@/Utils/permissions/index.js'
-import { notificationSettings as _notificationSettings } from '@actions/SettingsController.js'
+import { settings as _settings } from '@actions/SettingsController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -18,12 +18,12 @@ export default function Index({ auth, mustVerifyEmail, status }) {
     const [activeBusinessTab, setActiveBusinessTab] = useState('general')
     const [activeProfileTab, setActiveProfileTab] = useState('profile')
     const [activeSettingsTab, setActiveSettingsTab] = useState('notifications')
-    const [notificationSettings, setNotificationSettings] = useState([])
+    const [settings, setSettings] = useState({})
 
-    const getNotificationSettings = async () => setNotificationSettings(await _notificationSettings.data({}))
+    const getSettings = async () => setSettings(await _settings.data({}))
 
     useEffect(() => {
-        getNotificationSettings().then()
+        getSettings().then()
     }, [])
 
     return (
@@ -84,7 +84,10 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 {/* Account Settings Content */}
                                 <div className={activeTabGroup === 'settings' ? 'block' : 'hidden'}>
                                     <div className={activeSettingsTab === 'notifications' ? 'block' : 'hidden'}>
-                                        <NotificationsContent notificationSettings={notificationSettings} />
+                                        <NotificationsContent
+                                            notificationSettings={settings.notifications}
+                                            getSettings={getSettings}
+                                        />
                                     </div>
                                 </div>
                             </div>

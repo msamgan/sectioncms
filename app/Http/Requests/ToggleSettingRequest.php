@@ -24,8 +24,6 @@ final class ToggleSettingRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'slug' => ['required', 'string', 'exists:settings,slug'],
-        ];
+        return [];
     }
 }
