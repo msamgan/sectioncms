@@ -66,15 +66,16 @@ export default function HeaderNotification({ user }) {
                 .replace('Deleted', '')
                 .toLowerCase() || 'default'
 
+        // Using a limited color palette with primary color as default
         const colorMap = {
-            user: 'bg-blue-500',
-            role: 'bg-green-500',
-            section: 'bg-cyan-500',
-            language: 'bg-yellow-500',
-            medium: 'bg-purple-500',
-            login: 'bg-green-500',
-            logout: 'bg-red-500',
-            default: 'bg-blue-500',
+            user: 'bg-primary',
+            role: 'bg-primary',
+            section: 'bg-primary',
+            language: 'bg-primary',
+            medium: 'bg-primary',
+            login: 'bg-green-500',  // Keep green for positive actions
+            logout: 'bg-red-500',   // Keep red for negative actions
+            default: 'bg-primary',
         }
 
         return colorMap[type] || colorMap.default
@@ -83,7 +84,7 @@ export default function HeaderNotification({ user }) {
     return (
         <li className="relative mr-4 xl:mr-1" ref={dropdownRef}>
             <button
-                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200 focus:outline-none"
+                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors duration-200 focus:outline-none"
                 onClick={toggleMenu}
                 aria-expanded={showMenu}
             >
@@ -105,7 +106,7 @@ export default function HeaderNotification({ user }) {
                         <h6 className="text-sm font-semibold text-gray-800">Notifications</h6>
                         {unreadNotifications > 0 && (
                             <div className="flex items-center">
-                                <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
+                                <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
                                     {unreadNotifications} New
                                 </span>
                             </div>
@@ -125,7 +126,7 @@ export default function HeaderNotification({ user }) {
                                 <li
                                     key={index}
                                     className={`hover:bg-gray-50 cursor-pointer transition-colors duration-150 ${
-                                        !notification.read_at ? 'bg-blue-50' : ''
+                                        !notification.read_at ? 'bg-primary/5' : ''
                                     }`}
                                 >
                                     <div className="flex p-4 items-start">
@@ -151,7 +152,7 @@ export default function HeaderNotification({ user }) {
                                         </div>
                                         {!notification.read_at && (
                                             <div className="ml-2 mt-1">
-                                                <span className="h-2 w-2 rounded-full bg-blue-500 block"></span>
+                                                <span className="h-2 w-2 rounded-full bg-primary block"></span>
                                             </div>
                                         )}
                                     </div>
@@ -163,7 +164,7 @@ export default function HeaderNotification({ user }) {
 
                 <div className="border-t border-gray-200 p-3">
                     <Link
-                        className="flex justify-center items-center w-full rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors duration-200 shadow-sm"
+                        className="flex justify-center items-center w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/80 transition-colors duration-200 shadow-sm"
                         href={routes.notifications.index}
                     >
                         <span>View all notifications</span>

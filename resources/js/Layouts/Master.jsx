@@ -19,14 +19,14 @@ export default function Master({ children, hideMenu = false }) {
     return (
         <>
             <div className="flex flex-col min-h-screen w-full bg-gray-50">
-                {/* Header Section with subtle gradient */}
-                <header className="sticky top-0 z-30 w-full bg-white shadow-md transition-all duration-300">
+                {/* Header Section */}
+                <header className="sticky top-0 z-30 w-full bg-white shadow-sm transition-all duration-300">
                     <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
                         <TopHeader user={auth.user} />
                     </div>
                 </header>
 
-                {/* Menu Section - Enhanced with subtle gradient and improved transitions */}
+                {/* Menu Section */}
                 {!hideMenu && (
                     <div className="w-full bg-white border-b border-gray-200 shadow-sm transition-all duration-300 ease-in-out">
                         <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
