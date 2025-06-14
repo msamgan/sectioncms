@@ -52,7 +52,7 @@ export default function DisplayMessage({ text, type = 'info' }) {
     }
 
     return (
-        <div className="mt-4 bg-white rounded-md border border-gray-200 overflow-hidden transition-all duration-300 w-full">
+        <div className="mt-4 bg-white rounded-md overflow-hidden transition-all duration-300 w-full">
             <div className={`${getBackgroundColor()} p-3`}>
                 <div className="flex items-center">
                     <div
