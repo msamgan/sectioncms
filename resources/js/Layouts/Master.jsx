@@ -1,12 +1,13 @@
 import Footer from '@/Components/layout/Footer.jsx'
 import TopHeader from '@/Components/layout/TopHeader.jsx'
-import TopMenu from '@/Components/layout/TopMenu.jsx'
+import Sidebar from '@/Components/layout/Sidebar.jsx'
 import StatusBar from '@/Components/StatusBar.jsx'
 import { usePage } from '@inertiajs/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Master({ children, hideMenu = false }) {
     const { auth } = usePage().props
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     // Add smooth scroll behavior to the page
     useEffect(() => {
@@ -16,39 +17,43 @@ export default function Master({ children, hideMenu = false }) {
         }
     }, [])
 
+    // Toggle sidebar collapsed state
+    const toggleSidebar = () => {
+        setSidebarCollapsed(!sidebarCollapsed);
+    };
+
     return (
         <>
-            <div className="flex flex-col min-h-screen w-full bg-white">
-                {/* Header Section */}
-                <header className="sticky top-0 z-30 w-full bg-white border-b border-gray-100 transition-all duration-300">
-                    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <TopHeader user={auth.user} />
-                    </div>
-                </header>
-
-                {/* Menu Section */}
+            <div className="flex min-h-screen w-full bg-white">
+                {/* Sidebar */}
                 {!hideMenu && (
-                    <div className="w-full bg-white border-b border-gray-100 transition-all duration-300 ease-in-out">
-                        <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                            <TopMenu />
-                        </div>
-                    </div>
+                    <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
                 )}
 
-                {/* Status Bar for important notifications */}
-                <StatusBar />
+                {/* Main Content Wrapper */}
+                <div className={`flex flex-col flex-1 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''} transition-all duration-300`}>
+                    {/* Header Section */}
+                    <header className="sticky top-0 z-30 w-full bg-white border-b border-gray-100 transition-all duration-300">
+                        <div className="w-full px-4 md:px-6">
+                            <TopHeader user={auth.user} />
+                        </div>
+                    </header>
 
-                {/* Main Content Area with improved spacing */}
-                <main className="flex-grow w-full mt-8 mb-8">
-                    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <div className="bg-white rounded-lg px-6 py-6 transition-all duration-300">{children}</div>
-                    </div>
-                </main>
+                    {/* Status Bar for important notifications */}
+                    <StatusBar />
 
-                {/* Footer Section with improved styling */}
-                <div className="w-full border-t border-gray-100 bg-white mt-auto">
-                    <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6">
-                        <Footer />
+                    {/* Main Content Area with improved spacing */}
+                    <main className="flex-grow w-full mt-8 mb-8">
+                        <div className="w-full px-4 md:px-6">
+                            <div className="bg-white rounded-lg px-6 py-6 transition-all duration-300">{children}</div>
+                        </div>
+                    </main>
+
+                    {/* Footer Section with improved styling */}
+                    <div className="w-full border-t border-gray-100 bg-white mt-auto">
+                        <div className="w-full px-4 md:px-6">
+                            <Footer />
+                        </div>
                     </div>
                 </div>
 
