@@ -14,13 +14,38 @@ import { useEffect, useState } from 'react'
 
 export default function Index({ auth, mustVerifyEmail, status }) {
     const { can } = usePermissions()
-    const [activeTabGroup, setActiveTabGroup] = useState('profile')
-    const [activeBusinessTab, setActiveBusinessTab] = useState('general')
-    const [activeProfileTab, setActiveProfileTab] = useState('profile')
-    const [activeSettingsTab, setActiveSettingsTab] = useState('notifications')
+    const [activeTabGroup, setActiveTabGroup] = useState(() => {
+        return localStorage.getItem('settings_activeTabGroup') || 'profile'
+    })
+    const [activeBusinessTab, setActiveBusinessTab] = useState(() => {
+        return localStorage.getItem('settings_activeBusinessTab') || 'general'
+    })
+    const [activeProfileTab, setActiveProfileTab] = useState(() => {
+        return localStorage.getItem('settings_activeProfileTab') || 'profile'
+    })
+    const [activeSettingsTab, setActiveSettingsTab] = useState(() => {
+        return localStorage.getItem('settings_activeSettingsTab') || 'notifications'
+    })
     const [settings, setSettings] = useState({})
 
     const getSettings = async () => setSettings(await _settings.data({}))
+
+    // Save tab selections to localStorage when they change
+    useEffect(() => {
+        localStorage.setItem('settings_activeTabGroup', activeTabGroup)
+    }, [activeTabGroup])
+
+    useEffect(() => {
+        localStorage.setItem('settings_activeBusinessTab', activeBusinessTab)
+    }, [activeBusinessTab])
+
+    useEffect(() => {
+        localStorage.setItem('settings_activeProfileTab', activeProfileTab)
+    }, [activeProfileTab])
+
+    useEffect(() => {
+        localStorage.setItem('settings_activeSettingsTab', activeSettingsTab)
+    }, [activeSettingsTab])
 
     useEffect(() => {
         getSettings().then()
@@ -30,11 +55,11 @@ export default function Index({ auth, mustVerifyEmail, status }) {
         <Master user={auth.user} header={'Settings'}>
             <Head title="Settings" />
 
-            <div className="flex flex-col lg:flex-row gap-8">
+            <div className="flex flex-col lg:flex-row gap-1">
                 <Sidebar activeTabGroup={activeTabGroup} setActiveTabGroup={setActiveTabGroup} />
 
-                <div className="w-full lg:w-3/4 lg:pt-0 pt-6">
-                    <div className="w-full">
+                <div className="w-full lg:pt-0 pt-6">
+                    <div className="w-3/4 px-0">
                         <div className="mb-6">
                             <div className="mb-5 border-b border-gray-200">
                                 {/* Business Settings Tabs */}
@@ -61,7 +86,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 />
                             </div>
 
-                            <div className="bg-transparent p-0 shadow-none">
+                            <div className="bg-white p-4 rounded-panel">
                                 {/* Business Settings Content */}
                                 {can(permissions.business.update) && (
                                     <div className={activeTabGroup === 'business' ? 'block' : 'hidden'}>

@@ -33,4 +33,11 @@ final class SettingStore
             ->where('setting_id', $settingId)
             ->first();
     }
+
+    public static function settingBySlug(string $slug): ?Setting
+    {
+        return Setting::query()
+            ->where('slug', $slug)
+            ->first();
+    }
 }

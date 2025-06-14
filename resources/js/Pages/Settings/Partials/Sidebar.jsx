@@ -8,7 +8,7 @@ export default function Sidebar({ activeTabGroup, setActiveTabGroup }) {
     return (
         <div className="w-full lg:w-1/4">
             <div className="flex flex-col justify-between mb-4 lg:mb-0">
-                <ul className="flex flex-col space-y-4 ml-12 mt-2.5">
+                <ul className="flex flex-col space-y-4 px-3 mt-2.5">
                     <li>
                         <NavButton active={activeTabGroup === 'profile'} onClick={() => setActiveTabGroup('profile')}>
                             <i className="ri-user-line mr-3"></i>

@@ -44,7 +44,7 @@ final class RoleController extends Controller
             $role = $createRole->handle(name: $request->get('name'));
             $role->syncPermissions($request->get('permissions'));
 
-            $notifyUser->handle(new RoleCreated($role));
+            $notifyUser->handle(new RoleCreated($role, auth()->user()));
 
             DB::commit();
         } catch (Throwable $th) {
