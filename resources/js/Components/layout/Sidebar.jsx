@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 export default function Sidebar({ user, collapsed = false, onToggle }) {
     const [menuItems, setMenuItems] = useState([])
 
-    const menuItemBaseClass = "flex items-center rounded-md transition-colors"
-    const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
-    const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
+    const menuItemBaseClass = 'flex items-center rounded-md transition-colors'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
 
     const getMenus = async () => {
         const data = await index.data({})
@@ -15,7 +15,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
     }
 
     useEffect(() => {
-        getMenus()
+        getMenus().then()
     }, [])
 
     return (
@@ -27,10 +27,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
             <div className="invisible h-16"></div>
 
             <div className="absolute top-3 right-3">
-                <button
-                    onClick={onToggle}
-                    className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none"
-                >
+                <button onClick={onToggle} className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none">
                     <i className={`text-lg ${collapsed ? 'ri-menu-line' : 'ri-menu-fold-line'}`}></i>
                 </button>
             </div>
@@ -41,9 +38,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                         <Link
                             href={route('dashboard')}
                             className={`${menuItemBaseClass} px-3 py-2.5 ${
-                                route().current('dashboard')
-                                    ? menuItemActiveClass
-                                    : menuItemInactiveClass
+                                route().current('dashboard') ? menuItemActiveClass : menuItemInactiveClass
                             }`}
                         >
                             <i className="ri-home-line text-lg"></i>
@@ -92,9 +87,9 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
         }
     }, [isActive])
 
-    const menuItemBaseClass = "flex items-center rounded-md transition-colors"
-    const menuItemActiveClass = "bg-blue-50 text-primary font-medium"
-    const menuItemInactiveClass = "text-gray-600 hover:bg-gray-50 hover:text-primary"
+    const menuItemBaseClass = 'flex items-center rounded-md transition-colors'
+    const menuItemActiveClass = 'bg-blue-50 text-primary font-medium'
+    const menuItemInactiveClass = 'text-gray-600 hover:bg-gray-50 hover:text-primary'
 
     return (
         <li>
