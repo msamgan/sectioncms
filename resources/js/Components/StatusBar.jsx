@@ -31,7 +31,7 @@ export default function StatusBar() {
 
     return (
         <div className="w-full">
-            <div className="w-full max-w-screen-2xl mx-auto px-4 md:px-6 py-2">
+            <div className="w-full mx-auto px-4 md:px-6 py-2">
                 <DisplayMessage
                     text={
                         <span>

@@ -1,13 +1,13 @@
 import Footer from '@/Components/layout/Footer.jsx'
-import TopHeader from '@/Components/layout/TopHeader.jsx'
 import Sidebar from '@/Components/layout/Sidebar.jsx'
+import TopHeader from '@/Components/layout/TopHeader.jsx'
 import StatusBar from '@/Components/StatusBar.jsx'
 import { usePage } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
 export default function Master({ children, hideMenu = false }) {
     const { auth } = usePage().props
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
 
     // Add smooth scroll behavior to the page
     useEffect(() => {
@@ -19,16 +19,14 @@ export default function Master({ children, hideMenu = false }) {
 
     // Toggle sidebar collapsed state
     const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed);
-    };
+        setSidebarCollapsed(!sidebarCollapsed)
+    }
 
     return (
         <>
             <div className="flex min-h-screen w-full bg-white">
                 {/* Sidebar */}
-                {!hideMenu && (
-                    <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />
-                )}
+                {!hideMenu && <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
 
                 {/* Header Section - Full Width */}
                 <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 transition-all duration-300">
@@ -38,14 +36,16 @@ export default function Master({ children, hideMenu = false }) {
                 </header>
 
                 {/* Main Content Wrapper */}
-                <div className={`flex flex-col flex-1 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''} transition-all duration-300 pt-16`}>
+                <div
+                    className={`flex flex-col flex-1 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''} transition-all duration-300 pt-16`}
+                >
                     {/* Status Bar for important notifications */}
                     <StatusBar />
 
                     {/* Main Content Area with improved spacing */}
                     <main className="flex-grow w-full mt-8 mb-8">
                         <div className="w-full px-4 md:px-6">
-                            <div className="bg-white rounded-lg px-6 py-6 transition-all duration-300">{children}</div>
+                            <div className="bg-white rounded-lg py-6 transition-all duration-300">{children}</div>
                         </div>
                     </main>
 

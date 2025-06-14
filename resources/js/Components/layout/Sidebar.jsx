@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link } from '@inertiajs/react';
-import { index } from '@actions/MenuController';
+import { index } from '@actions/MenuController'
+import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function Sidebar({ user, collapsed = false, onToggle }) {
-    const [menuItems, setMenuItems] = useState([]);
+    const [menuItems, setMenuItems] = useState([])
 
-    const getMenus = async () => setMenuItems(await index.data({}));
+    const getMenus = async () => setMenuItems(await index.data({}))
 
     useEffect(() => {
-        getMenus().then();
-    }, []);
+        getMenus().then()
+    }, [])
 
     return (
         <aside
@@ -22,16 +22,13 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
 
             {/* Sidebar Toggle Button - Positioned in the top corner */}
             <div className="absolute top-3 right-3">
-                <button
-                    onClick={onToggle}
-                    className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none"
-                >
+                <button onClick={onToggle} className="p-1 rounded-md text-gray-500 hover:bg-gray-50 focus:outline-none">
                     <i className={`text-lg ${collapsed ? 'ri-menu-line' : 'ri-menu-fold-line'}`}></i>
                 </button>
             </div>
 
             {/* Navigation Menu - With top padding to account for header */}
-            <div className="flex-1 overflow-y-auto py-4 pt-16">
+            <div className="flex-1 overflow-y-auto py-4 pt-8">
                 <ul className="space-y-1 px-3">
                     {/* Dashboard Link */}
                     <li>
@@ -49,51 +46,51 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                     </li>
 
                     {/* Dynamic Menu Items */}
-                    {Object.keys(menuItems).map((itemKey, index) => (
+                    {Object.keys(menuItems).map((itemKey, index) =>
                         itemKey === ''
                             ? menuItems[itemKey].map((item, idx) => (
-                                <li key={`independent-${idx}`}>
-                                    <Link
-                                        href={route(item.route)}
-                                        className={`flex items-center px-3 py-2.5 rounded-md transition-colors ${
-                                            route().current(item.route)
-                                                ? 'bg-blue-50 text-primary font-medium'
-                                                : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
-                                        }`}
-                                    >
-                                        <i className={`${item.icon} text-lg`}></i>
-                                        <span className={`ml-3 ${collapsed ? 'hidden' : 'block'}`}>{item.label}</span>
-                                    </Link>
-                                </li>
-                            ))
+                                  <li key={`independent-${idx}`}>
+                                      <Link
+                                          href={route(item.route)}
+                                          className={`flex items-center px-3 py-2.5 rounded-md transition-colors ${
+                                              route().current(item.route)
+                                                  ? 'bg-blue-50 text-primary font-medium'
+                                                  : 'text-gray-600 hover:bg-gray-50 hover:text-primary'
+                                          }`}
+                                      >
+                                          <i className={`${item.icon} text-lg`}></i>
+                                          <span className={`ml-3 ${collapsed ? 'hidden' : 'block'}`}>{item.label}</span>
+                                      </Link>
+                                  </li>
+                              ))
                             : menuItems[itemKey].length > 0 && (
-                                <SidebarSubmenu
-                                    key={`dependent-${index}`}
-                                    itemKey={itemKey}
-                                    items={menuItems[itemKey]}
-                                    collapsed={collapsed}
-                                />
-                            )
-                    ))}
+                                  <SidebarSubmenu
+                                      key={`dependent-${index}`}
+                                      itemKey={itemKey}
+                                      items={menuItems[itemKey]}
+                                      collapsed={collapsed}
+                                  />
+                              ),
+                    )}
                 </ul>
             </div>
         </aside>
-    );
+    )
 }
 
 // Submenu component for sidebar
 function SidebarSubmenu({ itemKey, items, collapsed }) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     // Check if any child route is active
-    const isActive = items.map(item => route().current(item.route)).includes(true);
+    const isActive = items.map((item) => route().current(item.route)).includes(true)
 
     // Auto-expand menu if a child is active
     useEffect(() => {
         if (isActive) {
-            setIsOpen(true);
+            setIsOpen(true)
         }
-    }, [isActive]);
+    }, [isActive])
 
     return (
         <li>
@@ -111,7 +108,9 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
                     <span className={`ml-3 ${collapsed ? 'hidden' : 'block'}`}>{itemKey}</span>
                 </div>
                 {!collapsed && (
-                    <i className={`ri-arrow-down-s-line transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}></i>
+                    <i
+                        className={`ri-arrow-down-s-line transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}
+                    ></i>
                 )}
             </button>
 
@@ -133,5 +132,5 @@ function SidebarSubmenu({ itemKey, items, collapsed }) {
                 ))}
             </div>
         </li>
-    );
+    )
 }
