@@ -10,33 +10,134 @@ export default function TranslationSection() {
                 </p>
             </div>
 
-            <div className="dark:bg-primary bg-primary hover:bg-primary-dark dark:hover:bg-primary-dark flex items-start gap-4 rounded-lg p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.15)] ring-2 ring-primary/[0.5] transition-all duration-250 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.25)] transform hover:-translate-y-1 lg:p-10 relative overflow-hidden max-w-3xl mx-auto">
-                <div className="absolute top-0 right-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold transform rotate-45 translate-x-2 -translate-y-1 shadow-md">
-                    NEW
-                </div>
-                <div className="flex size-16 shrink-0 items-center justify-center rounded-full bg-white sm:size-20">
-                    <svg
-                        className="size-8 text-primary"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                        />
-                    </svg>
-                </div>
+            <div className="relative max-w-3xl mx-auto">
+                {/* Decorative elements */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-400 rounded-full opacity-20 blur-2xl"></div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary rounded-full opacity-20 blur-2xl"></div>
+                <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-20 h-20 bg-yellow-400 rounded-full opacity-10 blur-xl"></div>
 
-                <div className="pt-3 sm:pt-5">
-                    <h2 className="text-2xl font-semibold text-white">Translate to any language with AI</h2>
+                {/* Main card with gradient background */}
+                <div className="bg-gradient-to-br from-primary via-primary to-blue-700 hover:from-primary-dark hover:to-blue-800 rounded-xl p-6 lg:p-10 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.2)] ring-2 ring-primary/[0.5] transition-all duration-250 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.35)] transform hover:-translate-y-2 relative overflow-hidden z-10">
 
-                    <p className="mt-4 text-lg text-white/90">
-                        Instantly translate your content to any language with our advanced AI translation technology. Perfect for reaching global audiences without the hassle of manual translations. Our AI understands context and nuance to deliver high-quality translations that maintain your content's original meaning and tone.
-                    </p>
+                    {/* Pattern overlay */}
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMTguMWMtMS4yIDAtMi4xLS45LTIuMS0yLjFWMjAuMWMwLTEuMi45LTIuMSAyLjEtMi4xaDE3Ljh6TTYgNmMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMy45Yy0xLjIgMC0yLjEtLjktMi4xLTIuMVY4LjFDMS44IDYuOSAyLjcgNiAzLjkgNkg2eiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjIiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
+
+                    {/* NEW badge */}
+                    <div className="absolute top-0 right-0 bg-yellow-500 text-white px-4 py-1 text-xs font-bold transform rotate-45 translate-x-2 -translate-y-1 shadow-md z-20">
+                        NEW
+                    </div>
+
+                    <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
+                        {/* Icon with glow effect */}
+                        <div className="flex size-20 shrink-0 items-center justify-center rounded-full bg-white shadow-lg md:mt-2 relative group">
+                            <div className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-30 blur-md transition-opacity duration-250"></div>
+                            <svg
+                                className="size-10 text-primary group-hover:scale-110 transition-transform duration-250"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                                />
+                            </svg>
+                        </div>
+
+                        <div className="flex-1">
+                            {/* Title with highlight */}
+                            <div className="inline-block relative">
+                                <h2 className="text-3xl font-bold text-white">Translate to any language with <span className="relative inline-block">AI
+                                    <span className="absolute bottom-1 left-0 w-full h-2 bg-yellow-400 opacity-40 rounded"></span>
+                                </span></h2>
+                            </div>
+
+                            {/* Description with better typography */}
+                            <p className="mt-6 text-lg leading-relaxed text-white/90">
+                                Instantly translate your content to any language with our advanced AI translation technology. Perfect for reaching global audiences without the hassle of manual translations.
+                            </p>
+
+                            {/* Feature highlights */}
+                            <div className="mt-8 grid grid-cols-2 gap-4">
+                                <div className="flex items-center">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
+                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-sm font-medium text-white">Any language</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
+                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-sm font-medium text-white">Real-time translation</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
+                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-sm font-medium text-white">AI-powered accuracy</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
+                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-sm font-medium text-white">Context preservation</span>
+                                </div>
+                            </div>
+
+                            {/* Translation form */}
+                            <form onSubmit={(e) => e.preventDefault()} className="mt-8">
+                                <div className="space-y-4">
+                                    <div className="space-y-2">
+                                        <label htmlFor="content" className="block text-sm font-medium text-white">
+                                            Content to translate
+                                        </label>
+                                        <textarea
+                                            id="content"
+                                            name="content"
+                                            rows="3"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                            placeholder="Enter the text you want to translate..."
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label htmlFor="languageCode" className="block text-sm font-medium text-white">
+                                            Language ISO Code (2 digits)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="languageCode"
+                                            name="languageCode"
+                                            maxLength="2"
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+                                            placeholder="e.g. es, fr, de, ja"
+                                            required
+                                        />
+                                        <p className="text-xs text-white/70">Enter a 2-digit ISO language code (e.g., 'es' for Spanish, 'fr' for French)</p>
+                                    </div>
+                                </div>
+
+                                {/* CTA button */}
+                                <button
+                                    type="submit"
+                                    className="mt-6 px-6 py-3 bg-white text-primary font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-250 hover:bg-gray-50 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
+                                    Try it now
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
