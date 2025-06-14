@@ -66,7 +66,9 @@ export default function DeleteUserForm({ className = '' }) {
                             <i className="ri-delete-bin-7-line"></i>
                         </div>
                     </div>
-                    <h2 className="text-base font-medium text-gray-900 text-center mb-2">Are you sure you want to delete your account?</h2>
+                    <h2 className="text-base font-medium text-gray-900 text-center mb-2">
+                        Are you sure you want to delete your account?
+                    </h2>
 
                     <p className="mt-1 text-xs text-gray-600 text-center">
                         Once your account is deleted, all of its resources and data will be permanently deleted. Please

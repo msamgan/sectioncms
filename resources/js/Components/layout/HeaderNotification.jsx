@@ -73,8 +73,8 @@ export default function HeaderNotification({ user }) {
             section: 'bg-primary',
             language: 'bg-primary',
             medium: 'bg-primary',
-            login: 'bg-green-500',  // Keep green for positive actions
-            logout: 'bg-red-500',   // Keep red for negative actions
+            login: 'bg-green-500', // Keep green for positive actions
+            logout: 'bg-red-500', // Keep red for negative actions
             default: 'bg-primary',
         }
 

@@ -169,9 +169,7 @@ export default function StripeForm({ clientSecret, onSuccess }) {
             )}
 
             <PrimaryButton
-                className={
-                    'w-full mt-3 text-sm flex items-center justify-center transition-all duration-300'
-                }
+                className={'w-full mt-3 text-sm flex items-center justify-center transition-all duration-300'}
                 disabled={loading}
             >
                 {loading ? (

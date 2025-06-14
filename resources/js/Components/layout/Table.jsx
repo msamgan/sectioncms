@@ -12,9 +12,7 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                     <div className="py-4 px-6 text-end">
                         <h5 className="text-sm font-medium text-gray-700 flex items-center">
                             Total Records:
-                            <span className="ml-2 text-primary text-xs font-medium px-2">
-                                {data.length}
-                            </span>
+                            <span className="ml-2 text-primary text-xs font-medium px-2">{data.length}</span>
                         </h5>
                     </div>
                 </div>

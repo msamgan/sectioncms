@@ -41,7 +41,10 @@ export default function AddSite() {
                 <span>Add New</span>
             </PrimaryButton>
 
-            <Link href={route('business')} className="text-primary hover:text-primary/80 transition-colors duration-300">
+            <Link
+                href={route('business')}
+                className="text-primary hover:text-primary/80 transition-colors duration-300"
+            >
                 <i className="ri-global-fill ri-22px me-6 cursor-pointer hover:scale-110 transition-transform duration-300"></i>
             </Link>
 

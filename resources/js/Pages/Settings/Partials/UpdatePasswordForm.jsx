@@ -1,7 +1,6 @@
 import InputError from '@/Components/InputError.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import TextInput from '@/Components/TextInput.jsx'
-import Avatar from '@/Components/helpers/Avatar.jsx'
 import { Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { useRef } from 'react'

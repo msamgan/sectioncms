@@ -1,4 +1,3 @@
-import Avatar from '@/Components/helpers/Avatar.jsx'
 import { useEffect, useState } from 'react'
 
 export default function StatsCard({ label, count, icon }) {
@@ -27,9 +26,7 @@ export default function StatsCard({ label, count, icon }) {
                     </div>
                 </div>
                 <div className="flex items-center">
-                    <h3 className="font-bold text-3xl text-gray-900 m-0">
-                        {count}
-                    </h3>
+                    <h3 className="font-bold text-3xl text-gray-900 m-0">{count}</h3>
                 </div>
             </div>
         </div>

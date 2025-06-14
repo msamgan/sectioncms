@@ -1,11 +1,9 @@
 import DangerButton from '@/Components/DangerButton'
-import Avatar from '@/Components/helpers/Avatar.jsx'
 import InputError from '@/Components/InputError'
 import InputLabel from '@/Components/InputLabel'
 import Modal from '@/Components/Modal'
 import SecondaryButton from '@/Components/SecondaryButton'
 import TextInput from '@/Components/TextInput'
-import { moduleConstants } from '@/Utils/constants.js'
 import { useForm } from '@inertiajs/react'
 import { useRef, useState } from 'react'
 
@@ -90,7 +88,12 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
 
                         {/* Password Input */}
                         <div className="mb-4 relative">
-                            <InputLabel htmlFor="password" value="Enter your password to confirm" required={true} className="text-sm" />
+                            <InputLabel
+                                htmlFor="password"
+                                value="Enter your password to confirm"
+                                required={true}
+                                className="text-sm"
+                            />
                             <div className="relative mt-1">
                                 <TextInput
                                     id="password"
