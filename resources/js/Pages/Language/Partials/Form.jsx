@@ -94,7 +94,7 @@ export default function Form({ getLanguages, language = null }) {
                                     value={data.code}
                                     onChange={(e) => setData('code', e.target.value)}
                                     id="user-code"
-                                    placeholder="e.g. en, fr, es | 2-letter ISO language code"
+                                    placeholder="e.g. en, fr, es, ms-Arab, scn, zh-TW | ISO language code"
                                     required={true}
                                     maxLength={8}
                                     minLength={2}

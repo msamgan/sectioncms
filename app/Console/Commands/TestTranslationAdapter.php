@@ -34,7 +34,7 @@ final class TestTranslationAdapter extends Command
     public function handle(GoogleTranslationAdapter $googleTranslationAdapter): void
     {
         $translation = $googleTranslationAdapter->translate(
-            languageCode: 'ms-arab',
+            languageCode: 'zh-TW',
             query: 'Hello, how are you?'
         );
 
