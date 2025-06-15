@@ -153,6 +153,97 @@ export default function HowItWorksSection() {
                         </svg>
                     </a>
                 </div>
+
+                {/* Platform Workflow Section */}
+                <div className="mt-24 max-w-4xl mx-auto">
+                    <div className="text-center mb-12">
+                        <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+                            Platform Workflow
+                        </span>
+                        <h2 className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-extrabold text-gray-900 sm:text-4xl dark:from-blue-400 dark:to-indigo-400 dark:text-white">
+                            How the Platform Works
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
+                            Our platform makes content localization simple and efficient
+                        </p>
+                    </div>
+
+                    <div className="grid md:grid-cols-4 gap-6">
+                        {/* Step 1 */}
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                            <div className="flex items-center mb-4">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mr-3">
+                                    <span className="text-white font-bold">1</span>
+                                </div>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Create account</h4>
+                            </div>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">Sign up and get access to the content management system</p>
+                        </div>
+
+                        {/* Step 2 */}
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                            <div className="flex items-center mb-4">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 mr-3">
+                                    <span className="text-white font-bold">2</span>
+                                </div>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Create sections</h4>
+                            </div>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">Add sections like "Home Page - Hero" to organize content</p>
+                        </div>
+
+                        {/* Step 3 */}
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                            <div className="flex items-center mb-4">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-600 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 mr-3">
+                                    <span className="text-white font-bold">3</span>
+                                </div>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Add translation keys</h4>
+                            </div>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">Create keys like "title" with values in different languages</p>
+                        </div>
+
+                        {/* Step 4 */}
+                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                            <div className="flex items-center mb-4">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-red-600 shadow-lg shadow-pink-200 dark:shadow-pink-900/30 mr-3">
+                                    <span className="text-white font-bold">4</span>
+                                </div>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Use in your API</h4>
+                            </div>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">API returns values in the selected language automatically</p>
+                        </div>
+                    </div>
+
+                    {/* Example Workflow */}
+                    <div className="mt-12 bg-white/90 dark:bg-zinc-900/80 rounded-xl p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] dark:ring-zinc-700 backdrop-blur-sm">
+                        <h4 className="font-bold text-xl text-gray-900 dark:text-white mb-4">Example workflow:</h4>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 mb-3">
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">1. Create section: <span className="text-blue-600 dark:text-blue-400">Home Page - Hero</span></p>
+                                </div>
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">2. Add key: <span className="text-blue-600 dark:text-blue-400">title</span></p>
+                                    <div className="mt-3 pl-4 border-l-2 border-blue-300 dark:border-blue-700">
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">English (en): <span className="font-medium">Welcome to XYZ</span></p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">Spanish (es): <span className="font-medium">Bienvenido a XYZ</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="bg-gray-900 p-4 rounded-lg text-gray-300 font-mono text-xs">
+                                    <p><span className="text-blue-400">// API response when language=es</span></p>
+                                    <p>{`{`}</p>
+                                    <p className="pl-4">{`"section": "Home Page - Hero",`}</p>
+                                    <p className="pl-4">{`"content": {`}</p>
+                                    <p className="pl-8">{`"title": "Bienvenido a XYZ"`}</p>
+                                    <p className="pl-4">{`}`}</p>
+                                    <p>{`}`}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )
