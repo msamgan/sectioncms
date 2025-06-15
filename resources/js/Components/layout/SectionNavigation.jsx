@@ -18,9 +18,6 @@ export default function SectionNavigation() {
     // Track active section for highlighting
     const [activeSection, setActiveSection] = useState('hero')
 
-    // State for tooltip visibility
-    const [tooltip, setTooltip] = useState({ visible: false, text: '', position: { top: 0, left: 0 } })
-
     // Use Intersection Observer to detect which section is in view
     useEffect(() => {
         const sectionIds = [
@@ -68,22 +65,6 @@ export default function SectionNavigation() {
         }
     }, [])
 
-    // Handle tooltip display
-    const showTooltip = (e, text) => {
-        const rect = e.currentTarget.getBoundingClientRect()
-        setTooltip({
-            visible: true,
-            text,
-            position: {
-                top: rect.top + window.scrollY + rect.height / 2,
-                left: rect.right + window.scrollX + 15,
-            },
-        })
-    }
-
-    const hideTooltip = () => {
-        setTooltip({ ...tooltip, visible: false })
-    }
 
     // Navigation items data with colors
     const navItems = [
@@ -123,8 +104,6 @@ export default function SectionNavigation() {
                                             zIndex: 1,
                                         }}
                                         onClick={scrollToSection}
-                                        onMouseEnter={(e) => showTooltip(e, item.title)}
-                                        onMouseLeave={hideTooltip}
                                         aria-label={`Scroll to ${item.title} section`}
                                     >
                                         <i className={`${item.icon} text-xl`}></i>
@@ -152,32 +131,6 @@ export default function SectionNavigation() {
                 </div>
             </div>
 
-            {/* Enhanced Tooltip */}
-            {tooltip.visible && (
-                <div
-                    className="fixed z-50 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-xl backdrop-blur-sm tooltip-animation"
-                    style={{
-                        top: `${tooltip.position.top}px`,
-                        left: `${tooltip.position.left}px`,
-                        transform: 'translateY(-50%)',
-                        background: 'rgba(0, 0, 0, 0.75)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                    }}
-                >
-                    {tooltip.text}
-                    <div
-                        className="absolute w-3 h-3 transform rotate-45"
-                        style={{
-                            left: '-6px',
-                            top: '50%',
-                            marginTop: '-6px',
-                            background: 'rgba(0, 0, 0, 0.75)',
-                            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
-                            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-                        }}
-                    />
-                </div>
-            )}
             <style jsx global>{`
                 @keyframes pulse {
                     0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
@@ -189,16 +142,6 @@ export default function SectionNavigation() {
                     0% { transform: scale(0.8); opacity: 0.5; }
                     50% { transform: scale(1.2); opacity: 0.2; }
                     100% { transform: scale(0.8); opacity: 0.5; }
-                }
-
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(-50%) translateX(10px); }
-                    to { opacity: 1; transform: translateY(-50%) translateX(0); }
-                }
-
-                .tooltip-animation {
-                    opacity: 0;
-                    animation: fadeIn 0.3s ease-in-out forwards;
                 }
             `}</style>
         </>
