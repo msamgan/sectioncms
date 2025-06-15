@@ -20,10 +20,16 @@ final class SectionController extends Controller
     {
         try {
             $defaultLanguage = LanguageStore::defaultLanguage(businessId: $request->get('business')->getKey());
+            $requestedLanguage = $request->input('lang', $defaultLanguage->key('code'));
+            $exist = LanguageStore::isUsersLanguage(languageCode: $requestedLanguage, businessId: $request->get('business')->getKey());
+
+            if (! $exist) {
+                $requestedLanguage = $defaultLanguage->key('code');
+            }
 
             $section = SectionStore::sectionByLang(
                 sectionSlug: $request->input('id'),
-                langCode: $request->input('lang', $defaultLanguage->key('code')),
+                langCode: $requestedLanguage,
                 businessId: $request->get('business')->getKey()
             );
 
@@ -33,7 +39,7 @@ final class SectionController extends Controller
 
             return response()->ok(payload: SectionStore::mapSectionApi(
                 section: $section,
-                langCode: $request->input('lang', 'en')
+                langCode: $requestedLanguage
             ));
         } catch (Exception) {
             return response()->error();
