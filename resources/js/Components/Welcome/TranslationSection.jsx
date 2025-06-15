@@ -237,7 +237,7 @@ export default function TranslationSection() {
                                                 id="content"
                                                 name="content"
                                                 rows="3"
-                                                className="relative w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/60 shadow-inner"
+                                                className="relative w-full px-4 py-3 bg-white border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-black placeholder-black shadow-inner"
                                                 placeholder="Enter the text you want to translate..."
                                                 required
                                                 value={content}
@@ -278,13 +278,13 @@ export default function TranslationSection() {
                                                     id="languageCode"
                                                     name="languageCode"
                                                     maxLength="2"
-                                                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/60 shadow-inner"
+                                                    className="w-full px-4 py-3 bg-white backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-black placeholder-black shadow-inner"
                                                     placeholder="e.g. es, fr, de, ja"
                                                     required
                                                     value={languageCode}
                                                     onChange={(e) => setLanguageCode(e.target.value)}
                                                 />
-                                                <div className="absolute right-3 bg-white/20 rounded-full px-2 py-1">
+                                                <div className="absolute right-3 bg-blue-500 rounded-full px-2 py-1">
                                                     <span className="text-xs font-bold text-white">
                                                         {languageCode ? languageCode.toUpperCase() : 'ISO'}
                                                     </span>
@@ -315,7 +315,7 @@ export default function TranslationSection() {
                                 <button
                                     type="submit"
                                     disabled={isTranslating}
-                                    className="mt-8 group relative inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-250 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 overflow-hidden"
+                                    className="mt-8 group relative inline-flex items-center justify-center px-8 py-3 bg-white text-black font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-250 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 overflow-hidden"
                                 >
                                     <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
                                     <svg
