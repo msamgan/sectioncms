@@ -11,22 +11,28 @@ export default function TranslationSection() {
     const handleTranslation = (e) => {
         e.preventDefault()
 
+        const emptyError = setTimeout(() => {
+            setError(null)
+        }, 5000)
+
         if (!content || !languageCode) {
             setError('Please enter both content and a valid language ISO code.')
+            clearTimeout(emptyError)
             return
         }
 
         // Validate language code (2 characters)
         if (languageCode.length !== 2 || !/^[a-z]{2}$/i.test(languageCode)) {
             setError('Invalid language ISO code. Please enter a 2-character code (e.g., "es" for Spanish).')
+            clearTimeout(emptyError)
             return
         }
 
         if (content.length > 200) {
             setError('Content exceeds the maximum length of 200 characters.')
+            clearTimeout(emptyError)
             return
         }
-
 
         setIsTranslating(true)
         setError(null)
@@ -50,11 +56,10 @@ export default function TranslationSection() {
             })
             .catch((err) => {
                 setError('Failed to translate. Please check if the language ISO code is a valid or try again.')
+            })
+            .finally(() => {
+                clearTimeout(emptyError)
                 setIsTranslating(false)
-
-                setTimeout(() => {
-                    setError(null)
-                }, 5000)
             })
     }
 
@@ -204,40 +209,105 @@ export default function TranslationSection() {
 
                             {/* Translation form */}
                             <form onSubmit={handleTranslation} className="mt-8">
-                                <div className="space-y-4">
+                                <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <label htmlFor="content" className="block text-sm font-medium text-white">
+                                        <label
+                                            htmlFor="content"
+                                            className="flex items-center text-sm font-medium text-white"
+                                        >
+                                            <svg
+                                                className="w-4 h-4 mr-2 text-yellow-300"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                                                />
+                                            </svg>
                                             Content to translate
                                         </label>
-                                        <textarea
-                                            id="content"
-                                            name="content"
-                                            rows="3"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                                            placeholder="Enter the text you want to translate..."
-                                            required
-                                            value={content}
-                                            onChange={(e) => setContent(e.target.value)}
-                                        ></textarea>
+                                        <div className="relative group">
+                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
+                                            <textarea
+                                                id="content"
+                                                name="content"
+                                                rows="3"
+                                                className="relative w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/60 shadow-inner"
+                                                placeholder="Enter the text you want to translate..."
+                                                required
+                                                value={content}
+                                                onChange={(e) => setContent(e.target.value)}
+                                            ></textarea>
+                                        </div>
+                                        <div className="flex justify-between">
+                                            <p className="text-xs text-white/70">Max 200 characters</p>
+                                            <p className="text-xs text-white/70">{content.length}/200</p>
+                                        </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label htmlFor="languageCode" className="block text-sm font-medium text-white">
-                                            Language ISO Code (2 digits)
+                                        <label
+                                            htmlFor="languageCode"
+                                            className="flex items-center text-sm font-medium text-white"
+                                        >
+                                            <svg
+                                                className="w-4 h-4 mr-2 text-yellow-300"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
+                                                />
+                                            </svg>
+                                            Language ISO Code
                                         </label>
-                                        <input
-                                            type="text"
-                                            id="languageCode"
-                                            name="languageCode"
-                                            maxLength="2"
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
-                                            placeholder="e.g. es, fr, de, ja"
-                                            required
-                                            value={languageCode}
-                                            onChange={(e) => setLanguageCode(e.target.value)}
-                                        />
-                                        <p className="text-xs text-white/70">
+                                        <div className="relative group">
+                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
+                                            <div className="relative flex items-center">
+                                                <input
+                                                    type="text"
+                                                    id="languageCode"
+                                                    name="languageCode"
+                                                    maxLength="2"
+                                                    className="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg focus:ring-2 focus:ring-white/50 focus:border-transparent text-white placeholder-white/60 shadow-inner"
+                                                    placeholder="e.g. es, fr, de, ja"
+                                                    required
+                                                    value={languageCode}
+                                                    onChange={(e) => setLanguageCode(e.target.value)}
+                                                />
+                                                <div className="absolute right-3 bg-white/20 rounded-full px-2 py-1">
+                                                    <span className="text-xs font-bold text-white">
+                                                        {languageCode ? languageCode.toUpperCase() : 'ISO'}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center text-xs text-white/70">
+                                            <svg
+                                                className="w-3 h-3 mr-1 text-yellow-300/70"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth={2}
+                                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                />
+                                            </svg>
                                             Enter a 2-digit ISO language code (e.g., 'es' for Spanish, 'fr' for French)
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -245,34 +315,137 @@ export default function TranslationSection() {
                                 <button
                                     type="submit"
                                     disabled={isTranslating}
-                                    className="mt-6 px-6 py-3 bg-white text-primary font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-250 hover:bg-gray-50 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                                    className="mt-8 group relative inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-250 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 overflow-hidden"
                                 >
-                                    {isTranslating ? 'Translating...' : 'Try it now'}
+                                    <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
+                                    <svg
+                                        className="w-5 h-5 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                                        />
+                                    </svg>
+                                    {isTranslating ? (
+                                        <span className="flex items-center">
+                                            <svg
+                                                className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle
+                                                    className="opacity-25"
+                                                    cx="12"
+                                                    cy="12"
+                                                    r="10"
+                                                    stroke="currentColor"
+                                                    strokeWidth="4"
+                                                ></circle>
+                                                <path
+                                                    className="opacity-75"
+                                                    fill="currentColor"
+                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                                ></path>
+                                            </svg>
+                                            Translating...
+                                        </span>
+                                    ) : (
+                                        'Try it now'
+                                    )}
                                 </button>
                             </form>
 
                             {/* Translation Results */}
                             {translationResult && (
-                                <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
-                                    <h3 className="text-xl font-bold text-white mb-4">Translation Results</h3>
-                                    <div className="space-y-4">
-                                        {Object.entries(translationResult).map(([lang, text]) => (
-                                            <div key={lang} className="bg-white/20 p-4 rounded-lg">
-                                                <div className="flex items-center mb-2">
-                                                    <span className="text-sm font-bold text-white bg-primary/50 px-2 py-1 rounded mr-2">
-                                                        {lang.toUpperCase()}
-                                                    </span>
-                                                    <p className="text-white">{text}</p>
-                                                </div>
+                                <div className="mt-10 relative">
+                                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 rounded-lg blur opacity-20"></div>
+                                    <div className="relative bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 shadow-lg">
+                                        <div className="flex items-center mb-6">
+                                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/20 mr-3">
+                                                <svg
+                                                    className="w-5 h-5 text-green-400"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                    />
+                                                </svg>
                                             </div>
-                                        ))}
+                                            <h3 className="text-xl font-bold text-white">Translation Results</h3>
+                                        </div>
+                                        <div className="space-y-4">
+                                            {Object.entries(translationResult).map(([lang, text]) => (
+                                                <div
+                                                    key={lang}
+                                                    className="bg-gradient-to-r from-white/10 to-white/5 p-5 rounded-lg border border-white/10 shadow-inner"
+                                                >
+                                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                                                        <div className="flex-shrink-0">
+                                                            <span className="inline-flex items-center justify-center text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-500 px-3 py-1.5 rounded-full shadow-inner">
+                                                                {lang.toUpperCase()}
+                                                            </span>
+                                                        </div>
+                                                        <p className="text-white text-lg">{text}</p>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="mt-6 flex items-center justify-end">
+                                            <div className="flex items-center text-xs text-white/70">
+                                                <svg
+                                                    className="w-4 h-4 mr-1 text-yellow-300/70"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                                    />
+                                                </svg>
+                                                Translation completed in less than a second
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             )}
 
                             {error && (
-                                <div className="mt-4 text-white bg-red-500/80 p-4 rounded-lg">
-                                    <p className="text-sm">{error}</p>
+                                <div className="mt-6 relative">
+                                    <div className="absolute -inset-1 bg-red-500/30 rounded-lg blur opacity-75"></div>
+                                    <div className="relative flex items-center gap-3 text-white bg-red-500/80 p-4 rounded-lg border border-red-400/30 shadow-md">
+                                        <svg
+                                            className="w-5 h-5 text-white flex-shrink-0"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                                            />
+                                        </svg>
+                                        <p className="text-sm font-medium">{error}</p>
+                                    </div>
                                 </div>
                             )}
                         </div>
