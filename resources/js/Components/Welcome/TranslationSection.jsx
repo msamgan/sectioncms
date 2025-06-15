@@ -1,10 +1,67 @@
+import { translatePublic } from '@actions/TranslationController.js'
+import { useState } from 'react'
+
 export default function TranslationSection() {
+    const [content, setContent] = useState('')
+    const [languageCode, setLanguageCode] = useState('')
+    const [translationResult, setTranslationResult] = useState(null)
+    const [isTranslating, setIsTranslating] = useState(false)
+    const [error, setError] = useState(null)
+
+    const handleTranslation = (e) => {
+        e.preventDefault()
+
+        if (!content || !languageCode) {
+            setError('Please enter both content and a valid language ISO code.')
+            return
+        }
+
+        // Validate language code (2 characters)
+        if (languageCode.length !== 2 || !/^[a-z]{2}$/i.test(languageCode)) {
+            setError('Invalid language ISO code. Please enter a 2-character code (e.g., "es" for Spanish).')
+            return
+        }
+
+        if (content.length > 200) {
+            setError('Content exceeds the maximum length of 200 characters.')
+            return
+        }
+
+
+        setIsTranslating(true)
+        setError(null)
+
+        translatePublic
+            .call({
+                data: {
+                    language: languageCode,
+                    content: content,
+                },
+            })
+            .then((r) => r.json())
+            .then((data) => {
+                console.log('Translation result:', data)
+                let result = {
+                    [languageCode]: data.payload.translation,
+                }
+
+                setTranslationResult(result)
+                setIsTranslating(false)
+            })
+            .catch((err) => {
+                setError('Failed to translate. Please check if the language ISO code is a valid or try again.')
+                setIsTranslating(false)
+
+                setTimeout(() => {
+                    setError(null)
+                }, 5000)
+            })
+    }
+
     return (
         <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
             <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    AI-Powered Translation
-                </h2>
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">AI-Powered Translation</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
                     Reach global audiences with our cutting-edge AI translation technology
                 </p>
@@ -18,7 +75,6 @@ export default function TranslationSection() {
 
                 {/* Main card with gradient background */}
                 <div className="bg-gradient-to-br from-primary via-primary to-blue-700 hover:from-primary-dark hover:to-blue-800 rounded-xl p-6 lg:p-10 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.2)] ring-2 ring-primary/[0.5] transition-all duration-250 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.35)] transform hover:-translate-y-2 relative overflow-hidden z-10">
-
                     {/* Pattern overlay */}
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMTguMWMtMS4yIDAtMi4xLS45LTIuMS0yLjFWMjAuMWMwLTEuMi45LTIuMSAyLjEtMi4xaDE3Ljh6TTYgNmMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMy45Yy0xLjIgMC0yLjEtLjktMi4xLTIuMVY4LjFDMS44IDYuOSAyLjcgNiAzLjkgNkg2eiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjIiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
 
@@ -50,46 +106,96 @@ export default function TranslationSection() {
                         <div className="flex-1">
                             {/* Title with highlight */}
                             <div className="inline-block relative">
-                                <h2 className="text-3xl font-bold text-white">Translate to any language with <span className="relative inline-block">AI
-                                    <span className="absolute bottom-1 left-0 w-full h-2 bg-yellow-400 opacity-40 rounded"></span>
-                                </span></h2>
+                                <h2 className="text-3xl font-bold text-white">
+                                    Translate to any language with{' '}
+                                    <span className="relative inline-block">
+                                        AI
+                                        <span className="absolute bottom-1 left-0 w-full h-2 bg-yellow-400 opacity-40 rounded"></span>
+                                    </span>
+                                </h2>
                             </div>
 
                             {/* Description with better typography */}
                             <p className="mt-6 text-lg leading-relaxed text-white/90">
-                                Instantly translate your content to any language with our advanced AI translation technology. Perfect for reaching global audiences without the hassle of manual translations.
+                                Instantly translate your content to any language with our advanced AI translation
+                                technology. Perfect for reaching global audiences without the hassle of manual
+                                translations.
                             </p>
 
                             {/* Feature highlights */}
                             <div className="mt-8 grid grid-cols-2 gap-4">
                                 <div className="flex items-center">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
-                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <svg
+                                            className="size-4 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
                                         </svg>
                                     </div>
                                     <span className="text-sm font-medium text-white">Any language</span>
                                 </div>
                                 <div className="flex items-center">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
-                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <svg
+                                            className="size-4 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
                                         </svg>
                                     </div>
                                     <span className="text-sm font-medium text-white">Real-time translation</span>
                                 </div>
                                 <div className="flex items-center">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
-                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        <svg
+                                            className="size-4 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                                            />
                                         </svg>
                                     </div>
                                     <span className="text-sm font-medium text-white">AI-powered accuracy</span>
                                 </div>
                                 <div className="flex items-center">
                                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 mr-3">
-                                        <svg className="size-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                        <svg
+                                            className="size-4 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                            />
                                         </svg>
                                     </div>
                                     <span className="text-sm font-medium text-white">Context preservation</span>
@@ -97,7 +203,7 @@ export default function TranslationSection() {
                             </div>
 
                             {/* Translation form */}
-                            <form onSubmit={(e) => e.preventDefault()} className="mt-8">
+                            <form onSubmit={handleTranslation} className="mt-8">
                                 <div className="space-y-4">
                                     <div className="space-y-2">
                                         <label htmlFor="content" className="block text-sm font-medium text-white">
@@ -110,6 +216,8 @@ export default function TranslationSection() {
                                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
                                             placeholder="Enter the text you want to translate..."
                                             required
+                                            value={content}
+                                            onChange={(e) => setContent(e.target.value)}
                                         ></textarea>
                                     </div>
                                     <div className="space-y-2">
@@ -124,18 +232,49 @@ export default function TranslationSection() {
                                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
                                             placeholder="e.g. es, fr, de, ja"
                                             required
+                                            value={languageCode}
+                                            onChange={(e) => setLanguageCode(e.target.value)}
                                         />
-                                        <p className="text-xs text-white/70">Enter a 2-digit ISO language code (e.g., 'es' for Spanish, 'fr' for French)</p>
+                                        <p className="text-xs text-white/70">
+                                            Enter a 2-digit ISO language code (e.g., 'es' for Spanish, 'fr' for French)
+                                        </p>
                                     </div>
                                 </div>
 
                                 {/* CTA button */}
                                 <button
                                     type="submit"
-                                    className="mt-6 px-6 py-3 bg-white text-primary font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-250 hover:bg-gray-50 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50">
-                                    Try it now
+                                    disabled={isTranslating}
+                                    className="mt-6 px-6 py-3 bg-white text-primary font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-250 hover:bg-gray-50 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                                >
+                                    {isTranslating ? 'Translating...' : 'Try it now'}
                                 </button>
                             </form>
+
+                            {/* Translation Results */}
+                            {translationResult && (
+                                <div className="mt-8 bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                                    <h3 className="text-xl font-bold text-white mb-4">Translation Results</h3>
+                                    <div className="space-y-4">
+                                        {Object.entries(translationResult).map(([lang, text]) => (
+                                            <div key={lang} className="bg-white/20 p-4 rounded-lg">
+                                                <div className="flex items-center mb-2">
+                                                    <span className="text-sm font-bold text-white bg-primary/50 px-2 py-1 rounded mr-2">
+                                                        {lang.toUpperCase()}
+                                                    </span>
+                                                    <p className="text-white">{text}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {error && (
+                                <div className="mt-4 text-white bg-red-500/80 p-4 rounded-lg">
+                                    <p className="text-sm">{error}</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -148,7 +287,9 @@ export default function TranslationSection() {
                     <div className="flex flex-col items-center mb-12">
                         <h3 className="text-3xl font-bold text-center text-gray-900 mb-3">See it in action</h3>
                         <div className="w-20 h-1 bg-primary rounded-full mb-4"></div>
-                        <p className="text-center text-gray-600 max-w-2xl">Watch how our AI instantly translates your content while preserving meaning and context</p>
+                        <p className="text-center text-gray-600 max-w-2xl">
+                            Watch how our AI instantly translates your content while preserving meaning and context
+                        </p>
                     </div>
 
                     <div className="relative max-w-5xl mx-auto">
@@ -163,16 +304,31 @@ export default function TranslationSection() {
                                 </div>
                                 <div className="flex items-center mb-6">
                                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
-                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">🇺🇸</span>
+                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
+                                            🇺🇸
+                                        </span>
                                     </div>
                                     <h4 className="font-semibold text-lg text-gray-900">English</h4>
                                 </div>
                                 <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">"Welcome to our platform! We're excited to have you join us."</p>
+                                    <p className="text-gray-700 font-medium">
+                                        "Welcome to our platform! We're excited to have you join us."
+                                    </p>
                                 </div>
                                 <div className="flex items-center text-sm text-gray-500">
-                                    <svg className="size-5 mr-2 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <svg
+                                        className="size-5 mr-2 text-blue-500"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        />
                                     </svg>
                                     <span>Source content</span>
                                 </div>
@@ -181,22 +337,49 @@ export default function TranslationSection() {
                             {/* Example 2 - Spanish */}
                             <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-blue-100 hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
                                 <div className="hidden md:flex absolute -left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white rounded-full w-8 h-8 items-center justify-center shadow-md">
-                                    <svg className="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    <svg
+                                        className="size-4"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                        />
                                     </svg>
                                 </div>
                                 <div className="flex items-center mb-6">
                                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
-                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">🇪🇸</span>
+                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
+                                            🇪🇸
+                                        </span>
                                     </div>
                                     <h4 className="font-semibold text-lg text-gray-900">Spanish</h4>
                                 </div>
                                 <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">"¡Bienvenido a nuestra plataforma! Estamos emocionados de que te unas a nosotros."</p>
+                                    <p className="text-gray-700 font-medium">
+                                        "¡Bienvenido a nuestra plataforma! Estamos emocionados de que te unas a
+                                        nosotros."
+                                    </p>
                                 </div>
                                 <div className="flex items-center text-sm text-primary">
-                                    <svg className="size-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    <svg
+                                        className="size-5 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                                        />
                                     </svg>
                                     <span className="font-medium">AI Translated</span>
                                 </div>
@@ -205,22 +388,48 @@ export default function TranslationSection() {
                             {/* Example 3 - Japanese */}
                             <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-blue-100 hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
                                 <div className="hidden md:flex absolute -left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white rounded-full w-8 h-8 items-center justify-center shadow-md">
-                                    <svg className="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    <svg
+                                        className="size-4"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                        />
                                     </svg>
                                 </div>
                                 <div className="flex items-center mb-6">
                                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
-                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">🇯🇵</span>
+                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
+                                            🇯🇵
+                                        </span>
                                     </div>
                                     <h4 className="font-semibold text-lg text-gray-900">Japanese</h4>
                                 </div>
                                 <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">"私たちのプラットフォームへようこそ！あなたが参加してくれて嬉しいです。"</p>
+                                    <p className="text-gray-700 font-medium">
+                                        "私たちのプラットフォームへようこそ！あなたが参加してくれて嬉しいです。"
+                                    </p>
                                 </div>
                                 <div className="flex items-center text-sm text-primary">
-                                    <svg className="size-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    <svg
+                                        className="size-5 mr-2"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                                        />
                                     </svg>
                                     <span className="font-medium">AI Translated</span>
                                 </div>
@@ -230,16 +439,40 @@ export default function TranslationSection() {
                         {/* Translation Accuracy Indicator */}
                         <div className="mt-12 bg-blue-50 rounded-lg p-4 border border-blue-100 flex items-center justify-center">
                             <div className="flex items-center mr-8">
-                                <svg className="size-5 mr-2 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <svg
+                                    className="size-5 mr-2 text-green-500"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
                                 </svg>
                                 <span className="text-sm font-medium text-gray-700">99.8% Accuracy</span>
                             </div>
                             <div className="flex items-center">
-                                <svg className="size-5 mr-2 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <svg
+                                    className="size-5 mr-2 text-green-500"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
                                 </svg>
-                                <span className="text-sm font-medium text-gray-700">Translation in &lt; 0.5 seconds</span>
+                                <span className="text-sm font-medium text-gray-700">
+                                    Translation in &lt; 0.5 seconds
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -255,11 +488,23 @@ export default function TranslationSection() {
                     <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
                         <h4 className="text-xl font-semibold text-gray-900 mb-3">E-commerce</h4>
                         <p className="text-gray-700 mb-4">
-                            An online store increased sales by 45% in international markets after implementing our AI translation for product descriptions, customer reviews, and checkout processes.
+                            An online store increased sales by 45% in international markets after implementing our AI
+                            translation for product descriptions, customer reviews, and checkout processes.
                         </p>
                         <div className="flex items-center text-sm text-gray-500">
-                            <svg className="size-5 mr-2 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg
+                                className="size-5 mr-2 text-green-500"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
                             </svg>
                             <span>Translated to 24 languages automatically</span>
                         </div>
@@ -269,11 +514,23 @@ export default function TranslationSection() {
                     <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
                         <h4 className="text-xl font-semibold text-gray-900 mb-3">Content Marketing</h4>
                         <p className="text-gray-700 mb-4">
-                            A digital marketing agency expanded their client base to 15 new countries by offering multilingual content creation with our AI translation technology.
+                            A digital marketing agency expanded their client base to 15 new countries by offering
+                            multilingual content creation with our AI translation technology.
                         </p>
                         <div className="flex items-center text-sm text-gray-500">
-                            <svg className="size-5 mr-2 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            <svg
+                                className="size-5 mr-2 text-green-500"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
                             </svg>
                             <span>90% time savings compared to manual translation</span>
                         </div>
@@ -297,8 +554,19 @@ export default function TranslationSection() {
 
                     {/* Arrow */}
                     <div className="hidden md:block text-gray-300">
-                        <svg className="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        <svg
+                            className="size-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
                         </svg>
                     </div>
 
@@ -313,8 +581,19 @@ export default function TranslationSection() {
 
                     {/* Arrow */}
                     <div className="hidden md:block text-gray-300">
-                        <svg className="size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        <svg
+                            className="size-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            />
                         </svg>
                     </div>
 

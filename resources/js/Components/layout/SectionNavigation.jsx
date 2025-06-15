@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function SectionNavigation() {
     // Add smooth scrolling behavior
@@ -65,7 +65,6 @@ export default function SectionNavigation() {
         }
     }, [])
 
-
     // Navigation items data with colors
     const navItems = [
         { id: 'hero', title: 'Hero', icon: 'ri-home-line', color: '#FF6B6B' },
@@ -85,7 +84,7 @@ export default function SectionNavigation() {
                 <div className="backdrop-blur-md bg-white/30 rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20">
                     <ul className="flex flex-col items-center space-y-4">
                         {navItems.map((item) => {
-                            const isActive = activeSection === item.id;
+                            const isActive = activeSection === item.id
                             return (
                                 <li key={item.id} className="relative">
                                     <a
@@ -103,7 +102,9 @@ export default function SectionNavigation() {
                                             position: 'relative',
                                             zIndex: 1,
                                             // Force color for translation section when active
-                                            ...(isActive && item.id === 'translation' ? { backgroundColor: '#4CAF50' } : {})
+                                            ...(isActive && item.id === 'translation'
+                                                ? { backgroundColor: '#4CAF50' }
+                                                : {}),
                                         }}
                                         onClick={scrollToSection}
                                         aria-label={`Scroll to ${item.title} section`}
@@ -123,11 +124,13 @@ export default function SectionNavigation() {
                                     {isActive && (
                                         <span
                                             className="absolute -right-2 top-1/2 h-2 w-2 rounded-full transform -translate-y-1/2"
-                                            style={{ backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color }}
+                                            style={{
+                                                backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color,
+                                            }}
                                         />
                                     )}
                                 </li>
-                            );
+                            )
                         })}
                     </ul>
                 </div>
@@ -135,15 +138,30 @@ export default function SectionNavigation() {
 
             <style jsx global>{`
                 @keyframes pulse {
-                    0% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
-                    70% { box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
-                    100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                    }
                 }
 
                 @keyframes ripple {
-                    0% { transform: scale(0.8); opacity: 0.5; }
-                    50% { transform: scale(1.2); opacity: 0.2; }
-                    100% { transform: scale(0.8); opacity: 0.5; }
+                    0% {
+                        transform: scale(0.8);
+                        opacity: 0.5;
+                    }
+                    50% {
+                        transform: scale(1.2);
+                        opacity: 0.2;
+                    }
+                    100% {
+                        transform: scale(0.8);
+                        opacity: 0.5;
+                    }
                 }
             `}</style>
         </>

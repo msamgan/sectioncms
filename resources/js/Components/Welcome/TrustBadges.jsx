@@ -91,7 +91,9 @@ export default function TrustBadges() {
                             </svg>
                         </div>
                         <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Money-Back Guarantee</h3>
-                        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">First site’s free, satisfaction guaranteed.</p>
+                        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                            First site’s free, satisfaction guaranteed.
+                        </p>
                     </div>
                 </div>
             </div>
