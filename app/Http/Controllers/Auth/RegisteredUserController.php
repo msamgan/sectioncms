@@ -12,6 +12,7 @@ use App\Actions\Setting\CreateSetting;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\UnauthorizedEmailProviders;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -39,8 +40,8 @@ final class RegisteredUserController extends Controller
         CreateSetting $createSettingAction
     ) {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|lowercase|email|max:255|unique:' . User::class,
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', new UnauthorizedEmailProviders()],
             'password' => ['required', 'confirmed', $this->getPasswordDefaults()],
             'website' => ['required', 'string', 'url', 'max:255'],
         ]);
