@@ -7,6 +7,7 @@ namespace App\Adapters;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
+use Google\Cloud\Translate\V3\GetSupportedLanguagesRequest;
 use Google\Cloud\Translate\V3\TranslateTextRequest;
 
 final class GoogleTranslationAdapter
@@ -17,20 +18,16 @@ final class GoogleTranslationAdapter
      */
     public function translate(string $languageCode, string $query): string
     {
-        $client = new TranslationServiceClient([
-            'credentials' => storage_path('section-cms.json'),
-        ]);
+        $client = $this->getTranslationClient();
 
-        $parent = $client->locationName((string) config('translation.google.project_id'), (string) config('translation.google.location'));
+        $parent = $this->getParent($client);
 
-        // Build the request using the TranslateTextRequest object
-        $request = (new TranslateTextRequest())
+        $response = $client->translateText((new TranslateTextRequest())
             ->setParent($parent)
             ->setTargetLanguageCode($languageCode)
             ->setMimeType('text/plain')
-            ->setContents([$query]);
-
-        $response = $client->translateText($request);
+            ->setContents([$query])
+        );
 
         return $response->getTranslations()[0]->getTranslatedText();
     }
@@ -41,18 +38,27 @@ final class GoogleTranslationAdapter
      */
     public function getSupportedLanguages(): array
     {
-        $client = new TranslationServiceClient([
+        $client = $this->getTranslationClient();
+
+        $parent = $this->getParent($client);
+
+        $request = (new GetSupportedLanguagesRequest())->setParent($parent);
+
+        return array_map(fn ($language) => $language->getLanguageCode(), iterator_to_array($client->getSupportedLanguages($request)->getLanguages()));
+    }
+
+    public function getParent(TranslationServiceClient $client): string
+    {
+        return $client->locationName((string) config('translation.google.project_id'), (string) config('translation.google.location'));
+    }
+
+    /**
+     * @throws ValidationException
+     */
+    private function getTranslationClient(): TranslationServiceClient
+    {
+        return new TranslationServiceClient([
             'credentials' => storage_path('section-cms.json'),
         ]);
-
-        $parent = $client->locationName((string) config('translation.google.project_id'), (string) config('translation.google.location'));
-
-        $request = new \Google\Cloud\Translate\V3\GetSupportedLanguagesRequest([
-            'parent' => $parent,
-        ]);
-
-        $response = $client->getSupportedLanguages($request);
-
-        return array_map(fn ($language) => $language->getLanguageCode(), iterator_to_array($response->getLanguages()));
     }
 }

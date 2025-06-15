@@ -96,12 +96,15 @@ export default function Form({ getLanguages, language = null }) {
                                     id="user-code"
                                     placeholder="e.g. en, fr, es | 2-letter ISO language code"
                                     required={true}
-                                    maxLength={2}
+                                    maxLength={8}
                                     minLength={2}
                                     className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                 />
                                 <p className="text-xs text-gray-500 mt-1"></p>
-                                <p className="text-md text-yellow-500 mt-1">Make sure the code is correct, all the system will use this code to identify the language.</p>
+                                <p className="text-md text-yellow-500 mt-1">
+                                    Make sure the code is correct, all the system will use this code to identify the
+                                    language.
+                                </p>
                                 <InputError className="mt-2" message={errors.code} />
                             </div>
                         </div>

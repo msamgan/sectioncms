@@ -34,12 +34,14 @@ final class TestTranslationAdapter extends Command
     public function handle(GoogleTranslationAdapter $googleTranslationAdapter): void
     {
         $translation = $googleTranslationAdapter->translate(
-            languageCode: 'hi',
+            languageCode: 'ms-arab',
             query: 'Hello, how are you?'
         );
 
         $this->info('Google Translation: ' . $translation);
 
-        // $supportedLanguages = $googleTranslationAdapter->getSupportedLanguages();
+        $supportedLanguages = $googleTranslationAdapter->getSupportedLanguages();
+
+        $this->info('Supported Languages: ' . implode(', ', $supportedLanguages));
     }
 }
