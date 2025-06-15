@@ -34,8 +34,8 @@ export default function SectionNavigation() {
 
         const observerOptions = {
             root: null,
-            rootMargin: '0px',
-            threshold: 0.5,
+            rootMargin: '0px 0px -20% 0px',
+            threshold: 0.2,
         }
 
         const observerCallback = (entries) => {
@@ -102,6 +102,8 @@ export default function SectionNavigation() {
                                             animation: isActive ? 'pulse 2s infinite' : 'none',
                                             position: 'relative',
                                             zIndex: 1,
+                                            // Force color for translation section when active
+                                            ...(isActive && item.id === 'translation' ? { backgroundColor: '#4CAF50' } : {})
                                         }}
                                         onClick={scrollToSection}
                                         aria-label={`Scroll to ${item.title} section`}
@@ -111,7 +113,7 @@ export default function SectionNavigation() {
                                             <span
                                                 className="absolute inset-0 rounded-full opacity-50"
                                                 style={{
-                                                    backgroundColor: item.color,
+                                                    backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color,
                                                     animation: 'ripple 1.5s ease-out infinite',
                                                     zIndex: -1,
                                                 }}
@@ -121,7 +123,7 @@ export default function SectionNavigation() {
                                     {isActive && (
                                         <span
                                             className="absolute -right-2 top-1/2 h-2 w-2 rounded-full transform -translate-y-1/2"
-                                            style={{ backgroundColor: item.color }}
+                                            style={{ backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color }}
                                         />
                                     )}
                                 </li>
