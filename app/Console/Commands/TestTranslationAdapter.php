@@ -39,5 +39,7 @@ final class TestTranslationAdapter extends Command
         );
 
         $this->info('Google Translation: ' . $translation);
+
+        // $supportedLanguages = $googleTranslationAdapter->getSupportedLanguages();
     }
 }

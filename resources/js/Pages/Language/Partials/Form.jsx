@@ -94,13 +94,14 @@ export default function Form({ getLanguages, language = null }) {
                                     value={data.code}
                                     onChange={(e) => setData('code', e.target.value)}
                                     id="user-code"
-                                    placeholder="e.g. en, fr, es"
+                                    placeholder="e.g. en, fr, es | 2-letter ISO language code"
                                     required={true}
                                     maxLength={2}
                                     minLength={2}
                                     className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
                                 />
-                                <p className="text-xs text-gray-500 mt-1">Enter a 2-letter ISO language code</p>
+                                <p className="text-xs text-gray-500 mt-1"></p>
+                                <p className="text-md text-yellow-500 mt-1">Make sure the code is correct, all the system will use this code to identify the language.</p>
                                 <InputError className="mt-2" message={errors.code} />
                             </div>
                         </div>

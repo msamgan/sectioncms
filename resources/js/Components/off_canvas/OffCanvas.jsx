@@ -80,7 +80,7 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
                 id={id}
                 aria-labelledby={id + 'Label'}
             >
-                <div className="flex items-center justify-between p-5 border-b bg-gradient-to-r from-blue-50 to-indigo-50">
+                <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-blue-50 to-indigo-50">
                     <h5 id={id + 'Label'} className="text-2xl font-semibold text-primary flex items-center">
                         <span className="bg-primary text-white p-1.5 rounded-md mr-3 shadow-sm">
                             <svg

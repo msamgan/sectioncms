@@ -34,4 +34,25 @@ final class GoogleTranslationAdapter
 
         return $response->getTranslations()[0]->getTranslatedText();
     }
+
+    /**
+     * @throws ValidationException
+     * @throws ApiException
+     */
+    public function getSupportedLanguages(): array
+    {
+        $client = new TranslationServiceClient([
+            'credentials' => storage_path('section-cms.json'),
+        ]);
+
+        $parent = $client->locationName((string) config('translation.google.project_id'), (string) config('translation.google.location'));
+
+        $request = new \Google\Cloud\Translate\V3\GetSupportedLanguagesRequest([
+            'parent' => $parent,
+        ]);
+
+        $response = $client->getSupportedLanguages($request);
+
+        return array_map(fn ($language) => $language->getLanguageCode(), iterator_to_array($response->getLanguages()));
+    }
 }
