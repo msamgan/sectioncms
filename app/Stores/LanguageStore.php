@@ -55,4 +55,12 @@ final class LanguageStore
         return Language::query()
             ->where('business_id', $businessId)->where('is_default', true)->first();
     }
+
+    public static function isUsersLanguage(string $languageCode, int $businessId): bool
+    {
+        return Language::query()
+            ->where('business_id', $businessId)
+            ->where('code', $languageCode)
+            ->exists();
+    }
 }

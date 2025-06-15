@@ -17,7 +17,6 @@ final class SectionApiRequest extends FormRequest
     {
         return [
             'id' => ['required', 'string'],
-            'lang' => ['required', 'string', 'size:2'],
         ];
     }
 }
