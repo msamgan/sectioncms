@@ -68,7 +68,7 @@ export default function TranslationSection() {
     }
 
     return (
-        <div className="py-12 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+        <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
                     AI-Powered Translation
@@ -653,65 +653,6 @@ export default function TranslationSection() {
                                     Translation in &lt; 0.5 seconds
                                 </span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Use Cases */}
-            <div className="max-w-5xl mx-auto">
-                <h3 className="text-2xl font-bold text-center text-gray-900 mb-8">Real-world applications</h3>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                    {/* Use Case 1 */}
-                    <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
-                        <h4 className="text-xl font-semibold text-gray-900 mb-3">E-commerce</h4>
-                        <p className="text-gray-700 mb-4">
-                            An online store increased sales by 45% in international markets after implementing our AI
-                            translation for product descriptions, customer reviews, and checkout processes.
-                        </p>
-                        <div className="flex items-center text-sm text-gray-500">
-                            <svg
-                                className="size-5 mr-2 text-green-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                            <span>Translated to 24 languages automatically</span>
-                        </div>
-                    </div>
-
-                    {/* Use Case 2 */}
-                    <div className="bg-gray-50 rounded-lg p-6 border border-gray-100">
-                        <h4 className="text-xl font-semibold text-gray-900 mb-3">Content Marketing</h4>
-                        <p className="text-gray-700 mb-4">
-                            A digital marketing agency expanded their client base to 15 new countries by offering
-                            multilingual content creation with our AI translation technology.
-                        </p>
-                        <div className="flex items-center text-sm text-gray-500">
-                            <svg
-                                className="size-5 mr-2 text-green-500"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                            </svg>
-                            <span>90% time savings compared to manual translation</span>
                         </div>
                     </div>
                 </div>
