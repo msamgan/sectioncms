@@ -1,59 +1,60 @@
-import { useState, useEffect, useRef } from 'react';
-import { languages as _languages } from '@actions/LanguageController.js';
+import { languages as _languages } from '@actions/LanguageController.js'
+import { useEffect, useRef, useState } from 'react'
 
 export default function LanguageDropdown() {
-    const [languages, setLanguages] = useState([]);
-    const [filteredLanguages, setFilteredLanguages] = useState([]);
-    const [isOpen, setIsOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedLanguage, setSelectedLanguage] = useState({ code: 'en', name: 'English' });
-    const dropdownRef = useRef(null);
+    const [languages, setLanguages] = useState([])
+    const [filteredLanguages, setFilteredLanguages] = useState([])
+    const [isOpen, setIsOpen] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
+    const [selectedLanguage, setSelectedLanguage] = useState({ code: 'en', name: 'English' })
+    const dropdownRef = useRef(null)
 
     useEffect(() => {
         const fetchLanguages = async () => {
             try {
-                const data = await _languages.data({});
-                setLanguages(data);
-                setFilteredLanguages(data);
+                const data = await _languages.data({})
+                setLanguages(data)
+                setFilteredLanguages(data)
             } catch (error) {
-                console.error('Error fetching languages:', error);
+                console.error('Error fetching languages:', error)
             }
-        };
+        }
 
         fetchLanguages().then()
-    }, []);
+    }, [])
 
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setIsOpen(false);
+                setIsOpen(false)
             }
-        };
+        }
 
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside)
         return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
 
     useEffect(() => {
         if (searchTerm) {
-            const filtered = languages.filter(lang =>
-                lang.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                lang.code.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setFilteredLanguages(filtered);
+            const filtered = languages.filter(
+                (lang) =>
+                    lang.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    lang.code.toLowerCase().includes(searchTerm.toLowerCase()),
+            )
+            setFilteredLanguages(filtered)
         } else {
-            setFilteredLanguages(languages);
+            setFilteredLanguages(languages)
         }
-    }, [searchTerm, languages]);
+    }, [searchTerm, languages])
 
     const handleLanguageSelect = (language) => {
-        setSelectedLanguage(language);
-        setIsOpen(false);
+        setSelectedLanguage(language)
+        setIsOpen(false)
         // Here you would typically handle the language change in your application
         // For example, by setting a cookie or updating the app state
-    };
+    }
 
     return (
         <div className="relative z-50" ref={dropdownRef}>
@@ -84,12 +85,7 @@ export default function LanguageDropdown() {
                     viewBox="0 0 24 24"
                     stroke="currentColor"
                 >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                    />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
             </button>
 
@@ -97,7 +93,7 @@ export default function LanguageDropdown() {
                 <div
                     className="absolute mt-2 w-64 rounded-lg bg-white border border-gray-100 dark:bg-gray-800 dark:border-gray-700 shadow-lg transform origin-top-left transition-all duration-200 ease-out animate-dropdown"
                     style={{
-                        animationDuration: '0.2s'
+                        animationDuration: '0.2s',
                     }}
                 >
                     <div className="p-3">
@@ -157,5 +153,5 @@ export default function LanguageDropdown() {
                 </div>
             )}
         </div>
-    );
+    )
 }

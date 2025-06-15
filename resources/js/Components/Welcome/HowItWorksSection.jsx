@@ -6,9 +6,7 @@ export default function HowItWorksSection() {
                     <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                         Simple Process
                     </span>
-                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
-                        How It Works
-                    </h2>
+                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">How It Works</h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
                         Get started with SectionCMS in three easy steps
                     </p>
@@ -151,7 +149,9 @@ export default function HowItWorksSection() {
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create account</h4>
                             </div>
-                            <p className="text-gray-600 text-sm dark:text-gray-300">Sign up and get access to the content management system</p>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">
+                                Sign up and get access to the content management system
+                            </p>
                         </div>
 
                         {/* Step 2 */}
@@ -162,7 +162,9 @@ export default function HowItWorksSection() {
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create sections</h4>
                             </div>
-                            <p className="text-gray-600 text-sm dark:text-gray-300">Add sections like "Home Page - Hero" to organize content</p>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">
+                                Add sections like "Home Page - Hero" to organize content
+                            </p>
                         </div>
 
                         {/* Step 3 */}
@@ -173,7 +175,9 @@ export default function HowItWorksSection() {
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Add keys</h4>
                             </div>
-                            <p className="text-gray-600 text-sm dark:text-gray-300">Create keys like "title" with values in different languages</p>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">
+                                Create keys like "title" with values in different languages
+                            </p>
                         </div>
 
                         {/* Step 4 */}
@@ -184,7 +188,9 @@ export default function HowItWorksSection() {
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Use in API</h4>
                             </div>
-                            <p className="text-gray-600 text-sm dark:text-gray-300">API returns values in the selected language automatically</p>
+                            <p className="text-gray-600 text-sm dark:text-gray-300">
+                                API returns values in the selected language automatically
+                            </p>
                         </div>
                     </div>
 
@@ -194,19 +200,30 @@ export default function HowItWorksSection() {
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
                                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 mb-3">
-                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">1. Create section: <span className="text-blue-600 dark:text-blue-400">Home Page - Hero</span></p>
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        1. Create section:{' '}
+                                        <span className="text-blue-600 dark:text-blue-400">Home Page - Hero</span>
+                                    </p>
                                 </div>
                                 <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
-                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">2. Add key: <span className="text-blue-600 dark:text-blue-400">title</span></p>
+                                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                        2. Add key: <span className="text-blue-600 dark:text-blue-400">title</span>
+                                    </p>
                                     <div className="mt-3 pl-4 border-l-2 border-blue-300 dark:border-blue-700">
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">English (en): <span className="font-medium">Welcome to XYZ</span></p>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400">Spanish (es): <span className="font-medium">Bienvenido a XYZ</span></p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                                            English (en): <span className="font-medium">Welcome to XYZ</span>
+                                        </p>
+                                        <p className="text-xs text-gray-600 dark:text-gray-400">
+                                            Spanish (es): <span className="font-medium">Bienvenido a XYZ</span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div>
                                 <div className="bg-gray-900 p-4 rounded-lg text-gray-300 font-mono text-xs">
-                                    <p><span className="text-blue-400">// API response when language=es</span></p>
+                                    <p>
+                                        <span className="text-blue-400">// API response when language=es</span>
+                                    </p>
                                     <p>{`{`}</p>
                                     <p className="pl-4">{`"section": "home-page-hero",`}</p>
                                     <p className="pl-4">{`"content": {`}</p>

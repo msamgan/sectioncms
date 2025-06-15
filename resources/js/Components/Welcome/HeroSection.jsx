@@ -91,8 +91,8 @@ export default function HeroSection() {
                             ))}
                         </div>
                         <span>
-                            Trusted by <span className="font-semibold text-gray-900 dark:text-white">Thousands</span>{' '}
-                            of developers
+                            Trusted by <span className="font-semibold text-gray-900 dark:text-white">Thousands</span> of
+                            developers
                         </span>
                     </div>
                 </div>
