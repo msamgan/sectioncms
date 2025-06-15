@@ -90,7 +90,7 @@ export default function TranslationSection() {
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMTguMWMtMS4yIDAtMi4xLS45LTIuMS0yLjFWMjAuMWMwLTEuMi45LTIuMSAyLjEtMi4xaDE3Ljh6TTYgNmMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMy45Yy0xLjIgMC0yLjEtLjktMi4xLTIuMVY4LjFDMS44IDYuOSAyLjcgNiAzLjkgNkg2eiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjIiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
 
                     {/* NEW badge */}
-                    <div className="absolute top-0 right-0 bg-yellow-500 text-white px-5 py-2 text-xs font-bold transform rotate-45 translate-x-3 translate-y-1 shadow-md z-20">
+                    <div className="absolute top-0 right-0 bg-yellow-500 text-white px-3 py-1 text-xs font-bold shadow-md z-20 rounded-bl-md">
                         NEW
                     </div>
 
