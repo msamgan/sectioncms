@@ -64,8 +64,8 @@ export default function CtaButton({
 
     const colorStyles = primary
         ? highContrast
-            ? 'text-gray-900 bg-white hover:bg-gray-100 focus:ring-gray-200 shadow-md hover:shadow-lg transform hover:scale-105'
-            : 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-blue-500 shadow-md hover:shadow-lg transform hover:scale-105'
+            ? 'text-gray-900 bg-white hover:bg-gray-100 focus:ring-gray-200 shadow-md hover:shadow-lg transform'
+            : 'text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-blue-500 shadow-md hover:shadow-lg transform'
         : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 focus:ring-blue-500'
 
     const pulseAnimation = pulse ? 'animate-pulse' : ''
