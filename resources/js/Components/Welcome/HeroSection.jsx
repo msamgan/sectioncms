@@ -4,8 +4,8 @@ export default function HeroSection() {
     return (
         <div className="relative overflow-hidden py-16">
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 opacity-70 blur-3xl dark:from-blue-900/20 dark:to-indigo-900/20"></div>
-                <div className="to-pink-100 dark:to-pink-900/20 absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-gradient-to-tr from-purple-100 opacity-70 blur-3xl dark:from-purple-900/20"></div>
+                <div className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-blue-100 opacity-70 blur-3xl dark:bg-blue-900/20"></div>
+                <div className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-purple-100 opacity-70 blur-3xl dark:bg-purple-900/20"></div>
             </div>
 
             <div className="relative grid items-center gap-12 lg:grid-cols-2">
@@ -16,7 +16,7 @@ export default function HeroSection() {
 
                     <h1 className="mb-6 text-5xl font-extrabold tracking-tight lg:text-6xl">
                         <span className="block text-gray-900 dark:text-white">Welcome to</span>
-                        <span className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text dark:from-blue-400 dark:to-indigo-400">
+                        <span className="text-blue-600 dark:text-blue-400">
                             SectionCMS
                         </span>
                     </h1>
@@ -85,14 +85,14 @@ export default function HeroSection() {
                             {[...Array(4)].map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`h-8 w-8 rounded-full border-2 border-white bg-gradient-to-br dark:border-gray-800 ${
+                                    className={`h-8 w-8 rounded-full border-2 border-white dark:border-gray-800 ${
                                         i === 0
-                                            ? 'from-blue-400 to-blue-500'
+                                            ? 'bg-blue-500'
                                             : i === 1
-                                              ? 'from-purple-400 to-purple-500'
+                                              ? 'bg-purple-500'
                                               : i === 2
-                                                ? 'from-green-400 to-green-500'
-                                                : 'from-red-400 to-red-500'
+                                                ? 'bg-green-500'
+                                                : 'bg-red-500'
                                     }`}
                                 ></div>
                             ))}

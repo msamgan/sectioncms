@@ -83,7 +83,7 @@ export default function TranslationSection() {
                 <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-20 h-20 bg-yellow-400 rounded-full opacity-10 blur-xl"></div>
 
                 {/* Main card with gradient background */}
-                <div className="bg-gradient-to-br from-primary via-primary to-blue-700 hover:from-primary-dark hover:to-blue-800 rounded-xl p-6 lg:p-10 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.2)] ring-2 ring-primary/[0.5] transition-all duration-250 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.35)] transform hover:-translate-y-2 relative overflow-hidden z-10">
+                <div className="bg-primary hover:bg-primary-dark rounded-xl p-6 lg:p-10 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.2)] ring-2 ring-primary/[0.5] transition-all duration-250 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.35)] transform hover:-translate-y-2 relative overflow-hidden z-10">
                     {/* Pattern overlay */}
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMTguMWMtMS4yIDAtMi4xLS45LTIuMS0yLjFWMjAuMWMwLTEuMi45LTIuMSAyLjEtMi4xaDE3Ljh6TTYgNmMxLjIgMCAyLjEuOSAyLjEgMi4xdjE5LjhjMCAxLjItLjkgMi4xLTIuMSAyLjFIMy45Yy0xLjIgMC0yLjEtLjktMi4xLTIuMVY4LjFDMS44IDYuOSAyLjcgNiAzLjkgNkg2eiIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utb3BhY2l0eT0iLjIiIHN0cm9rZS13aWR0aD0iMiIvPjwvZz48L3N2Zz4=')] opacity-10"></div>
 
@@ -236,7 +236,7 @@ export default function TranslationSection() {
                                             Content to translate
                                         </label>
                                         <div className="relative group">
-                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
+                                            <div className="absolute -inset-0.5 bg-blue-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
                                             <textarea
                                                 id="content"
                                                 name="content"
@@ -275,7 +275,7 @@ export default function TranslationSection() {
                                             Language ISO Code
                                         </label>
                                         <div className="relative group">
-                                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
+                                            <div className="absolute -inset-0.5 bg-blue-400 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-250"></div>
                                             <div className="relative flex items-center">
                                                 <input
                                                     type="text"
@@ -369,7 +369,7 @@ export default function TranslationSection() {
                             {/* Translation Results */}
                             {translationResult && (
                                 <div className="mt-10 relative">
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 rounded-lg blur opacity-20"></div>
+                                    <div className="absolute -inset-1 bg-blue-400 rounded-lg blur opacity-20"></div>
                                     <div className="relative bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 shadow-lg">
                                         <div className="flex items-center mb-6">
                                             <div className="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/20 mr-3">
@@ -394,11 +394,11 @@ export default function TranslationSection() {
                                             {Object.entries(translationResult).map(([lang, text]) => (
                                                 <div
                                                     key={lang}
-                                                    className="bg-gradient-to-r from-white/10 to-white/5 p-5 rounded-lg border border-white/10 shadow-inner"
+                                                    className="bg-white/10 p-5 rounded-lg border border-white/10 shadow-inner"
                                                 >
                                                     <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                                                         <div className="flex-shrink-0">
-                                                            <span className="inline-flex items-center justify-center text-sm font-bold text-white bg-gradient-to-r from-blue-500 to-indigo-500 px-3 py-1.5 rounded-full shadow-inner">
+                                                            <span className="inline-flex items-center justify-center text-sm font-bold text-white bg-blue-500 px-3 py-1.5 rounded-full shadow-inner">
                                                                 {lang.toUpperCase()}
                                                             </span>
                                                         </div>
@@ -459,7 +459,7 @@ export default function TranslationSection() {
 
             {/* Translation Examples */}
             <div className="mt-16 relative">
-                <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white rounded-3xl -z-10 transform -skew-y-2"></div>
+                <div className="absolute inset-0 bg-blue-50 rounded-3xl -z-10 transform -skew-y-2"></div>
                 <div className="py-16 px-4">
                     <div className="flex flex-col items-center mb-12">
                         <h3 className="text-3xl font-bold text-center text-gray-900 mb-3">See it in action</h3>
@@ -471,7 +471,7 @@ export default function TranslationSection() {
 
                     <div className="relative max-w-5xl mx-auto">
                         {/* Translation Flow */}
-                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-blue-100 via-primary to-blue-100 -z-10 transform -translate-y-1/2"></div>
+                        <div className="hidden md:block absolute top-1/2 left-0 right-0 h-2 bg-primary -z-10 transform -translate-y-1/2"></div>
 
                         <div className="grid md:grid-cols-3 gap-4 md:gap-8 relative md:items-start">
                             {/* Example 1 - Original */}

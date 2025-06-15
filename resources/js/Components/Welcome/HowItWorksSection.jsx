@@ -1,12 +1,12 @@
 export default function HowItWorksSection() {
     return (
-        <div className="from-gray-50 dark:from-zinc-800 dark:to-zinc-900 bg-gradient-to-b to-white py-16">
+        <div className="bg-gray-50 dark:bg-zinc-800 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                         Simple Process
                     </span>
-                    <h2 className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-4xl font-extrabold text-gray-900 sm:text-5xl dark:from-blue-400 dark:to-indigo-400 dark:text-white">
+                    <h2 className="text-blue-600 text-4xl font-extrabold sm:text-5xl dark:text-blue-400">
                         How It Works
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
@@ -17,13 +17,13 @@ export default function HowItWorksSection() {
                 <div className="relative">
                     {/* Process connector line */}
                     <div
-                        className="absolute left-0 right-0 top-24 z-0 hidden h-1 translate-y-1/2 transform bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500 md:block"
+                        className="absolute left-0 right-0 top-24 z-0 hidden h-1 translate-y-1/2 transform bg-blue-500 md:block"
                         style={{ width: '70%', margin: '0 auto' }}
                     ></div>
 
                     <div className="relative z-10 grid gap-10 md:grid-cols-3">
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200 dark:shadow-blue-900/30">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ export default function HowItWorksSection() {
                         </div>
 
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ export default function HowItWorksSection() {
                         </div>
 
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="to-pink-600 mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ export default function HowItWorksSection() {
                 <div className="mt-16 text-center">
                     <a
                         href="#"
-                        className="border-transparent inline-flex transform items-center rounded-md border bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="border-transparent inline-flex transform items-center rounded-md border bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         Get Started Now
                         <svg
@@ -160,7 +160,7 @@ export default function HowItWorksSection() {
                         <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                             Platform Workflow
                         </span>
-                        <h2 className="text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-3xl font-extrabold text-gray-900 sm:text-4xl dark:from-blue-400 dark:to-indigo-400 dark:text-white">
+                        <h2 className="text-blue-600 text-3xl font-extrabold sm:text-4xl dark:text-blue-400">
                             How the Platform Works
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
@@ -172,7 +172,7 @@ export default function HowItWorksSection() {
                         {/* Step 1 */}
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mr-3">
                                     <span className="text-white font-bold">1</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create account</h4>
@@ -183,7 +183,7 @@ export default function HowItWorksSection() {
                         {/* Step 2 */}
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 mr-3">
                                     <span className="text-white font-bold">2</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create sections</h4>
@@ -194,10 +194,10 @@ export default function HowItWorksSection() {
                         {/* Step 3 */}
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-600 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 mr-3">
                                     <span className="text-white font-bold">3</span>
                                 </div>
-                                <h4 className="font-medium text-gray-900 dark:text-white">Add translation keys</h4>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Add keys</h4>
                             </div>
                             <p className="text-gray-600 text-sm dark:text-gray-300">Create keys like "title" with values in different languages</p>
                         </div>
@@ -205,10 +205,10 @@ export default function HowItWorksSection() {
                         {/* Step 4 */}
                         <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-red-600 shadow-lg shadow-pink-200 dark:shadow-pink-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-yellow-500 shadow-lg shadow-yellow-200 dark:shadow-yellow-900/30 mr-3">
                                     <span className="text-white font-bold">4</span>
                                 </div>
-                                <h4 className="font-medium text-gray-900 dark:text-white">Use in your API</h4>
+                                <h4 className="font-medium text-gray-900 dark:text-white">Use in API</h4>
                             </div>
                             <p className="text-gray-600 text-sm dark:text-gray-300">API returns values in the selected language automatically</p>
                         </div>
@@ -234,7 +234,7 @@ export default function HowItWorksSection() {
                                 <div className="bg-gray-900 p-4 rounded-lg text-gray-300 font-mono text-xs">
                                     <p><span className="text-blue-400">// API response when language=es</span></p>
                                     <p>{`{`}</p>
-                                    <p className="pl-4">{`"section": "Home Page - Hero",`}</p>
+                                    <p className="pl-4">{`"section": "home-page-hero",`}</p>
                                     <p className="pl-4">{`"content": {`}</p>
                                     <p className="pl-8">{`"title": "Bienvenido a XYZ"`}</p>
                                     <p className="pl-4">{`}`}</p>

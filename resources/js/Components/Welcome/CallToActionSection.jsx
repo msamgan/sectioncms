@@ -2,7 +2,7 @@ import CtaButton from '@/Components/CtaButton'
 
 export default function CallToActionSection({ auth }) {
     return (
-        <div className="mb-8 mt-16 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 shadow-xl dark:from-blue-800 dark:to-indigo-900">
+        <div className="mb-8 mt-16 overflow-hidden rounded-2xl bg-blue-600 shadow-xl dark:bg-blue-800">
             <div className="relative px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-20">
                 {/* Background pattern */}
                 <div className="absolute inset-0 opacity-10">

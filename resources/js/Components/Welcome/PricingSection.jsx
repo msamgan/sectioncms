@@ -14,7 +14,7 @@ export default function PricingSection() {
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
                 <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-blue-400 to-blue-600"></div>
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-blue-500"></div>
 
                     <div className="mt-8 flex justify-center">
                         <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
@@ -149,7 +149,7 @@ export default function PricingSection() {
                                 href={route('register')}
                                 className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-blue-600 px-4 py-3 font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-offset-gray-900"
                             >
-                                <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-blue-700 to-indigo-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
+                                <span className="absolute inset-0 translate-y-full rounded-lg bg-blue-800 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
                                     <svg
@@ -173,7 +173,7 @@ export default function PricingSection() {
                 {/* Pay-as-You-Go */}
                 <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-purple-400 to-purple-600"></div>
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-purple-500"></div>
 
                     {/* Icon with circle background */}
                     <div className="mt-8 flex justify-center">
@@ -311,7 +311,7 @@ export default function PricingSection() {
                                 href={route('register')}
                                 className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-purple-600 px-4 py-3 font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:bg-purple-700 dark:hover:bg-purple-800 dark:focus:ring-offset-gray-900"
                             >
-                                <span className="absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-purple-700 to-indigo-600 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
+                                <span className="absolute inset-0 translate-y-full rounded-lg bg-purple-800 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Get Started
                                     <svg
@@ -335,7 +335,7 @@ export default function PricingSection() {
                 {/* Enterprise */}
                 <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
                     {/* Top accent border */}
-                    <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-green-400 to-green-600"></div>
+                    <div className="absolute inset-x-0 top-0 h-1.5 bg-green-500"></div>
 
                     {/* Icon with circle background */}
                     <div className="mt-8 flex justify-center">
@@ -423,7 +423,7 @@ export default function PricingSection() {
                                 href={route('dashboard')}
                                 className="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-green-600 px-4 py-3 font-medium text-white shadow-md transition-all duration-300 ease-in-out hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-offset-gray-900"
                             >
-                                <span className="to-teal-600 absolute inset-0 translate-y-full rounded-lg bg-gradient-to-r from-green-700 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
+                                <span className="absolute inset-0 translate-y-full rounded-lg bg-green-800 transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
                                 <span className="relative flex items-center">
                                     Contact Us
                                     <svg
