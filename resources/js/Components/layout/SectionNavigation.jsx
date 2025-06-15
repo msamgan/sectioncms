@@ -155,15 +155,13 @@ export default function SectionNavigation() {
             {/* Enhanced Tooltip */}
             {tooltip.visible && (
                 <div
-                    className="fixed z-50 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-xl backdrop-blur-sm"
+                    className="fixed z-50 px-4 py-2 text-sm font-medium text-white rounded-lg shadow-xl backdrop-blur-sm tooltip-animation"
                     style={{
                         top: `${tooltip.position.top}px`,
                         left: `${tooltip.position.left}px`,
                         transform: 'translateY(-50%)',
                         background: 'rgba(0, 0, 0, 0.75)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
-                        opacity: 0,
-                        animation: 'fadeIn 0.3s ease-in-out forwards',
                     }}
                 >
                     {tooltip.text}
@@ -178,12 +176,6 @@ export default function SectionNavigation() {
                             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                         }}
                     />
-                    <style jsx>{`
-                        @keyframes fadeIn {
-                            from { opacity: 0; transform: translateY(-50%) translateX(10px); }
-                            to { opacity: 1; transform: translateY(-50%) translateX(0); }
-                        }
-                    `}</style>
                 </div>
             )}
             <style jsx global>{`
@@ -197,6 +189,16 @@ export default function SectionNavigation() {
                     0% { transform: scale(0.8); opacity: 0.5; }
                     50% { transform: scale(1.2); opacity: 0.2; }
                     100% { transform: scale(0.8); opacity: 0.5; }
+                }
+
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-50%) translateX(10px); }
+                    to { opacity: 1; transform: translateY(-50%) translateX(0); }
+                }
+
+                .tooltip-animation {
+                    opacity: 0;
+                    animation: fadeIn 0.3s ease-in-out forwards;
                 }
             `}</style>
         </>
