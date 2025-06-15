@@ -6,7 +6,7 @@ export default function FAQSection() {
                     <span className="mb-4 inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-600 dark:bg-green-900 dark:text-green-300">
                         Questions & Answers
                     </span>
-                    <h2 className="text-green-600 text-4xl font-extrabold sm:text-5xl dark:text-green-400">
+                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
                         Frequently Asked Questions
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">

@@ -6,7 +6,7 @@ export default function HowItWorksSection() {
                     <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                         Simple Process
                     </span>
-                    <h2 className="text-blue-600 text-4xl font-extrabold sm:text-5xl dark:text-blue-400">
+                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
                         How It Works
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
@@ -160,7 +160,7 @@ export default function HowItWorksSection() {
                         <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
                             Platform Workflow
                         </span>
-                        <h2 className="text-blue-600 text-3xl font-extrabold sm:text-4xl dark:text-blue-400">
+                        <h2 className="text-black text-3xl font-extrabold sm:text-4xl dark:text-white">
                             How the Platform Works
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">

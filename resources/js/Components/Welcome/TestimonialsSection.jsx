@@ -6,7 +6,7 @@ export default function TestimonialsSection() {
                     <span className="mb-4 inline-block rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">
                         Trusted by Developers
                     </span>
-                    <h2 className="text-indigo-600 text-4xl font-extrabold sm:text-5xl dark:text-indigo-400">
+                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
                         What Our Users Say
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">

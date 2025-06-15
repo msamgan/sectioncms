@@ -8,8 +8,8 @@ export default function PricingSection() {
                     Pricing Plans
                 </span>
 
-                <h2 className="mb-4 text-3xl font-bold text-black dark:text-white">Simple, Transparent Pricing</h2>
-                <p className="text-lg text-black/70 dark:text-white/70">Start for free and scale as you grow</p>
+                <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">Simple, Transparent Pricing</h2>
+                <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">Start for free and scale as you grow</p>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">

@@ -17,7 +17,7 @@ export default function CallToActionSection({ auth }) {
 
                 <div className="relative flex flex-col items-center justify-between gap-8 text-center sm:flex-row sm:text-left">
                     <div className="max-w-xl">
-                        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
+                        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
                             Ready to transform your content management?
                         </h2>
                         <p className="mt-3 text-lg text-blue-100">
