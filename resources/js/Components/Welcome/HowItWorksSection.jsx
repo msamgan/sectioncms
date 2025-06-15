@@ -131,37 +131,11 @@ export default function HowItWorksSection() {
                     </div>
                 </div>
 
-                <div className="mt-16 text-center">
-                    <a
-                        href="#"
-                        className="border-transparent inline-flex transform items-center rounded-md border bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                    >
-                        Get Started Now
-                        <svg
-                            className="-mr-1 ml-2 h-5 w-5"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M13 7l5 5m0 0l-5 5m5-5H6"
-                            />
-                        </svg>
-                    </a>
-                </div>
-
                 {/* Platform Workflow Section */}
-                <div className="mt-24 max-w-4xl mx-auto">
+                <div className="mt-20 max-w-4xl mx-auto">
                     <div className="text-center mb-12">
-                        <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
-                            Platform Workflow
-                        </span>
                         <h2 className="text-black text-3xl font-extrabold sm:text-4xl dark:text-white">
-                            How the Platform Works
+                            Details of the Platform Workflow
                         </h2>
                         <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">
                             Our platform makes content localization simple and efficient
@@ -244,6 +218,29 @@ export default function HowItWorksSection() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="mt-16 text-center">
+                <a
+                    href="#"
+                    className="border-transparent inline-flex transform items-center rounded-md border bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
+                    Get Started Now
+                    <svg
+                        className="-mr-1 ml-2 h-5 w-5"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                    </svg>
+                </a>
             </div>
         </div>
     )
