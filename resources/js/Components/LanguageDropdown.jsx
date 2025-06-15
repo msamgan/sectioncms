@@ -20,7 +20,7 @@ export default function LanguageDropdown() {
             }
         };
 
-        fetchLanguages();
+        fetchLanguages().then()
     }, []);
 
     useEffect(() => {
