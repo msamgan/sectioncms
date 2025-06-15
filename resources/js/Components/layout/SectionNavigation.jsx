@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 export default function SectionNavigation() {
     // Add smooth scrolling behavior
     const scrollToSection = (e) => {
@@ -13,90 +15,155 @@ export default function SectionNavigation() {
         }
     }
 
+    // Track active section for highlighting
+    const [activeSection, setActiveSection] = useState('hero')
+
+    // Use Intersection Observer to detect which section is in view
+    useEffect(() => {
+        const sectionIds = [
+            'hero',
+            'trust',
+            'features',
+            'translation',
+            'how-it-works',
+            'testimonials',
+            'faq',
+            'pricing',
+            'cta',
+        ]
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -20% 0px',
+            threshold: 0.2,
+        }
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id)
+                }
+            })
+        }
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions)
+
+        sectionIds.forEach((id) => {
+            const element = document.getElementById(id)
+            if (element) {
+                observer.observe(element)
+            }
+        })
+
+        return () => {
+            sectionIds.forEach((id) => {
+                const element = document.getElementById(id)
+                if (element) {
+                    observer.unobserve(element)
+                }
+            })
+        }
+    }, [])
+
+    // Navigation items data with colors
+    const navItems = [
+        { id: 'hero', title: 'Hero', icon: 'ri-home-line', color: '#FF6B6B' },
+        { id: 'trust', title: 'Trusted By', icon: 'ri-shield-check-line', color: '#4ECDC4' },
+        { id: 'features', title: 'Features', icon: 'ri-star-line', color: '#FFD166' },
+        { id: 'translation', title: 'Translation', icon: 'ri-translate-2', color: '#4CAF50' },
+        { id: 'how-it-works', title: 'How It Works', icon: 'ri-question-line', color: '#6A0572' },
+        { id: 'testimonials', title: 'Testimonials', icon: 'ri-chat-quote-line', color: '#1A936F' },
+        { id: 'faq', title: 'FAQ', icon: 'ri-questionnaire-line', color: '#3D5A80' },
+        { id: 'pricing', title: 'Pricing', icon: 'ri-price-tag-3-line', color: '#F25F5C' },
+        { id: 'cta', title: 'Get Started', icon: 'ri-rocket-line', color: '#7209B7' },
+    ]
+
     return (
-        <div className="fixed left-0 top-1/2 z-50 -translate-y-1/2 transform rounded-r-lg bg-white p-2 shadow-lg dark:bg-gray-800">
-            <ul className="space-y-4">
-                <li>
-                    <a
-                        href="#hero"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Hero"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-home-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#trust"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Trusted By"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-shield-check-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#features"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Features"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-star-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#how-it-works"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="How It Works"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-question-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#testimonials"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Testimonials"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-chat-quote-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#faq"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="FAQ"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-questionnaire-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#pricing"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Pricing"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-price-tag-3-line text-primary text-lg"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#cta"
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 transition-colors duration-300 hover:bg-blue-100 dark:bg-gray-700 dark:hover:bg-blue-900"
-                        title="Get Started"
-                        onClick={scrollToSection}
-                    >
-                        <i className="ri-rocket-line text-primary text-lg"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <>
+            <div className="fixed left-6 top-1/2 z-50 -translate-y-1/2 transform p-3 transition-all duration-300">
+                <div className="backdrop-blur-md bg-white/30 rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20">
+                    <ul className="flex flex-col items-center space-y-4">
+                        {navItems.map((item) => {
+                            const isActive = activeSection === item.id
+                            return (
+                                <li key={item.id} className="relative">
+                                    <a
+                                        href={`#${item.id}`}
+                                        className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 focus:outline-none ${
+                                            isActive
+                                                ? 'shadow-[0_0_15px_rgba(0,0,0,0.2)]'
+                                                : 'hover:scale-110 hover:shadow-md'
+                                        }`}
+                                        style={{
+                                            backgroundColor: isActive ? item.color : 'rgba(255, 255, 255, 0.7)',
+                                            color: isActive ? 'white' : '#555',
+                                            transform: isActive ? 'scale(1.15)' : 'scale(1)',
+                                            animation: isActive ? 'pulse 2s infinite' : 'none',
+                                            position: 'relative',
+                                            zIndex: 1,
+                                            // Force color for translation section when active
+                                            ...(isActive && item.id === 'translation'
+                                                ? { backgroundColor: '#4CAF50' }
+                                                : {}),
+                                        }}
+                                        onClick={scrollToSection}
+                                        aria-label={`Scroll to ${item.title} section`}
+                                    >
+                                        <i className={`${item.icon} text-xl`}></i>
+                                        {isActive && (
+                                            <span
+                                                className="absolute inset-0 rounded-full opacity-50"
+                                                style={{
+                                                    backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color,
+                                                    animation: 'ripple 1.5s ease-out infinite',
+                                                    zIndex: -1,
+                                                }}
+                                            />
+                                        )}
+                                    </a>
+                                    {isActive && (
+                                        <span
+                                            className="absolute -right-2 top-1/2 h-2 w-2 rounded-full transform -translate-y-1/2"
+                                            style={{
+                                                backgroundColor: item.id === 'translation' ? '#4CAF50' : item.color,
+                                            }}
+                                        />
+                                    )}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </div>
+
+            <style jsx global>{`
+                @keyframes pulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                    }
+                }
+
+                @keyframes ripple {
+                    0% {
+                        transform: scale(0.8);
+                        opacity: 0.5;
+                    }
+                    50% {
+                        transform: scale(1.2);
+                        opacity: 0.2;
+                    }
+                    100% {
+                        transform: scale(0.8);
+                        opacity: 0.5;
+                    }
+                }
+            `}</style>
+        </>
     )
 }

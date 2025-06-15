@@ -5,6 +5,7 @@ import HeroSection from '@/Components/Welcome/HeroSection'
 import HowItWorksSection from '@/Components/Welcome/HowItWorksSection'
 import PricingSection from '@/Components/Welcome/PricingSection'
 import TestimonialsSection from '@/Components/Welcome/TestimonialsSection'
+import TranslationSection from '@/Components/Welcome/TranslationSection'
 import TrustBadges from '@/Components/Welcome/TrustBadges'
 import SectionNavigation from '@/Components/layout/SectionNavigation'
 import Public from '@/Layouts/Public.jsx'
@@ -78,8 +79,11 @@ export default function Welcome({ auth }) {
             <div id="trust">
                 <TrustBadges />
             </div>
-            <div id="features">
+            <div id="features" className={'mt-12'}>
                 <FeaturesSection />
+            </div>
+            <div id="translation" className={'mt-12'}>
+                <TranslationSection />
             </div>
             <div id="how-it-works">
                 <HowItWorksSection />

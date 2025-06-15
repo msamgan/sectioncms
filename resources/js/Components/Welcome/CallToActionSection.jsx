@@ -2,7 +2,7 @@ import CtaButton from '@/Components/CtaButton'
 
 export default function CallToActionSection({ auth }) {
     return (
-        <div className="mb-8 mt-16 overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-700 shadow-xl dark:from-blue-800 dark:to-indigo-900">
+        <div className="mb-8 mt-16 overflow-hidden rounded-2xl bg-blue-600 shadow-xl dark:bg-blue-800">
             <div className="relative px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-20">
                 {/* Background pattern */}
                 <div className="absolute inset-0 opacity-10">
@@ -17,7 +17,7 @@ export default function CallToActionSection({ auth }) {
 
                 <div className="relative flex flex-col items-center justify-between gap-8 text-center sm:flex-row sm:text-left">
                     <div className="max-w-xl">
-                        <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl md:text-4xl">
+                        <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
                             Ready to transform your content management?
                         </h2>
                         <p className="mt-3 text-lg text-blue-100">

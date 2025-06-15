@@ -1,12 +1,12 @@
 export default function TestimonialsSection() {
     return (
-        <div className="to-gray-50 dark:from-zinc-900 dark:to-zinc-800 bg-gradient-to-b from-white py-16">
+        <div className="bg-gray-50 dark:bg-zinc-900 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
                     <span className="mb-4 inline-block rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">
                         Trusted by Developers
                     </span>
-                    <h2 className="text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-4xl font-extrabold text-gray-900 sm:text-5xl dark:from-indigo-400 dark:to-purple-400 dark:text-white">
+                    <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
                         What Our Users Say
                     </h2>
                     <p className="mx-auto mt-4 max-w-2xl text-xl text-gray-600 dark:text-gray-300">

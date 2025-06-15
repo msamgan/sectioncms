@@ -49,6 +49,15 @@ export default {
             transitionDuration: {
                 '250': '250ms',
             },
+            keyframes: {
+                dropdown: {
+                    '0%': { opacity: 0, transform: 'scale(0.95) translateY(-0.5rem)' },
+                    '100%': { opacity: 1, transform: 'scale(1) translateY(0)' },
+                },
+            },
+            animation: {
+                dropdown: 'dropdown 0.2s ease-out forwards',
+            },
         },
         colors: {
             primary: "#3B82F6", // blue-500

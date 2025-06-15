@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Adapters\GoogleTranslationAdapter;
+use App\Http\Requests\TranslationPublicRequest;
 use App\Http\Requests\TranslationRequest;
 use App\Stores\LanguageStore;
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ValidationException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\JsonResponse;
@@ -35,5 +38,20 @@ final class TranslationController extends Controller
         }
 
         return response()->ok(payload: $responseArray);
+    }
+
+    /**
+     * @throws ValidationException
+     * @throws ApiException
+     */
+    #[Action(method: 'post')]
+    public function translatePublic(TranslationPublicRequest $request, GoogleTranslationAdapter $googleTranslationAdapter)
+    {
+        return response()->ok(payload: [
+            'translation' => trimString($googleTranslationAdapter->translate(
+                languageCode: $request->validated('language'),
+                query: $request->validated('content')
+            )),
+        ]);
     }
 }
