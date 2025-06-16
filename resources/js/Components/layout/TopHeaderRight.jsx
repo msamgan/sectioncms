@@ -22,14 +22,6 @@ export default function TopHeaderRight({ user }) {
     // Quick action buttons
     const quickActions = [
         {
-            id: 'help',
-            icon: 'ri-question-line',
-            label: 'Help',
-            color: 'bg-purple-100 text-purple-600',
-            hoverColor: 'hover:bg-purple-200',
-            tooltip: 'Get help and documentation',
-        },
-        {
             id: 'settings',
             icon: 'ri-settings-3-line',
             label: 'Settings',
@@ -54,14 +46,11 @@ export default function TopHeaderRight({ user }) {
                         {action.route ? (
                             <Link
                                 href={route(action.route)}
-                                className={`flex items-center px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ${action.color} ${action.hoverColor} hover:shadow-sm transform hover:-translate-y-0.5`}
+                                className={`flex items-center px-3 py-1.5 rounded-lg text-sm transition-all duration-200 ${action.color} ${action.hoverColor} hover:shadow-sm transform hover:-translate-y-0.5 h-10`}
                                 onMouseEnter={() => setActiveButton(action.id)}
                                 onMouseLeave={() => setActiveButton(null)}
                             >
-                                <i
-                                    className={`${action.icon} ${activeButton === action.id ? 'animate-pulse' : ''}`}
-                                ></i>
-                                <span className="ml-1.5">{action.label}</span>
+                                <i className={`${action.icon} ${activeButton === action.id ? 'animate-pulse' : ''}`}></i>
                             </Link>
                         ) : (
                             <button

@@ -17,7 +17,7 @@ import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { permissions as _permissions } from '@actions/PermissionController.js'
-import { destroy, roles as _roles, show, toggleIsActive } from '@actions/RoleController.js'
+import { roles as _roles, destroy, show, toggleIsActive } from '@actions/RoleController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 

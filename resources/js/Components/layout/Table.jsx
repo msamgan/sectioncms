@@ -207,13 +207,13 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
                 <div className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-blue-50">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                 </div>
-                <div className="p-8 flex justify-center items-center min-h-[250px] bg-gradient-to-b from-white to-gray-50">
+                <div className="p-8 flex justify-center items-center bg-gradient-to-b from-white to-gray-50">
                     <DisplayMessage
                         title="No Data Available"
                         text="Try adjusting your search criteria or adding new records."
                         type="empty"
                         icon="ri-inbox-line"
-                        className="max-w-lg transform hover:scale-105 transition-all duration-300"
+                        className="transform transition-all duration-300"
                         action="Add New Record"
                         onAction={() => {
                             // Trigger the creation button if available

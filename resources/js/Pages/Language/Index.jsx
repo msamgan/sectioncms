@@ -15,7 +15,7 @@ import { pageObject } from '@/Pages/Language/helper.js'
 import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
-import { destroy, languages as _languages, setDefault, show, toggleIsActive } from '@actions/LanguageController.js'
+import { languages as _languages, destroy, setDefault, show, toggleIsActive } from '@actions/LanguageController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 

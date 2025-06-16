@@ -35,7 +35,7 @@ export default function AddSite() {
         <>
             <PrimaryButton
                 onClick={() => setConfirming(true)}
-                className="mr-8 group shadow-sm hover:shadow-md transition-all duration-300 flex items-center transform hover:-translate-y-0.5"
+                className="mr-8 group shadow-sm hover:shadow-md transition-all duration-300 flex items-center transform hover:-translate-y-0.5 bg-gradient-to-r from-blue-500 to-indigo-600"
             >
                 <i className="ri-add-line me-2 group-hover:rotate-90 transition-transform duration-300"></i>
                 <span>Add New</span>
