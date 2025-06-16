@@ -38,7 +38,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
                     {!collapsed && (
                         <div className="ml-3">
                             <h3 className="text-sm font-bold text-gray-800">Section CMS</h3>
-                            <p className="text-xs text-gray-500">Admin Dashboard</p>
+                            <p className="text-xs text-gray-500">Dashboard</p>
                         </div>
                     )}
                 </div>

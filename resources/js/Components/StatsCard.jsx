@@ -46,7 +46,7 @@ export default function StatsCard({ label, count, icon }) {
                     className={`absolute top-0 right-0 h-24 w-24 -mt-8 -mr-8 rounded-full opacity-10 ${iconColorClass.split(' ')[0]}`}
                 ></div>
 
-                <div className="flex items-start mb-4">
+                <div className="flex items-start">
                     <div className={`flex-shrink-0 p-3 rounded-lg mr-4 ${iconColorClass}`}>
                         <i className={`${icon} text-xl`}></i>
                     </div>

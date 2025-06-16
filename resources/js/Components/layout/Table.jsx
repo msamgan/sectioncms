@@ -38,7 +38,7 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
             <div className="overflow-x-auto">
                 <div className="flex flex-col sm:flex-row justify-between items-center border-b border-gray-200 bg-gray-50">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
-                    <div className="py-4 px-6 text-end">
+                    <div className="py-4 px-6 flex items-center justify-between w-full sm:w-auto gap-3">
                         <h5 className="text-sm font-medium text-gray-700 flex items-center">
                             <i className="ri-database-2-line mr-2 text-primary"></i>
                             Total Records:
@@ -46,6 +46,15 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                                 {data.length}
                             </span>
                         </h5>
+                        <button
+                            onClick={() => {
+                                refresher(parseQueryString()).then()
+                            }}
+                            className="p-2 rounded-lg text-gray-600 hover:text-primary transition-colors"
+                            title="Refresh list"
+                        >
+                            <i className="ri-refresh-line"></i>
+                        </button>
                     </div>
                 </div>
                 <div className="relative overflow-x-auto">
@@ -127,15 +136,23 @@ const SearchForm = ({ setLoading, refresher }) => {
 
     return (
         <form className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 px-6 py-4" onSubmit={searchSubmission}>
-            <div className={`relative group transition-all duration-200 ${isFocused ? 'scale-[1.02]' : ''}`}>
+            <div
+                className={`relative group transition-all duration-300 ${isFocused ? 'scale-[1.02] shadow-md' : 'shadow-sm'}`}
+            >
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <i
-                        className={`ri-search-line ${isFocused ? 'text-primary' : 'text-gray-400'} transition-colors duration-200`}
-                    ></i>
+                    <div
+                        className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                            isFocused ? 'bg-blue-100' : 'bg-gray-50'
+                        }`}
+                    >
+                        <i
+                            className={`ri-search-line ${isFocused ? 'text-primary' : 'text-gray-400'} transition-colors duration-300`}
+                        ></i>
+                    </div>
                 </div>
                 <input
                     type="search"
-                    className="w-full pl-10 pr-4 py-2.5 text-sm bg-white border border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 ease-in-out"
+                    className="w-full pl-12 pr-4 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-0.5"
                     id="search"
                     value={query}
                     placeholder="Search Query..."
@@ -149,13 +166,17 @@ const SearchForm = ({ setLoading, refresher }) => {
                     htmlFor="search"
                     className={`absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium ${
                         isFocused ? 'text-primary' : 'text-gray-600'
-                    } transition-all duration-200`}
+                    } transition-all duration-300`}
                 >
                     Search
                 </label>
                 <button type="submit" className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm">
                     <span
-                        className={`px-2 py-1 rounded-md ${isFocused ? 'bg-primary text-white' : 'bg-gray-100 text-gray-600'} transition-all duration-200`}
+                        className={`px-2 py-1 rounded-md transform hover:scale-110 transition-all duration-300 ${
+                            isFocused
+                                ? 'bg-gradient-to-r from-primary to-blue-500 text-white shadow-sm'
+                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        }`}
                     >
                         <i className="ri-arrow-right-line"></i>
                     </span>
@@ -170,7 +191,7 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
 
     return permission ? (
         loading ? (
-            <div className="bg-white rounded-xl shadow-sm mt-6 p-8 flex justify-center items-center min-h-[300px]">
+            <div className="bg-gradient-to-r from-white to-blue-50 rounded-xl shadow-sm hover:shadow-md mt-6 p-8 flex justify-center items-center min-h-[300px] transition-all duration-300">
                 <LoadingIndicator type="wave" size="lg" text="Loading data" center={true} fullHeight={true} />
             </div>
         ) : data.length > 0 ? (
@@ -182,20 +203,20 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
                 refresher={refresher}
             />
         ) : (
-            <div className="bg-white rounded-xl shadow-sm mt-6 overflow-hidden transition-all duration-250">
-                <div className="border-b border-gray-200 bg-gray-50">
+            <div className="bg-white rounded-xl shadow-sm hover:shadow-md mt-6 overflow-hidden transition-all duration-300">
+                <div className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-blue-50">
                     <SearchForm setLoading={setLoading} refresher={refresher} />
                 </div>
-                <div className="p-8 flex justify-center items-center min-h-[250px]">
+                <div className="p-8 flex justify-center items-center min-h-[250px] bg-gradient-to-b from-white to-gray-50">
                     <DisplayMessage
                         title="No Data Available"
                         text="Try adjusting your search criteria or adding new records."
                         type="empty"
                         icon="ri-inbox-line"
-                        className="max-w-lg"
+                        className="max-w-lg transform hover:scale-105 transition-all duration-300"
                         action="Add New Record"
                         onAction={() => {
-                            // Trigger the create button if available
+                            // Trigger the creation button if available
                             const createButton = document.querySelector('[data-bs-toggle="offcanvas"]')
                             if (createButton) {
                                 createButton.click()
@@ -206,13 +227,13 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
             </div>
         )
     ) : (
-        <div className="bg-white rounded-xl shadow-sm mt-6 overflow-hidden transition-all duration-250 p-8 flex justify-center items-center min-h-[250px]">
+        <div className="bg-gradient-to-r from-white to-gray-50 rounded-xl shadow-sm hover:shadow-md mt-6 overflow-hidden transition-all duration-300 p-8 flex justify-center items-center min-h-[250px]">
             <DisplayMessage
                 title="Access Restricted"
                 text="You do not have permission to view this content. Please contact your administrator for access."
                 type="error"
                 icon="ri-lock-line"
-                className="max-w-lg"
+                className="max-w-lg transform hover:scale-105 transition-all duration-300"
             />
         </div>
     )

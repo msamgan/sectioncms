@@ -18,7 +18,7 @@ export default function Dashboard({ auth }) {
             <Head title="Dashboard" />
 
             {/* Welcome Banner */}
-            <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg p-6 mb-8 overflow-hidden relative">
+            <div className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl shadow-lg p-6 mb-8 overflow-hidden relative mt-6">
                 {/* Decorative circles */}
                 <div className="absolute -top-12 -right-12 w-40 h-40 bg-white opacity-5 rounded-full"></div>
                 <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-white opacity-5 rounded-full"></div>
@@ -50,22 +50,6 @@ export default function Dashboard({ auth }) {
                             })}
                         </div>
                     </div>
-                </div>
-
-                {/* Quick Action Buttons - Mobile Only */}
-                <div className="mt-6 flex gap-2 overflow-x-auto pb-2 md:hidden">
-                    <button className="flex-shrink-0 bg-white/20 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center">
-                        <i className="ri-add-line mr-2"></i>
-                        New Section
-                    </button>
-                    <button className="flex-shrink-0 bg-white/20 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center">
-                        <i className="ri-search-line mr-2"></i>
-                        Search
-                    </button>
-                    <button className="flex-shrink-0 bg-white/20 backdrop-blur-sm text-white px-3 py-2 rounded-lg flex items-center">
-                        <i className="ri-settings-line mr-2"></i>
-                        Settings
-                    </button>
                 </div>
             </div>
 
@@ -122,11 +106,6 @@ export default function Dashboard({ auth }) {
                         </div>
                         <h2 className="text-xl font-semibold text-gray-800">Content Statistics</h2>
                     </div>
-                    <div className="hidden sm:flex items-center space-x-2">
-                        <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                            Last updated: {new Date().toLocaleTimeString()}
-                        </span>
-                    </div>
                 </div>
 
                 <div className="grid grid-cols-12 gap-4 md:gap-6">
@@ -153,12 +132,6 @@ export default function Dashboard({ auth }) {
                                 <i className="ri-line-chart-line text-xl"></i>
                             </div>
                             <h2 className="text-xl font-semibold text-gray-800">API Usage Analytics</h2>
-                        </div>
-                        <div className="hidden sm:block">
-                            <button className="text-sm bg-gray-50 hover:bg-gray-100 px-3 py-1.5 rounded-lg text-gray-600 hover:text-primary flex items-center transition-colors">
-                                <i className="ri-download-line mr-1.5"></i>
-                                Export
-                            </button>
                         </div>
                     </div>
 

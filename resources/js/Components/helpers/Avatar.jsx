@@ -18,21 +18,42 @@ export default function Avatar({ size = 'sm', bgColor = 'bg-blue-500', icon, cla
         'bg-danger': 'from-red-500 to-red-600',
     }
 
-    // Convert Bootstrap color to Tailwind gradient if it's a Bootstrap color
-    const gradientColor =
-        colorMap[bgColor] ||
-        (bgColor === 'transparent' ? '' : `from-${bgColor.split('-')[1]}-500 to-${bgColor.split('-')[1]}-600`)
+    // Check if bgColor already contains a gradient
+    const hasGradient = bgColor.includes('from-') && bgColor.includes('to-')
 
-    // Determine if we should use a gradient
-    const useGradient = bgColor !== 'transparent'
+    // If it's already a gradient, use it directly
+    let backgroundClass
+    if (hasGradient) {
+        backgroundClass = bgColor
+    } else {
+        // Convert Bootstrap color to Tailwind gradient if it's a Bootstrap color
+        const gradientColor =
+            colorMap[bgColor] ||
+            (bgColor === 'transparent' ? '' : `from-${bgColor.split('-')[1]}-500 to-${bgColor.split('-')[1]}-600`)
 
-    // Determine background class
-    const backgroundClass = useGradient ? `bg-gradient-to-r ${gradientColor}` : bgColor
+        // Determine if we should use a gradient
+        const useGradient = bgColor !== 'transparent'
+
+        // Determine background class
+        backgroundClass = useGradient ? `bg-gradient-to-r ${gradientColor}` : bgColor
+    }
 
     // Determine size and margin based on size prop
-    const avatarSize = size === 'sm' ? 'h-9 w-9' : 'h-7 w-7'
-    const margin = size === 'sm' ? 'mr-3' : 'mr-2'
-    const iconSize = size === 'sm' ? 'text-lg' : 'text-base'
+    let avatarSize, margin, iconSize
+
+    if (size === 'xl') {
+        avatarSize = 'h-16 w-16'
+        margin = 'mr-4'
+        iconSize = 'text-3xl'
+    } else if (size === 'sm') {
+        avatarSize = 'h-9 w-9'
+        margin = 'mr-3'
+        iconSize = 'text-lg'
+    } else {
+        avatarSize = 'h-7 w-7'
+        margin = 'mr-2'
+        iconSize = 'text-base'
+    }
 
     return (
         <div className={`inline-flex items-center justify-center ${avatarSize} ${margin} ${className}`}>
