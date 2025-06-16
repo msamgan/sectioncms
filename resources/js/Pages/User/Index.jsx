@@ -122,23 +122,13 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="w-full">
-                <div className="bg-white rounded-lg transition-all duration-200">
-                    <div className="flex items-center p-4 border-b bg-gray-50">
-                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                        <h5 className="m-0 ml-2 text-lg font-semibold">User List</h5>
-                    </div>
-                    <div className="p-0">
-                        <Table
-                            data={data}
-                            loading={loading}
-                            permission={can(permissions.user.list)}
-                            setLoading={setLoading}
-                            refresher={getUsers}
-                        />
-                    </div>
-                </div>
-            </div>
+            <Table
+                data={data}
+                loading={loading}
+                permission={can(permissions.user.list)}
+                setLoading={setLoading}
+                refresher={getUsers}
+            />
         </Master>
     )
 }

@@ -115,7 +115,7 @@ export default function Index() {
             }
         }
 
-        fetchLanguages()
+        fetchLanguages().then()
     }, [])
 
     return (
@@ -153,19 +153,13 @@ export default function Index() {
                 </OffCanvas>
             )}
 
-            <div className="bg-white rounded-lg transition-all duration-200">
-                <div className="flex items-center p-4 border-b bg-gray-50">
-                    <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                    <h5 className="ml-2 text-lg font-semibold">Language List</h5>
-                </div>
-                <Table
-                    data={data}
-                    setLoading={setLoading}
-                    loading={loading}
-                    permission={can(permissions.language.list)}
-                    refresher={getLanguages}
-                />
-            </div>
+            <Table
+                data={data}
+                setLoading={setLoading}
+                loading={loading}
+                permission={can(permissions.language.list)}
+                refresher={getLanguages}
+            />
         </Master>
     )
 }

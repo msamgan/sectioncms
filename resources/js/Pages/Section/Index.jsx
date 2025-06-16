@@ -84,6 +84,14 @@ export default function Index() {
         setData(sections.map((section) => processSection(section)))
     }, [sections])
 
+    // Handle refresh button click
+    const handleRefresh = () => {
+        setLoading(true)
+        getSections(parseQueryString())
+            .then(() => setLastUpdated(new Date()))
+            .finally(() => setLoading(false))
+    }
+
     return (
         <Master>
             <Head title="Section" />
@@ -100,7 +108,7 @@ export default function Index() {
                             <span>Section</span>
                         </div>
                     }
-                    subtitle={"Find all of your business's Section and there associated details."}
+                    subtitle={"Find all of your business's Sections and their associated details."}
                     action={
                         <CreateActionButton
                             module={'section'}
@@ -113,29 +121,54 @@ export default function Index() {
                 ></PageHeader>
             </div>
 
+            {/* Summary Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-blue-500 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-700">Total Sections</h3>
+                            <p className="text-3xl font-bold text-gray-900 mt-2 transition-all duration-500">
+                                <span className="inline-block animate-count-up" data-count={sections.length}>
+                                    {sections.length}
+                                </span>
+                            </p>
+                        </div>
+                        <div className="bg-blue-100 p-3 rounded-lg text-blue-600 transition-transform duration-300 hover:scale-110">
+                            <i className="ri-file-list-3-line text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-indigo-500 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h3 className="text-lg font-semibold text-gray-700">Languages</h3>
+                            <p className="text-3xl font-bold text-gray-900 mt-2 transition-all duration-500">
+                                <span className="inline-block animate-count-up" data-count={languages.length}>
+                                    {languages.length}
+                                </span>
+                            </p>
+                        </div>
+                        <div className="bg-indigo-100 p-3 rounded-lg text-indigo-600 transition-transform duration-300 hover:scale-110">
+                            <i className="ri-translate-2 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (
                 <OffCanvas id="sectionFormCanvas" title={pageData.title}>
                     {languages.length > 0 && <Form getSections={getSections} section={section} languages={languages} />}
                 </OffCanvas>
             )}
 
-            <div className="w-full">
-                <div className="bg-white rounded-lg transition-all duration-200">
-                    <div className="flex items-center p-4 border-b bg-gray-50">
-                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                        <h5 className="m-0 ml-2 text-lg font-semibold">Section List</h5>
-                    </div>
-                    <div className="p-0">
-                        <Table
-                            data={data}
-                            loading={loading}
-                            permission={can(permissions.section.list)}
-                            setLoading={setLoading}
-                            refresher={getSections}
-                        />
-                    </div>
-                </div>
-            </div>
+            <Table
+                data={data}
+                loading={loading}
+                permission={can(permissions.section.list)}
+                setLoading={setLoading}
+                refresher={getSections}
+            />
         </Master>
     )
 }

@@ -1,6 +1,7 @@
 import {
     CategoryScale,
     Chart as ChartJS,
+    Filler,
     Legend,
     LinearScale,
     LineElement,
@@ -10,20 +11,120 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
 
 export default function Chart({ labels, dataSet, title, dataLabel }) {
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top',
+                labels: {
+                    usePointStyle: true,
+                    boxWidth: 6,
+                    font: {
+                        size: 13,
+                        family: "'Poppins', sans-serif",
+                    },
+                },
             },
             title: {
                 display: true,
                 text: title,
+                font: {
+                    size: 16,
+                    weight: 'bold',
+                    family: "'Poppins', sans-serif",
+                },
+                padding: {
+                    top: 10,
+                    bottom: 20,
+                },
+                color: '#1a202c', // dark color
+            },
+            tooltip: {
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                titleColor: '#1a202c',
+                bodyColor: '#4a5568',
+                borderColor: '#e2e8f0',
+                borderWidth: 1,
+                padding: 12,
+                cornerRadius: 8,
+                displayColors: false,
+                titleFont: {
+                    size: 14,
+                    weight: 'bold',
+                    family: "'Poppins', sans-serif",
+                },
+                bodyFont: {
+                    size: 13,
+                    family: "'Poppins', sans-serif",
+                },
+                callbacks: {
+                    label: function (context) {
+                        return `${dataLabel}: ${context.parsed.y}`
+                    },
+                },
             },
         },
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                    drawBorder: false,
+                },
+                ticks: {
+                    font: {
+                        size: 12,
+                        family: "'Poppins', sans-serif",
+                    },
+                    color: '#718096',
+                },
+            },
+            y: {
+                grid: {
+                    color: 'rgba(226, 232, 240, 0.5)',
+                    drawBorder: false,
+                },
+                ticks: {
+                    font: {
+                        size: 12,
+                        family: "'Poppins', sans-serif",
+                    },
+                    color: '#718096',
+                    padding: 10,
+                },
+                beginAtZero: true,
+            },
+        },
+        elements: {
+            line: {
+                tension: 0.4, // Smoother curve
+            },
+            point: {
+                radius: 4,
+                hoverRadius: 6,
+                borderWidth: 2,
+                backgroundColor: 'white',
+            },
+        },
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'index',
+            intersect: false,
+        },
+    }
+
+    // Create gradient for background
+    const createGradient = (ctx) => {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400)
+        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)') // blue-500 with opacity
+        gradient.addColorStop(1, 'rgba(59, 130, 246, 0)')
+        return gradient
     }
 
     const data = {
@@ -32,11 +133,26 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
             {
                 label: dataLabel,
                 data: dataSet,
-                borderColor: 'RGB(102, 108, 255)',
-                backgroundColor: 'RGB(102, 108, 255)',
+                borderColor: '#3b82f6', // blue-500
+                backgroundColor: function (context) {
+                    const chart = context.chart
+                    const { ctx, chartArea } = chart
+                    if (!chartArea) {
+                        return 'rgba(59, 130, 246, 0.2)' // Fallback
+                    }
+                    return createGradient(ctx)
+                },
+                borderWidth: 2,
+                pointBackgroundColor: '#3b82f6',
+                pointBorderColor: '#ffffff',
+                fill: true,
             },
         ],
     }
 
-    return <Line options={options} data={data} />
+    return (
+        <div className="h-[400px] w-full">
+            <Line options={options} data={data} />
+        </div>
+    )
 }

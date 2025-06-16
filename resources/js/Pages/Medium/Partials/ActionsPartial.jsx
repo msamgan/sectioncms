@@ -7,7 +7,7 @@ export default function ActionsPartial({ setNotification, medium, getMedia }) {
         <Actions>
             <div
                 className={
-                    'bg-blue-500 text-white rounded py-1 hover:bg-blue-600 transition-all duration-200 flex items-center'
+                    'text-white rounded py-1 transition-all duration-200 flex items-center bg-gradient-to-r from-blue-500 to-indigo-600 h-input-height'
                 }
             >
                 <button
