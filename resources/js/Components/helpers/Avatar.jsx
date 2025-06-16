@@ -10,25 +10,36 @@
 export default function Avatar({ size = 'sm', bgColor = 'bg-blue-500', icon, className = '' }) {
     // Map Bootstrap color classes to Tailwind equivalents
     const colorMap = {
-        'bg-primary': 'bg-blue-500',
-        'bg-success': 'bg-green-500',
-        'bg-info': 'bg-cyan-500',
-        'bg-warning': 'bg-yellow-500',
-        'bg-secondary': 'bg-gray-500',
-        'bg-danger': 'bg-red-500',
+        'bg-primary': 'from-blue-500 to-blue-600',
+        'bg-success': 'from-green-500 to-green-600',
+        'bg-info': 'from-cyan-500 to-cyan-600',
+        'bg-warning': 'from-yellow-500 to-yellow-600',
+        'bg-secondary': 'from-gray-500 to-gray-600',
+        'bg-danger': 'from-red-500 to-red-600',
     }
 
-    // Convert Bootstrap color to Tailwind if it's a Bootstrap color
-    const tailwindBgColor = colorMap[bgColor] || bgColor
+    // Convert Bootstrap color to Tailwind gradient if it's a Bootstrap color
+    const gradientColor =
+        colorMap[bgColor] ||
+        (bgColor === 'transparent' ? '' : `from-${bgColor.split('-')[1]}-500 to-${bgColor.split('-')[1]}-600`)
+
+    // Determine if we should use a gradient
+    const useGradient = bgColor !== 'transparent'
+
+    // Determine background class
+    const backgroundClass = useGradient ? `bg-gradient-to-r ${gradientColor}` : bgColor
 
     // Determine size and margin based on size prop
-    const avatarSize = size === 'sm' ? 'h-8 w-8' : 'h-6 w-6'
+    const avatarSize = size === 'sm' ? 'h-9 w-9' : 'h-7 w-7'
     const margin = size === 'sm' ? 'mr-3' : 'mr-2'
+    const iconSize = size === 'sm' ? 'text-lg' : 'text-base'
 
     return (
         <div className={`inline-flex items-center justify-center ${avatarSize} ${margin} ${className}`}>
-            <span className={`flex items-center justify-center rounded-full ${tailwindBgColor} h-full w-full`}>
-                <i className={`${icon} text-white`}></i>
+            <span
+                className={`flex items-center justify-center rounded-lg ${backgroundClass} h-full w-full shadow-sm transition-all duration-200 hover:shadow-md`}
+            >
+                <i className={`${icon} text-white ${iconSize}`}></i>
             </span>
         </div>
     )

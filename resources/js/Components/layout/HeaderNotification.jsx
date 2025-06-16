@@ -5,13 +5,23 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function HeaderNotification({ user }) {
     const [unreadNotifications, setUnreadNotifications] = useState(0)
-    const [topFourNotifications, setTopFourNotifications] = useState([])
+    const [notifications, setNotifications] = useState([])
     const [showMenu, setShowMenu] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const dropdownRef = useRef(null)
+    const bellRef = useRef(null)
 
     useEffect(() => {
-        setUnreadNotifications(user.notifications.filter((notification) => !notification.read_at).length)
-        setTopFourNotifications(user.notifications.slice(0, 3))
+        // Simulate loading
+        setIsLoading(true)
+
+        setTimeout(() => {
+            if (user && user.notifications) {
+                setUnreadNotifications(user.notifications.filter((notification) => !notification.read_at).length)
+                setNotifications(user.notifications.slice(0, 5))
+                setIsLoading(false)
+            }
+        }, 500)
 
         // Close dropdown when clicking outside
         const handleClickOutside = (event) => {
@@ -24,10 +34,35 @@ export default function HeaderNotification({ user }) {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [])
+    }, [user])
+
+    // Bell animation when there are unread notifications
+    useEffect(() => {
+        if (unreadNotifications > 0 && bellRef.current) {
+            const interval = setInterval(() => {
+                bellRef.current.classList.add('animate-bell')
+                setTimeout(() => {
+                    if (bellRef.current) {
+                        bellRef.current.classList.remove('animate-bell')
+                    }
+                }, 1000)
+            }, 10000) // Animate every 10 seconds
+
+            return () => clearInterval(interval)
+        }
+    }, [unreadNotifications])
 
     const toggleMenu = () => {
         setShowMenu(!showMenu)
+
+        // If opening the menu, mark as read after a delay
+        if (!showMenu && unreadNotifications > 0) {
+            // In a real app, you would call an API to mark notifications as read
+            // This is just a simulation
+            // setTimeout(() => {
+            //     setUnreadNotifications(0)
+            // }, 3000)
+        }
     }
 
     // Function to determine notification icon based on notification type
@@ -66,95 +101,152 @@ export default function HeaderNotification({ user }) {
                 .replace('Deleted', '')
                 .toLowerCase() || 'default'
 
-        // Using a limited color palette with primary color as default
+        // More diverse color palette
         const colorMap = {
-            user: 'bg-primary',
-            role: 'bg-primary',
-            section: 'bg-primary',
-            language: 'bg-primary',
-            medium: 'bg-primary',
-            login: 'bg-green-500', // Keep green for positive actions
-            logout: 'bg-red-500', // Keep red for negative actions
-            default: 'bg-primary',
+            user: 'from-blue-500 to-blue-600',
+            role: 'from-indigo-500 to-indigo-600',
+            section: 'from-purple-500 to-purple-600',
+            language: 'from-cyan-500 to-cyan-600',
+            medium: 'from-green-500 to-green-600',
+            login: 'from-green-500 to-green-600',
+            logout: 'from-red-500 to-red-600',
+            default: 'from-blue-500 to-blue-600',
         }
 
         return colorMap[type] || colorMap.default
     }
 
+    // Get action text based on notification type
+    const getActionText = (notification) => {
+        const type = notification.type?.split('\\').pop() || ''
+
+        if (type.includes('Created')) return 'created'
+        if (type.includes('Updated')) return 'updated'
+        if (type.includes('Deleted')) return 'deleted'
+
+        return 'modified'
+    }
+
     return (
-        <li className="relative mr-4 xl:mr-1" ref={dropdownRef}>
+        <li className="relative" ref={dropdownRef}>
             <button
-                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors duration-200 focus:outline-none"
+                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
                 onClick={toggleMenu}
                 aria-expanded={showMenu}
+                aria-label={`Notifications ${unreadNotifications > 0 ? `(${unreadNotifications} unread)` : ''}`}
             >
-                <i className="ri-notification-2-line text-2xl"></i>
-                {unreadNotifications > 0 && (
-                    <span className="absolute top-0 right-0 h-5 w-5 flex items-center justify-center rounded-full bg-red-500 border-2 border-white text-xs font-bold text-white">
-                        {unreadNotifications > 9 ? '9+' : unreadNotifications}
-                    </span>
-                )}
+                <i ref={bellRef} className="ri-notification-3-line text-xl"></i>
             </button>
 
             <div
-                className={`absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-lg bg-white py-0 shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none transform transition-all duration-200 ease-in-out ${
+                className={`absolute right-0 z-50 mt-2 w-96 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none transform transition-all duration-300 ease-in-out ${
                     showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
                 }`}
             >
-                <div className="border-b border-gray-200">
-                    <div className="flex items-center justify-between px-4 py-3">
-                        <h6 className="text-sm font-semibold text-gray-800">Notifications</h6>
+                {/* Header */}
+                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-t-xl">
+                    <div className="flex items-center justify-between px-5 py-4">
+                        <div className="flex items-center">
+                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mr-3">
+                                <i className="ri-notification-3-line"></i>
+                            </div>
+                            <h6 className="text-base font-semibold">Notifications</h6>
+                        </div>
                         {unreadNotifications > 0 && (
                             <div className="flex items-center">
-                                <span className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                                <span className="rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-medium text-white">
                                     {unreadNotifications} New
                                 </span>
                             </div>
                         )}
                     </div>
+
+                    {/* Tabs - For future expansion */}
+                    <div className="flex border-t border-white/10">
+                        <button className="flex-1 py-2 text-sm font-medium text-white/90 hover:bg-white/10 transition-colors duration-200 border-b-2 border-white">
+                            All
+                        </button>
+                        <button className="flex-1 py-2 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors duration-200">
+                            Unread
+                        </button>
+                    </div>
                 </div>
 
-                <div className="max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    {topFourNotifications.length === 0 ? (
-                        <div className="py-8 text-center">
-                            <i className="ri-notification-off-line text-3xl text-gray-400 mb-2"></i>
-                            <p className="text-sm text-gray-500">No notifications yet</p>
+                {/* Notification List */}
+                <div className="max-h-[350px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                    {isLoading ? (
+                        <div className="py-12 flex flex-col items-center justify-center">
+                            <div className="flex space-x-2 mb-3">
+                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
+                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-150"></div>
+                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-300"></div>
+                            </div>
+                            <p className="text-sm text-gray-500">Loading notifications...</p>
+                        </div>
+                    ) : notifications.length === 0 ? (
+                        <div className="py-12 flex flex-col items-center justify-center">
+                            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 text-gray-400">
+                                <i className="ri-notification-off-line text-3xl"></i>
+                            </div>
+                            <h3 className="text-base font-medium text-gray-700 mb-1">No notifications yet</h3>
+                            <p className="text-sm text-gray-500 max-w-xs text-center">
+                                When you get notifications, they'll show up here.
+                            </p>
                         </div>
                     ) : (
-                        <ul className="divide-y divide-gray-200">
-                            {topFourNotifications.map((notification, index) => (
+                        <ul className="divide-y divide-gray-100">
+                            {notifications.map((notification, index) => (
                                 <li
                                     key={index}
-                                    className={`hover:bg-gray-50 cursor-pointer transition-colors duration-150 ${
-                                        !notification.read_at ? 'bg-primary/5' : ''
+                                    className={`group hover:bg-gray-50 cursor-pointer transition-all duration-200 ${
+                                        !notification.read_at ? 'bg-blue-50/50' : ''
                                     }`}
                                 >
                                     <div className="flex p-4 items-start">
-                                        <div
-                                            className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mr-3 ${getNotificationColor(notification)}`}
-                                        >
-                                            <i
-                                                className={`${getNotificationIcon(notification)} text-white text-sm`}
-                                            ></i>
+                                        <div className="flex-shrink-0 mr-3">
+                                            <div
+                                                className={`w-10 h-10 rounded-full bg-gradient-to-r ${getNotificationColor(notification)} flex items-center justify-center text-white shadow-sm group-hover:shadow-md transition-all duration-200 group-hover:scale-105`}
+                                            >
+                                                <i className={`${getNotificationIcon(notification)} text-base`}></i>
+                                            </div>
                                         </div>
                                         <div className="flex-grow min-w-0">
-                                            <h6
-                                                className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} mb-0.5 line-clamp-1`}
-                                            >
-                                                {notification.data.title}
-                                            </h6>
-                                            <p className="text-xs text-gray-600 mb-1 line-clamp-2">
+                                            <div className="flex items-center justify-between mb-1">
+                                                <h6
+                                                    className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} line-clamp-1`}
+                                                >
+                                                    {notification.data.title}
+                                                </h6>
+                                                <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
+                                                    {formatDuration(notification.created_at)}
+                                                </span>
+                                            </div>
+                                            <p className="text-sm text-gray-600 mb-1 line-clamp-2">
                                                 {notification.data.message}
                                             </p>
-                                            <p className="text-xs text-gray-500">
-                                                {formatDuration(notification.created_at)}
-                                            </p>
-                                        </div>
-                                        {!notification.read_at && (
-                                            <div className="ml-2 mt-1">
-                                                <span className="h-2 w-2 rounded-full bg-primary block"></span>
+                                            <div className="flex items-center mt-1">
+                                                <span
+                                                    className={`text-xs px-2 py-0.5 rounded-full ${
+                                                        getActionText(notification) === 'created'
+                                                            ? 'bg-green-100 text-green-700'
+                                                            : getActionText(notification) === 'updated'
+                                                              ? 'bg-blue-100 text-blue-700'
+                                                              : getActionText(notification) === 'deleted'
+                                                                ? 'bg-red-100 text-red-700'
+                                                                : 'bg-gray-100 text-gray-700'
+                                                    }`}
+                                                >
+                                                    {getActionText(notification)}
+                                                </span>
+
+                                                {!notification.read_at && (
+                                                    <span className="ml-2 flex items-center text-xs text-primary">
+                                                        <span className="h-1.5 w-1.5 rounded-full bg-primary mr-1 animate-pulse"></span>
+                                                        Unread
+                                                    </span>
+                                                )}
                                             </div>
-                                        )}
+                                        </div>
                                     </div>
                                 </li>
                             ))}
@@ -162,13 +254,20 @@ export default function HeaderNotification({ user }) {
                     )}
                 </div>
 
-                <div className="border-t border-gray-200 p-3">
-                    <Link
-                        className="flex justify-center items-center w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/80 transition-colors duration-200 shadow-sm"
-                        href={routes.notifications.index}
-                    >
-                        <span>View all notifications</span>
-                    </Link>
+                {/* Footer */}
+                <div className="border-t border-gray-100 p-4">
+                    <div className="flex justify-between items-center">
+                        <button className="text-sm text-gray-600 hover:text-primary transition-colors duration-200">
+                            Mark all as read
+                        </button>
+                        <Link
+                            className="flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-sm font-medium text-white hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+                            href={routes.notifications.index}
+                        >
+                            <span>View all</span>
+                            <i className="ri-arrow-right-line ml-2"></i>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </li>

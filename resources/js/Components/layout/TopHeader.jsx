@@ -1,30 +1,50 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.jsx'
 import TopHeaderRight from '@/Components/layout/TopHeaderRight.jsx'
+import { Link } from '@inertiajs/react'
+import { useEffect, useState } from 'react'
 
 export default function TopHeader({ user }) {
+    const [scrolled, setScrolled] = useState(false)
+
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                setScrolled(true)
+            } else {
+                setScrolled(false)
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     return (
-        <nav className="flex items-center bg-white w-full" id="layout-navbar">
-            <div className="w-full flex justify-between py-3">
+        <nav
+            className={`flex items-center bg-white w-full transition-all duration-300 ${
+                scrolled ? 'shadow-md' : 'border-b border-gray-100'
+            }`}
+            id="layout-navbar"
+        >
+            <div className="w-full flex justify-between py-3 px-4">
+                {/* Left Side - Logo and Mobile Menu Button */}
                 <div className="flex items-center">
-                    <div className="hidden xl:flex items-center">
-                        <a href="/" className="flex items-center gap-3">
-                            <span className="block">
-                                <span className="text-primary">
-                                    <ApplicationLogo className="fill-current block h-10 w-auto text-gray-800" />
-                                </span>
-                            </span>
-                            <div className="flex flex-col space-y-1">
-                                <span className="font-medium ml-4 text-gray-800">
-                                    Welcome, {user.name}{' '}
-                                    <span className="text-primary">({user.role.display_name})</span>
-                                </span>
-                                <span className="font-medium ml-4 text-sm text-gray-600">{user.business?.name}</span>
+                    {/* Logo - Visible on all screens */}
+                    <Link href="/" className="flex items-center">
+                        <div className="flex-shrink-0 relative">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full blur-sm opacity-30"></div>
+                            <div className="relative">
+                                <ApplicationLogo className="fill-current block h-9 w-auto text-primary" />
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                        <span className="ml-2 font-bold text-gray-800 hidden sm:block">SectionCMS</span>
+                    </Link>
                 </div>
 
-                <div>
+                {/* Right Side - Search and User Actions */}
+                <div className="flex items-center">
+                    {/* Header Right Components */}
                     <TopHeaderRight user={user} />
                 </div>
             </div>

@@ -43,10 +43,10 @@ export default function Form({ getSections, section = null, languages }) {
 
     return (
         <form onSubmit={submit}>
-            <div className="mb-6 w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300">
-                <div className="border-b border-gray-200 bg-gray-50 p-4">
+            <div className="mb-6 w-full md:w-2/3 border border-gray-200 rounded-xl overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                <div className="border-b border-gray-200 bg-gradient-to-r from-blue-500 to-indigo-600 p-5">
                     <div className="flex items-center">
-                        <div className="bg-primary rounded-md p-1">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 shadow-md">
                             <Avatar
                                 size="sm"
                                 bgColor="transparent"
@@ -54,12 +54,12 @@ export default function Form({ getSections, section = null, languages }) {
                                 className="text-white"
                             />
                         </div>
-                        <h5 className="text-lg font-medium text-primary ml-3">Section Details</h5>
+                        <h5 className="text-lg font-medium text-white ml-3">Section Details</h5>
                     </div>
                 </div>
-                <div className="p-6 bg-white">
+                <div className="p-6 bg-gray-50">
                     <div className="space-y-6">
-                        <div className="w-full">
+                        <div className="w-full bg-white p-5 rounded-lg shadow-sm">
                             <div className="relative mb-4">
                                 <InputLabel
                                     htmlFor="user-name"
@@ -76,12 +76,13 @@ export default function Form({ getSections, section = null, languages }) {
                                     placeholder="Home Page - Hero"
                                     required={true}
                                     isFocused={true}
-                                    className="transition-all duration-200 focus:border-primary rounded-md hover:border-primary"
+                                    icon="ri-edit-line"
+                                    className="transition-all duration-300"
                                 />
                                 <InputError className="mt-2" message={errors.name} />
                             </div>
                         </div>
-                        <div className="w-full">
+                        <div className="w-full bg-white p-5 rounded-lg shadow-sm">
                             <DynamicFields
                                 dataFields={data.fields}
                                 setData={setData}
@@ -94,10 +95,10 @@ export default function Form({ getSections, section = null, languages }) {
             </div>
 
             {showSaveButton && (
-                <div className="flex justify-end w-2/3 gap-4">
+                <div className="flex justify-end w-full md:w-2/3 gap-4">
                     <button
                         disabled={processing}
-                        className="bg-primary hover:bg-primary/90 text-white flex items-center transition-all duration-300 px-4 py-2 rounded-md font-medium text-sm"
+                        className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-lg hover:translate-y-[-1px] text-white flex items-center transition-all duration-300 px-5 py-2.5 rounded-lg font-medium text-sm shadow-md"
                     >
                         <i className="ri-save-line mr-2"></i>
                         Save Changes
@@ -111,7 +112,7 @@ export default function Form({ getSections, section = null, languages }) {
                         leaveFrom="opacity-100 transform scale-100"
                         leaveTo="opacity-0 transform scale-95"
                     >
-                        <div className="flex items-center mt-2 bg-green-50 px-4 py-2 rounded-md border border-green-200">
+                        <div className="flex items-center bg-green-50 px-4 py-2.5 rounded-lg border border-green-200 shadow-sm">
                             <div className="text-green-500 mr-2">
                                 <i className="ri-check-line"></i>
                             </div>

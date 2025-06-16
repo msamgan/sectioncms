@@ -8,11 +8,19 @@ import { useEffect, useState } from 'react'
 export default function Master({ children, hideMenu = false }) {
     const { auth } = usePage().props
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+    const [pageLoaded, setPageLoaded] = useState(false)
 
     useEffect(() => {
         document.documentElement.style.scrollBehavior = 'smooth'
+
+        // Add a slight delay to show page load animation
+        const timer = setTimeout(() => {
+            setPageLoaded(true)
+        }, 100)
+
         return () => {
             document.documentElement.style.scrollBehavior = ''
+            clearTimeout(timer)
         }
     }, [])
 
@@ -21,7 +29,7 @@ export default function Master({ children, hideMenu = false }) {
     }
 
     return (
-        <div className="flex min-h-screen w-full bg-white">
+        <div className="flex min-h-screen w-full bg-gray-50">
             {!hideMenu && <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
 
             <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 transition-all duration-250">
@@ -31,21 +39,33 @@ export default function Master({ children, hideMenu = false }) {
             </header>
 
             <div
-                className={`flex flex-col flex-1 transition-all duration-250 pt-16 ${!hideMenu ? (sidebarCollapsed ? 'ml-16' : 'ml-64') : ''}`}
+                className={`flex flex-col flex-1 transition-all duration-250 pt-16 ${
+                    !hideMenu ? (sidebarCollapsed ? 'ml-20' : 'ml-64') : ''
+                } ${pageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
             >
-                <StatusBar />
+                <div className="w-full max-w-7xl mx-auto">
+                    <StatusBar />
+                </div>
 
-                <main className="flex-grow w-full my-section">
-                    <div className="w-full px-4 md:px-6">
-                        <div className="bg-white rounded-panel transition-all duration-250">{children}</div>
-                    </div>
+                <main className="flex-grow w-full py-6">
+                    <div className="w-full px-4 md:px-6 max-w-7xl mx-auto">{children}</div>
                 </main>
 
                 <div className="w-full border-t border-gray-100 bg-white mt-auto">
-                    <div className="w-full px-4 md:px-6">
+                    <div className="w-full px-4 md:px-6 max-w-7xl mx-auto">
                         <Footer />
                     </div>
                 </div>
+            </div>
+
+            {/* Quick Help Button */}
+            <div className="fixed bottom-6 right-6 z-50">
+                <button
+                    className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
+                    aria-label="Get Help"
+                >
+                    <i className="ri-question-line text-xl"></i>
+                </button>
             </div>
         </div>
     )
