@@ -49,7 +49,7 @@ export default function DeleteEntityForm({ action, refresh, className = '' }) {
     return (
         <section className={`${className}`}>
             <button
-                className="group text-white cursor-pointer transition-all duration-300 bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:ring-offset-1 rounded-md h-input-height px-input-padding-x py-input-padding-y text-sm inline-flex items-center"
+                className="group text-white cursor-pointer transition-all duration-300 hover:bg-red-500 focus:outline-none focus:ring-1 focus:ring-red-500 focus:ring-offset-1 rounded-md h-input-height px-input-padding-x py-input-padding-y text-sm inline-flex items-center bg-gradient-to-r from-red-500 to-red-600"
                 onClick={confirmUserDeletion}
             >
                 <i className="ri-delete-bin-7-line mr-2"></i>
