@@ -43,7 +43,7 @@ export default function HeaderNotification({ user }) {
         if (activeTab === 'all') {
             setFilteredNotifications(notifications)
         } else if (activeTab === 'unread') {
-            setFilteredNotifications(notifications.filter(notification => !notification.read_at))
+            setFilteredNotifications(notifications.filter((notification) => !notification.read_at))
         }
     }, [activeTab, notifications])
 
@@ -139,166 +139,164 @@ export default function HeaderNotification({ user }) {
     }
 
     return (
-        <li className="relative" ref={dropdownRef}>
-            <button
-                className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
-                onClick={toggleMenu}
-                aria-expanded={showMenu}
-                aria-label={`Notifications ${unreadNotifications > 0 ? `(${unreadNotifications} unread)` : ''}`}
-            >
-                <i ref={bellRef} className="ri-notification-3-line text-xl"></i>
-            </button>
+        <ul>
+            <li className="relative" ref={dropdownRef}>
+                <button
+                    className="flex items-center justify-center rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                    onClick={toggleMenu}
+                    aria-expanded={showMenu}
+                    aria-label={`Notifications ${unreadNotifications > 0 ? `(${unreadNotifications} unread)` : ''}`}
+                >
+                    <i ref={bellRef} className="ri-notification-3-line text-xl"></i>
+                </button>
 
-            <div
-                className={`absolute right-0 z-50 mt-2 w-96 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none transform transition-all duration-300 ease-in-out ${
-                    showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
-                }`}
-            >
-                {/* Header */}
-                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-t-xl">
-                    <div className="flex items-center justify-between px-5 py-4">
-                        <div className="flex items-center">
-                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mr-3">
-                                <i className="ri-notification-3-line"></i>
-                            </div>
-                            <h6 className="text-base font-semibold">Notifications</h6>
-                        </div>
-                        {unreadNotifications > 0 && (
+                <div
+                    className={`absolute right-0 z-50 mt-2 w-96 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black ring-opacity-5 focus:outline-none transform transition-all duration-300 ease-in-out ${
+                        showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                    }`}
+                >
+                    {/* Header */}
+                    <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-t-xl">
+                        <div className="flex items-center justify-between px-5 py-4">
                             <div className="flex items-center">
-                                <span className="rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-medium text-white">
-                                    {unreadNotifications} New
-                                </span>
+                                <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mr-3">
+                                    <i className="ri-notification-3-line"></i>
+                                </div>
+                                <h6 className="text-base font-semibold">Notifications</h6>
                             </div>
+                            {unreadNotifications > 0 && (
+                                <div className="flex items-center">
+                                    <span className="rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-medium text-white">
+                                        {unreadNotifications} New
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Notification Tabs */}
+                        <div className="flex border-t border-white/10">
+                            <button
+                                className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
+                                    activeTab === 'all' ? 'text-white/90 border-b-2 border-white' : 'text-white/70'
+                                }`}
+                                onClick={() => setActiveTab('all')}
+                            >
+                                All
+                            </button>
+                            <button
+                                className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
+                                    activeTab === 'unread' ? 'text-white/90 border-b-2 border-white' : 'text-white/70'
+                                }`}
+                                onClick={() => setActiveTab('unread')}
+                            >
+                                Unread
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Notification List */}
+                    <div className="max-h-[350px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                        {isLoading ? (
+                            <div className="py-12 flex flex-col items-center justify-center">
+                                <div className="flex space-x-2 mb-3">
+                                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
+                                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-150"></div>
+                                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-300"></div>
+                                </div>
+                                <p className="text-sm text-gray-500">Loading notifications...</p>
+                            </div>
+                        ) : filteredNotifications.length === 0 ? (
+                            <div className="py-12 flex flex-col items-center justify-center">
+                                <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 text-gray-400">
+                                    <i className="ri-notification-off-line text-3xl"></i>
+                                </div>
+                                <h3 className="text-base font-medium text-gray-700 mb-1">
+                                    {activeTab === 'all' ? 'No notifications yet' : 'No unread notifications'}
+                                </h3>
+                                <p className="text-sm text-gray-500 max-w-xs text-center">
+                                    {activeTab === 'all'
+                                        ? "When you get notifications, they'll show up here."
+                                        : 'All your notifications have been read.'}
+                                </p>
+                            </div>
+                        ) : (
+                            <ul className="divide-y divide-gray-100">
+                                {filteredNotifications.map((notification, index) => (
+                                    <li
+                                        key={index}
+                                        className={`group hover:bg-gray-50 cursor-pointer transition-all duration-200 ${
+                                            !notification.read_at ? 'bg-blue-50/50' : ''
+                                        }`}
+                                    >
+                                        <div className="flex p-4 items-start">
+                                            <div className="flex-shrink-0 mr-3">
+                                                <div
+                                                    className={`w-10 h-10 rounded-full bg-gradient-to-r ${getNotificationColor(notification)} flex items-center justify-center text-white shadow-sm group-hover:shadow-md transition-all duration-200 group-hover:scale-105`}
+                                                >
+                                                    <i className={`${getNotificationIcon(notification)} text-base`}></i>
+                                                </div>
+                                            </div>
+                                            <div className="flex-grow min-w-0">
+                                                <div className="flex items-center justify-between mb-1">
+                                                    <h6
+                                                        className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} line-clamp-1`}
+                                                    >
+                                                        {notification.data.title}
+                                                    </h6>
+                                                    <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
+                                                        {formatDuration(notification.created_at)}
+                                                    </span>
+                                                </div>
+                                                <p className="text-sm text-gray-600 mb-1 line-clamp-2">
+                                                    {notification.data.message}
+                                                </p>
+                                                <div className="flex items-center mt-1">
+                                                    <span
+                                                        className={`text-xs px-2 py-0.5 rounded-full ${
+                                                            getActionText(notification) === 'created'
+                                                                ? 'bg-green-100 text-green-700'
+                                                                : getActionText(notification) === 'updated'
+                                                                  ? 'bg-blue-100 text-blue-700'
+                                                                  : getActionText(notification) === 'deleted'
+                                                                    ? 'bg-red-100 text-red-700'
+                                                                    : 'bg-gray-100 text-gray-700'
+                                                        }`}
+                                                    >
+                                                        {getActionText(notification)}
+                                                    </span>
+
+                                                    {!notification.read_at && (
+                                                        <span className="ml-2 flex items-center text-xs text-primary">
+                                                            <span className="h-1.5 w-1.5 rounded-full bg-primary mr-1 animate-pulse"></span>
+                                                            Unread
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
                         )}
                     </div>
 
-                    {/* Notification Tabs */}
-                    <div className="flex border-t border-white/10">
-                        <button
-                            className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
-                                activeTab === 'all'
-                                    ? 'text-white/90 border-b-2 border-white'
-                                    : 'text-white/70'
-                            }`}
-                            onClick={() => setActiveTab('all')}
-                        >
-                            All
-                        </button>
-                        <button
-                            className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
-                                activeTab === 'unread'
-                                    ? 'text-white/90 border-b-2 border-white'
-                                    : 'text-white/70'
-                            }`}
-                            onClick={() => setActiveTab('unread')}
-                        >
-                            Unread
-                        </button>
+                    {/* Footer */}
+                    <div className="border-t border-gray-100 p-4">
+                        <div className="flex justify-between items-center">
+                            <button className="text-sm text-gray-600 hover:text-primary transition-colors duration-200">
+                                Mark all as read
+                            </button>
+                            <Link
+                                className="flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-sm font-medium text-white hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
+                                href={routes.notifications.index}
+                            >
+                                <span>View all</span>
+                                <i className="ri-arrow-right-line ml-2"></i>
+                            </Link>
+                        </div>
                     </div>
                 </div>
-
-                {/* Notification List */}
-                <div className="max-h-[350px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                    {isLoading ? (
-                        <div className="py-12 flex flex-col items-center justify-center">
-                            <div className="flex space-x-2 mb-3">
-                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce"></div>
-                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-150"></div>
-                                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-300"></div>
-                            </div>
-                            <p className="text-sm text-gray-500">Loading notifications...</p>
-                        </div>
-                    ) : filteredNotifications.length === 0 ? (
-                        <div className="py-12 flex flex-col items-center justify-center">
-                            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 text-gray-400">
-                                <i className="ri-notification-off-line text-3xl"></i>
-                            </div>
-                            <h3 className="text-base font-medium text-gray-700 mb-1">
-                                {activeTab === 'all' ? 'No notifications yet' : 'No unread notifications'}
-                            </h3>
-                            <p className="text-sm text-gray-500 max-w-xs text-center">
-                                {activeTab === 'all'
-                                    ? 'When you get notifications, they\'ll show up here.'
-                                    : 'All your notifications have been read.'}
-                            </p>
-                        </div>
-                    ) : (
-                        <ul className="divide-y divide-gray-100">
-                            {filteredNotifications.map((notification, index) => (
-                                <li
-                                    key={index}
-                                    className={`group hover:bg-gray-50 cursor-pointer transition-all duration-200 ${
-                                        !notification.read_at ? 'bg-blue-50/50' : ''
-                                    }`}
-                                >
-                                    <div className="flex p-4 items-start">
-                                        <div className="flex-shrink-0 mr-3">
-                                            <div
-                                                className={`w-10 h-10 rounded-full bg-gradient-to-r ${getNotificationColor(notification)} flex items-center justify-center text-white shadow-sm group-hover:shadow-md transition-all duration-200 group-hover:scale-105`}
-                                            >
-                                                <i className={`${getNotificationIcon(notification)} text-base`}></i>
-                                            </div>
-                                        </div>
-                                        <div className="flex-grow min-w-0">
-                                            <div className="flex items-center justify-between mb-1">
-                                                <h6
-                                                    className={`text-sm ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'} line-clamp-1`}
-                                                >
-                                                    {notification.data.title}
-                                                </h6>
-                                                <span className="text-xs text-gray-500 ml-2 whitespace-nowrap">
-                                                    {formatDuration(notification.created_at)}
-                                                </span>
-                                            </div>
-                                            <p className="text-sm text-gray-600 mb-1 line-clamp-2">
-                                                {notification.data.message}
-                                            </p>
-                                            <div className="flex items-center mt-1">
-                                                <span
-                                                    className={`text-xs px-2 py-0.5 rounded-full ${
-                                                        getActionText(notification) === 'created'
-                                                            ? 'bg-green-100 text-green-700'
-                                                            : getActionText(notification) === 'updated'
-                                                              ? 'bg-blue-100 text-blue-700'
-                                                              : getActionText(notification) === 'deleted'
-                                                                ? 'bg-red-100 text-red-700'
-                                                                : 'bg-gray-100 text-gray-700'
-                                                    }`}
-                                                >
-                                                    {getActionText(notification)}
-                                                </span>
-
-                                                {!notification.read_at && (
-                                                    <span className="ml-2 flex items-center text-xs text-primary">
-                                                        <span className="h-1.5 w-1.5 rounded-full bg-primary mr-1 animate-pulse"></span>
-                                                        Unread
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-
-                {/* Footer */}
-                <div className="border-t border-gray-100 p-4">
-                    <div className="flex justify-between items-center">
-                        <button className="text-sm text-gray-600 hover:text-primary transition-colors duration-200">
-                            Mark all as read
-                        </button>
-                        <Link
-                            className="flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-sm font-medium text-white hover:shadow-md transition-all duration-200 transform hover:-translate-y-0.5"
-                            href={routes.notifications.index}
-                        >
-                            <span>View all</span>
-                            <i className="ri-arrow-right-line ml-2"></i>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </li>
+            </li>
+        </ul>
     )
 }

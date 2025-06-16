@@ -2,6 +2,7 @@ import CreateActionButton from '@/Components/CreateActionButton.jsx'
 import DeleteActionButton from '@/Components/DeleteActionButton.jsx'
 import EditActionButton from '@/Components/EditActionButton.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
 import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
@@ -16,7 +17,7 @@ import { moduleConstants } from '@/Utils/constants.js'
 import { parseQueryString } from '@/Utils/methods.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { languages as _languages } from '@actions/LanguageController.js'
-import { sections as _sections, destroy, show } from '@actions/SectionController.js'
+import { keysCount as _keysCount, sections as _sections, destroy, show } from '@actions/SectionController.js'
 import { Head } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -29,11 +30,15 @@ export default function Index() {
     const [loading, setLoading] = useState(true)
     const [pageData, setPageData] = useState(pageObject(null))
     const [languages, setLanguages] = useState([])
+    const [keysCount, setKeysCount] = useState(0)
+
     const getSections = async (query) => setSections(await _sections.data({ params: query }))
 
     const getSection = async (id) => setSection(await show.data({ params: { section: id } }))
 
     const getLanguages = async () => setLanguages(await _languages.data({}))
+
+    const getKeysCount = async () => setKeysCount(await _keysCount.data({}))
 
     const editSection = (section) => {
         getSection(section.id).then()
@@ -78,6 +83,7 @@ export default function Index() {
         }
 
         getLanguages().then()
+        getKeysCount().then()
     }, [])
 
     useEffect(() => {
@@ -123,37 +129,13 @@ export default function Index() {
 
             {/* Summary Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-blue-500 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-700">Total Sections</h3>
-                            <p className="text-3xl font-bold text-gray-900 mt-2 transition-all duration-500">
-                                <span className="inline-block animate-count-up" data-count={sections.length}>
-                                    {sections.length}
-                                </span>
-                            </p>
-                        </div>
-                        <div className="bg-blue-100 p-3 rounded-lg text-blue-600 transition-transform duration-300 hover:scale-110">
-                            <i className="ri-file-list-3-line text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="bg-white rounded-xl shadow-sm p-5 border-l-4 border-indigo-500 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <h3 className="text-lg font-semibold text-gray-700">Languages</h3>
-                            <p className="text-3xl font-bold text-gray-900 mt-2 transition-all duration-500">
-                                <span className="inline-block animate-count-up" data-count={languages.length}>
-                                    {languages.length}
-                                </span>
-                            </p>
-                        </div>
-                        <div className="bg-indigo-100 p-3 rounded-lg text-indigo-600 transition-transform duration-300 hover:scale-110">
-                            <i className="ri-translate-2 text-2xl"></i>
-                        </div>
-                    </div>
-                </div>
+                {sections.length > 0 ? (
+                    <StatsCard icon={moduleConstants.section.icon} label="Total Sections" count={sections.length} />
+                ) : null}
+                {languages.length > 0 ? (
+                    <StatsCard icon={moduleConstants.language.icon} label="Languages" count={languages.length} />
+                ) : null}
+                {keysCount > 0 ? <StatsCard icon={'ri-key-2-line'} label="Active Keys" count={keysCount} /> : null}
             </div>
 
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (

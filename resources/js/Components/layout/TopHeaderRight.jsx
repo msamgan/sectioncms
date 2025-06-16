@@ -50,7 +50,9 @@ export default function TopHeaderRight({ user }) {
                                 onMouseEnter={() => setActiveButton(action.id)}
                                 onMouseLeave={() => setActiveButton(null)}
                             >
-                                <i className={`${action.icon} ${activeButton === action.id ? 'animate-pulse' : ''}`}></i>
+                                <i
+                                    className={`${action.icon} ${activeButton === action.id ? 'animate-pulse' : ''}`}
+                                ></i>
                             </Link>
                         ) : (
                             <button

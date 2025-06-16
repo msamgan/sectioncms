@@ -57,16 +57,6 @@ export default function Master({ children, hideMenu = false }) {
                     </div>
                 </div>
             </div>
-
-            {/* Quick Help Button */}
-            <div className="fixed bottom-6 right-6 z-50">
-                <button
-                    className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
-                    aria-label="Get Help"
-                >
-                    <i className="ri-question-line text-xl"></i>
-                </button>
-            </div>
         </div>
     )
 }

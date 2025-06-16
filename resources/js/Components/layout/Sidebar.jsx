@@ -45,7 +45,7 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
             </div>
 
             {/* Toggle Button */}
-            <div className="absolute top-20 -right-5">
+            <div className="absolute top-20 -right-5 mt-3">
                 <button
                     onClick={onToggle}
                     className="p-1.5 rounded-full bg-white text-primary border border-gray-100 shadow-md hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-all duration-250"
