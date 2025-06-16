@@ -6,8 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 export default function HeaderNotification({ user }) {
     const [unreadNotifications, setUnreadNotifications] = useState(0)
     const [notifications, setNotifications] = useState([])
+    const [filteredNotifications, setFilteredNotifications] = useState([])
     const [showMenu, setShowMenu] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
+    const [activeTab, setActiveTab] = useState('all')
     const dropdownRef = useRef(null)
     const bellRef = useRef(null)
 
@@ -35,6 +37,15 @@ export default function HeaderNotification({ user }) {
             document.removeEventListener('mousedown', handleClickOutside)
         }
     }, [user])
+
+    // Filter notifications based on active tab
+    useEffect(() => {
+        if (activeTab === 'all') {
+            setFilteredNotifications(notifications)
+        } else if (activeTab === 'unread') {
+            setFilteredNotifications(notifications.filter(notification => !notification.read_at))
+        }
+    }, [activeTab, notifications])
 
     // Bell animation when there are unread notifications
     useEffect(() => {
@@ -161,12 +172,26 @@ export default function HeaderNotification({ user }) {
                         )}
                     </div>
 
-                    {/* Tabs - For future expansion */}
+                    {/* Notification Tabs */}
                     <div className="flex border-t border-white/10">
-                        <button className="flex-1 py-2 text-sm font-medium text-white/90 hover:bg-white/10 transition-colors duration-200 border-b-2 border-white">
+                        <button
+                            className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
+                                activeTab === 'all'
+                                    ? 'text-white/90 border-b-2 border-white'
+                                    : 'text-white/70'
+                            }`}
+                            onClick={() => setActiveTab('all')}
+                        >
                             All
                         </button>
-                        <button className="flex-1 py-2 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors duration-200">
+                        <button
+                            className={`flex-1 py-2 text-sm font-medium hover:bg-white/10 transition-colors duration-200 ${
+                                activeTab === 'unread'
+                                    ? 'text-white/90 border-b-2 border-white'
+                                    : 'text-white/70'
+                            }`}
+                            onClick={() => setActiveTab('unread')}
+                        >
                             Unread
                         </button>
                     </div>
@@ -183,19 +208,23 @@ export default function HeaderNotification({ user }) {
                             </div>
                             <p className="text-sm text-gray-500">Loading notifications...</p>
                         </div>
-                    ) : notifications.length === 0 ? (
+                    ) : filteredNotifications.length === 0 ? (
                         <div className="py-12 flex flex-col items-center justify-center">
                             <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 text-gray-400">
                                 <i className="ri-notification-off-line text-3xl"></i>
                             </div>
-                            <h3 className="text-base font-medium text-gray-700 mb-1">No notifications yet</h3>
+                            <h3 className="text-base font-medium text-gray-700 mb-1">
+                                {activeTab === 'all' ? 'No notifications yet' : 'No unread notifications'}
+                            </h3>
                             <p className="text-sm text-gray-500 max-w-xs text-center">
-                                When you get notifications, they'll show up here.
+                                {activeTab === 'all'
+                                    ? 'When you get notifications, they\'ll show up here.'
+                                    : 'All your notifications have been read.'}
                             </p>
                         </div>
                     ) : (
                         <ul className="divide-y divide-gray-100">
-                            {notifications.map((notification, index) => (
+                            {filteredNotifications.map((notification, index) => (
                                 <li
                                     key={index}
                                     className={`group hover:bg-gray-50 cursor-pointer transition-all duration-200 ${
