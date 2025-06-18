@@ -46,7 +46,6 @@ export default function Form({ getSections, section = null, languages }) {
             <FormCard
                 icon={moduleConstants.section.icon}
                 title="Section Details"
-                className="mb-6 w-full md:w-2/3 border border-gray-200 rounded-md overflow-hidden transition-all duration-300"
             >
                 <div className="w-full">
                     <div className="relative mb-4">
