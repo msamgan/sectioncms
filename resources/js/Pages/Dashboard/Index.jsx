@@ -21,7 +21,7 @@ export default function Dashboard({ auth }) {
         <Master>
             <Head title="Dashboard" />
 
-            {/* Welcome Banner */}
+            {/* Welcome, Banner */}
             <WelcomeBanner user={auth.user} className="mb-8 mt-6" />
 
             {/* Stats Overview Section */}
