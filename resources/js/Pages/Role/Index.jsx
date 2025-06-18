@@ -5,10 +5,11 @@ import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
 import IsActiveToggle from '@/Components/helpers/IsActiveToggle.jsx'
 import Name from '@/Components/helpers/Name.jsx'
+import StatsCard from '@/Components/StatsCard.jsx'
+import StatsGrid, { StatsGridItem } from '@/Components/layout/StatsGrid.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
-import StatsCard from '@/Components/StatsCard.jsx'
 import usePermissions from '@/Hooks/usePermissions'
 import Master from '@/Layouts/Master.jsx'
 import { pageObject } from '@/Pages/Role/helper.js'
@@ -115,18 +116,18 @@ export default function Index() {
                 ></PageHeader>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
-                <div>
+            <StatsGrid>
+                <StatsGridItem>
                     <StatsCard count={roles.length} label="Total Roles" icon={moduleConstants.role.icon} />
-                </div>
-                <div>
+                </StatsGridItem>
+                <StatsGridItem>
                     <StatsCard
                         count={roles.reduce((acc, role) => acc + role.users_count, 0)}
                         label="Total Users Assigned"
                         icon={moduleConstants.user.icon}
                     />
-                </div>
-            </div>
+                </StatsGridItem>
+            </StatsGrid>
 
             {can([permissions.role.view, permissions.role.update, permissions.role.create]) && (
                 <OffCanvas id="roleFormCanvas" title={pageData.title}>

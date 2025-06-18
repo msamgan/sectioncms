@@ -7,7 +7,12 @@ import { useEffect, useState } from 'react'
 
 export default function Master({ children, hideMenu = false }) {
     const { auth } = usePage().props
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+        // Check if we have a saved state in localStorage
+        const savedState = localStorage.getItem('sidebarCollapsed')
+        // Return the saved state if it exists, otherwise default to false
+        return savedState !== null ? JSON.parse(savedState) : false
+    })
     const [pageLoaded, setPageLoaded] = useState(false)
 
     useEffect(() => {
@@ -25,7 +30,10 @@ export default function Master({ children, hideMenu = false }) {
     }, [])
 
     const toggleSidebar = () => {
-        setSidebarCollapsed(!sidebarCollapsed)
+        const newState = !sidebarCollapsed
+        // Save the new state to localStorage
+        localStorage.setItem('sidebarCollapsed', JSON.stringify(newState))
+        setSidebarCollapsed(newState)
     }
 
     return (
