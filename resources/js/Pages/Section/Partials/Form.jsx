@@ -2,13 +2,13 @@ import Avatar from '@/Components/helpers/Avatar.jsx'
 import InputError from '@/Components/InputError.jsx'
 import InputLabel from '@/Components/InputLabel.jsx'
 import TextInput from '@/Components/TextInput.jsx'
+import SaveButton from '@/Components/layout/SaveButton.jsx'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { dataObject } from '@/Pages/Section/helper.js'
 import DynamicFields from '@/Pages/Section/Partials/DynamicFields.jsx'
 import { moduleConstants } from '@/Utils/constants.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { store, update } from '@actions/SectionController.js'
-import { Transition } from '@headlessui/react'
 import { useForm } from '@inertiajs/react'
 import { useEffect, useState } from 'react'
 
@@ -95,31 +95,11 @@ export default function Form({ getSections, section = null, languages }) {
             </div>
 
             {showSaveButton && (
-                <div className="flex justify-end w-full md:w-2/3 gap-4">
-                    <button
-                        disabled={processing}
-                        className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:shadow-lg hover:translate-y-[-1px] text-white flex items-center transition-all duration-300 px-5 py-2.5 rounded-lg font-medium text-sm shadow-md"
-                    >
-                        <i className="ri-save-line mr-2"></i>
-                        Save Changes
-                    </button>
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out duration-300"
-                        enterFrom="opacity-0 transform scale-95"
-                        enterTo="opacity-100 transform scale-100"
-                        leave="transition ease-in-out duration-300"
-                        leaveFrom="opacity-100 transform scale-100"
-                        leaveTo="opacity-0 transform scale-95"
-                    >
-                        <div className="flex items-center bg-green-50 px-4 py-2.5 rounded-lg border border-green-200 shadow-sm">
-                            <div className="text-green-500 mr-2">
-                                <i className="ri-check-line"></i>
-                            </div>
-                            <p className="text-green-600 m-0 text-sm">Saved successfully!</p>
-                        </div>
-                    </Transition>
-                </div>
+                <SaveButton
+                    processing={processing}
+                    recentlySuccessful={recentlySuccessful}
+                    className="flex justify-end w-full md:w-2/3 gap-4"
+                />
             )}
         </form>
     )

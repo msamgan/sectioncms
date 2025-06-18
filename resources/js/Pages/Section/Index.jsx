@@ -7,6 +7,7 @@ import Actions from '@/Components/helpers/Actions.jsx'
 import Avatar from '@/Components/helpers/Avatar.jsx'
 import ClickToCopy from '@/Components/helpers/ClickToCopy.jsx'
 import Name from '@/Components/helpers/Name.jsx'
+import StatsGrid, { StatsGridItem } from '@/Components/layout/StatsGrid.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import OffCanvas from '@/Components/off_canvas/OffCanvas.jsx'
 import usePermissions from '@/Hooks/usePermissions'
@@ -128,15 +129,23 @@ export default function Index() {
             </div>
 
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <StatsGrid>
                 {sections.length > 0 ? (
-                    <StatsCard icon={moduleConstants.section.icon} label="Total Sections" count={sections.length} />
+                    <StatsGridItem>
+                        <StatsCard icon={moduleConstants.section.icon} label="Total Sections" count={sections.length} />
+                    </StatsGridItem>
                 ) : null}
                 {languages.length > 0 ? (
-                    <StatsCard icon={moduleConstants.language.icon} label="Languages" count={languages.length} />
+                    <StatsGridItem>
+                        <StatsCard icon={moduleConstants.language.icon} label="Languages" count={languages.length} />
+                    </StatsGridItem>
                 ) : null}
-                {keysCount > 0 ? <StatsCard icon={'ri-key-2-line'} label="Active Keys" count={keysCount} /> : null}
-            </div>
+                {keysCount > 0 ? (
+                    <StatsGridItem>
+                        <StatsCard icon={'ri-key-2-line'} label="Active Keys" count={keysCount} />
+                    </StatsGridItem>
+                ) : null}
+            </StatsGrid>
 
             {can([permissions.section.view, permissions.section.update, permissions.section.create]) && (
                 <OffCanvas id="sectionFormCanvas" title={pageData.title}>
