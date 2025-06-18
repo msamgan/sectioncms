@@ -98,6 +98,23 @@ export default function Form({ getRoles, role = null, permissionsList }) {
                                             )
                                         }
                                     }}
+                                    onToggleMultiplePermissions={(permissionIds, checked) => {
+                                        if (checked) {
+                                            // Add all permissions that aren't already selected
+                                            setData('permissions', [
+                                                ...data.permissions,
+                                                ...permissionIds
+                                            ])
+                                        } else {
+                                            // Remove all specified permissions
+                                            setData(
+                                                'permissions',
+                                                data.permissions.filter(
+                                                    (p) => !permissionIds.includes(p)
+                                                ),
+                                            )
+                                        }
+                                    }}
                                 />
                             ))}
                         </div>

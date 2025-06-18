@@ -22,7 +22,6 @@ export default function Index() {
     const [media, setMedia] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    const [notification, setNotification] = useState(null)
 
     const getMedia = async (query) => setMedia(await _media.data({ params: query }))
 
@@ -44,7 +43,7 @@ export default function Index() {
                     <span className="font-semibold">{formatFileSize(medium.size)}</span>
                 </div>
             ),
-            Actions: <ActionsPartial setNotification={setNotification} medium={medium} getMedia={getMedia} />,
+            Actions: <ActionsPartial medium={medium} getMedia={getMedia} />,
         }
     }
 
@@ -94,8 +93,6 @@ export default function Index() {
             </div>
 
             {can(permissions.medium.create) && <Uploader getMedia={getMedia} />}
-
-            {notification && <DisplayMessage type="success" text={notification} className={'mb-3'} />}
 
             <Table
                 data={data}
