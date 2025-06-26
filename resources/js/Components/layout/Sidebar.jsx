@@ -21,24 +21,25 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
 
     return (
         <aside
-            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-white border-r border-gray-100 shadow-sm transition-all duration-250 ${
+            className={`fixed inset-y-0 left-0 z-20 flex flex-col bg-gradient-to-b from-gray-50 to-white border-r border-gray-200 shadow-xl transition-all duration-300 ${
                 collapsed ? 'w-20' : 'w-64'
             }`}
         >
             <div className="invisible h-16"></div>
 
             {/* Sidebar Header with Logo */}
-            <div className="flex items-center justify-center py-4 mt-3 border-b border-gray-100">
+            <div className="flex items-center justify-center py-5 mt-3 border-b border-gray-200 bg-gradient-to-r from-blue-50/50 to-indigo-50/50">
                 <div className={`flex items-center ${collapsed ? 'justify-center' : 'justify-start px-6'}`}>
-                    <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-md">
+                    <div className="flex-shrink-0 relative">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg ring-2 ring-blue-100 transition-all duration-200 hover:shadow-xl hover:scale-105">
                             <i className="ri-dashboard-line text-xl"></i>
                         </div>
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-green-400 to-green-500 rounded-full border-2 border-white shadow-sm"></div>
                     </div>
                     {!collapsed && (
-                        <div className="ml-3">
-                            <h3 className="text-sm font-bold text-gray-800">Section CMS</h3>
-                            <p className="text-xs text-gray-500">Dashboard</p>
+                        <div className="ml-4">
+                            <h3 className="text-lg font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Section CMS</h3>
+                            <p className="text-xs text-gray-500 font-medium">Management Dashboard</p>
                         </div>
                     )}
                 </div>
@@ -142,17 +143,26 @@ export default function Sidebar({ user, collapsed = false, onToggle }) {
             </div>
 
             {/* User Profile Section */}
-            <div className={`p-4 border-t border-gray-100 ${collapsed ? 'text-center' : ''}`}>
-                <div className={`flex ${collapsed ? 'flex-col items-center' : 'items-center'}`}>
-                    <div className="flex-shrink-0">
-                        <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-primary">
-                            <span className="text-xs font-medium">{user.name.charAt(0)}</span>
+            <div className={`p-4 border-t border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50 ${collapsed ? 'text-center' : ''}`}>
+                <div className={`flex ${collapsed ? 'flex-col items-center' : 'items-center'} group cursor-pointer hover:bg-white/50 rounded-lg p-2 transition-all duration-200`}>
+                    <div className="flex-shrink-0 relative">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-lg ring-2 ring-white group-hover:ring-blue-200 transition-all duration-200">
+                            <span className="text-sm font-bold">{user.name.charAt(0)}</span>
                         </div>
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></div>
                     </div>
                     {!collapsed && (
                         <div className="ml-3 min-w-0 flex-1">
-                            <p className="text-sm font-medium text-gray-700 truncate">{user.name}</p>
-                            <p className="text-xs text-gray-500 truncate">{user.role.display_name}</p>
+                            <p className="text-sm font-semibold text-gray-800 truncate group-hover:text-primary transition-colors duration-200">{user.name}</p>
+                            <div className="flex items-center">
+                                <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                                <p className="text-xs text-gray-600 truncate">{user.role.display_name}</p>
+                            </div>
+                        </div>
+                    )}
+                    {!collapsed && (
+                        <div className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <i className="ri-more-2-line text-gray-400"></i>
                         </div>
                     )}
                 </div>
