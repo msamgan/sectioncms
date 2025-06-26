@@ -60,20 +60,26 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                 <div className="relative overflow-x-auto">
                     <table className="w-full text-sm text-left">
                         <thead className="text-xs sticky top-0 z-10">
-                            <tr className="bg-white text-gray-700 border-b border-gray-200 shadow-sm">
+                            <tr className="bg-gray-50 text-gray-800 border-b border-gray-200">
                                 {columns.map((column, index) => (
                                     <th
                                         key={index}
-                                        className="px-6 py-4 font-semibold tracking-wider cursor-pointer hover:bg-gray-50 transition-colors duration-150"
+                                        className="px-6 py-5 font-bold text-sm tracking-wide cursor-pointer hover:bg-gray-100 transition-colors duration-200 group"
                                         onClick={() => handleSort(index)}
                                     >
-                                        <div className="flex items-center">
-                                            {toTitleCase(column)}
-                                            {sortColumn === index && (
-                                                <i
-                                                    className={`ml-1 text-primary ${sortDirection === 'asc' ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'}`}
-                                                ></i>
-                                            )}
+                                        <div className="flex items-center justify-between">
+                                            <span className="group-hover:text-primary transition-colors duration-200">
+                                                {toTitleCase(column)}
+                                            </span>
+                                            <div className="ml-2">
+                                                {sortColumn === index ? (
+                                                    <i
+                                                        className={`text-primary ${sortDirection === 'asc' ? 'ri-arrow-up-s-line' : 'ri-arrow-down-s-line'}`}
+                                                    ></i>
+                                                ) : (
+                                                    <i className="ri-arrow-up-down-line text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></i>
+                                                )}
+                                            </div>
                                         </div>
                                     </th>
                                 ))}
@@ -83,8 +89,10 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                             {sortedData.map((row, rowIndex) => (
                                 <tr
                                     key={rowIndex}
-                                    className={`transition-all duration-150 ease-in-out ${
-                                        hoveredRow === rowIndex ? 'bg-blue-50' : 'bg-white hover:bg-gray-50'
+                                    className={`transition-all duration-200 ease-in-out group ${
+                                        hoveredRow === rowIndex 
+                                            ? 'bg-blue-50 shadow-sm border-l-4 border-l-primary' 
+                                            : 'bg-white hover:bg-gray-50'
                                     }`}
                                     onMouseEnter={() => setHoveredRow(rowIndex)}
                                     onMouseLeave={() => setHoveredRow(null)}
@@ -92,12 +100,18 @@ const TableContainer = ({ columns, data, tdClassName, setLoading, refresher }) =
                                     {Object.values(row).map((cell, cellIndex) => (
                                         <td
                                             key={cellIndex}
-                                            className={`px-6 py-4 max-w-xs truncate ${
+                                            className={`px-6 py-4 text-gray-700 text-sm font-medium transition-colors duration-200 ${
+                                                hoveredRow === rowIndex ? 'text-gray-900' : ''
+                                            } ${
                                                 tdClassName.filter((item) => item.column === columns[cellIndex])[0]
                                                     ?.className || ''
                                             }`}
                                         >
-                                            {cell}
+                                            <div className="flex items-center">
+                                                <span className="truncate max-w-xs">
+                                                    {cell}
+                                                </span>
+                                            </div>
                                         </td>
                                     ))}
                                 </tr>
@@ -152,10 +166,12 @@ const SearchForm = ({ setLoading, refresher }) => {
                 </div>
                 <input
                     type="search"
-                    className="w-full pr-4 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-0.5"
+                    className={`w-full pl-12 pr-16 py-3 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200 ${
+                        isFocused ? 'shadow-md' : 'shadow-sm'
+                    }`}
                     id="search"
                     value={query}
-                    placeholder="Search Query..."
+                    placeholder="Search records..."
                     aria-describedby="search-help"
                     name="q"
                     onChange={(e) => setQuery(e.target.value)}
@@ -164,13 +180,13 @@ const SearchForm = ({ setLoading, refresher }) => {
                 />
                 <button type="submit" className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm">
                     <span
-                        className={`px-2 py-1 rounded-md transform hover:scale-110 transition-all duration-300 ${
+                        className={`px-3 py-2 rounded-md transition-all duration-200 ${
                             isFocused
-                                ? 'bg-gradient-to-r from-primary to-blue-500 text-white shadow-sm'
+                                ? 'bg-primary text-white shadow-sm'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                     >
-                        <i className="ri-arrow-right-line"></i>
+                        <i className="ri-search-line"></i>
                     </span>
                 </button>
             </div>
@@ -183,7 +199,7 @@ export default function Table({ data, tdClassName = [], setLoading, loading, per
 
     return permission ? (
         loading ? (
-            <div className="bg-gradient-to-r from-white to-blue-50 rounded-xl shadow-sm hover:shadow-md mt-6 p-8 flex justify-center items-center min-h-[300px] transition-all duration-300">
+            <div className="bg-white rounded-xl shadow-sm mt-6 p-8 flex justify-center items-center min-h-[300px] border border-gray-100">
                 <LoadingIndicator type="wave" size="lg" text="Loading data" center={true} fullHeight={true} />
             </div>
         ) : data.length > 0 ? (
