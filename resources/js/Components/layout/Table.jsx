@@ -137,7 +137,7 @@ const SearchForm = ({ setLoading, refresher }) => {
     return (
         <form className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 px-6 py-4" onSubmit={searchSubmission}>
             <div
-                className={`relative group transition-all duration-300 ${isFocused ? 'scale-[1.02] shadow-md' : 'shadow-sm'}`}
+                className={`relative group transition-all duration-300 ${isFocused ? 'scale-[1.02]' : ''}`}
             >
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <div
@@ -152,7 +152,7 @@ const SearchForm = ({ setLoading, refresher }) => {
                 </div>
                 <input
                     type="search"
-                    className="w-full pl-12 pr-4 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-0.5"
+                    className="w-full pr-4 py-2.5 text-sm bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-300 ease-in-out transform hover:-translate-y-0.5"
                     id="search"
                     value={query}
                     placeholder="Search Query..."
@@ -162,14 +162,6 @@ const SearchForm = ({ setLoading, refresher }) => {
                     onFocus={() => setIsFocused(true)}
                     onBlur={() => setIsFocused(false)}
                 />
-                <label
-                    htmlFor="search"
-                    className={`absolute -top-2 left-2 inline-block bg-white px-1.5 text-xs font-medium ${
-                        isFocused ? 'text-primary' : 'text-gray-600'
-                    } transition-all duration-300`}
-                >
-                    Search
-                </label>
                 <button type="submit" className="absolute inset-y-0 right-0 flex items-center pr-3 text-sm">
                     <span
                         className={`px-2 py-1 rounded-md transform hover:scale-110 transition-all duration-300 ${
