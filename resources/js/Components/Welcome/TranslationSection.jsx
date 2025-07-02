@@ -73,7 +73,7 @@ export default function TranslationSection() {
                 <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
                     AI-Powered Translation
                 </h2>
-                <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
+                <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300">
                     Reach global audiences with our cutting-edge AI translation technology
                 </p>
             </div>
@@ -461,12 +461,12 @@ export default function TranslationSection() {
 
             {/* Translation Examples */}
             <div className="mt-16 relative">
-                <div className="absolute inset-0 bg-blue-50 rounded-3xl -z-10 transform -skew-y-2"></div>
+                <div className="absolute inset-0 bg-blue-50 dark:bg-gray-800 rounded-3xl -z-10 transform -skew-y-2"></div>
                 <div className="py-16 px-4">
                     <div className="flex flex-col items-center mb-12">
-                        <h3 className="text-3xl font-bold text-center text-gray-900 mb-3">See it in action</h3>
+                        <h3 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-3">See it in action</h3>
                         <div className="w-20 h-1 bg-primary rounded-full mb-4"></div>
-                        <p className="text-center text-gray-600 max-w-2xl">
+                        <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl">
                             Watch how our AI instantly translates your content while preserving meaning and context
                         </p>
                     </div>
@@ -477,26 +477,26 @@ export default function TranslationSection() {
 
                         <div className="grid md:grid-cols-3 gap-4 md:gap-8 relative md:items-start">
                             {/* Example 1 - Original */}
-                            <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-blue-100 hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
-                                <div className="absolute -top-3 left-6 bg-blue-100 text-primary px-3 py-1 rounded-full text-xs font-bold">
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-blue-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
+                                <div className="absolute -top-3 left-6 bg-blue-100 dark:bg-blue-900/30 text-primary dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold">
                                     ORIGINAL
                                 </div>
                                 <div className="flex items-center mb-6">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
+                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mr-4 group-hover:bg-primary transition-colors duration-250">
                                         <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
                                             🇺🇸
                                         </span>
                                     </div>
-                                    <h4 className="font-semibold text-lg text-gray-900">English</h4>
+                                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">English</h4>
                                 </div>
-                                <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">
+                                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 border border-gray-100 dark:border-gray-600 flex-grow">
+                                    <p className="text-gray-700 dark:text-gray-200 font-medium">
                                         "Welcome to our platform! We're excited to have you join us."
                                     </p>
                                 </div>
-                                <div className="flex items-center text-sm text-gray-500">
+                                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                                     <svg
-                                        className="size-5 mr-2 text-blue-500"
+                                        className="size-5 mr-2 text-blue-500 dark:text-blue-400"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -514,7 +514,7 @@ export default function TranslationSection() {
                             </div>
 
                             {/* Example 2 - Spanish */}
-                            <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-blue-100 hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-blue-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
                                 <div className="hidden md:flex absolute -left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white rounded-full w-8 h-8 items-center justify-center shadow-md">
                                     <svg
                                         className="size-4"
@@ -532,20 +532,20 @@ export default function TranslationSection() {
                                     </svg>
                                 </div>
                                 <div className="flex items-center mb-6">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
+                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mr-4 group-hover:bg-primary transition-colors duration-250">
                                         <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
                                             🇪🇸
                                         </span>
                                     </div>
-                                    <h4 className="font-semibold text-lg text-gray-900">Spanish</h4>
+                                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Spanish</h4>
                                 </div>
-                                <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">
+                                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 border border-gray-100 dark:border-gray-600 flex-grow">
+                                    <p className="text-gray-700 dark:text-gray-200 font-medium">
                                         "¡Bienvenido a nuestra plataforma! Estamos emocionados de que te unas a
                                         nosotros."
                                     </p>
                                 </div>
-                                <div className="flex items-center text-sm text-primary">
+                                <div className="flex items-center text-sm text-primary dark:text-blue-400">
                                     <svg
                                         className="size-5 mr-2"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -565,7 +565,7 @@ export default function TranslationSection() {
                             </div>
 
                             {/* Example 3 - Japanese */}
-                            <div className="bg-white rounded-xl shadow-lg p-6 border-2 border-blue-100 hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
+                            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-blue-100 dark:border-gray-700 hover:border-primary dark:hover:border-primary transition-all duration-250 transform hover:-translate-y-2 hover:shadow-xl group h-full flex flex-col">
                                 <div className="hidden md:flex absolute -left-4 top-1/2 transform -translate-y-1/2 bg-primary text-white rounded-full w-8 h-8 items-center justify-center shadow-md">
                                     <svg
                                         className="size-4"
@@ -583,19 +583,19 @@ export default function TranslationSection() {
                                     </svg>
                                 </div>
                                 <div className="flex items-center mb-6">
-                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 mr-4 group-hover:bg-primary transition-colors duration-250">
+                                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 mr-4 group-hover:bg-primary transition-colors duration-250">
                                         <span className="text-2xl group-hover:scale-110 transition-transform duration-250">
                                             🇯🇵
                                         </span>
                                     </div>
-                                    <h4 className="font-semibold text-lg text-gray-900">Japanese</h4>
+                                    <h4 className="font-semibold text-lg text-gray-900 dark:text-white">Japanese</h4>
                                 </div>
-                                <div className="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-100 flex-grow">
-                                    <p className="text-gray-700 font-medium">
+                                <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-4 border border-gray-100 dark:border-gray-600 flex-grow">
+                                    <p className="text-gray-700 dark:text-gray-200 font-medium">
                                         "私たちのプラットフォームへようこそ！あなたが参加してくれて嬉しいです。"
                                     </p>
                                 </div>
-                                <div className="flex items-center text-sm text-primary">
+                                <div className="flex items-center text-sm text-primary dark:text-blue-400">
                                     <svg
                                         className="size-5 mr-2"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -616,10 +616,10 @@ export default function TranslationSection() {
                         </div>
 
                         {/* Translation Accuracy Indicator */}
-                        <div className="mt-12 bg-blue-50 rounded-lg p-4 border border-blue-100 flex items-center justify-center">
+                        <div className="mt-12 bg-blue-50 dark:bg-gray-800 rounded-lg p-4 border border-blue-100 dark:border-gray-700 flex items-center justify-center">
                             <div className="flex items-center mr-8">
                                 <svg
-                                    className="size-5 mr-2 text-green-500"
+                                    className="size-5 mr-2 text-green-500 dark:text-green-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -632,11 +632,11 @@ export default function TranslationSection() {
                                         d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                                     />
                                 </svg>
-                                <span className="text-sm font-medium text-gray-700">99.8% Accuracy</span>
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">99.8% Accuracy</span>
                             </div>
                             <div className="flex items-center">
                                 <svg
-                                    className="size-5 mr-2 text-green-500"
+                                    className="size-5 mr-2 text-green-500 dark:text-green-400"
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -649,7 +649,7 @@ export default function TranslationSection() {
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                                     />
                                 </svg>
-                                <span className="text-sm font-medium text-gray-700">
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                     Translation in &lt; 0.5 seconds
                                 </span>
                             </div>
