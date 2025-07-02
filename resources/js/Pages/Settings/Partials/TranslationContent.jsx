@@ -16,7 +16,7 @@ export default function TranslationContent({ business }) {
         <>
             {translationSettings?.length > 0 ? (
                 translationSettings.map((setting) => (
-                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-2/3'}>
+                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-full'}>
                         <div className="mb-4">
                             <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
                             <p className="text-gray-600">{setting.description}</p>

@@ -36,7 +36,7 @@ export default function ClickToCopy({ text }) {
                 onClick={handleCopy}
                 title="Click to copy"
             >
-                <span className="truncate">{text.length > 50 ? text.substring(0, 50) + '...' : text}</span>
+                <span className="truncate">{text?.length > 50 ? text.substring(0, 50) + '...' : text}</span>
                 <span
                     className={`ml-2 flex items-center ${copied ? 'text-green-500' : 'text-gray-400 group-hover:text-gray-600'}`}
                 >

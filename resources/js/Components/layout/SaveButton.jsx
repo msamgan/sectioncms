@@ -5,7 +5,7 @@ export default function SaveButton({
     recentlySuccessful,
     label = "Save Changes",
     icon = "ri-save-line",
-    className = "flex justify-end w-2/3 gap-4"
+    className = "flex justify-end w-2/3 gap-2"
 }) {
     return (
         <div className={className}>
@@ -25,7 +25,7 @@ export default function SaveButton({
                 leaveFrom="opacity-100 transform scale-100"
                 leaveTo="opacity-0 transform scale-95"
             >
-                <div className="flex items-center mt-2 bg-green-50 px-4 py-2 rounded-md border border-green-200">
+                <div className="flex items-center mt-2 px-4 py-2">
                     <div className="text-green-500 mr-2">
                         <i className="ri-check-line"></i>
                     </div>
