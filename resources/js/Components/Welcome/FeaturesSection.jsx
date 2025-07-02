@@ -14,7 +14,9 @@ export default function FeaturesSection() {
                     </p>
                 </div>
                 <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
+
+
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
                         <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:size-16">
                             <svg
                                 className="size-6 text-blue-600 dark:text-blue-400"
@@ -28,7 +30,7 @@ export default function FeaturesSection() {
                         </div>
 
                         <div className="pt-3 sm:pt-5">
-                            <h2 className="text-xl font-semibold text-black dark:text-white">Dynamic Sections</h2>
+                            <h2 className="text-xl font-bold text-black dark:text-white">Dynamic Sections</h2>
 
                             <p className="mt-4 text-sm/relaxed text-gray-600 dark:text-gray-300">
                                 Create and manage content sections with dynamic fields. Each section has a name, slug, and
@@ -37,7 +39,7 @@ export default function FeaturesSection() {
                         </div>
                     </div>
 
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
                         <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:size-16">
                             <svg
                                 className="size-6 text-blue-600 dark:text-blue-400"
@@ -56,7 +58,7 @@ export default function FeaturesSection() {
                         </div>
 
                         <div className="pt-3 sm:pt-5">
-                            <h2 className="text-xl font-semibold text-black dark:text-white">Internationalization</h2>
+                            <h2 className="text-xl font-bold text-black dark:text-white">Internationalization</h2>
 
                             <p className="mt-4 text-sm/relaxed text-gray-600 dark:text-gray-300">
                                 Support for multiple languages in your content. Create content once and display it in different
@@ -65,7 +67,7 @@ export default function FeaturesSection() {
                         </div>
                     </div>
 
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
                         <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:size-16">
                             <svg
                                 className="size-6 text-blue-600 dark:text-blue-400"
@@ -84,7 +86,7 @@ export default function FeaturesSection() {
                         </div>
 
                         <div className="pt-3 sm:pt-5">
-                            <h2 className="text-xl font-semibold text-black dark:text-white">Role-Based Permissions</h2>
+                            <h2 className="text-xl font-bold text-black dark:text-white">Role-Based Permissions</h2>
 
                             <p className="mt-4 text-sm/relaxed text-gray-600 dark:text-gray-300">
                                 Comprehensive permission system with default roles of Business. Control access to different
@@ -93,7 +95,7 @@ export default function FeaturesSection() {
                         </div>
                     </div>
 
-                    <div className="dark:bg-zinc-900 dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-lg bg-white p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:shadow-[0px_14px_34px_0px_rgba(0,0,0,0.12)] lg:pb-10">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex items-start gap-4 rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] lg:pb-10">
                         <div className="flex size-12 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 sm:size-16">
                             <svg
                                 className="size-6 text-blue-600 dark:text-blue-400"
@@ -112,7 +114,7 @@ export default function FeaturesSection() {
                         </div>
 
                         <div className="pt-3 sm:pt-5">
-                            <h2 className="text-xl font-semibold text-black dark:text-white">Multi-Tenant Architecture</h2>
+                            <h2 className="text-xl font-bold text-black dark:text-white">Multi-Tenant Architecture</h2>
 
                             <p className="mt-4 text-sm/relaxed text-gray-600 dark:text-gray-300">
                                 Sections are associated with businesses, allowing for multi-tenant functionality. Each business

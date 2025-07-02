@@ -68,7 +68,7 @@ export default function TranslationSection() {
     }
 
     return (
-        <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+        <div className="px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl mt-12">
             <div className="text-center mb-12">
                 <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
                     AI-Powered Translation
