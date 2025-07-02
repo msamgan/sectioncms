@@ -1,6 +1,7 @@
 import AddSite from '@/Components/layout/AddSite.jsx'
 import HeaderNotification from '@/Components/layout/HeaderNotification.jsx'
 import TopHeaderDropdown from '@/Components/layout/TopHeaderDropdown.jsx'
+import DarkModeToggle from '@/Components/DarkModeToggle'
 import usePermissions from '@/Hooks/usePermissions.js'
 import { permissions } from '@/Utils/permissions/index.js'
 import { Link } from '@inertiajs/react'
@@ -103,6 +104,12 @@ export default function TopHeaderRight({ user }) {
                 <li className="relative">
                     <div className="p-0.5 rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm">
                         <TopHeaderDropdown user={user} />
+                    </div>
+                </li>
+
+                <li className="relative">
+                    <div className="p-0.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm">
+                        <DarkModeToggle />
                     </div>
                 </li>
             </ul>

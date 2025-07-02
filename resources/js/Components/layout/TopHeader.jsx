@@ -29,7 +29,7 @@ export default function TopHeader({ user }) {
         >
             <div className="w-full flex justify-between py-3 px-4">
                 {/* Left Side - Logo and Mobile Menu Button */}
-                <div className="flex items-center">
+                <div className="flex items-center flex-col">
                     {/* Logo - Visible on all screens */}
                     <Link href="/" className="flex items-center">
                         <div className="flex-shrink-0 relative">
@@ -39,7 +39,11 @@ export default function TopHeader({ user }) {
                             </div>
                         </div>
                         <span className="ml-2 font-bold text-gray-800 hidden sm:block">SectionCMS</span>
+
                     </Link>
+                    <span className={'text-md text-gray-500 hidden sm:block ml-6'}>
+                        {user.business.name}
+                    </span>
                 </div>
 
                 {/* Right Side - Search and User Actions */}
