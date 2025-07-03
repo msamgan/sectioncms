@@ -1,6 +1,36 @@
 import { useEffect, useState } from 'react'
 
 export default function SectionNavigation() {
+    // Track dark mode state
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    // Check and update dark mode state
+    useEffect(() => {
+        const checkDarkMode = () => {
+            setIsDarkMode(document.documentElement.classList.contains('dark'))
+        }
+
+        // Initial check
+        checkDarkMode()
+
+        // Listen for theme changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (
+                    mutation.type === 'attributes' &&
+                    mutation.attributeName === 'class'
+                ) {
+                    checkDarkMode()
+                }
+            })
+        })
+
+        observer.observe(document.documentElement, { attributes: true })
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
     // Add smooth scrolling behavior
     const scrollToSection = (e) => {
         e.preventDefault()
@@ -81,7 +111,7 @@ export default function SectionNavigation() {
     return (
         <>
             <div className="fixed left-6 top-1/2 z-50 -translate-y-1/2 transform p-3 transition-all duration-300">
-                <div className="backdrop-blur-md bg-white/30 rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/20">
+                <div className="backdrop-blur-md bg-white/30 dark:bg-gray-900/40 rounded-full p-2 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.25)] border border-white/20 dark:border-gray-700/30">
                     <ul className="flex flex-col items-center space-y-4">
                         {navItems.map((item) => {
                             const isActive = activeSection === item.id
@@ -91,14 +121,26 @@ export default function SectionNavigation() {
                                         href={`#${item.id}`}
                                         className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 focus:outline-none ${
                                             isActive
-                                                ? 'shadow-[0_0_15px_rgba(0,0,0,0.2)]'
-                                                : 'hover:scale-110 hover:shadow-md'
+                                                ? 'shadow-[0_0_15px_rgba(0,0,0,0.2)] dark:shadow-[0_0_15px_rgba(0,0,0,0.4)]'
+                                                : 'hover:scale-110 hover:shadow-md dark:hover:shadow-gray-800'
                                         }`}
                                         style={{
-                                            backgroundColor: isActive ? item.color : 'rgba(255, 255, 255, 0.7)',
-                                            color: isActive ? 'white' : '#555',
+                                            backgroundColor: isActive
+                                                ? item.color
+                                                : isDarkMode
+                                                    ? 'rgba(30, 41, 59, 0.7)' // dark mode inactive bg
+                                                    : 'rgba(255, 255, 255, 0.7)', // light mode inactive bg
+                                            color: isActive
+                                                ? 'white'
+                                                : isDarkMode
+                                                    ? 'rgba(255, 255, 255, 0.8)' // dark mode inactive text
+                                                    : '#555', // light mode inactive text
                                             transform: isActive ? 'scale(1.15)' : 'scale(1)',
-                                            animation: isActive ? 'pulse 2s infinite' : 'none',
+                                            animation: isActive
+                                                ? isDarkMode
+                                                    ? 'darkPulse 2s infinite'
+                                                    : 'pulse 2s infinite'
+                                                : 'none',
                                             position: 'relative',
                                             zIndex: 1,
                                             // Force color for translation section when active
@@ -146,6 +188,18 @@ export default function SectionNavigation() {
                     }
                     100% {
                         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+                    }
+                }
+
+                @keyframes darkPulse {
+                    0% {
+                        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2);
+                    }
+                    70% {
+                        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+                    }
+                    100% {
+                        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
                     }
                 }
 

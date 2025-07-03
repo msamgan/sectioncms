@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react'
 
 export default function PricingSection() {
     return (
-        <div className="mt-16">
+        <div className="mt-16 py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 rounded-xl">
             <div className="mb-12 text-center">
                 <span className="mb-6 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900/50 dark:text-blue-300">
                     Pricing Plans
@@ -17,7 +17,7 @@ export default function PricingSection() {
             </div>
 
             <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
-                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
+                <div className="dark:bg-black dark:ring-zinc-700 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:bg-zinc-800 dark:shadow-gray-800/30">
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-blue-500"></div>
 
                     <div className="mt-8 flex justify-center">
@@ -175,7 +175,7 @@ export default function PricingSection() {
                 </div>
 
                 {/* Pay-as-You-Go */}
-                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
+                <div className="dark:bg-black dark:ring-zinc-700 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0px_20px_50px_0px_rgba(168,85,247,0.2)] dark:hover:bg-zinc-800 dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-purple-500"></div>
 
@@ -337,7 +337,7 @@ export default function PricingSection() {
                 </div>
 
                 {/* Enterprise */}
-                <div className="dark:bg-zinc-900 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:translate-y-[-8px] hover:shadow-xl dark:shadow-gray-800/30">
+                <div className="dark:bg-black dark:ring-zinc-700 group relative flex flex-col overflow-hidden rounded-xl bg-white shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0px_20px_50px_0px_rgba(34,197,94,0.2)] dark:hover:bg-zinc-800 dark:shadow-gray-800/30">
                     {/* Top accent border */}
                     <div className="absolute inset-x-0 top-0 h-1.5 bg-green-500"></div>
 
