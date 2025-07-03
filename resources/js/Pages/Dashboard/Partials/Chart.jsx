@@ -14,6 +14,9 @@ import { Line } from 'react-chartjs-2'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
 
 export default function Chart({ labels, dataSet, title, dataLabel }) {
+    // Detect dark mode
+    const isDarkMode = document.documentElement.classList.contains('dark');
+
     const options = {
         responsive: true,
         maintainAspectRatio: false,
@@ -27,6 +30,7 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                         size: 13,
                         family: "'Poppins', sans-serif",
                     },
+                    color: isDarkMode ? '#e2e8f0' : '#1a202c',
                 },
             },
             title: {
@@ -41,13 +45,13 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                     top: 10,
                     bottom: 20,
                 },
-                color: '#1a202c', // dark color
+                color: isDarkMode ? '#e2e8f0' : '#1a202c',
             },
             tooltip: {
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                titleColor: '#1a202c',
-                bodyColor: '#4a5568',
-                borderColor: '#e2e8f0',
+                backgroundColor: isDarkMode ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+                titleColor: isDarkMode ? '#e2e8f0' : '#1a202c',
+                bodyColor: isDarkMode ? '#cbd5e1' : '#4a5568',
+                borderColor: isDarkMode ? '#475569' : '#e2e8f0',
                 borderWidth: 1,
                 padding: 12,
                 cornerRadius: 8,
@@ -79,12 +83,12 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                         size: 12,
                         family: "'Poppins', sans-serif",
                     },
-                    color: '#718096',
+                    color: isDarkMode ? '#94a3b8' : '#718096',
                 },
             },
             y: {
                 grid: {
-                    color: 'rgba(226, 232, 240, 0.5)',
+                    color: isDarkMode ? 'rgba(71, 85, 105, 0.5)' : 'rgba(226, 232, 240, 0.5)',
                     drawBorder: false,
                 },
                 ticks: {
@@ -92,7 +96,7 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                         size: 12,
                         family: "'Poppins', sans-serif",
                     },
-                    color: '#718096',
+                    color: isDarkMode ? '#94a3b8' : '#718096',
                     padding: 10,
                 },
                 beginAtZero: true,
@@ -106,7 +110,7 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                 radius: 4,
                 hoverRadius: 6,
                 borderWidth: 2,
-                backgroundColor: 'white',
+                backgroundColor: isDarkMode ? '#1e293b' : 'white',
             },
         },
         interaction: {
@@ -144,7 +148,7 @@ export default function Chart({ labels, dataSet, title, dataLabel }) {
                 },
                 borderWidth: 2,
                 pointBackgroundColor: '#3b82f6',
-                pointBorderColor: '#ffffff',
+                pointBorderColor: isDarkMode ? '#1e293b' : '#ffffff',
                 fill: true,
             },
         ],

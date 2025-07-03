@@ -26,8 +26,8 @@ export default function TopHeaderRight({ user }) {
             id: 'settings',
             icon: 'ri-settings-3-line',
             label: 'Settings',
-            color: 'bg-gray-100 text-gray-600',
-            hoverColor: 'hover:bg-gray-200',
+            color: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
+            hoverColor: 'hover:bg-gray-200 dark:hover:bg-gray-600',
             tooltip: 'Manage your settings',
             route: 'settings',
         },
@@ -71,9 +71,9 @@ export default function TopHeaderRight({ user }) {
 
                         {/* Tooltip */}
                         {showTooltip === action.id && action.tooltip && (
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded shadow-lg whitespace-nowrap z-50 animate-fade-in">
+                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-800 dark:bg-gray-700 text-white text-xs rounded shadow-lg dark:shadow-gray-900 whitespace-nowrap z-50 animate-fade-in">
                                 {action.tooltip}
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 dark:bg-gray-700 rotate-45"></div>
                             </div>
                         )}
                     </div>
@@ -84,25 +84,25 @@ export default function TopHeaderRight({ user }) {
             <ul className="flex items-center flex-row gap-3">
                 {can(permissions.business.update) && (
                     <li className="relative group">
-                        <div className="">
+                        <div className="hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-all duration-200">
                             <AddSite />
                         </div>
                     </li>
                 )}
 
                 <li className="relative">
-                    <div className="p-0.5 rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm">
+                    <div className="p-0.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm dark:hover:shadow-gray-900">
                         <HeaderNotification user={user} />
                     </div>
                     {unreadNotifications > 0 && (
-                        <div className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-red-500 text-white text-xs font-bold border-2 border-white animate-pulse">
+                        <div className="absolute -top-1 -right-1 flex items-center justify-center min-w-[18px] h-[18px] rounded-full bg-red-500 text-white text-xs font-bold border-2 border-white dark:border-gray-800 animate-pulse">
                             {unreadNotifications > 9 ? '9+' : unreadNotifications}
                         </div>
                     )}
                 </li>
 
                 <li className="relative">
-                    <div className="p-0.5 rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm">
+                    <div className="p-0.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-sm dark:hover:shadow-gray-900">
                         <TopHeaderDropdown user={user} />
                     </div>
                 </li>

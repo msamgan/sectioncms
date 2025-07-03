@@ -54,7 +54,7 @@ export default function LoadingIndicator({
             case 'spin':
                 return (
                     <div
-                        className={`${sizeClasses[size]} border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin`}
+                        className={`${sizeClasses[size]} border-4 border-gray-200 dark:border-gray-700 border-t-blue-500 rounded-full animate-spin`}
                     ></div>
                 )
             case 'wave':
@@ -79,7 +79,7 @@ export default function LoadingIndicator({
             <div className="flex flex-col items-center">
                 {renderLoadingIndicator()}
                 {text && (
-                    <div className="mt-3 text-gray-600 font-medium">
+                    <div className="mt-3 text-gray-600 dark:text-gray-400 font-medium">
                         {text}
                         {dots}
                     </div>

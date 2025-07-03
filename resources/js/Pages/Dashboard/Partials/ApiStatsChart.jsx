@@ -49,7 +49,7 @@ export default function ApiStatsChart() {
     // Render loading state
     if (loading) {
         return (
-            <div className="bg-white rounded-lg p-6 shadow-sm h-[400px] flex items-center justify-center">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm h-[400px] flex items-center justify-center">
                 <LoadingIndicator type="wave" size="md" text="Loading API statistics" center={true} />
             </div>
         )
@@ -58,11 +58,11 @@ export default function ApiStatsChart() {
     // Render error state
     if (error) {
         return (
-            <div className="bg-white rounded-lg p-6 shadow-sm h-[400px] flex flex-col items-center justify-center">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm h-[400px] flex flex-col items-center justify-center">
                 <div className="text-red-500 mb-4 text-5xl">
                     <i className="ri-error-warning-line"></i>
                 </div>
-                <p className="text-gray-700 mb-4 text-center">{error}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 text-center">{error}</p>
                 <button
                     onClick={handleRefresh}
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center"
@@ -77,11 +77,11 @@ export default function ApiStatsChart() {
     // Render empty state
     if (!dataSet || dataSet.length === 0) {
         return (
-            <div className="bg-white rounded-lg p-6 shadow-sm h-[400px] flex flex-col items-center justify-center">
+            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm h-[400px] flex flex-col items-center justify-center">
                 <div className="text-blue-500 mb-4 text-5xl">
                     <i className="ri-bar-chart-box-line"></i>
                 </div>
-                <p className="text-gray-700 mb-4 text-center">No API statistics available yet.</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 text-center">No API statistics available yet.</p>
                 <button
                     onClick={handleRefresh}
                     className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center"
@@ -100,7 +100,7 @@ export default function ApiStatsChart() {
                 <button
                     onClick={handleRefresh}
                     disabled={refreshing}
-                    className="p-2 bg-gray-50 hover:bg-gray-100 rounded-full text-gray-600 hover:text-blue-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
+                    className="p-2 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-full text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
                     title="Refresh data"
                 >
                     <i className={`ri-refresh-line ${refreshing ? 'animate-spin' : ''}`}></i>
