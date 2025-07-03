@@ -4,13 +4,13 @@ export default function PublicFooter() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <footer className="bg-gray-50 mt-16 border-t border-gray-200 dark:border-gray-800 dark:bg-gray-900">
+        <footer className="mt-16 bg-gray-50 border-t border-gray-200 dark:border-gray-800 dark:bg-gray-900">
             <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-start md:justify-between lg:px-8">
                 {/* Logo and tagline */}
                 <div className="mb-8 md:mb-0 md:w-6/12">
                     <div className="flex items-center justify-center md:justify-start">
                         <svg
-                            className="h-8 w-8 text-blue-600"
+                            className="h-8 w-8 text-blue-600 dark:text-blue-400"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -25,7 +25,7 @@ export default function PublicFooter() {
                         </svg>
                         <span className="ml-2 text-xl font-bold text-gray-900 dark:text-white">SectionCMS</span>
                     </div>
-                    <p className="mt-3 text-sm text-gray-600 md:text-left dark:text-gray-400">
+                    <p className="mt-3 text-sm text-gray-600 md:text-left dark:text-gray-300">
                         A powerful and flexible content management system designed to create, manage, and deliver
                         dynamic, structured content across various platforms. It offers robust localization support,
                         enabling seamless multilingual experiences tailored to global audiences.
@@ -41,7 +41,7 @@ export default function PublicFooter() {
                         <li>
                             <Link
                                 href={route('terms')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                                className="text-gray-600 transition-colors duration-300 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                             >
                                 Terms & Conditions
                             </Link>
@@ -49,7 +49,7 @@ export default function PublicFooter() {
                         <li>
                             <Link
                                 href={route('privacy')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                                className="text-gray-600 transition-colors duration-300 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                             >
                                 Privacy Policy
                             </Link>
@@ -65,7 +65,7 @@ export default function PublicFooter() {
                         <li>
                             <Link
                                 href="/"
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                                className="text-gray-600 transition-colors duration-300 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                             >
                                 Home
                             </Link>
@@ -73,7 +73,7 @@ export default function PublicFooter() {
                         <li>
                             <Link
                                 href={route('login')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                                className="text-gray-600 transition-colors duration-300 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                             >
                                 Login
                             </Link>
@@ -81,7 +81,7 @@ export default function PublicFooter() {
                         <li>
                             <Link
                                 href={route('register')}
-                                className="text-gray-600 transition hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                                className="text-gray-600 transition-colors duration-300 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
                             >
                                 Register
                             </Link>
@@ -91,9 +91,9 @@ export default function PublicFooter() {
             </div>
 
             {/* Copyright */}
-            <div className="dark:bg-gray-950 border-t border-gray-200 bg-gray-100 py-6 dark:border-gray-800">
+            <div className="bg-gray-100 border-t border-gray-200 py-6 dark:bg-gray-950 dark:border-gray-800 dark:bg-black">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <p className="text-center text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-center text-sm text-gray-600 dark:text-gray-300">
                         &copy; {currentYear} SectionCMS. All rights reserved.
                     </p>
                 </div>
