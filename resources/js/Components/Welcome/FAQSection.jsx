@@ -1,9 +1,9 @@
 export default function FAQSection() {
     return (
-        <div className="bg-gray-50 dark:bg-zinc-800 py-16">
+        <div className="bg-gray-50 dark:bg-gray-900 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <span className="mb-4 inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-600 dark:bg-green-900 dark:text-green-300">
+                    <span className="mb-4 inline-block rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-600 dark:bg-green-900/30 dark:text-green-300">
                         Questions & Answers
                     </span>
                     <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
@@ -18,7 +18,7 @@ export default function FAQSection() {
                     {/* FAQ Item 1 */}
                     <div className="py-6">
                         <details className="group">
-                            <summary className="flex cursor-pointer items-center justify-between">
+                            <summary className="flex cursor-pointer items-center justify-between p-4 rounded-lg bg-white dark:bg-black dark:ring-zinc-700 ring-1 ring-white/[0.1] shadow-[0px_5px_15px_0px_rgba(0,0,0,0.05)] dark:shadow-[0px_5px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.2)]">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     What is SectionCMS?
                                 </h3>
@@ -51,7 +51,7 @@ export default function FAQSection() {
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="mt-4 text-gray-600 dark:text-gray-300">
+                            <div className="mt-4 p-4 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                 <p>
                                     SectionCMS is a content management system designed for creating structured, dynamic
                                     content with built-in localization support. It allows you to define content sections
@@ -64,7 +64,7 @@ export default function FAQSection() {
                     {/* FAQ Item 2 */}
                     <div className="py-6">
                         <details className="group">
-                            <summary className="flex cursor-pointer items-center justify-between">
+                            <summary className="flex cursor-pointer items-center justify-between p-4 rounded-lg bg-white dark:bg-black dark:ring-zinc-700 ring-1 ring-white/[0.1] shadow-[0px_5px_15px_0px_rgba(0,0,0,0.05)] dark:shadow-[0px_5px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.2)]">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     How does SectionCMS differ from other CMS platforms?
                                 </h3>
@@ -97,7 +97,7 @@ export default function FAQSection() {
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="mt-4 text-gray-600 dark:text-gray-300">
+                            <div className="mt-4 p-4 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                 <p>
                                     Unlike traditional CMS platforms that focus on page-based content, SectionCMS uses a
                                     structured, section-based approach. This makes it ideal for applications that need
@@ -112,7 +112,7 @@ export default function FAQSection() {
                     {/* FAQ Item 3 */}
                     <div className="py-6">
                         <details className="group">
-                            <summary className="flex cursor-pointer items-center justify-between">
+                            <summary className="flex cursor-pointer items-center justify-between p-4 rounded-lg bg-white dark:bg-black dark:ring-zinc-700 ring-1 ring-white/[0.1] shadow-[0px_5px_15px_0px_rgba(0,0,0,0.05)] dark:shadow-[0px_5px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.2)]">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     Can I use SectionCMS with my existing website or application?
                                 </h3>
@@ -145,7 +145,7 @@ export default function FAQSection() {
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="mt-4 text-gray-600 dark:text-gray-300">
+                            <div className="mt-4 p-4 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                 <p>
                                     Yes! SectionCMS provides a RESTful API that allows you to integrate it with any
                                     website or application. You can use the API to fetch content from SectionCMS and
@@ -158,7 +158,7 @@ export default function FAQSection() {
                     {/* FAQ Item 4 */}
                     <div className="py-6">
                         <details className="group">
-                            <summary className="flex cursor-pointer items-center justify-between">
+                            <summary className="flex cursor-pointer items-center justify-between p-4 rounded-lg bg-white dark:bg-black dark:ring-zinc-700 ring-1 ring-white/[0.1] shadow-[0px_5px_15px_0px_rgba(0,0,0,0.05)] dark:shadow-[0px_5px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.2)]">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     How does the pricing work?
                                 </h3>
@@ -191,7 +191,7 @@ export default function FAQSection() {
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="mt-4 text-gray-600 dark:text-gray-300">
+                            <div className="mt-4 p-4 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                 <p>
                                     SectionCMS uses a usage-based pricing model. You get a generous free tier that
                                     includes your first website, 1GB of storage, 100 API calls per day, and 20 sections.
@@ -205,7 +205,7 @@ export default function FAQSection() {
                     {/* FAQ Item 5 */}
                     <div className="py-6">
                         <details className="group">
-                            <summary className="flex cursor-pointer items-center justify-between">
+                            <summary className="flex cursor-pointer items-center justify-between p-4 rounded-lg bg-white dark:bg-black dark:ring-zinc-700 ring-1 ring-white/[0.1] shadow-[0px_5px_15px_0px_rgba(0,0,0,0.05)] dark:shadow-[0px_5px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[0px_10px_25px_0px_rgba(0,0,0,0.2)]">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                     Is there a limit to how many users can access my SectionCMS account?
                                 </h3>
@@ -238,7 +238,7 @@ export default function FAQSection() {
                                     </svg>
                                 </span>
                             </summary>
-                            <div className="mt-4 text-gray-600 dark:text-gray-300">
+                            <div className="mt-4 p-4 text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-800 rounded-lg">
                                 <p>
                                     No, there's no limit to the number of users you can add to your account. You can
                                     invite as many team members as you need and assign them different roles based on
