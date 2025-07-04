@@ -21,14 +21,14 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
     return (
         <form onSubmit={submit} className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
-                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 px-6 py-4">
                     <div className="flex items-center">
                         <Avatar size="sm" bgColor="bg-blue-500" icon="ri-user-line" />
-                        <h5 className="ml-3 text-lg font-semibold text-gray-800">Profile Information</h5>
+                        <h5 className="ml-3 text-lg font-semibold text-gray-800 dark:text-gray-200">Profile Information</h5>
                     </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 dark:text-gray-300">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <InputLabel htmlFor="name" required={true}>
@@ -36,7 +36,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                             </InputLabel>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i className="ri-user-line text-gray-500"></i>
+                                    <i className="ri-user-line text-gray-500 dark:text-gray-400"></i>
                                 </div>
                                 <TextInput
                                     id="name"
@@ -56,7 +56,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                             </InputLabel>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i className="ri-mail-line text-gray-500"></i>
+                                    <i className="ri-mail-line text-gray-500 dark:text-gray-400"></i>
                                 </div>
                                 <TextInput
                                     id="email"
@@ -74,20 +74,20 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                     {mustVerifyEmail && user.email_verified_at === null && (
                         <div className="mt-4">
-                            <p className="text-sm text-gray-800">
+                            <p className="text-sm text-gray-800 dark:text-gray-300">
                                 Your email address is unverified.
                                 <Link
                                     href={route('verification.send')}
                                     method="post"
                                     as="button"
-                                    className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className="rounded-md text-sm text-gray-600 dark:text-gray-400 underline hover:text-gray-900 dark:hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-200"
                                 >
                                     Click here to re-send the verification email.
                                 </Link>
                             </p>
 
                             {status === 'verification-link-sent' && (
-                                <div className="mt-2 text-sm font-medium text-green-600">
+                                <div className="mt-2 text-sm font-medium text-green-600 dark:text-green-400">
                                     A new verification link has been sent to your email address.
                                 </div>
                             )}
@@ -111,7 +111,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                     leave="transition ease-in-out"
                     leaveTo="opacity-0"
                 >
-                    <p className="text-sm text-green-600 font-medium">Saved successfully!</p>
+                    <p className="text-sm text-green-600 dark:text-green-400 font-medium">Saved successfully!</p>
                 </Transition>
             </div>
         </form>

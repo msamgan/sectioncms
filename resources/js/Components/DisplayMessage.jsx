@@ -98,7 +98,7 @@ export default function DisplayMessage({
         >
             <div className={`${getBackgroundColor()} p-5`}>
                 <div className="flex flex-col sm:flex-row sm:items-center">
-                    <div className="flex items-start mb-4 sm:mb-0">
+                    <div className="flex items-start mb-4 sm:mb-0 sm:items-center">
                         <div
                             className={`flex-shrink-0 w-10 h-10 rounded-lg ${getMessageColor()} flex items-center justify-center mr-4 shadow-sm`}
                         >

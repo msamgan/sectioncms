@@ -51,7 +51,7 @@ export default function Master({ children, hideMenu = false }) {
                     !hideMenu ? (sidebarCollapsed ? 'ml-20' : 'ml-64') : ''
                 } ${pageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
             >
-                <div className="w-full max-w-7xl mx-auto">
+                <div className="w-full max-w-7xl mx-auto mt-12">
                     <StatusBar />
                 </div>
 

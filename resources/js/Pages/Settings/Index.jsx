@@ -86,7 +86,7 @@ export default function Index({ auth, mustVerifyEmail, status }) {
                                 />
                             </div>
 
-                            <div className="bg-white p-4 rounded-panel">
+                            <div className="bg-white dark:bg-gray-800 p-4 rounded-panel transition-colors duration-200">
                                 {/* Business Settings Content */}
                                 {can(permissions.business.update) && (
                                     <div className={activeTabGroup === 'business' ? 'block' : 'hidden'}>

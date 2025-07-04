@@ -93,7 +93,7 @@ export default function Notifications({ auth }) {
                     unreadCount > 0 ? (
                         <button
                             onClick={markAllAsRead}
-                            className="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                            className="inline-flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 dark:hover:bg-blue-600 focus:bg-blue-700 dark:focus:bg-blue-600 active:bg-blue-800 dark:active:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                         >
                             <i className="ri-check-double-line mr-2"></i>
                             Mark all as read
@@ -102,21 +102,21 @@ export default function Notifications({ auth }) {
                 }
             />
 
-            <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/10 overflow-hidden transition-all duration-300 hover:shadow-lg dark:hover:shadow-gray-900/20">
                 <div className="p-6">
                     {notifications.length === 0 ? (
                         <div className="py-12 text-center">
-                            <i className="ri-notification-off-line text-5xl text-gray-400 mb-4"></i>
-                            <h6 className="text-xl font-medium text-gray-500 mb-2">No notifications yet</h6>
-                            <p className="text-gray-400">When you get notifications, they'll appear here</p>
+                            <i className="ri-notification-off-line text-5xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                            <h6 className="text-xl font-medium text-gray-500 dark:text-gray-400 mb-2">No notifications yet</h6>
+                            <p className="text-gray-400 dark:text-gray-500">When you get notifications, they'll appear here</p>
                         </div>
                     ) : (
-                        <ul className="divide-y divide-gray-200">
+                        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                             {notifications.map((notification, index) => (
                                 <li
                                     key={index}
                                     className={`py-5 px-4 transition-all duration-200 ${
-                                        !notification.read_at ? 'bg-blue-50 hover:bg-blue-100' : 'hover:bg-gray-50'
+                                        !notification.read_at ? 'bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30' : 'hover:bg-gray-50 dark:hover:bg-gray-700'
                                     }`}
                                 >
                                     <div className="flex items-center">
@@ -130,15 +130,15 @@ export default function Notifications({ auth }) {
                                         <div className="flex-grow min-w-0">
                                             <div className="flex justify-between items-center mb-1">
                                                 <h6
-                                                    className={`text-sm truncate ${!notification.read_at ? 'font-semibold text-gray-900' : 'font-medium text-gray-700'}`}
+                                                    className={`text-sm truncate ${!notification.read_at ? 'font-semibold text-gray-900 dark:text-white' : 'font-medium text-gray-700 dark:text-gray-300'}`}
                                                 >
                                                     {notification.data.title}
                                                 </h6>
-                                                <span className="text-xs text-gray-500 whitespace-nowrap ml-2">
+                                                <span className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-2">
                                                     {formatDuration(notification.created_at)}
                                                 </span>
                                             </div>
-                                            <p className="text-sm text-gray-600 line-clamp-2">
+                                            <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
                                                 {notification.data.message}
                                             </p>
                                         </div>
@@ -146,7 +146,7 @@ export default function Notifications({ auth }) {
                                             <div className="ml-4 flex-shrink-0">
                                                 <button
                                                     onClick={() => markAsRead(notification.id)}
-                                                    className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-100 rounded-full transition-colors duration-200"
+                                                    className="p-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-full transition-colors duration-200"
                                                     title="Mark as read"
                                                 >
                                                     <i className="ri-check-line"></i>
@@ -160,8 +160,8 @@ export default function Notifications({ auth }) {
                     )}
                 </div>
                 {/*{notifications.length > 0 && (
-                    <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 text-center">
-                        <button className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150">
+                    <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700 text-center">
+                        <button className="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">
                             <i className="ri-refresh-line mr-2"></i>
                             Load more
                         </button>
