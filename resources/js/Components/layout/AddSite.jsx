@@ -50,38 +50,33 @@ export default function AddSite() {
 
             <Modal show={confirming} onClose={closeModal} maxWidth="md">
                 <form onSubmit={submit} className="p-0">
-                    {/* Header Section */}
-                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-t-xl border-b border-gray-100">
-                        <div className="flex items-center justify-center mb-4">
-                            <div className="relative">
-                                <div className="absolute -inset-1 bg-gradient-to-r from-blue-300 to-indigo-300 rounded-full blur-sm opacity-30"></div>
-                                <div className="p-3 bg-white rounded-full transform transition-transform duration-300 hover:scale-110 relative shadow-sm">
-                                    <Avatar
-                                        size="md"
-                                        bgColor="bg-gradient-to-r from-blue-500 to-indigo-600"
-                                        icon="ri-global-line"
-                                        className="mx-auto"
-                                    />
-                                </div>
+                    {/* Enhanced Header Section */}
+                    <div className="bg-amber-50 dark:bg-amber-900/20 p-8 rounded-t-lg border-b border-amber-100 dark:border-amber-800/50">
+                        <div className="flex items-center justify-center mb-5">
+                            <div className="p-4 bg-amber-100 dark:bg-amber-800/30 rounded-full transform transition-transform duration-300 hover:scale-110">
+                                <Avatar
+                                    size="xl"
+                                    bgColor="bg-blue-500"
+                                    icon="ri-global-line"
+                                    className="mx-auto"
+                                />
                             </div>
                         </div>
-                        <h2 className="text-2xl font-bold text-center text-gray-800 mb-1">Add New Site</h2>
-                        <p className="text-center text-gray-600">Enter the URL for your new site</p>
+                        <h2 className="text-2xl font-bold text-center text-amber-700 dark:text-amber-400 mb-2">Add New Site</h2>
+                        <p className="text-center text-gray-600 dark:text-gray-400">Enter the URL for your new site</p>
                     </div>
 
                     {/* Main Content */}
                     <div className="px-6 pt-6">
                         {/* Info Message */}
-                        <div className="bg-blue-50 border border-blue-100 p-4 mb-5 rounded-xl shadow-sm transition-all duration-300 hover:shadow-md">
+                        <div className="bg-yellow-50 dark:bg-yellow-900/10 border border-yellow-200 dark:border-yellow-800/30 p-5 mb-6 rounded-lg shadow-sm">
                             <div className="flex items-start">
                                 <div className="flex-shrink-0">
-                                    <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center transition-all duration-200 group-hover:scale-110">
-                                        <i className="ri-information-line text-blue-600"></i>
-                                    </div>
+                                    <i className="ri-information-line text-xl text-yellow-600 dark:text-yellow-500"></i>
                                 </div>
-                                <div className="ml-3">
-                                    <h3 className="text-sm font-medium text-gray-800">Important Information</h3>
-                                    <p className="mt-1 text-sm text-gray-700">
+                                <div className="ml-4">
+                                    <h3 className="text-sm font-medium text-yellow-800 dark:text-yellow-400">Important Information</h3>
+                                    <p className="mt-2 text-sm text-yellow-700 dark:text-yellow-300">
                                         This action will create a new site in your account. Please make sure to provide
                                         the correct information before proceeding.
                                     </p>
@@ -113,19 +108,19 @@ export default function AddSite() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="bg-gradient-to-r from-gray-50 to-blue-50 px-6 py-4 flex justify-end space-x-3 rounded-b-xl border-t border-gray-100">
+                    <div className="bg-gray-50 dark:bg-gray-900/30 px-8 py-5 flex justify-end space-x-4 rounded-b-lg border-t border-gray-100 dark:border-gray-700">
                         <SecondaryButton
                             onClick={closeModal}
-                            className="px-4 py-2 transition-all duration-200 hover:bg-gray-200 transform hover:-translate-y-0.5 hover:shadow-sm"
+                            className="px-5 py-3 transition-all duration-200 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                         >
-                            <i className="ri-close-line mr-1"></i> Cancel
+                            <i className="ri-close-line mr-3"></i> Cancel
                         </SecondaryButton>
 
                         <PrimaryButton
-                            className="px-4 py-2 transition-all duration-300 hover:bg-primary/80 focus:ring-2 focus:ring-primary/50 focus:ring-opacity-50 transform hover:-translate-y-0.5 hover:shadow-md"
+                            className="px-5 py-3 bg-amber-600 hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-700 transition-all duration-300 focus:ring-2 focus:ring-amber-500 dark:focus:ring-amber-500 focus:ring-opacity-50 shadow-sm hover:shadow-md"
                             disabled={processing}
                         >
-                            <i className="ri-add-line mr-1"></i>
+                            <i className="ri-add-line mr-3"></i>
                             {processing ? 'Adding...' : 'Add Site'}
                         </PrimaryButton>
                     </div>
