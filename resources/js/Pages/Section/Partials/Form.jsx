@@ -52,7 +52,7 @@ export default function Form({ getSections, section = null, languages }) {
                         <InputLabel
                             htmlFor="user-name"
                             required={true}
-                            className="block text-gray-700 font-medium mb-2"
+                            className="block text-gray-700 dark:text-gray-300 font-medium mb-2"
                         >
                             Name
                         </InputLabel>

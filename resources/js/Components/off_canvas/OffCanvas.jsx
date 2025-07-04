@@ -114,7 +114,7 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
                         </svg>
                     </button>
                 </div>
-                <div className="p-6 overflow-y-auto h-[calc(100vh-80px)] bg-gray-50 dark:bg-gray-850 text-gray-700 dark:text-gray-300 transition-colors duration-250">{children}</div>
+                <div className="p-6 overflow-y-auto h-[calc(100vh-80px)] bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors duration-250">{children}</div>
             </div>
         </>
     )

@@ -26,10 +26,10 @@ export default function SaveButton({
                 leaveTo="opacity-0 transform scale-95"
             >
                 <div className="flex items-center mt-2 px-4 py-2">
-                    <div className="text-green-500 mr-2">
+                    <div className="text-green-500 dark:text-green-400 mr-2">
                         <i className="ri-check-line"></i>
                     </div>
-                    <p className="text-green-600 m-0 text-sm">Saved successfully!</p>
+                    <p className="text-green-600 dark:text-green-400 m-0 text-sm">Saved successfully!</p>
                 </div>
             </Transition>
         </div>

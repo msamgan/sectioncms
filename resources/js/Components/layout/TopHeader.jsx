@@ -32,14 +32,10 @@ export default function TopHeader({ user }) {
                 <div className="flex items-center flex-col">
                     {/* Logo - Visible on all screens */}
                     <Link href="/" className="flex items-center">
-                        <div className="flex-shrink-0 relative">
-                            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 rounded-full blur-sm opacity-30 dark:opacity-50"></div>
-                            <div className="relative">
-                                <ApplicationLogo className="fill-current block h-9 w-auto text-primary dark:text-blue-400" />
-                            </div>
+                        <div className="relative">
+                            <ApplicationLogo className="fill-current block h-9 w-auto text-primary dark:text-blue-400" />
                         </div>
                         <span className="ml-2 font-bold text-gray-800 dark:text-gray-100 hidden sm:block">SectionCMS</span>
-
                     </Link>
                     <span className={'text-md text-gray-500 dark:text-gray-400 hidden sm:block ml-6'}>
                         {user.business.name}
