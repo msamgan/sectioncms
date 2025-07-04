@@ -58,7 +58,7 @@ export default function Avatar({ size = 'sm', bgColor = 'bg-blue-500', icon, cla
     return (
         <div className={`inline-flex items-center justify-center ${avatarSize} ${margin} ${className}`}>
             <span
-                className={`flex items-center justify-center rounded-lg ${backgroundClass} h-full w-full shadow-sm transition-all duration-200 hover:shadow-md`}
+                className={`flex items-center justify-center rounded-lg ${backgroundClass} h-full w-full shadow-sm dark:shadow-gray-900/20 transition-all duration-200 hover:shadow-md dark:hover:shadow-gray-900/30`}
             >
                 <i className={`${icon} text-white ${iconSize}`}></i>
             </span>

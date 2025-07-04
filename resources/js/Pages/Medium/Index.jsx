@@ -33,14 +33,14 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.medium.bgColor} icon={moduleConstants.medium.icon} />
                     <div>
                         <Name value={medium.name} />
-                        <small className="text-gray-500 block">{medium.type}</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">{medium.type}</small>
                     </div>
                 </div>
             ),
             Size: (
                 <div className="flex items-center">
                     <Avatar size="xs" bgColor="bg-blue-500" icon="ri-file-text-line" />
-                    <span className="font-semibold">{formatFileSize(medium.size)}</span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">{formatFileSize(medium.size)}</span>
                 </div>
             ),
             Actions: <ActionsPartial medium={medium} getMedia={getMedia} />,

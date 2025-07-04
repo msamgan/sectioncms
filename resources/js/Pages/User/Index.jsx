@@ -48,7 +48,7 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
                     <div>
                         <Name value={user.name} />
-                        <small className="text-gray-500 block">{user.email}</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">{user.email}</small>
                     </div>
                 </div>
             ),
