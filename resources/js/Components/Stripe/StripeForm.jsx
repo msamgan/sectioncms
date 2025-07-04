@@ -93,10 +93,10 @@ export default function StripeForm({ clientSecret, onSuccess }) {
     return (
         <form onSubmit={handleSubmit} className="w-full">
             <div className="relative">
-                <div className="p-4 border border-gray-200 rounded-md bg-white transition-all duration-300">
+                <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-md bg-white dark:bg-gray-800 transition-all duration-300">
                     <div className="mb-4">
-                        <label className="block text-base font-medium text-gray-800 mb-1">Card Information</label>
-                        <p className="text-xs text-gray-600 mb-3">
+                        <label className="block text-base font-medium text-gray-800 dark:text-gray-200 mb-1">Card Information</label>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
                             Enter your card details to securely save your payment method.
                         </p>
                     </div>
@@ -104,26 +104,26 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                     <div className="mb-6">
                         <div className="card-element-container">
                             <CardElement
-                                className="p-3 border border-gray-200 rounded-md focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-200 bg-white"
+                                className="p-3 border border-gray-200 dark:border-gray-700 rounded-md focus:ring-1 focus:ring-primary focus:border-primary transition-all duration-200 bg-white dark:bg-gray-800"
                                 options={{
                                     style: {
                                         base: {
                                             fontSize: '14px',
                                             fontWeight: '400',
                                             fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-                                            color: '#1f2937',
+                                            color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
                                             '::placeholder': {
-                                                color: '#9ca3af',
+                                                color: document.documentElement.classList.contains('dark') ? '#6b7280' : '#9ca3af',
                                                 fontWeight: '400',
                                             },
                                             ':-webkit-autofill': {
-                                                color: '#1f2937',
+                                                color: document.documentElement.classList.contains('dark') ? '#e5e7eb' : '#1f2937',
                                             },
-                                            iconColor: '#3B82F6',
+                                            iconColor: document.documentElement.classList.contains('dark') ? '#60a5fa' : '#3B82F6',
                                         },
                                         invalid: {
-                                            color: '#ef4444',
-                                            iconColor: '#ef4444',
+                                            color: document.documentElement.classList.contains('dark') ? '#f87171' : '#ef4444',
+                                            iconColor: document.documentElement.classList.contains('dark') ? '#f87171' : '#ef4444',
                                         },
                                     },
                                     hidePostalCode: true,
@@ -145,8 +145,8 @@ export default function StripeForm({ clientSecret, onSuccess }) {
                         </div>
                     </div>
 
-                    <div className="flex items-center p-2 bg-blue-50 rounded-md border border-blue-100 text-xs text-blue-700">
-                        <i className="ri-lock-line text-primary mr-2 flex-shrink-0"></i>
+                    <div className="flex items-center p-2 bg-blue-50 dark:bg-blue-900/20 rounded-md border border-blue-100 dark:border-blue-800/30 text-xs text-blue-700 dark:text-blue-300">
+                        <i className="ri-lock-line text-primary dark:text-blue-400 mr-2 flex-shrink-0"></i>
                         <span>
                             Your payment information is encrypted and secure. We never store your full card details.
                         </span>
@@ -155,14 +155,14 @@ export default function StripeForm({ clientSecret, onSuccess }) {
             </div>
 
             {error && (
-                <div className="mt-3 flex items-start text-xs text-red-600 bg-red-50 p-2 rounded-md border border-red-200">
+                <div className="mt-3 flex items-start text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 p-2 rounded-md border border-red-200 dark:border-red-800/30">
                     <i className="ri-error-warning-line mr-2 flex-shrink-0"></i>
                     <span>{error}</span>
                 </div>
             )}
 
             {success && (
-                <div className="mt-3 flex items-start text-xs text-green-600 bg-green-50 p-2 rounded-md border border-green-200">
+                <div className="mt-3 flex items-start text-xs text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-2 rounded-md border border-green-200 dark:border-green-800/30">
                     <i className="ri-check-line mr-2 flex-shrink-0"></i>
                     <span>Payment method added successfully!</span>
                 </div>
