@@ -4,6 +4,7 @@ import Name from '@/Components/helpers/Name.jsx'
 import DeleteEntityForm from '@/Components/layout/DeleteEntityForm.jsx'
 import Table from '@/Components/layout/Table.jsx'
 import PageHeader from '@/Components/PageHeader.jsx'
+import PrimaryButton from '@/Components/PrimaryButton.jsx'
 import StatsCard from '@/Components/StatsCard.jsx'
 import usePermissions from '@/Hooks/usePermissions.js'
 import Master from '@/Layouts/Master.jsx'
@@ -38,8 +39,8 @@ export default function Index() {
                 <Actions>
                     {businesses.length >= 2 && (
                         <>
-                            <div
-                                className={'px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-250'}
+                            <PrimaryButton
+                                className="w-full flex items-center justify-center "
                                 onClick={() => {
                                     select
                                         .call({
@@ -54,13 +55,12 @@ export default function Index() {
                                         })
                                 }}
                             >
-                                <i className="ri-cursor-line mr-1 text-black dark:text-white transition-colors duration-250"></i> Select
-                            </div>
+                                <i className="ri-cursor-line mr-1"></i> Select
+                            </PrimaryButton>
 
                             <DeleteEntityForm
                                 action={destroy.route({ business: business.id })}
                                 refresh={getBusinesses}
-                                className={'px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-250'}
                             />
                         </>
                     )}
@@ -111,23 +111,13 @@ export default function Index() {
                 </div>
             </div>
 
-            <div className="w-full">
-                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-900/10 transition-all duration-250">
-                    <div className="flex items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-                        <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                        <h5 className="m-0 ml-2 text-lg font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">Business List</h5>
-                    </div>
-                    <div className="p-0 overflow-visible">
-                        <Table
-                            data={data}
-                            loading={loading}
-                            permission={can(permissions.business.update)}
-                            setLoading={setLoading}
-                            refresher={getBusinesses}
-                        />
-                    </div>
-                </div>
-            </div>
+            <Table
+                data={data}
+                loading={loading}
+                permission={can(permissions.business.update)}
+                setLoading={setLoading}
+                refresher={getBusinesses}
+            />
         </Master>
     )
 }
