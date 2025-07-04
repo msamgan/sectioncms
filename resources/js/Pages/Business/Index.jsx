@@ -30,7 +30,7 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.business.bgColor} icon={moduleConstants.business.icon} />
                     <div>
                         <Name value={business.name} />
-                        <small className="text-gray-500 block">Business</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">Business</small>
                     </div>
                 </div>
             ),
@@ -39,7 +39,7 @@ export default function Index() {
                     {businesses.length >= 2 && (
                         <>
                             <div
-                                className={'px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer'}
+                                className={'px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-250'}
                                 onClick={() => {
                                     select
                                         .call({
@@ -54,13 +54,13 @@ export default function Index() {
                                         })
                                 }}
                             >
-                                <i className="ri-cursor-line mr-1 text-black"></i> Select
+                                <i className="ri-cursor-line mr-1 text-black dark:text-white transition-colors duration-250"></i> Select
                             </div>
 
                             <DeleteEntityForm
                                 action={destroy.route({ business: business.id })}
                                 refresh={getBusinesses}
-                                className={'px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'}
+                                className={'px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-250'}
                             />
                         </>
                     )}
@@ -112,10 +112,10 @@ export default function Index() {
             </div>
 
             <div className="w-full">
-                <div className="bg-white rounded-lg transition-all duration-200">
-                    <div className="flex items-center p-4 border-b bg-gray-50">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm dark:shadow-gray-900/10 transition-all duration-250">
+                    <div className="flex items-center p-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
                         <Avatar size="sm" bgColor={moduleConstants.list.bgColor} icon={moduleConstants.list.icon} />
-                        <h5 className="m-0 ml-2 text-lg font-semibold">Business List</h5>
+                        <h5 className="m-0 ml-2 text-lg font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">Business List</h5>
                     </div>
                     <div className="p-0 overflow-visible">
                         <Table

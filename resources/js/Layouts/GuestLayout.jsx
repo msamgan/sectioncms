@@ -1,4 +1,5 @@
 import ApplicationLogo from '@/Components/ApplicationLogo'
+import DarkModeToggle from '@/Components/DarkModeToggle'
 import { Link } from '@inertiajs/react'
 
 export default function Guest({ children }) {
@@ -10,10 +11,13 @@ export default function Guest({ children }) {
                 <div className="to-pink-100 dark:to-pink-900/20 absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-gradient-to-tr from-purple-100 opacity-70 blur-3xl dark:from-purple-900/20"></div>
             </div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 flex flex-col items-center">
                 <Link href="/" className="block transition-transform duration-300 hover:scale-105">
                     <ApplicationLogo className="h-40 w-40" />
                 </Link>
+                <div className="absolute right-0 top-0 mt-2 mr-2">
+                    <DarkModeToggle />
+                </div>
             </div>
 
             <div className="animate-fadeIn relative z-10 mt-8 w-full overflow-hidden border border-gray-100 bg-white/90 px-8 py-6 backdrop-blur-sm sm:max-w-md sm:rounded-xl dark:border-gray-700 dark:bg-gray-800/90 dark:text-white">

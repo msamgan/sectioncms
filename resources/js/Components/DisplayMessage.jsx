@@ -36,12 +36,12 @@ export default function DisplayMessage({
 
     const getTextColor = () => {
         const colorMap = {
-            info: 'text-primary',
-            success: 'text-green-600',
-            warning: 'text-yellow-600',
-            error: 'text-red-600',
-            empty: 'text-gray-600',
-            default: 'text-primary',
+            info: 'text-primary dark:text-blue-400',
+            success: 'text-green-600 dark:text-green-400',
+            warning: 'text-yellow-600 dark:text-yellow-400',
+            error: 'text-red-600 dark:text-red-400',
+            empty: 'text-gray-600 dark:text-gray-400',
+            default: 'text-primary dark:text-blue-400',
         }
 
         return colorMap[type] || colorMap.default
@@ -49,12 +49,12 @@ export default function DisplayMessage({
 
     const getBackgroundColor = () => {
         const colorMap = {
-            info: 'bg-blue-50',
-            success: 'bg-green-50',
-            warning: 'bg-yellow-50',
-            error: 'bg-red-50',
-            empty: 'bg-gray-50',
-            default: 'bg-blue-50',
+            info: 'bg-blue-50 dark:bg-blue-900/20',
+            success: 'bg-green-50 dark:bg-green-900/20',
+            warning: 'bg-yellow-50 dark:bg-yellow-900/20',
+            error: 'bg-red-50 dark:bg-red-900/20',
+            empty: 'bg-gray-50 dark:bg-gray-800/30',
+            default: 'bg-blue-50 dark:bg-blue-900/20',
         }
 
         return colorMap[type] || colorMap.default
@@ -94,11 +94,11 @@ export default function DisplayMessage({
 
     return (
         <div
-            className={`mt-4 bg-white rounded-xl overflow-hidden transition-all duration-250 w-full shadow-sm hover:shadow-md border-l-4 ${getBorderColor()} ${className}`}
+            className={`mt-4 bg-white dark:bg-gray-800 rounded-xl overflow-hidden transition-all duration-250 w-full shadow-sm hover:shadow-md border-l-4 ${getBorderColor()} ${className}`}
         >
             <div className={`${getBackgroundColor()} p-5`}>
                 <div className="flex flex-col sm:flex-row sm:items-center">
-                    <div className="flex items-start mb-4 sm:mb-0">
+                    <div className="flex items-start mb-4 sm:mb-0 sm:items-center">
                         <div
                             className={`flex-shrink-0 w-10 h-10 rounded-lg ${getMessageColor()} flex items-center justify-center mr-4 shadow-sm`}
                         >
@@ -108,7 +108,7 @@ export default function DisplayMessage({
                         </div>
                         <div className="flex-grow">
                             {title && <h4 className={`text-base font-semibold ${getTextColor()} mb-1`}>{title}</h4>}
-                            <p className={`m-0 text-sm ${title ? 'text-gray-600' : `font-medium ${getTextColor()}`}`}>
+                            <p className={`m-0 text-sm ${title ? 'text-gray-600 dark:text-gray-300' : `font-medium ${getTextColor()}`}`}>
                                 {text}
                             </p>
                         </div>

@@ -79,10 +79,10 @@ export default function Welcome({ auth }) {
             <div id="trust">
                 <TrustBadges />
             </div>
-            <div id="features" className={'mt-12'}>
+            <div id="features">
                 <FeaturesSection />
             </div>
-            <div id="translation" className={'mt-12'}>
+            <div id="translation">
                 <TranslationSection />
             </div>
             <div id="how-it-works">

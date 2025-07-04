@@ -1,9 +1,9 @@
 export default function TestimonialsSection() {
     return (
-        <div className="bg-gray-50 dark:bg-zinc-900 py-16">
+        <div className="bg-gray-50 dark:bg-gray-900 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <span className="mb-4 inline-block rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300">
+                    <span className="mb-4 inline-block rounded-full bg-indigo-100 px-3 py-1 text-sm font-semibold text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300">
                         Trusted by Developers
                     </span>
                     <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">
@@ -16,7 +16,7 @@ export default function TestimonialsSection() {
 
                 <div className="relative grid gap-8 md:grid-cols-3">
                     {/* Testimonial 1 */}
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
                         <div className="mb-6">
                             {/* 5 stars */}
                             <div className="mb-4 flex">
@@ -50,7 +50,7 @@ export default function TestimonialsSection() {
                     </div>
 
                     {/* Testimonial 2 */}
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
                         <div className="mb-6">
                             {/* 5 stars */}
                             <div className="mb-4 flex">
@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
                     </div>
 
                     {/* Testimonial 3 */}
-                    <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
+                    <div className="dark:bg-black dark:ring-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(79,70,229,0.2)]">
                         <div className="mb-6">
                             {/* 5 stars */}
                             <div className="mb-4 flex">
@@ -120,7 +120,7 @@ export default function TestimonialsSection() {
                 </div>
 
                 <div className="mt-16 text-center">
-                    <div className="dark:bg-zinc-800 hover:bg-gray-50 dark:hover:bg-zinc-700 inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-300 dark:border-gray-700 dark:text-gray-300">
+                    <div className="dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 inline-flex items-center rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-colors duration-300 dark:border-gray-700 dark:text-gray-300">
                         <span className="mr-2">Join our growing community of</span>
                         <span className="font-bold text-indigo-600 dark:text-indigo-400">2,500+</span>
                         <span className="ml-2">satisfied users</span>

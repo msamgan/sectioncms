@@ -53,7 +53,7 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon={moduleConstants.section.icon} />
                     <div>
                         <Name value={section.name} />
-                        <small className="text-gray-500 block">Section</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">Section</small>
                     </div>
                 </div>
             ),

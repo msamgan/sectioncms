@@ -50,14 +50,14 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.language.bgColor} icon={moduleConstants.language.icon} />
                     <div>
                         <Name value={language.name} />
-                        <small className="text-gray-500 block">Language</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">Language</small>
                     </div>
                 </div>
             ),
             Code: (
                 <div className="flex items-center">
                     <Avatar size="xs" bgColor={moduleConstants.code.bgColor} icon={moduleConstants.code.icon} />
-                    <span className="font-semibold">{language.code}</span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">{language.code}</span>
                 </div>
             ),
             Status:
@@ -69,7 +69,7 @@ export default function Index() {
                         refresher={getLanguages}
                     />
                 ) : (
-                    <span className="text-gray-700">{language.is_active ? 'Active' : 'Inactive'}</span>
+                    <span className="text-gray-700 dark:text-gray-300 transition-colors duration-250">{language.is_active ? 'Active' : 'Inactive'}</span>
                 ),
             Default: can(permissions.language.update) ? (
                 <IsActiveToggle
@@ -79,7 +79,7 @@ export default function Index() {
                     refresher={getLanguages}
                 />
             ) : (
-                <span className="text-gray-500">{language.is_default ? 'Yes' : 'No'}</span>
+                <span className="text-gray-500 dark:text-gray-400 transition-colors duration-250">{language.is_default ? 'Yes' : 'No'}</span>
             ),
             Actions: (
                 <>

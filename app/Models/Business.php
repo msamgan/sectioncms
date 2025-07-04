@@ -27,6 +27,7 @@ final class Business extends Model
         'user_id',
         'created_at',
         'updated_at',
+        'token',
     ];
 
     protected $fillable = [

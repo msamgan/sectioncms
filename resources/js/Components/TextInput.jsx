@@ -92,9 +92,10 @@ export default forwardRef(function TextInput(
     // Adjust input padding based on icon position and action buttons
     const getInputClassName = () => {
         let baseClasses = `
-            w-full h-input-height text-sm border border-gray-200 rounded-lg bg-white shadow-sm
-            focus:border-primary focus:ring-2 focus:ring-primary/20 focus:ring-offset-1
-            hover:border-gray-300 transition-all duration-300
+            w-full h-input-height text-sm border border-gray-200 dark:border-gray-700 rounded-lg
+            bg-white dark:bg-gray-800 dark:text-gray-200 shadow-sm
+            focus:border-primary dark:focus:border-primary focus:ring-2 focus:ring-primary/20 dark:focus:ring-primary/30 focus:ring-offset-1 dark:focus:ring-offset-gray-900
+            hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300
             py-input-padding-y ${className}
         `
 
@@ -123,7 +124,7 @@ export default forwardRef(function TextInput(
             {hasIcon && iconPosition === 'left' && (
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-300">
                     <i
-                        className={`${iconClass} text-gray-400 text-base group-focus-within:text-primary transition-all duration-300`}
+                        className={`${iconClass} text-gray-400 dark:text-gray-500 text-base group-focus-within:text-primary transition-all duration-300`}
                     ></i>
                 </div>
             )}
@@ -135,7 +136,7 @@ export default forwardRef(function TextInput(
             {hasIcon && iconPosition === 'right' && (
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none transition-colors duration-300">
                     <i
-                        className={`${iconClass} text-gray-400 text-base group-focus-within:text-primary transition-all duration-300`}
+                        className={`${iconClass} text-gray-400 dark:text-gray-500 text-base group-focus-within:text-primary transition-all duration-300`}
                     ></i>
                 </div>
             )}
@@ -145,7 +146,7 @@ export default forwardRef(function TextInput(
                 <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                     <button
                         type="button"
-                        className="text-gray-400 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30 rounded-full p-1 transition-colors duration-200"
+                        className="text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/30 dark:focus:ring-primary/50 rounded-full p-1 transition-colors duration-200"
                         onClick={isPassword ? togglePasswordVisibility : handleClear}
                         aria-label={isPassword ? (passwordVisible ? 'Hide password' : 'Show password') : 'Clear input'}
                     >

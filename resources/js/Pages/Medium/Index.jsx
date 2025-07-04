@@ -22,7 +22,6 @@ export default function Index() {
     const [media, setMedia] = useState([])
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    const [notification, setNotification] = useState(null)
 
     const getMedia = async (query) => setMedia(await _media.data({ params: query }))
 
@@ -34,17 +33,17 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.medium.bgColor} icon={moduleConstants.medium.icon} />
                     <div>
                         <Name value={medium.name} />
-                        <small className="text-gray-500 block">{medium.type}</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">{medium.type}</small>
                     </div>
                 </div>
             ),
             Size: (
                 <div className="flex items-center">
                     <Avatar size="xs" bgColor="bg-blue-500" icon="ri-file-text-line" />
-                    <span className="font-semibold">{formatFileSize(medium.size)}</span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">{formatFileSize(medium.size)}</span>
                 </div>
             ),
-            Actions: <ActionsPartial setNotification={setNotification} medium={medium} getMedia={getMedia} />,
+            Actions: <ActionsPartial medium={medium} getMedia={getMedia} />,
         }
     }
 
@@ -94,8 +93,6 @@ export default function Index() {
             </div>
 
             {can(permissions.medium.create) && <Uploader getMedia={getMedia} />}
-
-            {notification && <DisplayMessage type="success" text={notification} className={'mb-3'} />}
 
             <Table
                 data={data}

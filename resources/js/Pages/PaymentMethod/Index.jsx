@@ -103,8 +103,8 @@ export default function Index({ publishableKey, clientSecret }) {
                 <div
                     className={`mb-6 p-4 rounded-lg border shadow-sm flex items-start ${
                         notification.type === 'error'
-                            ? 'bg-red-50 text-red-700 border-red-200'
-                            : 'bg-green-50 text-green-700 border-green-200'
+                            ? 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800/30'
+                            : 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800/30'
                     }`}
                 >
                     <div className="flex-shrink-0">
@@ -139,7 +139,7 @@ export default function Index({ publishableKey, clientSecret }) {
                     title={
                         <div className="flex items-center">
                             <Avatar size="sm" bgColor={moduleConstants.section.bgColor} icon="ri-bank-card-line" />
-                            <span className="text-2xl font-bold text-gray-900">Payment Methods</span>
+                            <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">Payment Methods</span>
                         </div>
                     }
                     subtitle={
@@ -176,9 +176,9 @@ export default function Index({ publishableKey, clientSecret }) {
                 {/* Payment Methods List */}
                 {can(permissions.payment_method.list) && (
                     <div className="lg:col-span-2">
-                        <div className="bg-white rounded-xl shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden">
-                            <div className="flex items-center p-6 border-b bg-gradient-to-r from-indigo-50 to-blue-50">
-                                <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mr-3">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 overflow-hidden">
+                            <div className="flex items-center p-6 border-b dark:border-gray-700 bg-gradient-to-r from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20">
+                                <div className="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-800/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mr-3">
                                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path
                                             strokeLinecap="round"
@@ -188,15 +188,15 @@ export default function Index({ publishableKey, clientSecret }) {
                                         />
                                     </svg>
                                 </div>
-                                <h5 className="m-0 text-xl font-bold text-gray-800">Your Payment Methods</h5>
+                                <h5 className="m-0 text-xl font-bold text-gray-800 dark:text-gray-100">Your Payment Methods</h5>
                             </div>
                             <div className="p-6">
                                 {loading ? (
                                     <div className="text-center py-12">
                                         <div className="animate-pulse">
-                                            <div className="mx-auto h-14 w-14 rounded-full bg-indigo-100 flex items-center justify-center">
+                                            <div className="mx-auto h-14 w-14 rounded-full bg-indigo-100 dark:bg-indigo-800/50 flex items-center justify-center">
                                                 <svg
-                                                    className="h-7 w-7 text-indigo-500"
+                                                    className="h-7 w-7 text-indigo-500 dark:text-indigo-400"
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
@@ -209,14 +209,14 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     />
                                                 </svg>
                                             </div>
-                                            <p className="mt-4 text-base font-medium text-gray-600">
+                                            <p className="mt-4 text-base font-medium text-gray-600 dark:text-gray-300">
                                                 Loading payment methods...
                                             </p>
                                         </div>
                                     </div>
                                 ) : paymentMethods.length === 0 ? (
-                                    <div className="text-center py-12 bg-gray-50 rounded-xl border border-dashed border-gray-200">
-                                        <div className="text-indigo-400 mb-4">
+                                    <div className="text-center py-12 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-dashed border-gray-200 dark:border-gray-700">
+                                        <div className="text-indigo-400 dark:text-indigo-300 mb-4">
                                             <svg
                                                 className="mx-auto h-20 w-20"
                                                 fill="none"
@@ -231,10 +231,10 @@ export default function Index({ publishableKey, clientSecret }) {
                                                 />
                                             </svg>
                                         </div>
-                                        <h3 className="mt-2 text-lg font-semibold text-gray-900">
+                                        <h3 className="mt-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
                                             No payment methods found
                                         </h3>
-                                        <p className="mt-3 text-base text-gray-600 max-w-md mx-auto mb-6">
+                                        <p className="mt-3 text-base text-gray-600 dark:text-gray-300 max-w-md mx-auto mb-6">
                                             Add your first payment method to start making secure payments for your
                                             subscriptions and services.
                                         </p>
@@ -250,8 +250,8 @@ export default function Index({ publishableKey, clientSecret }) {
                                                     key={method.id}
                                                     className={`border rounded-xl p-5 flex flex-col md:flex-row md:justify-between md:items-center gap-4 transition-all duration-300 ${
                                                         isDefault
-                                                            ? 'border-green-400 bg-green-50 shadow-md'
-                                                            : 'hover:border-indigo-200 hover:shadow-md'
+                                                            ? 'border-green-400 dark:border-green-600 bg-green-50 dark:bg-green-900/20 shadow-md'
+                                                            : 'hover:border-indigo-200 dark:hover:border-indigo-700 hover:shadow-md dark:border-gray-700'
                                                     }`}
                                                 >
                                                     <div className="flex items-center">
@@ -282,13 +282,13 @@ export default function Index({ publishableKey, clientSecret }) {
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="flex items-center">
-                                                                <p className="text-base font-semibold text-gray-800">
+                                                                <p className="text-base font-semibold text-gray-800 dark:text-gray-100">
                                                                     {method.card.brand.charAt(0).toUpperCase() +
                                                                         method.card.brand.slice(1)}{' '}
                                                                     •••• {method.card.last4}
                                                                 </p>
                                                                 {isDefault && (
-                                                                    <span className="inline-flex items-center ml-3 px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                                                                    <span className="inline-flex items-center ml-3 px-3 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-800/40 text-green-800 dark:text-green-300 border border-green-200 dark:border-green-700">
                                                                         <svg
                                                                             className="w-3.5 h-3.5 mr-1"
                                                                             fill="currentColor"
@@ -305,7 +305,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                                                     </span>
                                                                 )}
                                                             </div>
-                                                            <p className="text-sm text-gray-500 mt-1">
+                                                            <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                                                                 Expires{' '}
                                                                 {method.card.exp_month < 10
                                                                     ? '0' + method.card.exp_month
@@ -318,7 +318,7 @@ export default function Index({ publishableKey, clientSecret }) {
                                                         {!isDefault && (
                                                             <button
                                                                 onClick={() => handleSetAsDefault(method.id)}
-                                                                className="text-sm px-4 py-2 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors duration-200 font-medium flex items-center shadow-sm"
+                                                                className="text-sm px-4 py-2 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-800/40 transition-colors duration-200 font-medium flex items-center shadow-sm"
                                                             >
                                                                 <svg
                                                                     className="w-4 h-4 mr-1.5"
@@ -358,10 +358,10 @@ export default function Index({ publishableKey, clientSecret }) {
                 {/* Add Payment Method Section */}
                 {can(permissions.payment_method.create) && (
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden h-full">
-                            <div className="p-6 border-b bg-gradient-to-r from-indigo-600 to-blue-600">
+                        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden h-full">
+                            <div className="p-6 border-b dark:border-gray-700 bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-800 dark:to-blue-800">
                                 <div className="flex items-center">
-                                    <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center text-indigo-600 mr-3">
+                                    <div className="h-10 w-10 rounded-full bg-white dark:bg-gray-200 flex items-center justify-center text-indigo-600 mr-3">
                                         <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
@@ -376,13 +376,13 @@ export default function Index({ publishableKey, clientSecret }) {
                             </div>
                             <div className="p-6">
                                 <div className="mb-6">
-                                    <p className="text-gray-700 mb-4">
+                                    <p className="text-gray-700 dark:text-gray-300 mb-4">
                                         Add a new payment method to your account for seamless transactions and
                                         subscription management.
                                     </p>
-                                    <div className="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-100 text-sm text-blue-700 mb-6">
+                                    <div className="flex items-center p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800/30 text-sm text-blue-700 dark:text-blue-300 mb-6">
                                         <svg
-                                            className="h-5 w-5 mr-2 text-blue-500 flex-shrink-0"
+                                            className="h-5 w-5 mr-2 text-blue-500 dark:text-blue-400 flex-shrink-0"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"

@@ -1,9 +1,9 @@
 export default function HowItWorksSection() {
     return (
-        <div className="bg-gray-50 dark:bg-zinc-800 py-16">
+        <div className="bg-gray-50 dark:bg-gray-900 py-16">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-16 text-center">
-                    <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+                    <span className="mb-4 inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-600 dark:bg-blue-900/30 dark:text-blue-300">
                         Simple Process
                     </span>
                     <h2 className="text-black text-4xl font-extrabold sm:text-5xl dark:text-white">How It Works</h2>
@@ -15,13 +15,13 @@ export default function HowItWorksSection() {
                 <div className="relative">
                     {/* Process connector line */}
                     <div
-                        className="absolute left-0 right-0 top-24 z-0 hidden h-1 translate-y-1/2 transform bg-blue-500 md:block"
+                        className="absolute left-0 right-0 top-24 z-0 hidden h-1 translate-y-1/2 transform bg-blue-500 dark:bg-blue-400 md:block"
                         style={{ width: '70%', margin: '0 auto' }}
                     ></div>
 
                     <div className="relative z-10 grid gap-10 md:grid-cols-3">
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.15)] group">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 transform transition-transform duration-300 group-hover:scale-110">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +50,13 @@ export default function HowItWorksSection() {
 
                             <div className="mt-6 w-full">
                                 <div className="h-1 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-                                    <div className="h-1 w-full animate-pulse bg-blue-600"></div>
+                                    <div className="h-1 w-full animate-pulse bg-blue-600 dark:bg-blue-500"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(99,102,241,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(99,102,241,0.15)] group">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 transform transition-transform duration-300 group-hover:scale-110">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -85,13 +85,13 @@ export default function HowItWorksSection() {
 
                             <div className="mt-6 w-full">
                                 <div className="h-1 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-                                    <div className="h-1 w-full animate-pulse bg-indigo-600"></div>
+                                    <div className="h-1 w-full animate-pulse bg-indigo-600 dark:bg-indigo-500"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
-                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col items-center rounded-xl bg-white/90 p-8 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(168,85,247,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(168,85,247,0.15)] group">
+                            <div className="mb-6 flex size-20 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 transform transition-transform duration-300 group-hover:scale-110">
                                 <svg
                                     className="size-10 text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@ export default function HowItWorksSection() {
 
                             <div className="mt-6 w-full">
                                 <div className="h-1 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-                                    <div className="h-1 w-full animate-pulse bg-purple-600"></div>
+                                    <div className="h-1 w-full animate-pulse bg-purple-600 dark:bg-purple-500"></div>
                                 </div>
                             </div>
                         </div>
@@ -142,9 +142,9 @@ export default function HowItWorksSection() {
 
                     <div className="grid md:grid-cols-4 gap-6">
                         {/* Step 1 */}
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.15)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-blue-500 shadow-lg shadow-blue-200 dark:shadow-blue-900/30 mr-3 group-hover:scale-110 transition-transform duration-250">
                                     <span className="text-white font-bold">1</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create account</h4>
@@ -155,9 +155,9 @@ export default function HowItWorksSection() {
                         </div>
 
                         {/* Step 2 */}
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(99,102,241,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(99,102,241,0.15)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-indigo-500 shadow-lg shadow-indigo-200 dark:shadow-indigo-900/30 mr-3 group-hover:scale-110 transition-transform duration-250">
                                     <span className="text-white font-bold">2</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Create sections</h4>
@@ -168,9 +168,9 @@ export default function HowItWorksSection() {
                         </div>
 
                         {/* Step 3 */}
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(168,85,247,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(168,85,247,0.15)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-purple-500 shadow-lg shadow-purple-200 dark:shadow-purple-900/30 mr-3 group-hover:scale-110 transition-transform duration-250">
                                     <span className="text-white font-bold">3</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Add keys</h4>
@@ -181,9 +181,9 @@ export default function HowItWorksSection() {
                         </div>
 
                         {/* Step 4 */}
-                        <div className="dark:bg-zinc-900/80 dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(59,130,246,0.2)]">
+                        <div className="dark:bg-black dark:ring-zinc-700 dark:hover:bg-zinc-800 flex transform flex-col rounded-xl bg-white/90 p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0px_20px_50px_0px_rgba(234,179,8,0.2)] dark:hover:shadow-[0px_20px_50px_0px_rgba(234,179,8,0.15)]">
                             <div className="flex items-center mb-4">
-                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-yellow-500 shadow-lg shadow-yellow-200 dark:shadow-yellow-900/30 mr-3">
+                                <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-yellow-500 shadow-lg shadow-yellow-200 dark:shadow-yellow-900/30 mr-3 group-hover:scale-110 transition-transform duration-250">
                                     <span className="text-white font-bold">4</span>
                                 </div>
                                 <h4 className="font-medium text-gray-900 dark:text-white">Use in API</h4>
@@ -195,34 +195,34 @@ export default function HowItWorksSection() {
                     </div>
 
                     {/* Example Workflow */}
-                    <div className="mt-12 bg-white/90 dark:bg-zinc-900/80 rounded-xl p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] ring-1 ring-white/[0.1] dark:ring-zinc-700 backdrop-blur-sm">
+                    <div className="mt-12 bg-white/90 dark:bg-black rounded-xl p-6 shadow-[0px_20px_50px_0px_rgba(0,0,0,0.1)] dark:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.3)] ring-1 ring-white/[0.1] dark:ring-zinc-700 backdrop-blur-sm transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:hover:shadow-[0px_20px_50px_0px_rgba(0,0,0,0.4)]">
                         <h4 className="font-bold text-xl text-gray-900 dark:text-white mb-4">Example workflow:</h4>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div>
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 mb-3">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 mb-3 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600">
                                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                         1. Create section:{' '}
                                         <span className="text-blue-600 dark:text-blue-400">Home Page - Hero</span>
                                     </p>
                                 </div>
-                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                                <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-100 dark:border-blue-800 transition-all duration-300 hover:border-blue-300 dark:hover:border-blue-600">
                                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
                                         2. Add key: <span className="text-blue-600 dark:text-blue-400">title</span>
                                     </p>
                                     <div className="mt-3 pl-4 border-l-2 border-blue-300 dark:border-blue-700">
                                         <p className="text-xs text-gray-600 dark:text-gray-400">
-                                            English (en): <span className="font-medium">Welcome to XYZ</span>
+                                            English (en): <span className="font-medium dark:text-gray-300">Welcome to XYZ</span>
                                         </p>
                                         <p className="text-xs text-gray-600 dark:text-gray-400">
-                                            Spanish (es): <span className="font-medium">Bienvenido a XYZ</span>
+                                            Spanish (es): <span className="font-medium dark:text-gray-300">Bienvenido a XYZ</span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <div className="bg-gray-900 p-4 rounded-lg text-gray-300 font-mono text-xs">
+                                <div className="bg-gray-900 dark:bg-gray-950 p-4 rounded-lg text-gray-300 font-mono text-xs shadow-inner dark:shadow-black/50 border border-transparent dark:border-gray-800">
                                     <p>
-                                        <span className="text-blue-400">// API response when language=es</span>
+                                        <span className="text-blue-400 dark:text-blue-300">// API response when language=es</span>
                                     </p>
                                     <p>{`{`}</p>
                                     <p className="pl-4">{`"section": "home-page-hero",`}</p>
@@ -240,7 +240,7 @@ export default function HowItWorksSection() {
             <div className="mt-16 text-center">
                 <a
                     href="#"
-                    className="border-transparent inline-flex transform items-center rounded-md border bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="border-transparent inline-flex transform items-center rounded-md border bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all duration-300 hover:scale-105 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 dark:shadow-blue-900/30 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-zinc-800"
                 >
                     Get Started Now
                     <svg

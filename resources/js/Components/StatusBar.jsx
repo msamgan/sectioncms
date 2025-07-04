@@ -36,7 +36,7 @@ export default function StatusBar() {
                         You don't have any payment methods set up.
                         <Link
                             href={route('payment-methods.index')}
-                            className="ml-2 font-medium text-primary hover:text-primary/80 underline"
+                            className="ml-2 font-medium text-primary dark:text-blue-400 hover:text-primary/80 dark:hover:text-blue-300 underline"
                         >
                             Add a payment method
                         </Link>

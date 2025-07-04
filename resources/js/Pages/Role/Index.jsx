@@ -50,14 +50,14 @@ export default function Index() {
                     <Avatar size="sm" bgColor={moduleConstants.role.bgColor} icon={moduleConstants.role.icon} />
                     <div>
                         <Name value={role.display_name} />
-                        <small className="text-gray-500 block">{role.name}</small>
+                        <small className="text-gray-500 dark:text-gray-400 block transition-colors duration-250">{role.name}</small>
                     </div>
                 </div>
             ),
             UserCount: (
                 <div className="flex items-center">
                     <Avatar size="xs" bgColor={moduleConstants.user.bgColor} icon={moduleConstants.user.icon} />
-                    <span className="font-semibold">{role.users_count}</span>
+                    <span className="font-semibold text-gray-800 dark:text-gray-100 transition-colors duration-250">{role.users_count}</span>
                 </div>
             ),
             Status: can(permissions.role.update) ? (
@@ -68,7 +68,7 @@ export default function Index() {
                     refresher={getRoles}
                 />
             ) : (
-                <span className="text-gray-500">{role.is_active ? 'Active' : 'Inactive'}</span>
+                <span className="text-gray-500 dark:text-gray-400 transition-colors duration-250">{role.is_active ? 'Active' : 'Inactive'}</span>
             ),
             Actions: (
                 <Actions>

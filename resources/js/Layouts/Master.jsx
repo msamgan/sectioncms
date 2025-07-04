@@ -37,10 +37,10 @@ export default function Master({ children, hideMenu = false }) {
     }
 
     return (
-        <div className="flex min-h-screen w-full bg-gray-50">
+        <div className="flex min-h-screen w-full bg-gray-50 dark:bg-gray-900">
             {!hideMenu && <Sidebar user={auth.user} collapsed={sidebarCollapsed} onToggle={toggleSidebar} />}
 
-            <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white border-b border-gray-100 transition-all duration-250">
+            <header className="fixed top-0 left-0 right-0 z-40 w-full bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 transition-all duration-250">
                 <div className="w-full px-4 md:px-6">
                     <TopHeader user={auth.user} />
                 </div>
@@ -51,7 +51,7 @@ export default function Master({ children, hideMenu = false }) {
                     !hideMenu ? (sidebarCollapsed ? 'ml-20' : 'ml-64') : ''
                 } ${pageLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}
             >
-                <div className="w-full max-w-7xl mx-auto">
+                <div className="w-full max-w-7xl mx-auto mt-12">
                     <StatusBar />
                 </div>
 
@@ -59,7 +59,7 @@ export default function Master({ children, hideMenu = false }) {
                     <div className="w-full px-4 md:px-6 max-w-7xl mx-auto">{children}</div>
                 </main>
 
-                <div className="w-full border-t border-gray-100 bg-white mt-auto">
+                <div className="w-full border-t border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 mt-auto">
                     <div className="w-full px-4 md:px-6 max-w-7xl mx-auto">
                         <Footer />
                     </div>

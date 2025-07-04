@@ -70,19 +70,19 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
     return (
         <>
             {/* Backdrop overlay when offcanvas is open */}
-            {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 z-30" onClick={handleClose}></div>}
+            {isOpen && <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 z-30" onClick={handleClose}></div>}
 
             <div
-                className={`fixed top-0 right-0 z-40 h-screen ${w} bg-white border-l border-gray-200 shadow-2xl transform ${
+                className={`fixed top-0 right-0 z-40 h-screen ${w} bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 shadow-2xl dark:shadow-gray-900/20 transform ${
                     isOpen ? 'translate-x-0' : 'translate-x-full'
                 } transition-transform duration-300 ease-in-out rounded-l-xl`}
                 tabIndex="-1"
                 id={id}
                 aria-labelledby={id + 'Label'}
             >
-                <div className="flex items-center justify-between p-5 border-b bg-gradient-to-r from-blue-500 to-indigo-600">
+                <div className="flex items-center justify-between p-5 border-b dark:border-gray-700 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700">
                     <h5 id={id + 'Label'} className="text-xl font-semibold text-white flex items-center">
-                        <span className="bg-white/20 backdrop-blur-sm text-white p-2 rounded-lg mr-3 shadow-md">
+                        <span className="bg-white/20 dark:bg-white/10 backdrop-blur-sm text-white p-2 rounded-lg mr-3 shadow-md dark:shadow-gray-900/30">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="h-5 w-5"
@@ -114,7 +114,7 @@ export default function OffCanvas({ id, title, w = 'w-3/4', children }) {
                         </svg>
                     </button>
                 </div>
-                <div className="p-6 overflow-y-auto h-[calc(100vh-80px)] bg-gray-50">{children}</div>
+                <div className="p-6 overflow-y-auto h-[calc(100vh-80px)] bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors duration-250">{children}</div>
             </div>
         </>
     )

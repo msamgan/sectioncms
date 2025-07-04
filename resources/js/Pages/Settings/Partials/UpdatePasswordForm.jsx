@@ -38,15 +38,15 @@ export default function UpdatePasswordForm({ className = '' }) {
 
     return (
         <form onSubmit={updatePassword} className="space-y-6">
-            <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
-                <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
+                <div className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 px-6 py-4">
                     <div className="flex items-center">
                         <Avatar size="sm" bgColor="bg-blue-500" icon="ri-lock-line" />
-                        <h5 className="ml-3 text-lg font-semibold text-gray-800">Update Password</h5>
+                        <h5 className="ml-3 text-lg font-semibold text-gray-800 dark:text-gray-200">Update Password</h5>
                     </div>
                 </div>
-                <div className="p-6">
-                    <p className="mb-4 text-sm text-gray-600">
+                <div className="p-6 dark:text-gray-300">
+                    <p className="mb-4 text-sm text-gray-600 dark:text-gray-400">
                         Ensure your account is using a long, random password to stay secure.
                     </p>
 
@@ -57,7 +57,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                             </InputLabel>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i className="ri-lock-line text-gray-500"></i>
+                                    <i className="ri-lock-line text-gray-500 dark:text-gray-400"></i>
                                 </div>
                                 <TextInput
                                     id="current_password"
@@ -78,7 +78,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                             </InputLabel>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i className="ri-lock-password-line text-gray-500"></i>
+                                    <i className="ri-lock-password-line text-gray-500 dark:text-gray-400"></i>
                                 </div>
                                 <TextInput
                                     id="password"
@@ -99,7 +99,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                             </InputLabel>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <i className="ri-checkbox-circle-line text-gray-500"></i>
+                                    <i className="ri-checkbox-circle-line text-gray-500 dark:text-gray-400"></i>
                                 </div>
                                 <TextInput
                                     id="password_confirmation"
@@ -131,7 +131,7 @@ export default function UpdatePasswordForm({ className = '' }) {
                     leave="transition ease-in-out"
                     leaveTo="opacity-0"
                 >
-                    <p className="text-sm text-green-600 font-medium">Saved successfully!</p>
+                    <p className="text-sm text-green-600 dark:text-green-400 font-medium">Saved successfully!</p>
                 </Transition>
             </div>
         </form>

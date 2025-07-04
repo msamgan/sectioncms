@@ -6,10 +6,10 @@ export default function NotificationsContent({ notificationSettings, getSettings
         <>
             {notificationSettings?.length > 0 ? (
                 notificationSettings.map((setting) => (
-                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white w-2/3'}>
+                    <div key={setting.slug} className={'flex items-center justify-between p-4 bg-white dark:bg-gray-800 w-full rounded-lg mb-3 transition-colors duration-200'}>
                         <div className="mb-4">
-                            <h3 className="text-lg font-semibold mb-2">{setting.name}</h3>
-                            <p className="text-gray-600">{setting.description}</p>
+                            <h3 className="text-lg font-semibold mb-2 dark:text-gray-200">{setting.name}</h3>
+                            <p className="text-gray-600 dark:text-gray-400">{setting.description}</p>
                         </div>
                         <span className="inline-flex items-center">
                             <Switch
@@ -26,7 +26,7 @@ export default function NotificationsContent({ notificationSettings, getSettings
                                     }
                                 }}
                                 className={`${
-                                    setting.value ? 'bg-blue-600' : 'bg-gray-200'
+                                    setting.value ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'
                                 } relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none`}
                             >
                                 <span
@@ -39,7 +39,7 @@ export default function NotificationsContent({ notificationSettings, getSettings
                     </div>
                 ))
             ) : (
-                <div key={'one'} className="text-gray-500">
+                <div key={'one'} className="text-gray-500 dark:text-gray-400 p-4 rounded-lg transition-colors duration-200">
                     No notification settings available.
                 </div>
             )}

@@ -29,7 +29,7 @@ export default function Dashboard({ auth }) {
                 icon="ri-dashboard-line"
                 title="Overview"
                 headerAction={
-                    <button className="text-sm text-gray-500 hover:text-primary flex items-center transition-colors">
+                    <button className="text-sm text-gray-500 dark:text-gray-400 hover:text-primary flex items-center transition-colors">
                         <i className="ri-refresh-line mr-1"></i>
                         Refresh
                     </button>
@@ -88,7 +88,7 @@ export default function Dashboard({ auth }) {
                     iconBgColor="bg-purple-100"
                     iconTextColor="text-purple-600"
                 >
-                    <div className="bg-white rounded-xl shadow-md p-3 sm:p-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-3 sm:p-4">
                         <ApiStatsChart />
                     </div>
                 </DashboardSection>
